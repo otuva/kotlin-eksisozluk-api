@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.7.10"
+    kotlin("plugin.serialization") version "1.7.10"
     application
 }
 
@@ -20,6 +21,13 @@ dependencies {
     dependencies {
         implementation("io.ktor:ktor-client-core:$ktor_version")
         implementation("io.ktor:ktor-client-cio:$ktor_version")
+
+        implementation("io.ktor:ktor-client-auth:$ktor_version")
+//        implementation("io.ktor:ktor-client-logging:$ktor_version")
+        implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+        implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
+        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
     }
 }
 
