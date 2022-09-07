@@ -2,8 +2,8 @@ package io.github.otuva.eksisozluk
 
 import io.github.otuva.eksisozluk.models.EksiToken
 import io.github.otuva.eksisozluk.models.deserializeAuth
-import io.github.otuva.eksisozluk.models.deserializeAnonAuth
 import io.github.otuva.eksisozluk.models.deserializeEntry
+import io.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -112,7 +112,7 @@ class EksiClient(_username: String?, _password: String?) {
             )
         }
 
-        token = deserializeAnonAuth(response.bodyAsText())
+        token = deserializeAnonLoginResponse(response.bodyAsText()).data
     }
 
     private suspend fun login(client: HttpClient) {
