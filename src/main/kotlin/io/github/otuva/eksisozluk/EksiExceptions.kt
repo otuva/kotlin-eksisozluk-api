@@ -1,4 +1,3 @@
 package io.github.otuva.eksisozluk
 
-sealed class EksiExceptions {
-}
+class BadTopicException(message:String): Exception(message)
