@@ -22,7 +22,11 @@ data class Topic(
     val matterCount: Int,
     val slug: String,
     val video: Video,
-)
+) {
+    fun returnFirstEntry(): Entry {
+        return entries[0]
+    }
+}
 
 @Serializable
 data class EntryCounts(
@@ -51,16 +55,20 @@ fun deserializeTopic(json: String): Topic {
     val title = jsonElement.jsonObject["Title"]!!.jsonPrimitive.content
     val entries = jsonElement.jsonObject["Entries"]!!.jsonArray.map { deserializeEntry(it.toString()) }
     val pageCount = jsonElement.jsonObject["PageCount"]!!.jsonPrimitive.int
-    val pageSize = jsonElement.jsonObject["pageSize"]!!.jsonPrimitive.int
-    val pageIndex = jsonElement.jsonObject["pageIndex"]!!.jsonPrimitive.int
-    val pinnedEntry = jsonElement.jsonObject["PinnedEntry"]?.let { deserializeEntry(it.toString()) }
+    val pageSize = jsonElement.jsonObject["PageSize"]!!.jsonPrimitive.int
+    val pageIndex = jsonElement.jsonObject["PageIndex"]!!.jsonPrimitive.int
+    val pinnedEntry = if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeEntry(jsonElement.jsonObject["PinnedEntry"].toString()) else null
     val entryCounts = deserializeEntryCounts(jsonElement.jsonObject["EntryCounts"]!!.toString())
-    val draftEntry = jsonElement.jsonObject["DraftEntry"]?.let { deserializeDraftEntry(it.toString()) }
+    val draftEntry = if (jsonElement.jsonObject["DraftEntry"] != JsonNull) deserializeDraftEntry(jsonElement.jsonObject["DraftEntry"].toString()) else null
     val isTracked = jsonElement.jsonObject["IsTracked"]!!.jsonPrimitive.boolean
     val isTrackable = jsonElement.jsonObject["IsTrackable"]!!.jsonPrimitive.boolean
-    val disambiguations = jsonElement.jsonObject["Disambiguations"]!!.jsonArray.map { deserializeDisambiguation(it.toString()) }
     val slug = jsonElement.jsonObject["Slug"]!!.jsonPrimitive.content
     val video = deserializeVideo(jsonElement.jsonObject["Video"]!!.toString())
+    val disambiguations = jsonElement.jsonObject["Disambiguations"]!!.jsonArray.map { deserializeDisambiguation(it.toString()) }
+    val isAmaTopic = jsonElement.jsonObject["IsAmaTopic"]!!.jsonPrimitive.boolean
+    val matterCount = jsonElement.jsonObject["MatterCount"]!!.jsonPrimitive.int
+
+
 
     return Topic(
         id=id,
@@ -74,11 +82,11 @@ fun deserializeTopic(json: String): Topic {
         draftEntry=draftEntry,
         isTracked=isTracked,
         isTrackable=isTrackable,
-        disambiguations=disambiguations,
-        isAmaTopic=false,
-        matterCount=0,
         slug=slug,
-        video=video
+        video=video,
+        disambiguations=disambiguations,
+        isAmaTopic=isAmaTopic,
+        matterCount=matterCount
     )
 }
 
