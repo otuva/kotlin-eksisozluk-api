@@ -40,7 +40,7 @@ internal fun deserializeVideo(json: String): Video {
 }
 
 private fun deserializeDisplayInfo(json: String): DisplayInfo {
-    /**
+    /*
      * this function will not be executed if  displayinfo is null.
      * So it's guaranteed that these keys will exist
      * */
