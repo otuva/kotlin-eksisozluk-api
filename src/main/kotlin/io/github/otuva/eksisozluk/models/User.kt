@@ -6,7 +6,14 @@ import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
+@Serializable
+data class UserIdentifier(
+    val nick: String,
+    val id: Int
+)
 
+//class User {
+//}
 
 fun deserializeUserIdentifier(response: String): UserIdentifier {
     val jsonElement = Json.parseToJsonElement(response)
@@ -19,12 +26,3 @@ fun deserializeUserIdentifier(response: String): UserIdentifier {
         id = id
     )
 }
-
-@Serializable
-data class UserIdentifier(
-    val nick: String,
-    val id: Int
-)
-
-//class User {
-//}
