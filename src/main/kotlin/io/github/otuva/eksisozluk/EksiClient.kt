@@ -1,9 +1,11 @@
 package io.github.otuva.eksisozluk
 
 import io.github.otuva.eksisozluk.models.EksiToken
+import io.github.otuva.eksisozluk.models.Topic
 import io.github.otuva.eksisozluk.models.deserializeAuth
 import io.github.otuva.eksisozluk.models.deserializeEntry
 import io.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
+import io.github.otuva.eksisozluk.responses.deserializeTopicResponse
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -100,9 +102,10 @@ class EksiClient(_username: String?, _password: String?) {
         println(response.bodyAsText())
     }
     
-    suspend fun getTopic(topicId: Int) {
+    suspend fun getTopic(topicId: Int): Topic {
         val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId))
         println(response.bodyAsText())
+        return deserializeTopicResponse(response.bodyAsText()).data
     }
 
     private suspend fun anonLogin(client: HttpClient) {
@@ -142,9 +145,16 @@ suspend fun main() {
     // TODO:
     //  add logger
     val eksiClient = EksiClient(null, null)
+
     eksiClient.authorize()
 //    eksiClient.getEntry(132884409)
-    eksiClient.getTopic(421321)
+    // 7154265 -> pinned entry topic
+    // 6362411 -> video topic
+    // 31872 -> disambiguation topic
+    val entry = eksiClient.getEntry(142359356)
+    val topic = eksiClient.getTopic(6362411)
+    println(entry)
+    println(topic)
 
 //    val myEntry = deserializeEntry("""{"Id":130169603,"Content":"the many saints of newark adli filmin protagonisti olan karakter.\r\n\r\nrichard \"dickie\" moltisanti soprano crew askerlerinden biri olup, christopher moltisantinin babasidir.","Author":{"Nick":"fulco","Id":2851178},"Created":"2021-11-17T14:32:07.907","LastUpdated":"2021-12-12T16:20:00","IsFavorite":false,"FavoriteCount":0,"Hidden":true,"Active":false,"CommentCount":0,"CommentSummary":null,"AvatarUrl":null,"Media":null,"IsSponsored":false,"IsPinned":false,"IsPinnedOnProfile":false,"IsVerifiedAccount":false}""")
 //    println(myEntry)
