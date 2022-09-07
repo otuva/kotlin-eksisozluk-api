@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="what in the tarnation">
-      <change beforePath="$PROJECT_DIR$/.attach_pid73951" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="update client anon auth handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/EksiToken.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/New.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/EksiToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/EksiToken.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Entry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Entry.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/EntryCounts.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Topic.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Topic.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/User.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +67,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/home/tfp/Dev/kotlin/spotify-web-api-kotlin",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
   }
@@ -157,7 +158,91 @@
       <option name="project" value="LOCAL" />
       <updated>1662472045178</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add eksi client class">
+      <created>1662552917650</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1662552917650</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update gitignore">
+      <created>1662552960560</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1662552960560</updated>
+    </task>
+    <task id="LOCAL-00009" summary="deleted attach pid">
+      <created>1662552980892</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1662552980892</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactor file locations">
+      <created>1662553016413</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553016414</updated>
+    </task>
+    <task id="LOCAL-00011" summary="change ws">
+      <created>1662553023555</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553023555</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add user classes">
+      <created>1662553036560</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553036560</updated>
+    </task>
+    <task id="LOCAL-00013" summary="wtf is this">
+      <created>1662553066305</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553066305</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add eps">
+      <created>1662553082189</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553082189</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add draft exceptions class">
+      <created>1662553123358</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553123358</updated>
+    </task>
+    <task id="LOCAL-00016" summary="add entry class">
+      <created>1662553132487</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553132487</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add draft topic class">
+      <created>1662553142042</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553142042</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add entrycounts class">
+      <created>1662553152484</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553152484</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,7 +265,21 @@
     <MESSAGE value="implement authorization system" />
     <MESSAGE value="temp new main lmao" />
     <MESSAGE value="what in the tarnation" />
-    <option name="LAST_COMMIT_MESSAGE" value="what in the tarnation" />
+    <MESSAGE value="add debe ep doc" />
+    <MESSAGE value="add eksi client class" />
+    <MESSAGE value="update gitignore" />
+    <MESSAGE value="deleted attach pid" />
+    <MESSAGE value="refactor file locations" />
+    <MESSAGE value="change ws" />
+    <MESSAGE value="add user classes" />
+    <MESSAGE value="wtf is this" />
+    <MESSAGE value="add eps" />
+    <MESSAGE value="add draft exceptions class" />
+    <MESSAGE value="add entry class" />
+    <MESSAGE value="add draft topic class" />
+    <MESSAGE value="add entrycounts class" />
+    <MESSAGE value="update client anon auth handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="update client anon auth handling" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
