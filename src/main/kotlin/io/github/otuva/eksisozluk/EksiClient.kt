@@ -23,21 +23,21 @@ val routes = mapOf<String,String>(
     "anonLogin" to "/v2/account/anonymoustoken",
     "clientInfo" to "/v2/clientsettings/info",
     "time" to "/v2/clientsettings/time",
-    "topic" to "/v2/topic/{}",
+    "topic" to "/v2/topic/%s",
     "entry" to "/v2/entry/%s",
     "entryFavorite" to "/v2/entry/favorite",
     "entryUnfavorite" to "/v2/entry/unfavorite",
-    "user" to "/v2/user/{}",
+    "user" to "/v2/user/%s",
     "userFollow" to "/v2/user/follow",
     "userUnfollow" to "/v2/user/unfollow",
     "userBlock" to "/v2/user/block",
     "userUnblock" to "/v2/user/unblock",
     "userIndexTitlesBlock" to "/v2/user/indextitlesblock",
     "userRemoveIndexTitlesBlock" to "/v2/user/indextitlesblock",
-    "user_entries" to "/v2/user/{}/entries",
-    "userFavorited" to "/v2/user/{}/favorited",
-    "userLastVoted" to "/v2/user/{}/lastvoted",
-    "userLastWeekMostVoted" to "/v2/user/{}/lastweekmostvoted",
+    "user_entries" to "/v2/user/%s/entries",
+    "userFavorited" to "/v2/user/%s/favorited",
+    "userLastVoted" to "/v2/user/%s/lastvoted",
+    "userLastWeekMostVoted" to "/v2/user/%s/lastweekmostvoted",
     "indexPopular" to "/v2/index/popular",
     "indexToday" to "/v2/index/today",
     "indexGetUserChannelFilters" to "/v2/index/getuserchannelfilters",
@@ -99,6 +99,11 @@ class EksiClient(_username: String?, _password: String?) {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
         println(response.bodyAsText())
     }
+    
+    suspend fun getTopic(topicId: Int) {
+        val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId))
+        println(response.bodyAsText())
+    }
 
     private suspend fun anonLogin(client: HttpClient) {
         val url = routes["apiUrl"] + routes["anonLogin"]
@@ -138,7 +143,8 @@ suspend fun main() {
     //  add logger
     val eksiClient = EksiClient(null, null)
     eksiClient.authorize()
-    eksiClient.getEntry(132884409)
+//    eksiClient.getEntry(132884409)
+    eksiClient.getTopic(421321)
 
 //    val myEntry = deserializeEntry("""{"Id":130169603,"Content":"the many saints of newark adli filmin protagonisti olan karakter.\r\n\r\nrichard \"dickie\" moltisanti soprano crew askerlerinden biri olup, christopher moltisantinin babasidir.","Author":{"Nick":"fulco","Id":2851178},"Created":"2021-11-17T14:32:07.907","LastUpdated":"2021-12-12T16:20:00","IsFavorite":false,"FavoriteCount":0,"Hidden":true,"Active":false,"CommentCount":0,"CommentSummary":null,"AvatarUrl":null,"Media":null,"IsSponsored":false,"IsPinned":false,"IsPinnedOnProfile":false,"IsVerifiedAccount":false}""")
 //    println(myEntry)
