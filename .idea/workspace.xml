@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="update ws">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add topic response class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/EksiExceptions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/EksiExceptions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Topic.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Topic.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Video.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Video.kt" afterDir="false" />
     </list>
@@ -325,7 +324,42 @@
       <option name="project" value="LOCAL" />
       <updated>1662564339151</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="change ws">
+      <created>1662571677556</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1662571677556</updated>
+    </task>
+    <task id="LOCAL-00032" summary="change video key types">
+      <created>1662571694986</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1662571694986</updated>
+    </task>
+    <task id="LOCAL-00033" summary="add function to get first entry">
+      <created>1662571713082</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1662571713082</updated>
+    </task>
+    <task id="LOCAL-00034" summary="add exception for bad topic ids">
+      <created>1662571728894</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1662571728894</updated>
+    </task>
+    <task id="LOCAL-00035" summary="add topic response class">
+      <created>1662571742447</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1662571742447</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -341,11 +375,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add eksi client class" />
-    <MESSAGE value="update gitignore" />
-    <MESSAGE value="deleted attach pid" />
-    <MESSAGE value="refactor file locations" />
-    <MESSAGE value="add user classes" />
     <MESSAGE value="wtf is this" />
     <MESSAGE value="add eps" />
     <MESSAGE value="add draft exceptions class" />
@@ -358,7 +387,6 @@
     <MESSAGE value="move insignificant classes under main class files" />
     <MESSAGE value="complete topic draft" />
     <MESSAGE value="reorder function" />
-    <MESSAGE value="change ws" />
     <MESSAGE value="add anon response class" />
     <MESSAGE value="add video class" />
     <MESSAGE value="add jsdoc" />
@@ -366,15 +394,21 @@
     <MESSAGE value="add deseriez functions" />
     <MESSAGE value="add deseriez functions for video" />
     <MESSAGE value="update ws" />
-    <option name="LAST_COMMIT_MESSAGE" value="update ws" />
+    <MESSAGE value="add topic get" />
+    <MESSAGE value="change ws" />
+    <MESSAGE value="change video key types" />
+    <MESSAGE value="add function to get first entry" />
+    <MESSAGE value="add exception for bad topic ids" />
+    <MESSAGE value="add topic response class" />
+    <option name="LAST_COMMIT_MESSAGE" value="add topic response class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/EksiClient.kt</url>
-          <line>155</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/models/Video.kt</url>
+          <line>30</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
