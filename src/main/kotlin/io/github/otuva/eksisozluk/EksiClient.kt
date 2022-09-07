@@ -163,20 +163,11 @@ suspend fun main() {
 
     eksiClient.authorize()
 //    eksiClient.getEntry(132884409)
-    // 7154265 -> pinned entry topic
-    // 6362411 -> video topic
-    // 31872 -> disambiguation topic
-    val entry = eksiClient.getEntryAsTopic(142359356)
+
+    // if you get single entry pinned entry won't show up
+    val entry = eksiClient.getEntryAsTopic(132884409)
 //    val topic = eksiClient.getTopic(7154265)
     println(entry)
-//    println(topic)
-//    println(eksiClient._getResponse("https://api.eksisozluk.com/v2/entry/101937372"))
 
-//    val myEntry = deserializeEntry("""{"Id":130169603,"Content":"the many saints of newark adli filmin protagonisti olan karakter.\r\n\r\nrichard \"dickie\" moltisanti soprano crew askerlerinden biri olup, christopher moltisantinin babasidir.","Author":{"Nick":"fulco","Id":2851178},"Created":"2021-11-17T14:32:07.907","LastUpdated":"2021-12-12T16:20:00","IsFavorite":false,"FavoriteCount":0,"Hidden":true,"Active":false,"CommentCount":0,"CommentSummary":null,"AvatarUrl":null,"Media":null,"IsSponsored":false,"IsPinned":false,"IsPinnedOnProfile":false,"IsVerifiedAccount":false}""")
-//    println(myEntry)
-//    val myMediaEntry = deserializeEntry("""{"Id":142331099,"Content":"tam aile kurulacak kadındır.\n\n\"işte çocuklarımın annesi olacak kişi buuuu!!\" diye haykırasım gelir;\n\n[https://cdn.eksisozluk.com/2022/9/6/p/pbrecem9.jpg?key=pbrecem9 görsel]","Author":{"Nick":"golgeleringucunegidipgelenadam","Id":2398682},"Created":"2022-09-06T22:03:15.087","LastUpdated":null,"IsFavorite":false,"FavoriteCount":3,"Hidden":false,"Active":true,"CommentCount":0,"CommentSummary":null,"AvatarUrl":"https://img.ekstat.com/profiles/golgeleringucunegidipgelenadam-637980141299896635.jpg","Media":["https://cdn.eksisozluk.com/2022/9/6/p/pbrecem9.jpg?key=pbrecem9"],"IsSponsored":false,"IsPinned":false,"IsPinnedOnProfile":false,"IsVerifiedAccount":false}""")
-//    println(myMediaEntry)
-//    val myMediaListEntry = deserializeEntry("""{"Id":141349303,"Content":"bir fotoğrafa, çizgi filmi efekti verilerek farklı anlamlar yüklenebilir, isimleri üzerine düşünmek ise bir hayli keyiflidir. \n\nbugün selamlaştığım ağaçlardan birkaçı;\n\niçinden göktaşı geçmiş bir arazi parçası;\n[https://cdn.eksisozluk.com/2022/8/15/v/vh9zduqq.jpg?key=vh9zduqq görsel]\n\nyılanların saldırısına uğramış bir ağaç kovuğu;\n[https://cdn.eksisozluk.com/2022/8/15/3/3losd1t4.jpg?key=3losd1t4 görsel]\n\nkozasında rüyaya dalmış bir göz bebeği;\n[https://cdn.eksisozluk.com/2022/8/15/z/z8ao510l.jpg?key=z8ao510l görsel]\n\nderisi kırışmış bir ağacın kalabalıklar içindeki yalnızlığı;\n[https://cdn.eksisozluk.com/2022/8/15/q/q5tihs4h.jpg?key=q5tihs4h görsel]","Author":{"Nick":"melody dream","Id":2420144},"Created":"2022-08-15T18:25:21.793","LastUpdated":null,"IsFavorite":false,"FavoriteCount":10,"Hidden":false,"Active":true,"CommentCount":0,"CommentSummary":null,"AvatarUrl":"https://img.ekstat.com/profiles/melody-dream-637971516292102127.jpg","Media":["https://cdn.eksisozluk.com/2022/8/15/v/vh9zduqq.jpg?key=vh9zduqq","https://cdn.eksisozluk.com/2022/8/15/3/3losd1t4.jpg?key=3losd1t4","https://cdn.eksisozluk.com/2022/8/15/z/z8ao510l.jpg?key=z8ao510l","https://cdn.eksisozluk.com/2022/8/15/q/q5tihs4h.jpg?key=q5tihs4h"],"IsSponsored":false,"IsPinned":false,"IsPinnedOnProfile":false,"IsVerifiedAccount":false}""")
-//    println(myMediaListEntry)
 
 }
