@@ -21,13 +21,20 @@ data class Topic(
     val isAmaTopic: Boolean,
     val matterCount: Int,
     val slug: String,
-    val video: Video,
+    val video: Video?,
 ) {
-    fun returnFirstEntry(): Entry {
+    fun getFirstEntry(): Entry {
         return entries[0]
     }
 }
 
+/**
+ * Represents the state of entries in a topic.
+ * @param beforeFirstEntry The number of entries before the first focused entry in the topic.
+ * @param afterLastEntry The number of entries after the last focused entry in the topic.
+ * @param buddy The number of entries that are written by followed authors.
+ * @param total The total number of entries in the topic.
+ * */
 @Serializable
 data class EntryCounts(
     val beforeFirstEntry: Int,
@@ -36,6 +43,11 @@ data class EntryCounts(
     val total: Int
 )
 
+/**
+ * Represents a draft entry in a topic. Note that this is for registered users only.
+ * @param content The content of the drafted entry.
+ * @param created The creation date of the draft.
+ * */
 @Serializable
 data class DraftEntry(
     val content: String,
@@ -63,7 +75,8 @@ fun deserializeTopic(json: String): Topic {
     val isTracked = jsonElement.jsonObject["IsTracked"]!!.jsonPrimitive.boolean
     val isTrackable = jsonElement.jsonObject["IsTrackable"]!!.jsonPrimitive.boolean
     val slug = jsonElement.jsonObject["Slug"]!!.jsonPrimitive.content
-    val video = deserializeVideo(jsonElement.jsonObject["Video"]!!.toString())
+    // eger entry topic responseu ise video olsa bile videoya null diyor
+    val video = if ( jsonElement.jsonObject["Video"] != JsonNull ) deserializeVideo(jsonElement.jsonObject["Video"]!!.toString()) else null
     val disambiguations = jsonElement.jsonObject["Disambiguations"]!!.jsonArray.map { deserializeDisambiguation(it.toString()) }
     val isAmaTopic = jsonElement.jsonObject["IsAmaTopic"]!!.jsonPrimitive.boolean
     val matterCount = jsonElement.jsonObject["MatterCount"]!!.jsonPrimitive.int
