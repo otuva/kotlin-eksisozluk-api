@@ -1,6 +1,7 @@
 package io.github.otuva.eksisozluk
 
 import io.github.otuva.eksisozluk.models.EksiToken
+import io.github.otuva.eksisozluk.models.Entry
 import io.github.otuva.eksisozluk.models.Topic
 import io.github.otuva.eksisozluk.models.deserializeAuth
 import io.github.otuva.eksisozluk.models.deserializeEntry
@@ -55,6 +56,13 @@ class EksiClient(_username: String?, _password: String?) {
     val clientUniqueId = UUID.randomUUID()
     lateinit var token: EksiToken
 
+    suspend fun _getResponse(url:String): String {
+        /*
+        * Unsafe function for debugging url responses.
+        * Cuz I couldn't find the problem with debugger lmao*/
+        return client.get(url).bodyAsText()
+    }
+
     suspend fun authorize() {
         val tempClient = HttpClient(CIO) {
             install(UserAgent) {
@@ -69,10 +77,10 @@ class EksiClient(_username: String?, _password: String?) {
         }
         if (username == null || password == null) {
             // anonymous login
-            anonLogin(tempClient)
+            token = anonLogin(tempClient)
         } else {
             // login
-            login(tempClient)
+            token = login(tempClient)
         }
         tempClient.close()
 
@@ -97,18 +105,25 @@ class EksiClient(_username: String?, _password: String?) {
         }
     }
 
-    suspend fun getEntry(entryId: Int) {
+    suspend fun getEntry(entryId: Int): Entry {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
-        println(response.bodyAsText())
+        val topic = deserializeTopicResponse(response.bodyAsText()).data
+        return topic.getFirstEntry()
     }
     
     suspend fun getTopic(topicId: Int): Topic {
         val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId))
-        println(response.bodyAsText())
-        return deserializeTopicResponse(response.bodyAsText()).data
+        val topic = deserializeTopicResponse(response.bodyAsText()).data
+        return topic
     }
 
-    private suspend fun anonLogin(client: HttpClient) {
+    suspend fun getEntryAsTopic(entryId: Int): Topic {
+        val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
+        val topic = deserializeTopicResponse(response.bodyAsText()).data
+        return topic
+    }
+
+    private suspend fun anonLogin(client: HttpClient): EksiToken {
         val url = routes["apiUrl"] + routes["anonLogin"]
         val response: HttpResponse = client.post(url) {
             setBody("Platform=g&" +
@@ -120,10 +135,10 @@ class EksiClient(_username: String?, _password: String?) {
             )
         }
 
-        token = deserializeAnonLoginResponse(response.bodyAsText()).data
+        return deserializeAnonLoginResponse(response.bodyAsText()).data
     }
 
-    private suspend fun login(client: HttpClient) {
+    private suspend fun login(client: HttpClient): EksiToken {
         val url = routes["apiUrl"] + routes["login"]
         val response: HttpResponse = client.post(url) {
             setBody("password=${password}&" +
@@ -137,7 +152,7 @@ class EksiClient(_username: String?, _password: String?) {
                     "username=${username}"
             )
         }
-        token = deserializeAuth(response.bodyAsText())
+        return deserializeAuth(response.bodyAsText())
     }
 }
 
@@ -151,10 +166,11 @@ suspend fun main() {
     // 7154265 -> pinned entry topic
     // 6362411 -> video topic
     // 31872 -> disambiguation topic
-    val entry = eksiClient.getEntry(142359356)
-    val topic = eksiClient.getTopic(6362411)
+    val entry = eksiClient.getEntryAsTopic(142359356)
+//    val topic = eksiClient.getTopic(7154265)
     println(entry)
-    println(topic)
+//    println(topic)
+//    println(eksiClient._getResponse("https://api.eksisozluk.com/v2/entry/101937372"))
 
 //    val myEntry = deserializeEntry("""{"Id":130169603,"Content":"the many saints of newark adli filmin protagonisti olan karakter.\r\n\r\nrichard \"dickie\" moltisanti soprano crew askerlerinden biri olup, christopher moltisantinin babasidir.","Author":{"Nick":"fulco","Id":2851178},"Created":"2021-11-17T14:32:07.907","LastUpdated":"2021-12-12T16:20:00","IsFavorite":false,"FavoriteCount":0,"Hidden":true,"Active":false,"CommentCount":0,"CommentSummary":null,"AvatarUrl":null,"Media":null,"IsSponsored":false,"IsPinned":false,"IsPinnedOnProfile":false,"IsVerifiedAccount":false}""")
 //    println(myEntry)
