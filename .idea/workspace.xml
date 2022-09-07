@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="temp new main lmao">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="what in the tarnation">
       <change beforePath="$PROJECT_DIR$/.attach_pid73951" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/EksiToken.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/New.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,24 +55,37 @@
   </component>
   <component name="ProjectId" id="2EKmLMDk1F5bHRhW5tXZBeEy18a" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
   }
-}</component>
-  <component name="RunManager" selected="Kotlin.NewKt">
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainKt" />
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="io.github.otuva.eksisozluk" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Kotlin.EksiClientKt (1)">
+    <configuration name="EksiClientKt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.otuva.eksisozluk.EksiClientKt" />
+      <module name="eksi-api-wrapper.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EksiClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="EksiClientKt" />
       <module name="eksi-api-wrapper.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -82,8 +100,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.EksiClientKt (1)" />
         <item itemvalue="Kotlin.NewKt" />
-        <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Kotlin.EksiClientKt" />
       </list>
     </recent_temporary>
   </component>
@@ -131,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662471999757</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="what in the tarnation">
+      <created>1662472045178</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662472045178</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,7 +179,8 @@
     <MESSAGE value="commentout this cluster-f" />
     <MESSAGE value="implement authorization system" />
     <MESSAGE value="temp new main lmao" />
-    <option name="LAST_COMMIT_MESSAGE" value="temp new main lmao" />
+    <MESSAGE value="what in the tarnation" />
+    <option name="LAST_COMMIT_MESSAGE" value="what in the tarnation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
