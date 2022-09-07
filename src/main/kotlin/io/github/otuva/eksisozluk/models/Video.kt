@@ -1,6 +1,7 @@
 package io.github.otuva.eksisozluk.models
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.*
 
 @Serializable
 data class Video(
@@ -25,3 +26,51 @@ data class DisplayInfo(
     val clickToPlay: Boolean,
     val hasEmbeddedVideoLink: Boolean
 )
+
+internal fun deserializeVideo(json: String): Video {
+    val jsonElement = Json.parseToJsonElement(json)
+
+    val displayInfo = if (jsonElement.jsonObject["DisplayInfo"] != JsonNull) deserializeDisplayInfo(jsonElement.jsonObject["DisplayInfo"].toString()) else null
+    val inTopicVideo = jsonElement.jsonObject["InTopicVideo"]?.jsonPrimitive?.boolean
+
+    return Video(
+        displayInfo=displayInfo,
+        inTopicVideo=inTopicVideo
+    )
+}
+
+private fun deserializeDisplayInfo(json: String): DisplayInfo {
+    val jsonElement = Json.parseToJsonElement(json)
+
+    val id = jsonElement.jsonObject["Id"]!!.jsonPrimitive.int
+    val externalId = jsonElement.jsonObject["ExternalId"]!!.jsonPrimitive.int
+    val title = jsonElement.jsonObject["Title"]?.jsonPrimitive?.content
+    val description = jsonElement.jsonObject["Description"]?.jsonPrimitive?.content
+    val thumbUri = jsonElement.jsonObject["ThumbUri"]?.jsonPrimitive?.content
+    val bigThumbUri = jsonElement.jsonObject["BigThumbUri"]?.jsonPrimitive?.content
+    val fileUri = jsonElement.jsonObject["FileUri"]?.jsonPrimitive?.content
+    val embeddedVideoUri = jsonElement.jsonObject["EmbeddedVideoUri"]!!.jsonPrimitive.content
+    val options = jsonElement.jsonObject["Options"]!!.jsonPrimitive.int
+    val isAdvertorial = jsonElement.jsonObject["IsAdvertorial"]!!.jsonPrimitive.boolean
+    val pollsEnabled = jsonElement.jsonObject["PollsEnabled"]!!.jsonPrimitive.boolean
+    val playVideoInTopic = jsonElement.jsonObject["PlayVideoInTopic"]!!.jsonPrimitive.boolean
+    val clickToPlay = jsonElement.jsonObject["ClickToPlay"]!!.jsonPrimitive.boolean
+    val hasEmbeddedVideoLink = jsonElement.jsonObject["HasEmbeddedVideoLink"]!!.jsonPrimitive.boolean
+
+    return DisplayInfo(
+        id=id,
+        externalId=externalId,
+        title=title,
+        description=description,
+        thumbUri=thumbUri,
+        bigThumbUri=bigThumbUri,
+        fileUri=fileUri,
+        embeddedVideoUri=embeddedVideoUri,
+        options=options,
+        isAdvertorial=isAdvertorial,
+        pollsEnabled=pollsEnabled,
+        playVideoInTopic=playVideoInTopic,
+        clickToPlay=clickToPlay,
+        hasEmbeddedVideoLink=hasEmbeddedVideoLink
+    )
+}
