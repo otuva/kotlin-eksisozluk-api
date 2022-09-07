@@ -4,6 +4,50 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
 
+/**
+ * Represents a single entry
+ * @param id Entry id
+ * @param content Entry body
+ * @param author Entry author
+ * @param created Entry creation date time
+ * @param isFavorite Is entry favorited by current user
+ * @param favoriteCount Entry favorite count
+ * @param hidden Is entry hidden to other users
+ * @param active Is entry visible to other users
+ * @param commentCount Entry comment count
+ * @param commentSummary Entry comment summary
+ * @param lastUpdated Entry last updated date time
+ * @param avatarUrl Entry author avatar url
+ * @param media Images included in entry. List of urls to images
+ * @param isSponsored Is entry sponsored
+ * @param isPinned Is entry pinned
+ * @param isPinnedOnProfile Is entry pinned on profile
+ * @param isVerifiedAccount Is entry author verified
+ *
+ * @see UserIdentifier
+ * @see LocalDateTime
+ * */
+@Serializable
+data class Entry(
+    val id: Int,
+    val content: String,
+    val author: UserIdentifier,
+    val created: LocalDateTime,
+    val isFavorite: Boolean,
+    val favoriteCount: Int,
+    val hidden: Boolean,
+    val active: Boolean,
+    val commentCount: Int,
+    val commentSummary: String? = null,
+    val lastUpdated: LocalDateTime? = null,
+    val avatarUrl: String? = null,
+    val media: List<String>? = null,
+    val isSponsored: Boolean,
+    val isPinned: Boolean,
+    val isPinnedOnProfile: Boolean,
+    val isVerifiedAccount: Boolean,
+)
+
 fun deserializeEntry(response: String): Entry {
     val jsonElement = Json.parseToJsonElement(response)
 
@@ -46,24 +90,3 @@ fun deserializeEntry(response: String): Entry {
         isVerifiedAccount=isVerifiedAccount
     )
 }
-
-@Serializable
-data class Entry(
-    val id: Int,
-    val content: String,
-    val author: UserIdentifier,
-    val created: LocalDateTime,
-    val isFavorite: Boolean,
-    val favoriteCount: Int,
-    val hidden: Boolean,
-    val active: Boolean,
-    val commentCount: Int,
-    val commentSummary: String? = null,
-    val lastUpdated: LocalDateTime? = null,
-    val avatarUrl: String? = null,
-    val media: List<String>? = null,
-    val isSponsored: Boolean,
-    val isPinned: Boolean,
-    val isPinnedOnProfile: Boolean,
-    val isVerifiedAccount: Boolean,
-)
