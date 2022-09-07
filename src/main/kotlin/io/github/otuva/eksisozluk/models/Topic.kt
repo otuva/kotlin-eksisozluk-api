@@ -1,9 +1,41 @@
+// TODO
+// examples to test:
+// 7154265 -> pinned entry topic
+// 6362411 -> video topic
+// 31872 -> disambiguation topic
+
 package io.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
 
+/**
+ * Represents a topic.
+ * Whether it is a whole topic or just a part (page) of a topic is matter of the number of entries.
+ * @param id topic id
+ * @param title topic title
+ * @param entries list of entries in the topic
+ * @param pageCount number of pages in the topic
+ * @param pageSize number of entries in a page
+ * @param pageIndex index of the page
+ * @param pinnedEntry entry pinned by eksisozluk
+ * @param entryCounts state of the entries in the topic things like entries written by buddies etc.
+ * @param draftEntry draft entry of the user in the topic
+ * @param isTracked whether the topic is followed by the user
+ * @param isTrackable can the topic be followed by the user
+ * @param slug topic slug that's used before topic id
+ * @param video video in the topic
+ * @param disambiguations list of disambiguations in the topic
+ * @param isAmaTopic whether the topic is 'buyrun benim' topic
+ * @param matterCount number of 'sorunsallar' in the topic
+ *
+ * @see Entry
+ * @see EntryCounts
+ * @see DraftEntry
+ * @see Video
+ * @see Disambiguation
+ * */
 @Serializable
 data class Topic(
     val id: Int,
@@ -17,11 +49,11 @@ data class Topic(
     val draftEntry: DraftEntry?,
     val isTracked: Boolean,
     val isTrackable: Boolean,
+    val slug: String,
+    val video: Video?,
     val disambiguations: List<Disambiguation>,
     val isAmaTopic: Boolean,
     val matterCount: Int,
-    val slug: String,
-    val video: Video?,
 ) {
     fun getFirstEntry(): Entry {
         return entries[0]
@@ -54,6 +86,14 @@ data class DraftEntry(
     val created: LocalDateTime
 )
 
+/**
+ * TODO: add disambiguation handler function then add see annotation
+ * Represents disambiguation in a topic.
+ * In order to handle redirections title and kind of the disambiguation is used instead of id.
+ * Because api doesn't return id of the disambiguation.
+ * @param title The title of the disambiguation.
+ * @param kind The kind of the disambiguation. Could be 'sozluk yazari', 'dizi', 'oyun' etc.
+ * */
 @Serializable
 data class Disambiguation(
     val title: String,
