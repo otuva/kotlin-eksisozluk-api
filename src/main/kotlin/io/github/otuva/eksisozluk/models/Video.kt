@@ -40,15 +40,19 @@ internal fun deserializeVideo(json: String): Video {
 }
 
 private fun deserializeDisplayInfo(json: String): DisplayInfo {
+    /**
+     * this function will not be executed if  displayinfo is null.
+     * So it's guaranteed that these keys will exist
+     * */
     val jsonElement = Json.parseToJsonElement(json)
 
     val id = jsonElement.jsonObject["Id"]!!.jsonPrimitive.int
     val externalId = jsonElement.jsonObject["ExternalId"]!!.jsonPrimitive.int
-    val title = jsonElement.jsonObject["Title"]?.jsonPrimitive?.content
-    val description = jsonElement.jsonObject["Description"]?.jsonPrimitive?.content
-    val thumbUri = jsonElement.jsonObject["ThumbUri"]?.jsonPrimitive?.content
-    val bigThumbUri = jsonElement.jsonObject["BigThumbUri"]?.jsonPrimitive?.content
-    val fileUri = jsonElement.jsonObject["FileUri"]?.jsonPrimitive?.content
+    val title = jsonElement.jsonObject["Title"]!!.jsonPrimitive.contentOrNull
+    val description = jsonElement.jsonObject["Description"]!!.jsonPrimitive.contentOrNull
+    val thumbUri = jsonElement.jsonObject["ThumbUri"]!!.jsonPrimitive.contentOrNull
+    val bigThumbUri = jsonElement.jsonObject["BigThumbUri"]!!.jsonPrimitive.contentOrNull
+    val fileUri = jsonElement.jsonObject["FileUri"]!!.jsonPrimitive.contentOrNull
     val embeddedVideoUri = jsonElement.jsonObject["EmbeddedVideoUri"]!!.jsonPrimitive.content
     val options = jsonElement.jsonObject["Options"]!!.jsonPrimitive.int
     val isAdvertorial = jsonElement.jsonObject["IsAdvertorial"]!!.jsonPrimitive.boolean
