@@ -16,8 +16,8 @@ import io.ktor.client.statement.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.serialization.kotlinx.json.*
+//import io.ktor.client.plugins.contentnegotiation.*
+//import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import java.util.UUID
 
@@ -69,9 +69,9 @@ class EksiClient(_username: String?, _password: String?) {
             install(UserAgent) {
                 agent = "okhttp/3.12.1"
             }
-            install(ContentNegotiation) {
-                json()
-            }
+//            install(ContentNegotiation) {
+//                json()
+//            }
             defaultRequest {
                 header("Content-Type", "application/x-www-form-urlencoded")
             }
@@ -112,8 +112,8 @@ class EksiClient(_username: String?, _password: String?) {
         return topic.getFirstEntry()
     }
     
-    suspend fun getTopic(topicId: Int): Topic {
-        val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId))
+    suspend fun getTopic(topicId: Int, page: Int = 1): Topic {
+        val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId) + "?p=$page")
         val topic = deserializeTopicResponse(response.bodyAsText()).data
         return topic
     }
@@ -171,9 +171,9 @@ suspend fun main() {
 //
     eksiClient.authorize()
 //
-//    eksiClient._getResponse("https://api.eksisozluk.com/v2/user/ssg")
+//    eksiClient._getResponse("https://api.eksisozluk.com/v2/user/kafkasorcun")
 
-    val user = eksiClient.getUser("divit")
+    val user = eksiClient.getTopic(5533495)
 //    eksiClient.getEntry(132884409)
     println(user)
 
