@@ -1,12 +1,13 @@
+// TODO
+// change java uuid with cross platform one
+
 package io.github.otuva.eksisozluk
 
-import io.github.otuva.eksisozluk.models.EksiToken
-import io.github.otuva.eksisozluk.models.Entry
-import io.github.otuva.eksisozluk.models.Topic
-import io.github.otuva.eksisozluk.models.deserializeAuth
-import io.github.otuva.eksisozluk.models.deserializeEntry
+import io.github.otuva.eksisozluk.models.*
+//import io.github.otuva.eksisozluk.models.deserializeEntry
 import io.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
 import io.github.otuva.eksisozluk.responses.deserializeTopicResponse
+import io.github.otuva.eksisozluk.responses.deserializeUserResponse
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -56,11 +57,11 @@ class EksiClient(_username: String?, _password: String?) {
     val clientUniqueId = UUID.randomUUID()
     lateinit var token: EksiToken
 
-    suspend fun _getResponse(url:String): String {
+    suspend fun _getResponse(url:String) {
         /*
         * Unsafe function for debugging url responses.
         * Cuz I couldn't find the problem with debugger lmao*/
-        return client.get(url).bodyAsText()
+        println(client.get(url).bodyAsText())
     }
 
     suspend fun authorize() {
@@ -123,6 +124,11 @@ class EksiClient(_username: String?, _password: String?) {
         return topic
     }
 
+    suspend fun getUser(username: String): User {
+        val response = client.get(routes["apiUrl"] + routes["user"]!!.format(username))
+        return deserializeUserResponse(response.bodyAsText()).data
+    }
+
     private suspend fun anonLogin(client: HttpClient): EksiToken {
         val url = routes["apiUrl"] + routes["anonLogin"]
         val response: HttpResponse = client.post(url) {
@@ -156,18 +162,25 @@ class EksiClient(_username: String?, _password: String?) {
     }
 }
 
+
+
 suspend fun main() {
     // TODO:
-    //  add logger
+    //  add logger to the client
     val eksiClient = EksiClient(null, null)
-
+//
     eksiClient.authorize()
+//
+//    eksiClient._getResponse("https://api.eksisozluk.com/v2/user/ssg")
+
+    val user = eksiClient.getUser("divit")
 //    eksiClient.getEntry(132884409)
+    println(user)
 
     // if you get single entry pinned entry won't show up
-    val entry = eksiClient.getEntryAsTopic(132884409)
+//    val entry = eksiClient.getEntryAsTopic(132884409)
 //    val topic = eksiClient.getTopic(7154265)
-    println(entry)
+//    println(entry)
 
 
 }
