@@ -1,4 +1,4 @@
-package io.github.otuva.eksisozluk.models
+package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable

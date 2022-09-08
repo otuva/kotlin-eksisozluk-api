@@ -4,7 +4,7 @@
 // 6362411 -> video topic
 // 31872 -> disambiguation topic
 
-package io.github.otuva.eksisozluk.models
+package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable

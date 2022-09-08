@@ -1,13 +1,14 @@
 // TODO
 // change java uuid with cross platform one
 
-package io.github.otuva.eksisozluk
+package com.github.otuva.eksisozluk
 
+import com.github.otuva.eksisozluk.models.*
 import io.github.otuva.eksisozluk.models.*
 //import io.github.otuva.eksisozluk.models.deserializeEntry
-import io.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
-import io.github.otuva.eksisozluk.responses.deserializeTopicResponse
-import io.github.otuva.eksisozluk.responses.deserializeUserResponse
+import com.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
+import com.github.otuva.eksisozluk.responses.deserializeTopicResponse
+import com.github.otuva.eksisozluk.responses.deserializeUserResponse
 
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*

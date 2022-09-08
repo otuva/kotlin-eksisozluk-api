@@ -1,7 +1,7 @@
-package io.github.otuva.eksisozluk.responses
+package com.github.otuva.eksisozluk.responses
 
-import io.github.otuva.eksisozluk.models.EksiToken
-import io.github.otuva.eksisozluk.models.deserializeAuth
+import com.github.otuva.eksisozluk.models.EksiToken
+import com.github.otuva.eksisozluk.models.deserializeAuth
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.boolean

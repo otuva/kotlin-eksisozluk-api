@@ -1,8 +1,8 @@
-package io.github.otuva.eksisozluk.responses
+package com.github.otuva.eksisozluk.responses
 
-import io.github.otuva.eksisozluk.BadUserException
-import io.github.otuva.eksisozluk.models.User
-import io.github.otuva.eksisozluk.models.deserializeUser
+import com.github.otuva.eksisozluk.BadUserException
+import com.github.otuva.eksisozluk.models.User
+import com.github.otuva.eksisozluk.models.deserializeUser
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.boolean

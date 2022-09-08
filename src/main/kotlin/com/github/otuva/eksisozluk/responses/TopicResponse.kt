@@ -1,8 +1,8 @@
-package io.github.otuva.eksisozluk.responses
+package com.github.otuva.eksisozluk.responses
 
-import io.github.otuva.eksisozluk.BadTopicException
-import io.github.otuva.eksisozluk.models.Topic
-import io.github.otuva.eksisozluk.models.deserializeTopic
+import com.github.otuva.eksisozluk.BadTopicException
+import com.github.otuva.eksisozluk.models.Topic
+import com.github.otuva.eksisozluk.models.deserializeTopic
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.boolean

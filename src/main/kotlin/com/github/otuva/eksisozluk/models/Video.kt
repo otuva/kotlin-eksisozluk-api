@@ -1,4 +1,4 @@
-package io.github.otuva.eksisozluk.models
+package com.github.otuva.eksisozluk.models
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
