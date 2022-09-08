@@ -177,10 +177,4 @@ suspend fun main() {
 //    eksiClient.getEntry(132884409)
     println(user)
 
-    // if you get single entry pinned entry won't show up
-//    val entry = eksiClient.getEntryAsTopic(132884409)
-//    val topic = eksiClient.getTopic(7154265)
-//    println(entry)
-
-
 }
