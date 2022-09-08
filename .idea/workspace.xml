@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="update badge &amp; couple of fixes">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="remove redundant comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +64,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "/home/tfp/Dev/kotlin/spotify-web-api-kotlin",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.113678396",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "instant.run"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -111,13 +114,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00001" summary="add license">
-      <created>1662357961346</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1662357961346</updated>
     </task>
     <task id="LOCAL-00002" summary="change workspace.xml">
       <created>1662357977489</created>
@@ -441,7 +437,28 @@
       <option name="project" value="LOCAL" />
       <updated>1662632381536</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="commentout unused code">
+      <created>1662632940047</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1662632940047</updated>
+    </task>
+    <task id="LOCAL-00049" summary="change ws">
+      <created>1662632951502</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1662632951502</updated>
+    </task>
+    <task id="LOCAL-00050" summary="remove redundant comments">
+      <created>1662633036394</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1662633036394</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -457,8 +474,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add video class" />
-    <MESSAGE value="add topic field &amp; change placeholder in strings" />
     <MESSAGE value="add deseriez functions" />
     <MESSAGE value="add deseriez functions for video" />
     <MESSAGE value="update ws" />
@@ -472,7 +487,6 @@
     <MESSAGE value="add entry getters" />
     <MESSAGE value="remove test comments" />
     <MESSAGE value="add jsdoc" />
-    <MESSAGE value="change ws" />
     <MESSAGE value="add maven publish" />
     <MESSAGE value="add getuser function" />
     <MESSAGE value="add new exception" />
@@ -482,7 +496,10 @@
     <MESSAGE value="add user response class" />
     <MESSAGE value="c h a n g e  w s" />
     <MESSAGE value="update badge &amp; couple of fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="update badge &amp; couple of fixes" />
+    <MESSAGE value="commentout unused code" />
+    <MESSAGE value="change ws" />
+    <MESSAGE value="remove redundant comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove redundant comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
