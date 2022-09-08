@@ -31,7 +31,7 @@ import kotlinx.serialization.json.*
  * @param matterCount number of 'sorunsallar' in the topic
  *
  * @see Entry
- * @see EntryCounts
+ * @see TopicEntryCounts
  * @see DraftEntry
  * @see Video
  * @see Disambiguation
@@ -45,7 +45,7 @@ data class Topic(
     val pageSize: Int,
     val pageIndex: Int,
     val pinnedEntry: Entry?,
-    val entryCounts: EntryCounts,
+    val entryCounts: TopicEntryCounts,
     val draftEntry: DraftEntry?,
     val isTracked: Boolean,
     val isTrackable: Boolean,
@@ -68,7 +68,7 @@ data class Topic(
  * @param total The total number of entries in the topic.
  * */
 @Serializable
-data class EntryCounts(
+data class TopicEntryCounts(
     val beforeFirstEntry: Int,
     val afterLastEntry: Int,
     val buddy: Int,
@@ -143,7 +143,7 @@ fun deserializeTopic(json: String): Topic {
     )
 }
 
-private fun deserializeEntryCounts(json: String): EntryCounts {
+private fun deserializeEntryCounts(json: String): TopicEntryCounts {
     val jsonElement = Json.parseToJsonElement(json)
 
     val beforeFirstEntry = jsonElement.jsonObject["BeforeFirstEntry"]!!.jsonPrimitive.int
@@ -151,7 +151,7 @@ private fun deserializeEntryCounts(json: String): EntryCounts {
     val buddy = jsonElement.jsonObject["Buddy"]!!.jsonPrimitive.int
     val total = jsonElement.jsonObject["Total"]!!.jsonPrimitive.int
 
-    return EntryCounts(
+    return TopicEntryCounts(
         beforeFirstEntry = beforeFirstEntry,
         afterLastEntry = afterLastEntry,
         buddy = buddy,
