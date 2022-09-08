@@ -4,6 +4,18 @@ import kotlinx.serialization.Serializable
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.*
 
+/**
+ * Represents a user
+ * @param userInfo User information
+ * @param badges User badges. Note that api returns an empty list
+ * @param hasEntryUsedOnSeyler Whether the user has an entry used on 'EksiSeyler'
+ * @param followerCount Number of followers
+ * @param followingsCount Number of users the user is following
+ * @param picture Link to the user's profile picture
+ * @param pinnedEntry This parameter is useless. It is always null. To see pinned entry use user's last entries
+ *
+ * @see UserInfo
+ * */
 @Serializable
 data class User(
     val userInfo: UserInfo,
@@ -15,12 +27,32 @@ data class User(
     val pinnedEntry: Entry?
 )
 
+/**
+ * Represent a nick-id pair of a user
+ * @param nick User's nick
+ * @param id User's internal id
+ * */
 @Serializable
 data class UserIdentifier(
     val nick: String,
     val id: Int
 )
 
+/**
+ * Represents a user's information
+ * @param userIdentifier User's nick-id pair
+ * @param remainingInvitation undocumented/unknown. could be a moderator's invitation count
+ * @param twitterScreenName User's twitter handle
+ * @param facebookProfileUrl User's facebook profile url
+ * @param facebookScreenName User's facebook screen name
+ * @param instagramScreenName User's instagram screen name
+ * @param instagramProfileUrl User's instagram profile url
+ * @param karma User's karma shown on the profile page
+ * @param entryCounts User's entry counts by time intervals
+ * @param lastEntryDate User's last written entry date
+ * @param standingQueueNumber User's standing queue number note that this will be 0 for authors
+ *
+ * */
 @Serializable
 data class UserInfo(
     val userIdentifier: UserIdentifier,
@@ -32,7 +64,7 @@ data class UserInfo(
     val instagramProfileUrl: String?,
     val karma: Karma?,
     val entryCounts: UserEntryCounts,
-    val lastEntryDate: LocalDateTime,
+    val lastEntryDate: LocalDateTime?,
     val standingQueueNumber: Int,
     val hasAnyPendingInvitation: Boolean,
     val isBuddy: Boolean,
@@ -74,8 +106,14 @@ data class Karma(
 
 @Serializable
 data class Badge(
+    val id: Int,
     val name: BadgeName,
-    val description: String,
+    val description: String?,
+    val imageUrl: String?,
+    val displayOrder: Int,
+    val owned: Boolean,
+    val selected: Boolean,
+    val showInactive: Boolean
 )
 
 enum class KarmaName(val value: String) {
@@ -184,9 +222,9 @@ fun deserializeUserInfo(json: String): UserInfo {
     val facebookScreenName = jsonElement.jsonObject["FacebookScreenName"]?.jsonPrimitive?.contentOrNull
     val instagramScreenName = jsonElement.jsonObject["InstagramScreenName"]?.jsonPrimitive?.contentOrNull
     val instagramProfileUrl = jsonElement.jsonObject["InstagramProfileUrl"]?.jsonPrimitive?.contentOrNull
-    val karma = deserializeKarma(jsonElement.jsonObject["Karma"].toString())
+    val karma = if (jsonElement.jsonObject["Karma"] != JsonNull) deserializeKarma(jsonElement.jsonObject["Karma"].toString()) else null
     val entryCounts = deserializeUserEntryCounts(jsonElement.jsonObject["EntryCounts"].toString())
-    val lastEntryDate = LocalDateTime.parse(jsonElement.jsonObject["LastEntryDate"]!!.jsonPrimitive.content)
+    val lastEntryDate = if (jsonElement.jsonObject["LastEntryDate"] != JsonNull) LocalDateTime.parse(jsonElement.jsonObject["LastEntryDate"]!!.jsonPrimitive.content) else null
     val standingQueueNumber = jsonElement.jsonObject["StandingQueueNumber"]!!.jsonPrimitive.int
     val hasAnyPendingInvitation = jsonElement.jsonObject["HasAnyPendingInvitation"]!!.jsonPrimitive.boolean
     val isBuddy = jsonElement.jsonObject["IsBuddy"]!!.jsonPrimitive.boolean
@@ -280,11 +318,23 @@ fun deserializeKarma(json: String): Karma {
 fun deserializeBadge(json: String): Badge {
     val jsonElement = Json.parseToJsonElement(json)
 
+    val id = jsonElement.jsonObject["Id"]!!.jsonPrimitive.int
     val name = BadgeName.values().find { it.value == jsonElement.jsonObject["Name"]!!.jsonPrimitive.content }!!
-    val description = jsonElement.jsonObject["Description"]!!.jsonPrimitive.content
+    val description = jsonElement.jsonObject["Description"]!!.jsonPrimitive.contentOrNull
+    val imageUrl = jsonElement.jsonObject["ImageUrl"]!!.jsonPrimitive.content
+    val displayOrder = jsonElement.jsonObject["DisplayOrder"]!!.jsonPrimitive.int
+    val owned = jsonElement.jsonObject["Owned"]!!.jsonPrimitive.boolean
+    val selected = jsonElement.jsonObject["Selected"]!!.jsonPrimitive.boolean
+    val showInactive = jsonElement.jsonObject["ShowInactive"]!!.jsonPrimitive.boolean
 
     return Badge(
+        id = id,
         name = name,
-        description = description
+        description = description,
+        imageUrl = imageUrl,
+        displayOrder = displayOrder,
+        owned = owned,
+        selected = selected,
+        showInactive = showInactive
     )
 }
