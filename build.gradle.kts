@@ -39,3 +39,15 @@ tasks.test {
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.otuva"
+            artifactId = "eksisozluk"
+            version = "0.0.12"
+
+            from(components["kotlin"])
+        }
+    }
+}
