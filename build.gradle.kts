@@ -4,10 +4,9 @@ plugins {
     kotlin("jvm") version "1.7.10"
     kotlin("plugin.serialization") version "1.7.10"
     `maven-publish`
-    application
 }
 
-group = "io.github.otuva"
+group = "com.github.otuva"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -20,6 +19,7 @@ dependencies {
     val ktor_version: String by project
 
     dependencies {
+        // Networking
         implementation("io.ktor:ktor-client-core:$ktor_version")
         implementation("io.ktor:ktor-client-cio:$ktor_version")
 
@@ -38,8 +38,4 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
-}
-
-application {
-    mainClass.set("MainKt")
 }
