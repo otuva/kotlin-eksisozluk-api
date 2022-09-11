@@ -7,6 +7,7 @@ package com.github.otuva.eksisozluk
 import com.github.otuva.eksisozluk.models.*
 import com.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
 import com.github.otuva.eksisozluk.responses.deserializeTopicResponse
+import com.github.otuva.eksisozluk.responses.deserializeUserEntriesResponse
 import com.github.otuva.eksisozluk.responses.deserializeUserResponse
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -36,7 +37,7 @@ val routes = mapOf<String,String>(
     "userUnblock" to "/v2/user/unblock",
     "userIndexTitlesBlock" to "/v2/user/indextitlesblock",
     "userRemoveIndexTitlesBlock" to "/v2/user/indextitlesblock",
-    "user_entries" to "/v2/user/%s/entries",
+    "userEntries" to "/v2/user/%s/entries",
     "userFavorited" to "/v2/user/%s/favorited",
     "userLastVoted" to "/v2/user/%s/lastvoted",
     "userLastWeekMostVoted" to "/v2/user/%s/lastweekmostvoted",
@@ -128,6 +129,11 @@ class EksiClient(_username: String?, _password: String?) {
         return deserializeUserResponse(response.bodyAsText()).data
     }
 
+    suspend fun getUserEntries(username: String, page: Int = 1): UserEntries {
+        val response = client.get(routes["apiUrl"] + routes["userEntries"]!!.format(username) + "?p=$page")
+        return deserializeUserEntriesResponse(response.bodyAsText()).data
+    }
+
     private suspend fun anonLogin(client: HttpClient): EksiToken {
         val url = routes["apiUrl"] + routes["anonLogin"]
         val response: HttpResponse = client.post(url) {
@@ -164,14 +170,15 @@ class EksiClient(_username: String?, _password: String?) {
 suspend fun main() {
     // TODO:
     //  add logger to the client
-//    val eksiClient = EksiClient(null, null)
-//
-//    eksiClient.authorize()
-//
-//    eksiClient._getResponse("https://api.eksisozluk.com/v2/user/kafkasorcun")
+    val eksiClient = EksiClient(null, null)
 
-//    val user = eksiClient.getTopic(7404300, 6)
-//    eksiClient.getEntry(132884409)
-//    println(user)
+    eksiClient.authorize()
 
+    val user = eksiClient.getUserEntries("ssg", 1)
+    val user1 = eksiClient.getUserEntries("ssg", 2)
+    val user2 = eksiClient.getUserEntries("ssg", 3)
+
+    println(user)
+    println(user1)
+    println(user2)
 }
