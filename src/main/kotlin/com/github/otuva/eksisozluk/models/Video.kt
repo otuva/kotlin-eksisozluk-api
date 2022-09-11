@@ -1,15 +1,15 @@
 package com.github.otuva.eksisozluk.models
 
-import kotlinx.serialization.Serializable
+// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.*
 
-@Serializable
+// @Serializable
 data class Video(
     val displayInfo: DisplayInfo?,
     val inTopicVideo: Boolean?,
 )
 
-@Serializable
+// @Serializable
 data class DisplayInfo(
     val id: Int,
     val externalId: Int,
