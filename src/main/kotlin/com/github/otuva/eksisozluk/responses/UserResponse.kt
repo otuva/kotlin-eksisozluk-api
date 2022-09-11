@@ -4,12 +4,12 @@ import com.github.otuva.eksisozluk.BadUserException
 import com.github.otuva.eksisozluk.models.User
 import com.github.otuva.eksisozluk.models.deserializeUser
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.Serializable
+// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.boolean
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 
-@Serializable
+// @Serializable
 data class UserResponse(
     val success: Boolean?,
     val message: String?,
