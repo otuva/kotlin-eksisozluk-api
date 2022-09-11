@@ -7,7 +7,7 @@
 package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.LocalDateTime
-import kotlinx.serialization.Serializable
+// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.*
 
 /**
@@ -36,7 +36,7 @@ import kotlinx.serialization.json.*
  * @see Video
  * @see Disambiguation
  * */
-@Serializable
+// @Serializable
 data class Topic(
     val id: Int,
     val title: String,
@@ -67,7 +67,7 @@ data class Topic(
  * @param buddy The number of entries that are written by followed authors.
  * @param total The total number of entries in the topic.
  * */
-@Serializable
+// @Serializable
 data class TopicEntryCounts(
     val beforeFirstEntry: Int,
     val afterLastEntry: Int,
@@ -80,7 +80,7 @@ data class TopicEntryCounts(
  * @param content The content of the drafted entry.
  * @param created The creation date of the draft.
  * */
-@Serializable
+// @Serializable
 data class DraftEntry(
     val content: String,
     val created: LocalDateTime
@@ -94,7 +94,7 @@ data class DraftEntry(
  * @param title The title of the disambiguation.
  * @param kind The kind of the disambiguation. Could be 'sozluk yazari', 'dizi', 'oyun' etc.
  * */
-@Serializable
+// @Serializable
 data class Disambiguation(
     val title: String,
     val kind: String
