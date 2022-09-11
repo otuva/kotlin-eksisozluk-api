@@ -67,32 +67,34 @@ fun deserializeEntry(json: String): Entry {
     val active = jsonElement.jsonObject["Active"]!!.jsonPrimitive.boolean
     val commentCount = jsonElement.jsonObject["CommentCount"]!!.jsonPrimitive.int
     val commentSummary = jsonElement.jsonObject["CommentSummary"]?.jsonPrimitive?.content
-    val lastUpdated = if (jsonElement.jsonObject["LastUpdated"] != JsonNull) LocalDateTime.parse(jsonElement.jsonObject["LastUpdated"]!!.jsonPrimitive.content) else null
+    val lastUpdated =
+        if (jsonElement.jsonObject["LastUpdated"] != JsonNull) LocalDateTime.parse(jsonElement.jsonObject["LastUpdated"]!!.jsonPrimitive.content) else null
     val avatarUrl = jsonElement.jsonObject["AvatarUrl"]?.jsonPrimitive?.content
     // convert media jsonarray to list of string
-    val media = if (jsonElement.jsonObject["Media"] != JsonNull) jsonElement.jsonObject["Media"]?.jsonArray!!.toList().map { it.jsonPrimitive.content } else null
+    val media = if (jsonElement.jsonObject["Media"] != JsonNull) jsonElement.jsonObject["Media"]?.jsonArray!!.toList()
+        .map { it.jsonPrimitive.content } else null
     val isSponsored = jsonElement.jsonObject["IsSponsored"]!!.jsonPrimitive.boolean
     val isPinned = jsonElement.jsonObject["IsPinned"]!!.jsonPrimitive.boolean
     val isPinnedOnProfile = jsonElement.jsonObject["IsPinnedOnProfile"]!!.jsonPrimitive.boolean
     val isVerifiedAccount = jsonElement.jsonObject["IsVerifiedAccount"]!!.jsonPrimitive.boolean
 
     return Entry(
-        id=id,
-        content=content,
-        author=author,
-        created=created,
-        isFavorite=isFavorite,
-        favoriteCount=favoriteCount,
-        hidden=hidden,
-        active=active,
-        commentCount=commentCount,
-        commentSummary=commentSummary,
-        lastUpdated=lastUpdated,
-        avatarUrl=avatarUrl,
-        media=media,
-        isSponsored=isSponsored,
-        isPinned=isPinned,
-        isPinnedOnProfile=isPinnedOnProfile,
-        isVerifiedAccount=isVerifiedAccount
+        id = id,
+        content = content,
+        author = author,
+        created = created,
+        isFavorite = isFavorite,
+        favoriteCount = favoriteCount,
+        hidden = hidden,
+        active = active,
+        commentCount = commentCount,
+        commentSummary = commentSummary,
+        lastUpdated = lastUpdated,
+        avatarUrl = avatarUrl,
+        media = media,
+        isSponsored = isSponsored,
+        isPinned = isPinned,
+        isPinnedOnProfile = isPinnedOnProfile,
+        isVerifiedAccount = isVerifiedAccount
     )
 }
