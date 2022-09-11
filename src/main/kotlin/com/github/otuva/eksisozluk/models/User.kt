@@ -232,7 +232,8 @@ fun deserializeUser(json: String): User {
     val followerCount = jsonElement.jsonObject["FollowerCount"]!!.jsonPrimitive.int
     val followingsCount = jsonElement.jsonObject["FollowingsCount"]!!.jsonPrimitive.int
     val picture = jsonElement.jsonObject["Picture"]?.jsonPrimitive?.contentOrNull
-    val pinnedEntry = if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeTopic(jsonElement.jsonObject["PinnedEntry"].toString()) else null
+    val pinnedEntry =
+        if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeTopic(jsonElement.jsonObject["PinnedEntry"].toString()) else null
 
     return User(
         userInfo = userInfo,
@@ -281,9 +282,11 @@ fun deserializeUserInfo(json: String): UserInfo {
     val facebookScreenName = jsonElement.jsonObject["FacebookScreenName"]?.jsonPrimitive?.contentOrNull
     val instagramScreenName = jsonElement.jsonObject["InstagramScreenName"]?.jsonPrimitive?.contentOrNull
     val instagramProfileUrl = jsonElement.jsonObject["InstagramProfileUrl"]?.jsonPrimitive?.contentOrNull
-    val karma = if (jsonElement.jsonObject["Karma"] != JsonNull) deserializeKarma(jsonElement.jsonObject["Karma"].toString()) else null
+    val karma =
+        if (jsonElement.jsonObject["Karma"] != JsonNull) deserializeKarma(jsonElement.jsonObject["Karma"].toString()) else null
     val entryCounts = deserializeUserEntryCounts(jsonElement.jsonObject["EntryCounts"].toString())
-    val lastEntryDate = if (jsonElement.jsonObject["LastEntryDate"] != JsonNull) LocalDateTime.parse(jsonElement.jsonObject["LastEntryDate"]!!.jsonPrimitive.content) else null
+    val lastEntryDate =
+        if (jsonElement.jsonObject["LastEntryDate"] != JsonNull) LocalDateTime.parse(jsonElement.jsonObject["LastEntryDate"]!!.jsonPrimitive.content) else null
     val standingQueueNumber = jsonElement.jsonObject["StandingQueueNumber"]!!.jsonPrimitive.int
     val hasAnyPendingInvitation = jsonElement.jsonObject["HasAnyPendingInvitation"]!!.jsonPrimitive.boolean
     val isBuddy = jsonElement.jsonObject["IsBuddy"]!!.jsonPrimitive.boolean
@@ -295,7 +298,8 @@ fun deserializeUserInfo(json: String): UserInfo {
     val isCaylak = jsonElement.jsonObject["IsCaylak"]!!.jsonPrimitive.boolean
     val isIndexTitlesBlocked = jsonElement.jsonObject["IsIndexTitlesBlocked"]!!.jsonPrimitive.boolean
     val note = jsonElement.jsonObject["Note"]?.jsonPrimitive?.contentOrNull
-    val cursePeriod = if (jsonElement.jsonObject["CursePeriod"] != JsonNull) deserializeCursePeriod(jsonElement.jsonObject["CursePeriod"].toString()) else null
+    val cursePeriod =
+        if (jsonElement.jsonObject["CursePeriod"] != JsonNull) deserializeCursePeriod(jsonElement.jsonObject["CursePeriod"].toString()) else null
     val isCursed = jsonElement.jsonObject["IsCursed"]!!.jsonPrimitive.boolean
     val isBanned = jsonElement.jsonObject["IsBanned"]!!.jsonPrimitive.boolean
     val displayTwitterProfile = jsonElement.jsonObject["DisplayTwitterProfile"]!!.jsonPrimitive.boolean
