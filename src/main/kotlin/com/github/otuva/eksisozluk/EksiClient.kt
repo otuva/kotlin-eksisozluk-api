@@ -126,32 +126,32 @@ class EksiClient(_username: String? = null, _password: String? = null) {
     }
 
     suspend fun getUser(username: String): User {
-        val response = client.get(routes["apiUrl"] + routes["user"]!!.format(username))
+        val response = client.get(routes["apiUrl"] + routes["user"]!!.format(encodeSpaces(username)))
         return deserializeUserResponse(response.bodyAsText()).data
     }
 
-    suspend fun getUserEntries(username: String, page: Int = 1): UserEntries {
-        val response = client.get(routes["apiUrl"] + routes["userEntries"]!!.format(username) + "?p=$page")
+    suspend fun getUserEntries(username: String, page: Int = 1): UserEntries? {
+        val response = client.get(routes["apiUrl"] + routes["userEntries"]!!.format(encodeSpaces(username)) + "?p=$page")
         return deserializeUserEntriesResponse(response.bodyAsText()).data
     }
 
-    suspend fun getUserFavoriteEntries(username: String, page: Int = 1): UserEntries {
-        val response = client.get(routes["apiUrl"] + routes["userFavorites"]!!.format(username) + "?p=$page")
+    suspend fun getUserFavoriteEntries(username: String, page: Int = 1): UserEntries? {
+        val response = client.get(routes["apiUrl"] + routes["userFavorites"]!!.format(encodeSpaces(username)) + "?p=$page")
         return deserializeUserEntriesResponse(response.bodyAsText()).data
     }
 
-    suspend fun getUserMostFavoritedEntries(username: String, page: Int = 1): UserEntries {
-        val response = client.get(routes["apiUrl"] + routes["userFavorited"]!!.format(username) + "?p=$page")
+    suspend fun getUserMostFavoritedEntries(username: String, page: Int = 1): UserEntries? {
+        val response = client.get(routes["apiUrl"] + routes["userFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
         return deserializeUserEntriesResponse(response.bodyAsText()).data
     }
 
-    suspend fun getUserLastVotedEntries(username: String, page: Int = 1): UserEntries {
-        val response = client.get(routes["apiUrl"] + routes["userLastVoted"]!!.format(username) + "?p=$page")
+    suspend fun getUserLastVotedEntries(username: String, page: Int = 1): UserEntries? {
+        val response = client.get(routes["apiUrl"] + routes["userLastVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
         return deserializeUserEntriesResponse(response.bodyAsText()).data
     }
 
-    suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries {
-        val response = client.get(routes["apiUrl"] + routes["userLastWeekMostVoted"]!!.format(username) + "?p=$page")
+    suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries? {
+        val response = client.get(routes["apiUrl"] + routes["userLastWeekMostVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
         return deserializeUserEntriesResponse(response.bodyAsText()).data
     }
 
@@ -186,6 +186,10 @@ class EksiClient(_username: String? = null, _password: String? = null) {
         }
         return deserializeAuth(response.bodyAsText())
     }
+
+    private fun encodeSpaces(string: String): String {
+        return string.replace(" ", "%20")
+    }
 }
 
 suspend fun main() {
@@ -195,11 +199,12 @@ suspend fun main() {
 
     eksiClient.authorize()
 
-    val user = eksiClient.getUserEntries("ssg", 1)
-    val user1 = eksiClient.getUserFavoriteEntries("ssg", 1)
-    val user2 = eksiClient.getUserLastVotedEntries("ssg", 1)
+    val user0 = eksiClient.getUserEntries("ssg")
+    val user1 = eksiClient.getUserEntries("fulcrum")
+    val user2 = eksiClient.getUserEntries("susadikca ver agzima dudagi")
 
-    println(user)
+
+    println(user0)
     println(user1)
     println(user2)
 }
