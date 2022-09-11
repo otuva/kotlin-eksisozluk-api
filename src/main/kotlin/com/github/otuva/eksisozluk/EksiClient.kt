@@ -47,7 +47,7 @@ val routes = mapOf<String,String>(
     "indexSetChannelFilter" to "/v2/index/setchannelfilter"
 )
 
-class EksiClient(_username: String?, _password: String?) {
+class EksiClient(_username: String? = null, _password: String? = null) {
     private lateinit var client: HttpClient
     val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
     val username: String? = _username
@@ -168,7 +168,7 @@ class EksiClient(_username: String?, _password: String?) {
 }
 
 suspend fun main() {
-    val eksiClient = EksiClient(null, null)
+    val eksiClient = EksiClient()
 
     eksiClient.authorize()
 
