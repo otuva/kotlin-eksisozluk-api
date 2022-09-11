@@ -29,7 +29,7 @@ data class TopicTitle(
 fun deserializeUserEntries(json: String): UserEntries {
     val jsonElement = Json.parseToJsonElement(json)
 
-    val pinnedEntry = if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeTopic(jsonElement.jsonObject["PinnedEntry"].toString()) else null
+    val pinnedEntry = if (jsonElement.jsonObject["PinnedEntry"] != null && jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeTopic(jsonElement.jsonObject["PinnedEntry"].toString()) else null
     val entries = jsonElement.jsonObject["Entries"]!!.jsonArray.map { deserializeCondensedTopic(it.toString()) }
     val pageCount = jsonElement.jsonObject["PageCount"]!!.jsonPrimitive.int
     val pageSize = jsonElement.jsonObject["PageSize"]!!.jsonPrimitive.int
