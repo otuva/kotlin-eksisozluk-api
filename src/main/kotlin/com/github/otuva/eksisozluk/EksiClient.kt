@@ -168,8 +168,6 @@ class EksiClient(_username: String?, _password: String?) {
 }
 
 suspend fun main() {
-    // TODO:
-    //  add logger to the client
     val eksiClient = EksiClient(null, null)
 
     eksiClient.authorize()
