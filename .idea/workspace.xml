@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add clarifying comment for main function">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/EksiToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/EksiToken.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Entry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Entry.kt" afterDir="false" />
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="optimize imports">
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Topic.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Topic.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/User.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/UserEntries.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/UserEntries.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/UserEntriesResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/UserEntriesResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,76 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00028" summary="add deseriez functions">
-      <created>1662564317102</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1662564317102</updated>
-    </task>
-    <task id="LOCAL-00029" summary="add deseriez functions for video">
-      <created>1662564332430</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1662564332430</updated>
-    </task>
-    <task id="LOCAL-00030" summary="update ws">
-      <created>1662564339151</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1662564339151</updated>
-    </task>
-    <task id="LOCAL-00031" summary="change ws">
-      <created>1662571677556</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1662571677556</updated>
-    </task>
-    <task id="LOCAL-00032" summary="change video key types">
-      <created>1662571694986</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1662571694986</updated>
-    </task>
-    <task id="LOCAL-00033" summary="add function to get first entry">
-      <created>1662571713082</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1662571713082</updated>
-    </task>
-    <task id="LOCAL-00034" summary="add exception for bad topic ids">
-      <created>1662571728894</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1662571728894</updated>
-    </task>
-    <task id="LOCAL-00035" summary="add topic response class">
-      <created>1662571742447</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1662571742447</updated>
-    </task>
-    <task id="LOCAL-00036" summary="fix comment">
-      <created>1662574313375</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1662574313375</updated>
-    </task>
-    <task id="LOCAL-00037" summary="add entry getters">
-      <created>1662574341614</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1662574341614</updated>
     </task>
     <task id="LOCAL-00038" summary="change ws">
       <created>1662574348196</created>
@@ -454,7 +379,77 @@
       <option name="project" value="LOCAL" />
       <updated>1662898414642</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="add KDoc for class">
+      <created>1662925428387</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925428388</updated>
+    </task>
+    <task id="LOCAL-00078" summary="add KDoc for class">
+      <created>1662925456233</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925456233</updated>
+    </task>
+    <task id="LOCAL-00079" summary="add KDoc for class(es)">
+      <created>1662925477758</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925477758</updated>
+    </task>
+    <task id="LOCAL-00080" summary="add KDoc for class(es)">
+      <created>1662925500403</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925500403</updated>
+    </task>
+    <task id="LOCAL-00081" summary="add KDoc for class(es)">
+      <created>1662925510679</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925510679</updated>
+    </task>
+    <task id="LOCAL-00082" summary="make response data nullable">
+      <created>1662925599505</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925599505</updated>
+    </task>
+    <task id="LOCAL-00083" summary="encode url for usernames">
+      <created>1662925644722</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925644722</updated>
+    </task>
+    <task id="LOCAL-00084" summary="change ws">
+      <created>1662925652997</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925652997</updated>
+    </task>
+    <task id="LOCAL-00085" summary="format equal sign">
+      <created>1662925724819</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925724819</updated>
+    </task>
+    <task id="LOCAL-00086" summary="optimize imports">
+      <created>1662925743583</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925743583</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -470,12 +465,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change fucking ws again" />
-    <MESSAGE value="add user class" />
-    <MESSAGE value="add user response class" />
-    <MESSAGE value="c h a n g e  w s" />
-    <MESSAGE value="update badge &amp; couple of fixes" />
-    <MESSAGE value="commentout unused code" />
     <MESSAGE value="remove redundant comments" />
     <MESSAGE value="change name" />
     <MESSAGE value="change gradle" />
@@ -491,11 +480,17 @@
     <MESSAGE value="comment out serializable" />
     <MESSAGE value="remove todo" />
     <MESSAGE value="remove explicit null user&amp;pass" />
-    <MESSAGE value="change ws" />
     <MESSAGE value="fix condition for unified pinned entry" />
     <MESSAGE value="add user entry page getter functions" />
     <MESSAGE value="add clarifying comment for main function" />
-    <option name="LAST_COMMIT_MESSAGE" value="add clarifying comment for main function" />
+    <MESSAGE value="add KDoc for class" />
+    <MESSAGE value="add KDoc for class(es)" />
+    <MESSAGE value="make response data nullable" />
+    <MESSAGE value="encode url for usernames" />
+    <MESSAGE value="change ws" />
+    <MESSAGE value="format equal sign" />
+    <MESSAGE value="optimize imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimize imports" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
