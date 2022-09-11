@@ -1,7 +1,7 @@
 package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.LocalDateTime
-import kotlinx.serialization.Serializable
+// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.*
 
 /**
@@ -27,7 +27,7 @@ import kotlinx.serialization.json.*
  * @see UserIdentifier
  * @see LocalDateTime
  * */
-@Serializable
+// @Serializable
 data class Entry(
     val id: Int,
     val content: String,
@@ -48,8 +48,8 @@ data class Entry(
     val isVerifiedAccount: Boolean,
 )
 
-fun deserializeEntry(response: String): Entry {
-    val jsonElement = Json.parseToJsonElement(response)
+fun deserializeEntry(json: String): Entry {
+    val jsonElement = Json.parseToJsonElement(json)
 
     val id = jsonElement.jsonObject["Id"]!!.jsonPrimitive.int
     val content = jsonElement.jsonObject["Content"]!!.jsonPrimitive.content
