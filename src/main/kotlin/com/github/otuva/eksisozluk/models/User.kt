@@ -24,7 +24,7 @@ data class User(
     val followerCount: Int,
     val followingsCount: Int,
     val picture: String?,
-    val pinnedEntry: Entry?
+    val pinnedEntry: Topic?
 )
 
 /**
@@ -187,7 +187,7 @@ fun deserializeUser(json: String): User {
     val followerCount = jsonElement.jsonObject["FollowerCount"]!!.jsonPrimitive.int
     val followingsCount = jsonElement.jsonObject["FollowingsCount"]!!.jsonPrimitive.int
     val picture = jsonElement.jsonObject["Picture"]?.jsonPrimitive?.contentOrNull
-    val pinnedEntry = if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeEntry(jsonElement.jsonObject["PinnedEntry"].toString()) else null
+    val pinnedEntry = if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeTopic(jsonElement.jsonObject["PinnedEntry"].toString()) else null
 
     return User(
         userInfo = userInfo,
