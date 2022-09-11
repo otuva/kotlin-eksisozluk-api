@@ -2,17 +2,13 @@ package com.github.otuva.eksisozluk.responses
 
 import com.github.otuva.eksisozluk.BadUserEntriesException
 import com.github.otuva.eksisozluk.models.UserEntries
-import com.github.otuva.eksisozluk.models.deserializeTopic
 import com.github.otuva.eksisozluk.models.deserializeUserEntries
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.boolean
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.*
 
 data class UserEntriesResponse(
     val success: Boolean?,
     val message: String?,
-    val data: UserEntries
+    val data: UserEntries?
 )
 
 fun deserializeUserEntriesResponse(json: String): UserEntriesResponse {
@@ -23,7 +19,7 @@ fun deserializeUserEntriesResponse(json: String): UserEntriesResponse {
 
     if (success != true && message != null) throw BadUserEntriesException(message)
 
-    val data = deserializeUserEntries(jsonElement.jsonObject["Data"].toString())
+    val data = if (jsonElement.jsonObject["Data"] != JsonNull) deserializeUserEntries(jsonElement.jsonObject["Data"].toString()) else null
 
     return UserEntriesResponse(
         success=success,
