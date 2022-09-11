@@ -1,6 +1,6 @@
 package com.github.otuva.eksisozluk.models
 
-import kotlinx.serialization.Serializable
+// import kotlinx.serialization.json.*
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.*
 
@@ -16,7 +16,7 @@ import kotlinx.serialization.json.*
  *
  * @see UserInfo
  * */
-@Serializable
+// @Serializable
 data class User(
     val userInfo: UserInfo,
     val badges: List<Badge>,
@@ -32,7 +32,7 @@ data class User(
  * @param nick User's nick
  * @param id User's internal id
  * */
-@Serializable
+// @Serializable
 data class UserIdentifier(
     val nick: String,
     val id: Int
@@ -53,7 +53,7 @@ data class UserIdentifier(
  * @param standingQueueNumber User's standing queue number note that this will be 0 for authors
  *
  * */
-@Serializable
+// @Serializable
 data class UserInfo(
     val userIdentifier: UserIdentifier,
     val remainingInvitation: Int,
@@ -84,13 +84,13 @@ data class UserInfo(
     val displayInstagramProfile: Boolean,
 )
 
-@Serializable
+// @Serializable
 data class CursePeriod(
     val from: LocalDateTime,
     val to: LocalDateTime
 )
 
-@Serializable
+// @Serializable
 data class UserEntryCounts(
     val total: Int,
     val lastMonth: Int,
@@ -98,13 +98,13 @@ data class UserEntryCounts(
     val today: Int
 )
 
-@Serializable
+// @Serializable
 data class Karma(
     val name: KarmaName,
     val value: Int
 )
 
-@Serializable
+// @Serializable
 data class Badge(
     val id: Int,
     val name: BadgeName,
