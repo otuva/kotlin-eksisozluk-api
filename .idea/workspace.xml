@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="change ws">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="update gradle build">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,9 +76,16 @@
       <recent name="io.github.otuva.eksisozluk" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.EksiClientKt (1)">
+  <component name="RunManager" selected="Kotlin.EksiClientKt (2)">
     <configuration name="EksiClientKt (1)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.github.otuva.eksisozluk.EksiClientKt" />
+      <module name="eksi-api-wrapper.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EksiClientKt (2)" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.github.otuva.eksisozluk.EksiClientKt" />
       <module name="eksi-api-wrapper.main" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -100,6 +107,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.EksiClientKt (2)" />
         <item itemvalue="Kotlin.EksiClientKt (1)" />
         <item itemvalue="Kotlin.NewKt" />
         <item itemvalue="Kotlin.EksiClientKt" />
@@ -114,13 +122,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00004" summary="implement authorization system">
-      <created>1662471982342</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1662471982342</updated>
     </task>
     <task id="LOCAL-00005" summary="temp new main lmao">
       <created>1662471999757</created>
@@ -458,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662667243394</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="update gradle build">
+      <created>1662667717434</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1662667717434</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -474,7 +482,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update ws" />
     <MESSAGE value="add topic get" />
     <MESSAGE value="change video key types" />
     <MESSAGE value="add function to get first entry" />
@@ -499,7 +506,8 @@
     <MESSAGE value="change name" />
     <MESSAGE value="change gradle" />
     <MESSAGE value="change ws" />
-    <option name="LAST_COMMIT_MESSAGE" value="change ws" />
+    <MESSAGE value="update gradle build" />
+    <option name="LAST_COMMIT_MESSAGE" value="update gradle build" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
