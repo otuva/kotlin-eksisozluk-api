@@ -1,15 +1,13 @@
 // TODO
 // change java uuid with cross platform one
+// change logger from default to android
 
 package com.github.otuva.eksisozluk
 
 import com.github.otuva.eksisozluk.models.*
-import com.github.otuva.eksisozluk.models.*
-//import io.github.otuva.eksisozluk.models.deserializeEntry
 import com.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
 import com.github.otuva.eksisozluk.responses.deserializeTopicResponse
 import com.github.otuva.eksisozluk.responses.deserializeUserResponse
-
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
@@ -17,8 +15,7 @@ import io.ktor.client.statement.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
-//import io.ktor.client.plugins.contentnegotiation.*
-//import io.ktor.serialization.kotlinx.json.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.util.*
 import java.util.UUID
 
@@ -70,9 +67,6 @@ class EksiClient(_username: String?, _password: String?) {
             install(UserAgent) {
                 agent = "okhttp/3.12.1"
             }
-//            install(ContentNegotiation) {
-//                json()
-//            }
             defaultRequest {
                 header("Content-Type", "application/x-www-form-urlencoded")
             }
@@ -87,8 +81,9 @@ class EksiClient(_username: String?, _password: String?) {
         tempClient.close()
 
         client = HttpClient(CIO) {
-            install(UserAgent) {
-                agent = "okhttp/3.12.1"
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.INFO
             }
             if (token.userId != null) {
                 install(Auth) {
@@ -98,6 +93,9 @@ class EksiClient(_username: String?, _password: String?) {
                         }
                     }
                 }
+            }
+            install(UserAgent) {
+                agent = "okhttp/3.12.1"
             }
             defaultRequest {
                 headers.appendIfNameAbsent("Authorization", "Bearer ${token.accessToken}")
@@ -166,14 +164,14 @@ class EksiClient(_username: String?, _password: String?) {
 suspend fun main() {
     // TODO:
     //  add logger to the client
-    val eksiClient = EksiClient(null, null)
+//    val eksiClient = EksiClient(null, null)
 //
-    eksiClient.authorize()
+//    eksiClient.authorize()
 //
 //    eksiClient._getResponse("https://api.eksisozluk.com/v2/user/kafkasorcun")
 
-    val user = eksiClient.getTopic(5533495)
+//    val user = eksiClient.getTopic(7404300, 6)
 //    eksiClient.getEntry(132884409)
-    println(user)
+//    println(user)
 
 }
