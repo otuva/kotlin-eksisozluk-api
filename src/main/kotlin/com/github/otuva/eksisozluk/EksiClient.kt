@@ -189,6 +189,8 @@ class EksiClient(_username: String? = null, _password: String? = null) {
 }
 
 suspend fun main() {
+    // temporary main function for testing
+    // this will be removed in the future
     val eksiClient = EksiClient()
 
     eksiClient.authorize()
