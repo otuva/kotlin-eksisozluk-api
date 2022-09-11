@@ -2,7 +2,7 @@ package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlinx.serialization.Serializable
+// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.*
 import kotlin.time.Duration.Companion.seconds
 
@@ -17,7 +17,7 @@ import kotlin.time.Duration.Companion.seconds
  * @param issuedAt Token issue time to handle expiration and refresh.
  * @param expiresAt Time instant of when the token expires. Calculated by adding [expiresIn] to [issuedAt].
  * */
-@Serializable
+// @Serializable
 data class EksiToken(
     val rank: Int,
     val accessToken: String,
