@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val ktor_version: String by project
+val logback_version: String by project
+
 plugins {
     kotlin("jvm") version "1.7.10"
     kotlin("plugin.serialization") version "1.7.10"
@@ -16,18 +19,19 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
 
-    val ktor_version: String by project
-
     dependencies {
         // Networking
         implementation("io.ktor:ktor-client-core:$ktor_version")
         implementation("io.ktor:ktor-client-cio:$ktor_version")
 
+        // ktor auth-logging-json plugins
         implementation("io.ktor:ktor-client-auth:$ktor_version")
-//        implementation("io.ktor:ktor-client-logging:$ktor_version")
         implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
         implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+        implementation("io.ktor:ktor-client-logging:$ktor_version")
+        implementation("ch.qos.logback:logback-classic:$logback_version")
 
+        // date and time
         implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
     }
 }
