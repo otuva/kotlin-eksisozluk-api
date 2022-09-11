@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="comment out serializable">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="remove explicit null user&amp;pass">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/UserEntries.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/UserEntries.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,27 +105,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00022" summary="complete topic draft">
-      <created>1662561924633</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1662561924633</updated>
-    </task>
-    <task id="LOCAL-00023" summary="reorder function">
-      <created>1662561942784</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1662561942784</updated>
-    </task>
-    <task id="LOCAL-00024" summary="change ws">
-      <created>1662561949417</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1662561949417</updated>
     </task>
     <task id="LOCAL-00025" summary="add anon response class">
       <created>1662561972290</created>
@@ -447,7 +428,28 @@
       <option name="project" value="LOCAL" />
       <updated>1662896700041</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="remove todo">
+      <created>1662896745727</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1662896745727</updated>
+    </task>
+    <task id="LOCAL-00072" summary="change ws">
+      <created>1662896754971</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1662896754971</updated>
+    </task>
+    <task id="LOCAL-00073" summary="remove explicit null user&amp;pass">
+      <created>1662896819758</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1662896819758</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -463,8 +465,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove test comments" />
-    <MESSAGE value="add jsdoc" />
     <MESSAGE value="add maven publish" />
     <MESSAGE value="add getuser function" />
     <MESSAGE value="rename colliding class name" />
@@ -486,9 +486,11 @@
     <MESSAGE value="add user entries response class" />
     <MESSAGE value="add user entries class" />
     <MESSAGE value="add xml config" />
-    <MESSAGE value="change ws" />
     <MESSAGE value="comment out serializable" />
-    <option name="LAST_COMMIT_MESSAGE" value="comment out serializable" />
+    <MESSAGE value="remove todo" />
+    <MESSAGE value="change ws" />
+    <MESSAGE value="remove explicit null user&amp;pass" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove explicit null user&amp;pass" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
