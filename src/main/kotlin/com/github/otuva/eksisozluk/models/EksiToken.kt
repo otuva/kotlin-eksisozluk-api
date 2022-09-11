@@ -2,11 +2,12 @@ package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.*
 import kotlin.time.Duration.Companion.seconds
 
 /**
+ * Represents an authentication token for EksiSozluk API.
+ *
  * @param rank User rank. 0 is for anonymous users.
  * @param accessToken Access token for API requests.
  * @param tokenType Token type. Always "Bearer".
@@ -17,7 +18,6 @@ import kotlin.time.Duration.Companion.seconds
  * @param issuedAt Token issue time to handle expiration and refresh.
  * @param expiresAt Time instant of when the token expires. Calculated by adding [expiresIn] to [issuedAt].
  * */
-// @Serializable
 data class EksiToken(
     val rank: Int,
     val accessToken: String,
@@ -30,6 +30,13 @@ data class EksiToken(
     val expiresAt: Instant = issuedAt + expiresIn.seconds
 )
 
+/**
+ * Parses a JSON string to an [EksiToken] instance.
+ *
+ * @param json JSON string to parse.
+ *
+ * @return A new [EksiToken] instance.
+ * */
 fun deserializeAuth(json: String): EksiToken {
     val jsonElement = Json.parseToJsonElement(json)
 
