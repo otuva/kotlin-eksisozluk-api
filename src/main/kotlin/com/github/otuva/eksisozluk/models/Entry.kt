@@ -1,11 +1,11 @@
 package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.LocalDateTime
-// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.*
 
 /**
  * Represents a single entry
+ *
  * @param id Entry id
  * @param content Entry body
  * @param author Entry author
@@ -27,7 +27,6 @@ import kotlinx.serialization.json.*
  * @see UserIdentifier
  * @see LocalDateTime
  * */
-// @Serializable
 data class Entry(
     val id: Int,
     val content: String,
@@ -48,6 +47,13 @@ data class Entry(
     val isVerifiedAccount: Boolean,
 )
 
+/**
+ * Parses a JSON string to an [Entry] object
+ *
+ * @param json JSON string
+ *
+ * @return [Entry] object
+ * */
 fun deserializeEntry(json: String): Entry {
     val jsonElement = Json.parseToJsonElement(json)
 
