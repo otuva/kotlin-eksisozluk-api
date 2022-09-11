@@ -115,35 +115,39 @@ fun deserializeTopic(json: String): Topic {
     val pageCount = jsonElement.jsonObject["PageCount"]!!.jsonPrimitive.int
     val pageSize = jsonElement.jsonObject["PageSize"]!!.jsonPrimitive.int
     val pageIndex = jsonElement.jsonObject["PageIndex"]!!.jsonPrimitive.int
-    val pinnedEntry = if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeEntry(jsonElement.jsonObject["PinnedEntry"].toString()) else null
+    val pinnedEntry =
+        if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeEntry(jsonElement.jsonObject["PinnedEntry"].toString()) else null
     val entryCounts = deserializeEntryCounts(jsonElement.jsonObject["EntryCounts"]!!.toString())
-    val draftEntry = if (jsonElement.jsonObject["DraftEntry"] != JsonNull) deserializeDraftEntry(jsonElement.jsonObject["DraftEntry"].toString()) else null
+    val draftEntry =
+        if (jsonElement.jsonObject["DraftEntry"] != JsonNull) deserializeDraftEntry(jsonElement.jsonObject["DraftEntry"].toString()) else null
     val isTracked = jsonElement.jsonObject["IsTracked"]!!.jsonPrimitive.boolean
     val isTrackable = jsonElement.jsonObject["IsTrackable"]!!.jsonPrimitive.boolean
     val slug = jsonElement.jsonObject["Slug"]!!.jsonPrimitive.content
     // eger entry topic responseu ise video olsa bile videoya null diyor
-    val video = if ( jsonElement.jsonObject["Video"] != JsonNull ) deserializeVideo(jsonElement.jsonObject["Video"]!!.toString()) else null
-    val disambiguations = jsonElement.jsonObject["Disambiguations"]!!.jsonArray.map { deserializeDisambiguation(it.toString()) }
+    val video =
+        if (jsonElement.jsonObject["Video"] != JsonNull) deserializeVideo(jsonElement.jsonObject["Video"]!!.toString()) else null
+    val disambiguations =
+        jsonElement.jsonObject["Disambiguations"]!!.jsonArray.map { deserializeDisambiguation(it.toString()) }
     val isAmaTopic = jsonElement.jsonObject["IsAmaTopic"]!!.jsonPrimitive.boolean
     val matterCount = jsonElement.jsonObject["MatterCount"]!!.jsonPrimitive.int
 
     return Topic(
-        id=id,
-        title=title,
-        entries=entries,
-        pageCount=pageCount,
-        pageSize=pageSize,
-        pageIndex=pageIndex,
-        pinnedEntry=pinnedEntry,
-        entryCounts=entryCounts,
-        draftEntry=draftEntry,
-        isTracked=isTracked,
-        isTrackable=isTrackable,
-        slug=slug,
-        video=video,
-        disambiguations=disambiguations,
-        isAmaTopic=isAmaTopic,
-        matterCount=matterCount
+        id = id,
+        title = title,
+        entries = entries,
+        pageCount = pageCount,
+        pageSize = pageSize,
+        pageIndex = pageIndex,
+        pinnedEntry = pinnedEntry,
+        entryCounts = entryCounts,
+        draftEntry = draftEntry,
+        isTracked = isTracked,
+        isTrackable = isTrackable,
+        slug = slug,
+        video = video,
+        disambiguations = disambiguations,
+        isAmaTopic = isAmaTopic,
+        matterCount = matterCount
     )
 }
 
