@@ -2,7 +2,10 @@ package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -21,7 +24,7 @@ import kotlin.time.Duration.Companion.seconds
 data class EksiToken(
     val rank: Int,
     val accessToken: String,
-    val tokenType:String,
+    val tokenType: String,
     val expiresIn: Int,
     val userId: Int?,
     val refreshToken: String?,
@@ -49,12 +52,12 @@ fun deserializeAuth(json: String): EksiToken {
     val userId = jsonElement.jsonObject["user_id"]?.jsonPrimitive?.int
 
     return EksiToken(
-        rank=rank,
-        accessToken=accessToken,
-        tokenType=tokenType,
-        expiresIn=expiresIn,
-        refreshToken=refreshToken,
-        nick=nick,
-        userId=userId
+        rank = rank,
+        accessToken = accessToken,
+        tokenType = tokenType,
+        expiresIn = expiresIn,
+        refreshToken = refreshToken,
+        nick = nick,
+        userId = userId
     )
 }
