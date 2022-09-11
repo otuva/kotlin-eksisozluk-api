@@ -1,18 +1,12 @@
-// TODO
-// examples to test:
-// 7154265 -> pinned entry topic
-// 6362411 -> video topic
-// 31872 -> disambiguation topic
-
 package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.LocalDateTime
-// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.*
 
 /**
  * Represents a topic.
  * Whether it is a whole topic or just a part (page) of a topic is matter of the number of entries.
+ *
  * @param id topic id
  * @param title topic title
  * @param entries list of entries in the topic
@@ -36,7 +30,6 @@ import kotlinx.serialization.json.*
  * @see Video
  * @see Disambiguation
  * */
-// @Serializable
 data class Topic(
     val id: Int,
     val title: String,
@@ -55,6 +48,11 @@ data class Topic(
     val isAmaTopic: Boolean,
     val matterCount: Int,
 ) {
+    /**
+     * Returns the first entry in the topic.
+     *
+     * @return first [Entry] in the topic
+     * */
     fun getFirstEntry(): Entry {
         return entries[0]
     }
@@ -62,12 +60,12 @@ data class Topic(
 
 /**
  * Represents the state of entries in a topic.
+ *
  * @param beforeFirstEntry The number of entries before the first focused entry in the topic.
  * @param afterLastEntry The number of entries after the last focused entry in the topic.
  * @param buddy The number of entries that are written by followed authors.
  * @param total The total number of entries in the topic.
  * */
-// @Serializable
 data class TopicEntryCounts(
     val beforeFirstEntry: Int,
     val afterLastEntry: Int,
@@ -77,29 +75,37 @@ data class TopicEntryCounts(
 
 /**
  * Represents a draft entry in a topic. Note that this is for registered users only.
+ *
  * @param content The content of the drafted entry.
  * @param created The creation date of the draft.
  * */
-// @Serializable
 data class DraftEntry(
     val content: String,
     val created: LocalDateTime
 )
 
 /**
- * TODO: add disambiguation handler function then add see annotation
  * Represents disambiguation in a topic.
- * In order to handle redirections title and kind of the disambiguation is used instead of id.
+ * In order to handle redirections title and kind of the disambiguation is used respectively instead of topic id.
  * Because api doesn't return id of the disambiguation.
+ *
  * @param title The title of the disambiguation.
  * @param kind The kind of the disambiguation. Could be 'sozluk yazari', 'dizi', 'oyun' etc.
+ *
+ *  TODO: add disambiguation handler function then add see annotation
  * */
-// @Serializable
 data class Disambiguation(
     val title: String,
     val kind: String
 )
 
+/**
+ * Parses a JSON string to an instance of [Topic].
+ *
+ * @param json JSON string to be parsed
+ *
+ * @return [Topic] instance
+ * */
 fun deserializeTopic(json: String): Topic {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -121,8 +127,6 @@ fun deserializeTopic(json: String): Topic {
     val isAmaTopic = jsonElement.jsonObject["IsAmaTopic"]!!.jsonPrimitive.boolean
     val matterCount = jsonElement.jsonObject["MatterCount"]!!.jsonPrimitive.int
 
-
-
     return Topic(
         id=id,
         title=title,
@@ -143,6 +147,13 @@ fun deserializeTopic(json: String): Topic {
     )
 }
 
+/**
+ * Parses a JSON string to an instance of [TopicEntryCounts].
+ *
+ * @param json JSON string to be parsed
+ *
+ * @return [TopicEntryCounts] instance
+ * */
 private fun deserializeEntryCounts(json: String): TopicEntryCounts {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -159,6 +170,13 @@ private fun deserializeEntryCounts(json: String): TopicEntryCounts {
     )
 }
 
+/**
+ * Parses a JSON string to an instance of [DraftEntry].
+ *
+ * @param json JSON string to be parsed
+ *
+ * @return [DraftEntry] instance
+ * */
 private fun deserializeDraftEntry(json: String): DraftEntry {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -171,6 +189,13 @@ private fun deserializeDraftEntry(json: String): DraftEntry {
     )
 }
 
+/**
+ * Parses a JSON string to an instance of [Disambiguation].
+ *
+ * @param json JSON string to be parsed
+ *
+ * @return [Disambiguation] instance
+ * */
 private fun deserializeDisambiguation(json: String): Disambiguation {
     val jsonElement = Json.parseToJsonElement(json)
 
