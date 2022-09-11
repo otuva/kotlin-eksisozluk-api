@@ -39,6 +39,7 @@ val routes = mapOf<String,String>(
     "userRemoveIndexTitlesBlock" to "/v2/user/indextitlesblock",
     "userEntries" to "/v2/user/%s/entries",
     "userFavorited" to "/v2/user/%s/favorited",
+    "userFavorites" to "/v2/user/%s/favorites",
     "userLastVoted" to "/v2/user/%s/lastvoted",
     "userLastWeekMostVoted" to "/v2/user/%s/lastweekmostvoted",
     "indexPopular" to "/v2/index/popular",
@@ -134,6 +135,26 @@ class EksiClient(_username: String? = null, _password: String? = null) {
         return deserializeUserEntriesResponse(response.bodyAsText()).data
     }
 
+    suspend fun getUserFavoriteEntries(username: String, page: Int = 1): UserEntries {
+        val response = client.get(routes["apiUrl"] + routes["userFavorites"]!!.format(username) + "?p=$page")
+        return deserializeUserEntriesResponse(response.bodyAsText()).data
+    }
+
+    suspend fun getUserMostFavoritedEntries(username: String, page: Int = 1): UserEntries {
+        val response = client.get(routes["apiUrl"] + routes["userFavorited"]!!.format(username) + "?p=$page")
+        return deserializeUserEntriesResponse(response.bodyAsText()).data
+    }
+
+    suspend fun getUserLastVotedEntries(username: String, page: Int = 1): UserEntries {
+        val response = client.get(routes["apiUrl"] + routes["userLastVoted"]!!.format(username) + "?p=$page")
+        return deserializeUserEntriesResponse(response.bodyAsText()).data
+    }
+
+    suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries {
+        val response = client.get(routes["apiUrl"] + routes["userLastWeekMostVoted"]!!.format(username) + "?p=$page")
+        return deserializeUserEntriesResponse(response.bodyAsText()).data
+    }
+
     private suspend fun anonLogin(client: HttpClient): EksiToken {
         val url = routes["apiUrl"] + routes["anonLogin"]
         val response: HttpResponse = client.post(url) {
@@ -173,8 +194,8 @@ suspend fun main() {
     eksiClient.authorize()
 
     val user = eksiClient.getUserEntries("ssg", 1)
-    val user1 = eksiClient.getUserEntries("ssg", 2)
-    val user2 = eksiClient.getUserEntries("ssg", 3)
+    val user1 = eksiClient.getUserFavoriteEntries("ssg", 1)
+    val user2 = eksiClient.getUserLastVotedEntries("ssg", 1)
 
     println(user)
     println(user1)
