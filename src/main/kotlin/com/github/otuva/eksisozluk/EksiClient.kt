@@ -4,7 +4,7 @@
 package com.github.otuva.eksisozluk
 
 import com.github.otuva.eksisozluk.models.*
-import io.github.otuva.eksisozluk.models.*
+import com.github.otuva.eksisozluk.models.*
 //import io.github.otuva.eksisozluk.models.deserializeEntry
 import com.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
 import com.github.otuva.eksisozluk.responses.deserializeTopicResponse
@@ -162,8 +162,6 @@ class EksiClient(_username: String?, _password: String?) {
         return deserializeAuth(response.bodyAsText())
     }
 }
-
-
 
 suspend fun main() {
     // TODO:
