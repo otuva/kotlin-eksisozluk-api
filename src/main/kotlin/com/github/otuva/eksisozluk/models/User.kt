@@ -1,13 +1,13 @@
 package com.github.otuva.eksisozluk.models
 
-// import kotlinx.serialization.json.*
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.*
 
 /**
  * Represents a user
- * @param userInfo User information
- * @param badges User badges. Note that api returns an empty list
+ *
+ * @param userInfo User information represented by [UserInfo]
+ * @param badges User badges. Note that api returns an empty list unless user is 'caylak' or 'leyla' etc.
  * @param hasEntryUsedOnSeyler Whether the user has an entry used on 'EksiSeyler'
  * @param followerCount Number of followers
  * @param followingsCount Number of users the user is following
@@ -16,7 +16,6 @@ import kotlinx.serialization.json.*
  *
  * @see UserInfo
  * */
-// @Serializable
 data class User(
     val userInfo: UserInfo,
     val badges: List<Badge>,
@@ -29,10 +28,10 @@ data class User(
 
 /**
  * Represent a nick-id pair of a user
+ *
  * @param nick User's nick
  * @param id User's internal id
  * */
-// @Serializable
 data class UserIdentifier(
     val nick: String,
     val id: Int
@@ -53,7 +52,6 @@ data class UserIdentifier(
  * @param standingQueueNumber User's standing queue number note that this will be 0 for authors
  *
  * */
-// @Serializable
 data class UserInfo(
     val userIdentifier: UserIdentifier,
     val remainingInvitation: Int,
@@ -84,13 +82,25 @@ data class UserInfo(
     val displayInstagramProfile: Boolean,
 )
 
-// @Serializable
+/**
+ * Represents a time period of the curse
+ *
+ * @param from Curse start date
+ * @param to Curse end date
+ * */
 data class CursePeriod(
     val from: LocalDateTime,
     val to: LocalDateTime
 )
 
-// @Serializable
+/**
+ * Represents a user's entry statistics
+ *
+ * @param total Total number of entries
+ * @param lastMonth Number of entries written in the last month
+ * @param lastWeek Number of entries written in the last week
+ * @param today Number of entries written today
+ * */
 data class UserEntryCounts(
     val total: Int,
     val lastMonth: Int,
@@ -98,13 +108,31 @@ data class UserEntryCounts(
     val today: Int
 )
 
-// @Serializable
+/**
+ * Represents a user's karma
+ *
+ * @param name Karma name represented by [KarmaName]
+ * @param value Karma value
+ *
+ * @see [KarmaName]
+ * */
 data class Karma(
     val name: KarmaName,
     val value: Int
 )
 
-// @Serializable
+/**
+ * Represents a single badge
+ *
+ * @param id Badge id. This is not fixed and can change
+ * @param name Badge name
+ * @param description Badge description. It is an empty string for most badges
+ * @param imageUrl <Useless> | Badge image url. It is null for all badges
+ * @param displayOrder <Useless> | Badge display order. It is 99 for all badges
+ * @param owned <Useless> | Unknown. It is always false for all badges
+ * @param selected <Useless> | Unknown. It is always false for all badges. Could be whether user chose to display on profile
+ * @param showInactive <Useless> | Unknown. It is always false for all badges
+ * */
 data class Badge(
     val id: Int,
     val name: BadgeName,
@@ -116,6 +144,11 @@ data class Badge(
     val showInactive: Boolean
 )
 
+/**
+ * Represents a user's karma name
+ *
+ * @param value Karma name
+ * */
 enum class KarmaName(val value: String) {
     Akliselim("aklıselim"),
     AnadoluCocugu("anadolu çocuğu"),
@@ -152,6 +185,11 @@ enum class KarmaName(val value: String) {
     SekerAbi("şeker abi"),
 }
 
+/**
+ * Represents a badge name
+ *
+ * @param value Badge name
+ * */
 enum class BadgeName(val value: String) {
     Azimli("azimli"),
     Bot("bot"),
@@ -178,6 +216,13 @@ enum class BadgeName(val value: String) {
     Caylak("çaylak")
 }
 
+/**
+ * Parses a JSON string to an [User] object
+ *
+ * @param json JSON string
+ *
+ * @return [User] object
+ * */
 fun deserializeUser(json: String): User {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -200,6 +245,13 @@ fun deserializeUser(json: String): User {
     )
 }
 
+/**
+ * Parses a JSON string to an [UserIdentifier] object
+ *
+ * @param json JSON string
+ *
+ * @return [UserIdentifier] object
+ * */
 fun deserializeUserIdentifier(json: String): UserIdentifier {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -212,6 +264,13 @@ fun deserializeUserIdentifier(json: String): UserIdentifier {
     )
 }
 
+/**
+ * Parses a JSON string to an [UserInfo] object
+ *
+ * @param json JSON string
+ *
+ * @return [UserInfo] object
+ * */
 fun deserializeUserInfo(json: String): UserInfo {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -274,6 +333,13 @@ fun deserializeUserInfo(json: String): UserInfo {
     )
 }
 
+/**
+ * Parses a JSON string to an [CursePeriod] object
+ *
+ * @param json JSON string
+ *
+ * @return [CursePeriod] object
+ * */
 fun deserializeCursePeriod(json: String): CursePeriod {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -286,6 +352,13 @@ fun deserializeCursePeriod(json: String): CursePeriod {
     )
 }
 
+/**
+ * Parses a JSON string to an [UserEntryCounts] object
+ *
+ * @param json JSON string
+ *
+ * @return [UserEntryCounts] object
+ * */
 fun deserializeUserEntryCounts(json: String): UserEntryCounts {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -302,6 +375,15 @@ fun deserializeUserEntryCounts(json: String): UserEntryCounts {
     )
 }
 
+/**
+ * Parses a JSON string to an [Karma] object
+ *
+ * @param json JSON string
+ *
+ * @return [Karma] object
+ *
+ * @see KarmaName
+ * */
 fun deserializeKarma(json: String): Karma {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -315,6 +397,15 @@ fun deserializeKarma(json: String): Karma {
     )
 }
 
+/**
+ * Parses a JSON string to an [Badge] object
+ *
+ * @param json JSON string
+ *
+ * @return [Badge] object
+ *
+ * @see BadgeName
+ * */
 fun deserializeBadge(json: String): Badge {
     val jsonElement = Json.parseToJsonElement(json)
 
