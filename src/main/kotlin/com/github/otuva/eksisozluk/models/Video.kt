@@ -1,15 +1,38 @@
 package com.github.otuva.eksisozluk.models
 
-// import kotlinx.serialization.json.*
 import kotlinx.serialization.json.*
 
-// @Serializable
+/**
+ * Represents the video in topic.
+ *
+ * @param displayInfo Information about the video.
+ * @param inTopicVideo Will be true if there's a video in the topic.
+ *
+ * @see [DisplayInfo]
+ * */
 data class Video(
     val displayInfo: DisplayInfo?,
     val inTopicVideo: Boolean?,
 )
 
-// @Serializable
+/**
+ * Represents the information about the video. Will be null if there's no video in the topic.
+ *
+ * @param id Unknown & unused. Always 0
+ * @param externalId Unknown & unused. Always 0
+ * @param title Unknown & unused.
+ * @param description Unknown & unused.
+ * @param thumbUri Unknown & unused.
+ * @param bigThumbUri Unknown & unused.
+ * @param fileUri Unknown & unused.
+ * @param embeddedVideoUri Youtube embedded video uri.
+ * @param options Unknown & unused. Always 16.
+ * @param isAdvertorial Unknown & unused.
+ * @param pollsEnabled Unknown & unused.
+ * @param playVideoInTopic Will be true if there's a video in the topic.
+ * @param clickToPlay Unknown & unused.
+ * @param hasEmbeddedVideoLink Whether the video is embedded or not.
+ * */
 data class DisplayInfo(
     val id: Int,
     val externalId: Int,
@@ -27,6 +50,13 @@ data class DisplayInfo(
     val hasEmbeddedVideoLink: Boolean
 )
 
+/**
+ * Parses a JSON string to [Video] object.
+ *
+ * @param json JSON string.
+ *
+ * @return [Video] object.
+ * */
 internal fun deserializeVideo(json: String): Video {
     val jsonElement = Json.parseToJsonElement(json)
 
@@ -39,11 +69,16 @@ internal fun deserializeVideo(json: String): Video {
     )
 }
 
+/**
+ * Parses a JSON string to [DisplayInfo] object.
+ * Note that this function will not be executed if there's no video in the topic.
+ * So it's guaranteed that these keys will exist in the JSON string.
+ *
+ * @param json JSON string.
+ *
+ * @return [DisplayInfo] object.
+ * */
 private fun deserializeDisplayInfo(json: String): DisplayInfo {
-    /*
-     * this function will not be executed if  displayinfo is null.
-     * So it's guaranteed that these keys will exist
-     * */
     val jsonElement = Json.parseToJsonElement(json)
 
     val id = jsonElement.jsonObject["Id"]!!.jsonPrimitive.int
