@@ -5,22 +5,28 @@
 package com.github.otuva.eksisozluk
 
 import com.github.otuva.eksisozluk.models.*
-import com.github.otuva.eksisozluk.responses.deserializeAnonLoginResponse
-import com.github.otuva.eksisozluk.responses.deserializeTopicResponse
-import com.github.otuva.eksisozluk.responses.deserializeUserEntriesResponse
-import com.github.otuva.eksisozluk.responses.deserializeUserResponse
+import com.github.otuva.eksisozluk.responses.AnonLoginResponse
+import com.github.otuva.eksisozluk.responses.TopicResponse
+import com.github.otuva.eksisozluk.responses.UserEntriesResponse
+import com.github.otuva.eksisozluk.responses.UserResponse
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.request.*
+import io.ktor.client.request.forms.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
-import java.util.UUID
+import kotlinx.serialization.json.Json
+import java.util.*
 
-val routes = mapOf<String,String>(
+val routes = mapOf<String, String>(
     "apiUrl" to "https://api.eksisozluk.com",
     "login" to "/Token",
     "anonLogin" to "/v2/account/anonymoustoken",
@@ -57,7 +63,7 @@ class EksiClient(_username: String? = null, _password: String? = null) {
     val clientUniqueId = UUID.randomUUID()
     lateinit var token: EksiToken
 
-    suspend fun _getResponse(url:String) {
+    suspend fun _getResponse(url: String) {
         /*
         * Unsafe function for debugging url responses.
         * Cuz I couldn't find the problem with debugger lmao*/
@@ -72,6 +78,17 @@ class EksiClient(_username: String? = null, _password: String? = null) {
             defaultRequest {
                 header("Content-Type", "application/x-www-form-urlencoded")
             }
+            install(ContentNegotiation) {
+                json(Json {
+                    prettyPrint = true
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                })
+            }
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.INFO
+            }
         }
         if (username == null || password == null) {
             // anonymous login
@@ -83,9 +100,18 @@ class EksiClient(_username: String? = null, _password: String? = null) {
         tempClient.close()
 
         client = HttpClient(CIO) {
+            install(UserAgent) {
+                agent = "okhttp/3.12.1"
+            }
             install(Logging) {
                 logger = Logger.DEFAULT
-                level = LogLevel.INFO
+                level = LogLevel.ALL
+            }
+            install(ContentNegotiation) {
+                json(Json {
+                    prettyPrint = true
+                    isLenient = true
+                })
             }
             if (token.userId != null) {
                 install(Auth) {
@@ -96,95 +122,141 @@ class EksiClient(_username: String? = null, _password: String? = null) {
                     }
                 }
             }
-            install(UserAgent) {
-                agent = "okhttp/3.12.1"
-            }
             defaultRequest {
                 headers.appendIfNameAbsent("Authorization", "Bearer ${token.accessToken}")
                 headers.appendIfNameAbsent("Client-Secret", clientSecret.toString())
                 headers.appendIfNameAbsent("Api-Secret", apiSecret)
+            }
+            expectSuccess = true
+            HttpResponseValidator {
+                handleResponseExceptionWithRequest {exception, request ->
+                    exceptionHandler(exception, request)
+                }
             }
         }
     }
 
     suspend fun getEntry(entryId: Int): Entry {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
-        val topic = deserializeTopicResponse(response.bodyAsText()).data
-        return topic.getFirstEntry()
+
+        val topicResponse: TopicResponse = response.body()
+
+        return topicResponse.data!!.getFirstEntry()
     }
-    
+
     suspend fun getTopic(topicId: Int, page: Int = 1): Topic {
         val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId) + "?p=$page")
-        val topic = deserializeTopicResponse(response.bodyAsText()).data
-        return topic
+
+        val topicResponse: TopicResponse = response.body()
+
+        return topicResponse.data!!
     }
 
     suspend fun getEntryAsTopic(entryId: Int): Topic {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
-        val topic = deserializeTopicResponse(response.bodyAsText()).data
-        return topic
+
+        val topicResponse: TopicResponse = response.body()
+
+        return topicResponse.data!!
     }
 
     suspend fun getUser(username: String): User {
         val response = client.get(routes["apiUrl"] + routes["user"]!!.format(encodeSpaces(username)))
-        return deserializeUserResponse(response.bodyAsText()).data
+
+        val userResponse: UserResponse = response.body()
+
+        return userResponse.data
     }
 
     suspend fun getUserEntries(username: String, page: Int = 1): UserEntries? {
-        val response = client.get(routes["apiUrl"] + routes["userEntries"]!!.format(encodeSpaces(username)) + "?p=$page")
-        return deserializeUserEntriesResponse(response.bodyAsText()).data
+        val response =
+            client.get(routes["apiUrl"] + routes["userEntries"]!!.format(encodeSpaces(username)) + "?p=$page")
+
+        val userEntriesResponse: UserEntriesResponse = response.body()
+
+        return userEntriesResponse.data
     }
 
     suspend fun getUserFavoriteEntries(username: String, page: Int = 1): UserEntries? {
-        val response = client.get(routes["apiUrl"] + routes["userFavorites"]!!.format(encodeSpaces(username)) + "?p=$page")
-        return deserializeUserEntriesResponse(response.bodyAsText()).data
+        val response =
+            client.get(routes["apiUrl"] + routes["userFavorites"]!!.format(encodeSpaces(username)) + "?p=$page")
+
+        val userEntriesResponse: UserEntriesResponse = response.body()
+
+        return userEntriesResponse.data
     }
 
     suspend fun getUserMostFavoritedEntries(username: String, page: Int = 1): UserEntries? {
-        val response = client.get(routes["apiUrl"] + routes["userFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
-        return deserializeUserEntriesResponse(response.bodyAsText()).data
+        val response =
+            client.get(routes["apiUrl"] + routes["userFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
+
+        val userEntriesResponse: UserEntriesResponse = response.body()
+
+        return userEntriesResponse.data
     }
 
     suspend fun getUserLastVotedEntries(username: String, page: Int = 1): UserEntries? {
-        val response = client.get(routes["apiUrl"] + routes["userLastVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
-        return deserializeUserEntriesResponse(response.bodyAsText()).data
+        val response =
+            client.get(routes["apiUrl"] + routes["userLastVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
+
+        val userEntriesResponse: UserEntriesResponse = response.body()
+
+        return userEntriesResponse.data
     }
 
     suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries? {
-        val response = client.get(routes["apiUrl"] + routes["userLastWeekMostVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
-        return deserializeUserEntriesResponse(response.bodyAsText()).data
+        val response =
+            client.get(routes["apiUrl"] + routes["userLastWeekMostVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
+        val userEntriesResponse: UserEntriesResponse = response.body()
+
+        return userEntriesResponse.data
     }
 
     private suspend fun anonLogin(client: HttpClient): EksiToken {
         val url = routes["apiUrl"] + routes["anonLogin"]
-        val response: HttpResponse = client.post(url) {
-            setBody("Platform=g&" +
-                    "Version=2.0.0&" +
-                    "Build=51&" +
-                    "Api-Secret=${apiSecret}&" +
-                    "Client-Secret=${clientSecret}&" +
-                    "ClientUniqueId=${clientUniqueId}"
-            )
-        }
 
-        return deserializeAnonLoginResponse(response.bodyAsText()).data
+        val anonLoginResponse: AnonLoginResponse = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("Platform", "g")
+                        append("Version", "2.0.1")
+                        append("Build", "52")
+                        append("Api-Secret", apiSecret)
+                        append("Client-Secret", clientSecret.toString())
+                        append("ClientUniqueId", clientUniqueId.toString())
+                    }
+                )
+            )
+        }.body()
+
+        return anonLoginResponse.data
     }
 
     private suspend fun login(client: HttpClient): EksiToken {
         val url = routes["apiUrl"] + routes["login"]
-        val response: HttpResponse = client.post(url) {
-            setBody("password=${password}&" +
-                    "Platform=g&" +
-                    "Version=2.0.0&" +
-                    "grant_type=password&" +
-                    "Build=51&" +
-                    "Api-Secret=${apiSecret}&" +
-                    "Client-Secret=${clientSecret}&" +
-                    "ClientUniqueId=${clientUniqueId}&" +
-                    "username=${username}"
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("password", password!!)
+                        append("Platform", "g")
+                        append("Version", "2.0.1")
+                        append("grant_type", "password")
+                        append("Build", "52")
+                        append("Api-Secret", apiSecret)
+                        append("Client-Secret", clientSecret.toString())
+                        append("ClientUniqueId", clientUniqueId.toString())
+                        append("username", username!!)
+                    }
+                )
             )
         }
-        return deserializeAuth(response.bodyAsText())
+
+        val eksiToken: EksiToken = response.body()
+
+        return eksiToken
     }
 
     private fun encodeSpaces(string: String): String {
@@ -196,15 +268,7 @@ suspend fun main() {
     // temporary main function for testing
     // this will be removed in the future
     val eksiClient = EksiClient()
-
     eksiClient.authorize()
-
-    val user0 = eksiClient.getUserEntries("ssg")
-    val user1 = eksiClient.getUserEntries("fulcrum")
-    val user2 = eksiClient.getUserEntries("susadikca ver agzima dudagi")
-
-
-    println(user0)
-    println(user1)
-    println(user2)
+    val test1 = eksiClient.getEntryAsTopic(1)
+    println(test1)
 }

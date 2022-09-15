@@ -2,10 +2,8 @@ package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.int
-import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -21,43 +19,15 @@ import kotlin.time.Duration.Companion.seconds
  * @param issuedAt Token issue time to handle expiration and refresh.
  * @param expiresAt Time instant of when the token expires. Calculated by adding [expiresIn] to [issuedAt].
  * */
+@Serializable
 data class EksiToken(
-    val rank: Int,
-    val accessToken: String,
-    val tokenType: String,
-    val expiresIn: Int,
-    val userId: Int?,
-    val refreshToken: String?,
-    val nick: String?,
+    val rank: Int? = null,
+    @SerialName("access_token") val accessToken: String,
+    @SerialName("token_type") val tokenType: String,
+    @SerialName("expires_in") val expiresIn: Int,
+    @SerialName("user_id") val userId: Int? = null,
+    @SerialName("refresh_token") val refreshToken: String? = null,
+    val nick: String? = null,
     val issuedAt: Instant = Clock.System.now(),
-    val expiresAt: Instant = issuedAt + expiresIn.seconds
+    val expiresAt: Instant = issuedAt + expiresIn.seconds,
 )
-
-/**
- * Parses a JSON string to an [EksiToken] instance.
- *
- * @param json JSON string to parse.
- *
- * @return A new [EksiToken] instance.
- * */
-fun deserializeAuth(json: String): EksiToken {
-    val jsonElement = Json.parseToJsonElement(json)
-
-    val rank = jsonElement.jsonObject["rank"]!!.jsonPrimitive.int
-    val accessToken = jsonElement.jsonObject["access_token"]!!.jsonPrimitive.content
-    val tokenType = jsonElement.jsonObject["token_type"]!!.jsonPrimitive.content
-    val expiresIn = jsonElement.jsonObject["expires_in"]!!.jsonPrimitive.int
-    val refreshToken = jsonElement.jsonObject["refresh_token"]?.jsonPrimitive?.content
-    val nick = jsonElement.jsonObject["nick"]?.jsonPrimitive?.content
-    val userId = jsonElement.jsonObject["user_id"]?.jsonPrimitive?.int
-
-    return EksiToken(
-        rank = rank,
-        accessToken = accessToken,
-        tokenType = tokenType,
-        expiresIn = expiresIn,
-        refreshToken = refreshToken,
-        nick = nick,
-        userId = userId
-    )
-}

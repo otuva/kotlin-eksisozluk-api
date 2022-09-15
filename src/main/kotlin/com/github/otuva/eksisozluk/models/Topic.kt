@@ -1,7 +1,8 @@
 package com.github.otuva.eksisozluk.models
 
 import kotlinx.datetime.LocalDateTime
-import kotlinx.serialization.json.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Represents a topic.
@@ -30,23 +31,24 @@ import kotlinx.serialization.json.*
  * @see Video
  * @see Disambiguation
  * */
+@Serializable
 data class Topic(
-    val id: Int,
-    val title: String,
-    val entries: List<Entry>,
-    val pageCount: Int,
-    val pageSize: Int,
-    val pageIndex: Int,
-    val pinnedEntry: Entry?,
-    val entryCounts: TopicEntryCounts,
-    val draftEntry: DraftEntry?,
-    val isTracked: Boolean,
-    val isTrackable: Boolean,
-    val slug: String,
-    val video: Video?,
-    val disambiguations: List<Disambiguation>,
-    val isAmaTopic: Boolean,
-    val matterCount: Int,
+    @SerialName("Id") val id: Int,
+    @SerialName("Title") val title: String,
+    @SerialName("Entries") val entries: List<Entry>,
+    @SerialName("PageCount") val pageCount: Int,
+    @SerialName("PageSize") val pageSize: Int,
+    @SerialName("PageIndex") val pageIndex: Int,
+    @SerialName("PinnedEntry") val pinnedEntry: Entry?,
+    @SerialName("EntryCounts") val entryCounts: TopicEntryCounts,
+    @SerialName("DraftEntry") val draftEntry: DraftEntry?,
+    @SerialName("IsTracked") val isTracked: Boolean,
+    @SerialName("IsTrackable") val isTrackable: Boolean,
+    @SerialName("Slug") val slug: String?,
+    @SerialName("Video") val video: Video?,
+    @SerialName("Disambiguations") val disambiguations: List<Disambiguation>,
+    @SerialName("IsAmaTopic") val isAmaTopic: Boolean,
+    @SerialName("MatterCount") val matterCount: Int,
 ) {
     /**
      * Returns the first entry in the topic.
@@ -66,11 +68,12 @@ data class Topic(
  * @param buddy The number of entries that are written by followed authors.
  * @param total The total number of entries in the topic.
  * */
+@Serializable
 data class TopicEntryCounts(
-    val beforeFirstEntry: Int,
-    val afterLastEntry: Int,
-    val buddy: Int,
-    val total: Int
+    @SerialName("BeforeFirstEntry") val beforeFirstEntry: Int,
+    @SerialName("AfterLastEntry") val afterLastEntry: Int,
+    @SerialName("Buddy") val buddy: Int,
+    @SerialName("Total") val total: Int
 )
 
 /**
@@ -79,9 +82,10 @@ data class TopicEntryCounts(
  * @param content The content of the drafted entry.
  * @param created The creation date of the draft.
  * */
+@Serializable
 data class DraftEntry(
-    val content: String,
-    val created: LocalDateTime
+    @SerialName("Content") val content: String,
+    @SerialName("Created") val created: LocalDateTime
 )
 
 /**
@@ -94,120 +98,8 @@ data class DraftEntry(
  *
  *  TODO: add disambiguation handler function then add see annotation
  * */
+@Serializable
 data class Disambiguation(
-    val title: String,
-    val kind: String
+    @SerialName("Title") val title: String,
+    @SerialName("Kind") val kind: String
 )
-
-/**
- * Parses a JSON string to an instance of [Topic].
- *
- * @param json JSON string to be parsed
- *
- * @return [Topic] instance
- * */
-fun deserializeTopic(json: String): Topic {
-    val jsonElement = Json.parseToJsonElement(json)
-
-    val id = jsonElement.jsonObject["Id"]!!.jsonPrimitive.int
-    val title = jsonElement.jsonObject["Title"]!!.jsonPrimitive.content
-    val entries = jsonElement.jsonObject["Entries"]!!.jsonArray.map { deserializeEntry(it.toString()) }
-    val pageCount = jsonElement.jsonObject["PageCount"]!!.jsonPrimitive.int
-    val pageSize = jsonElement.jsonObject["PageSize"]!!.jsonPrimitive.int
-    val pageIndex = jsonElement.jsonObject["PageIndex"]!!.jsonPrimitive.int
-    val pinnedEntry =
-        if (jsonElement.jsonObject["PinnedEntry"] != JsonNull) deserializeEntry(jsonElement.jsonObject["PinnedEntry"].toString()) else null
-    val entryCounts = deserializeEntryCounts(jsonElement.jsonObject["EntryCounts"]!!.toString())
-    val draftEntry =
-        if (jsonElement.jsonObject["DraftEntry"] != JsonNull) deserializeDraftEntry(jsonElement.jsonObject["DraftEntry"].toString()) else null
-    val isTracked = jsonElement.jsonObject["IsTracked"]!!.jsonPrimitive.boolean
-    val isTrackable = jsonElement.jsonObject["IsTrackable"]!!.jsonPrimitive.boolean
-    val slug = jsonElement.jsonObject["Slug"]!!.jsonPrimitive.content
-    // eger entry topic responseu ise video olsa bile videoya null diyor
-    val video =
-        if (jsonElement.jsonObject["Video"] != JsonNull) deserializeVideo(jsonElement.jsonObject["Video"]!!.toString()) else null
-    val disambiguations =
-        jsonElement.jsonObject["Disambiguations"]!!.jsonArray.map { deserializeDisambiguation(it.toString()) }
-    val isAmaTopic = jsonElement.jsonObject["IsAmaTopic"]!!.jsonPrimitive.boolean
-    val matterCount = jsonElement.jsonObject["MatterCount"]!!.jsonPrimitive.int
-
-    return Topic(
-        id = id,
-        title = title,
-        entries = entries,
-        pageCount = pageCount,
-        pageSize = pageSize,
-        pageIndex = pageIndex,
-        pinnedEntry = pinnedEntry,
-        entryCounts = entryCounts,
-        draftEntry = draftEntry,
-        isTracked = isTracked,
-        isTrackable = isTrackable,
-        slug = slug,
-        video = video,
-        disambiguations = disambiguations,
-        isAmaTopic = isAmaTopic,
-        matterCount = matterCount
-    )
-}
-
-/**
- * Parses a JSON string to an instance of [TopicEntryCounts].
- *
- * @param json JSON string to be parsed
- *
- * @return [TopicEntryCounts] instance
- * */
-private fun deserializeEntryCounts(json: String): TopicEntryCounts {
-    val jsonElement = Json.parseToJsonElement(json)
-
-    val beforeFirstEntry = jsonElement.jsonObject["BeforeFirstEntry"]!!.jsonPrimitive.int
-    val afterLastEntry = jsonElement.jsonObject["AfterLastEntry"]!!.jsonPrimitive.int
-    val buddy = jsonElement.jsonObject["Buddy"]!!.jsonPrimitive.int
-    val total = jsonElement.jsonObject["Total"]!!.jsonPrimitive.int
-
-    return TopicEntryCounts(
-        beforeFirstEntry = beforeFirstEntry,
-        afterLastEntry = afterLastEntry,
-        buddy = buddy,
-        total = total
-    )
-}
-
-/**
- * Parses a JSON string to an instance of [DraftEntry].
- *
- * @param json JSON string to be parsed
- *
- * @return [DraftEntry] instance
- * */
-private fun deserializeDraftEntry(json: String): DraftEntry {
-    val jsonElement = Json.parseToJsonElement(json)
-
-    val content = jsonElement.jsonObject["Content"]!!.jsonPrimitive.content
-    val created = LocalDateTime.parse(jsonElement.jsonObject["Created"]!!.jsonPrimitive.content)
-
-    return DraftEntry(
-        content = content,
-        created = created
-    )
-}
-
-/**
- * Parses a JSON string to an instance of [Disambiguation].
- *
- * @param json JSON string to be parsed
- *
- * @return [Disambiguation] instance
- * */
-private fun deserializeDisambiguation(json: String): Disambiguation {
-    val jsonElement = Json.parseToJsonElement(json)
-
-    val title = jsonElement.jsonObject["Title"]!!.jsonPrimitive.content
-    val kind = jsonElement.jsonObject["Kind"]!!.jsonPrimitive.content
-
-    return Disambiguation(
-        title = title,
-        kind = kind
-    )
-}
