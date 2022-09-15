@@ -1,5 +1,6 @@
-package com.github.otuva.eksisozluk.models
+package com.github.otuva.eksisozluk.models.entry
 
+import com.github.otuva.eksisozluk.models.user.UserIdentifier
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

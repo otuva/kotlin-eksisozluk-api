@@ -4,7 +4,11 @@
 
 package com.github.otuva.eksisozluk
 
-import com.github.otuva.eksisozluk.models.*
+import com.github.otuva.eksisozluk.models.auth.EksiToken
+import com.github.otuva.eksisozluk.models.entry.Entry
+import com.github.otuva.eksisozluk.models.topic.Topic
+import com.github.otuva.eksisozluk.models.user.User
+import com.github.otuva.eksisozluk.models.user.entries.UserEntries
 import com.github.otuva.eksisozluk.responses.AnonLoginResponse
 import com.github.otuva.eksisozluk.responses.TopicResponse
 import com.github.otuva.eksisozluk.responses.UserEntriesResponse
@@ -269,6 +273,6 @@ suspend fun main() {
     // this will be removed in the future
     val eksiClient = EksiClient()
     eksiClient.authorize()
-    val test1 = eksiClient.getEntryAsTopic(1)
+    val test1 = eksiClient.getUserLastVotedEntries("ssg")
     println(test1)
 }

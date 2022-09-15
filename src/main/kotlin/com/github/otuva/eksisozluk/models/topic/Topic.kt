@@ -1,6 +1,7 @@
-package com.github.otuva.eksisozluk.models
+package com.github.otuva.eksisozluk.models.topic
 
-import kotlinx.datetime.LocalDateTime
+import com.github.otuva.eksisozluk.models.entry.Entry
+import com.github.otuva.eksisozluk.models.topic.video.Video
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -59,47 +60,3 @@ data class Topic(
         return entries[0]
     }
 }
-
-/**
- * Represents the state of entries in a topic.
- *
- * @param beforeFirstEntry The number of entries before the first focused entry in the topic.
- * @param afterLastEntry The number of entries after the last focused entry in the topic.
- * @param buddy The number of entries that are written by followed authors.
- * @param total The total number of entries in the topic.
- * */
-@Serializable
-data class TopicEntryCounts(
-    @SerialName("BeforeFirstEntry") val beforeFirstEntry: Int,
-    @SerialName("AfterLastEntry") val afterLastEntry: Int,
-    @SerialName("Buddy") val buddy: Int,
-    @SerialName("Total") val total: Int
-)
-
-/**
- * Represents a draft entry in a topic. Note that this is for registered users only.
- *
- * @param content The content of the drafted entry.
- * @param created The creation date of the draft.
- * */
-@Serializable
-data class DraftEntry(
-    @SerialName("Content") val content: String,
-    @SerialName("Created") val created: LocalDateTime
-)
-
-/**
- * Represents disambiguation in a topic.
- * In order to handle redirections title and kind of the disambiguation is used respectively instead of topic id.
- * Because api doesn't return id of the disambiguation.
- *
- * @param title The title of the disambiguation.
- * @param kind The kind of the disambiguation. Could be 'sozluk yazari', 'dizi', 'oyun' etc.
- *
- *  TODO: add disambiguation handler function then add see annotation
- * */
-@Serializable
-data class Disambiguation(
-    @SerialName("Title") val title: String,
-    @SerialName("Kind") val kind: String
-)

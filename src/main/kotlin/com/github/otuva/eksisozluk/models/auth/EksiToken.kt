@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.models
+package com.github.otuva.eksisozluk.models.auth
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant

@@ -1,5 +1,6 @@
-package com.github.otuva.eksisozluk.models
+package com.github.otuva.eksisozluk.models.user.entries
 
+import com.github.otuva.eksisozluk.models.topic.Topic
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -20,42 +21,4 @@ data class UserEntries(
     @SerialName("PageCount") val pageCount: Int,
     @SerialName("PageSize") val pageSize: Int,
     @SerialName("PageIndex") val pageIndex: Int
-)
-
-/**
- * Represent an entry page shown in the users profile page. Note that this is not the same as [Topic]
- *
- * @param topicId the id - title pair of the topic
- * @param entry actual entry in the aforementioned topic
- * */
-@Serializable
-data class CondensedTopic(
-    @SerialName("TopicId") val topicId: TopicId,
-    @SerialName("Entry") val entry: Entry
-)
-
-/**
- * Represents id - title pair of a topic.
- *
- * @param id the id of the topic
- * @param topicTitle the title - kind of the topic
- * @param title the title of the topic
- * */
-@Serializable
-data class TopicId(
-    @SerialName("Id") val id: Int,
-    @SerialName("TopicTitle") val topicTitle: TopicTitle,
-    @SerialName("Title") val title: String
-)
-
-/**
- * Represents topic - kind pair.
- *
- * @param title the title of the topic
- * @param kind the kind of the topic
- * */
-@Serializable
-data class TopicTitle(
-    @SerialName("Title") val title: String,
-    @SerialName("Kind") val kind: String?
 )

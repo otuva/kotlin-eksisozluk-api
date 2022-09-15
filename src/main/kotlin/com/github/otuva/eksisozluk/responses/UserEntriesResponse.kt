@@ -1,6 +1,6 @@
 package com.github.otuva.eksisozluk.responses
 
-import com.github.otuva.eksisozluk.models.UserEntries
+import com.github.otuva.eksisozluk.models.user.entries.UserEntries
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
