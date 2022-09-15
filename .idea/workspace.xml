@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="optimize imports">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="use kotlin serialization">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/EksiToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/EksiToken.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Entry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Entry.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Topic.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Topic.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/User.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/UserEntries.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/UserEntries.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Video.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/Video.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/AnonLoginResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/AnonLoginResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/TopicResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/TopicResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/UserEntriesResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/UserEntriesResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/UserResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/UserResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,41 +115,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00038" summary="change ws">
-      <created>1662574348196</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1662574348196</updated>
-    </task>
-    <task id="LOCAL-00039" summary="add jsdoc">
-      <created>1662575998656</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1662575998656</updated>
-    </task>
-    <task id="LOCAL-00040" summary="change ws">
-      <created>1662576007536</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1662576007536</updated>
-    </task>
-    <task id="LOCAL-00041" summary="add maven publish">
-      <created>1662613079950</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1662613079950</updated>
-    </task>
-    <task id="LOCAL-00042" summary="add new exception">
-      <created>1662630468447</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1662630468447</updated>
     </task>
     <task id="LOCAL-00043" summary="rename colliding class name">
       <created>1662630499974</created>
@@ -449,7 +424,42 @@
       <option name="project" value="LOCAL" />
       <updated>1662925743583</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="format equal sign">
+      <created>1662925774083</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925774083</updated>
+    </task>
+    <task id="LOCAL-00088" summary="format equal sign">
+      <created>1662925784087</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925784088</updated>
+    </task>
+    <task id="LOCAL-00089" summary="format equal sign">
+      <created>1662925795311</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925795311</updated>
+    </task>
+    <task id="LOCAL-00090" summary="change ws">
+      <created>1662925802308</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1662925802308</updated>
+    </task>
+    <task id="LOCAL-00091" summary="add kdoc for Video">
+      <created>1662977140341</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1662977140342</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -465,8 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove redundant comments" />
-    <MESSAGE value="change name" />
     <MESSAGE value="change gradle" />
     <MESSAGE value="update gradle build" />
     <MESSAGE value="fix imports and add logging" />
@@ -487,23 +495,17 @@
     <MESSAGE value="add KDoc for class(es)" />
     <MESSAGE value="make response data nullable" />
     <MESSAGE value="encode url for usernames" />
-    <MESSAGE value="change ws" />
-    <MESSAGE value="format equal sign" />
     <MESSAGE value="optimize imports" />
-    <option name="LAST_COMMIT_MESSAGE" value="optimize imports" />
+    <MESSAGE value="format equal sign" />
+    <MESSAGE value="change ws" />
+    <MESSAGE value="add kdoc for Video" />
+    <MESSAGE value="use kotlin serialization" />
+    <option name="LAST_COMMIT_MESSAGE" value="use kotlin serialization" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt</url>
-          <line>206</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="io.ktor.client.plugins.ServerResponseException" memberName="cause" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.CondensedTopic" memberName="entry" />
         <PinnedItemInfo parentTag="io.github.otuva.eksisozluk.models.Video" memberName="displayInfo" />
       </pinned-members>
