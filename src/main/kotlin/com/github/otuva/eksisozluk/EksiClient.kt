@@ -67,13 +67,19 @@ class EksiClient(_username: String? = null, _password: String? = null) {
     val clientUniqueId = UUID.randomUUID()
     lateinit var token: EksiToken
 
+    /**
+     * Just echo function for debugging url responses. For testing not implemented endpoints.
+     * */
     suspend fun _getResponse(url: String) {
-        /*
-        * Unsafe function for debugging url responses.
-        * Cuz I couldn't find the problem with debugger lmao*/
         println(client.get(url).bodyAsText())
     }
 
+    /**
+     * Login to EksiSozluk with current username and password.
+     * If username and password is not provided, it will try to login with anonymous account.
+     *
+     * @return nothing
+     * */
     suspend fun authorize() {
         val tempClient = HttpClient(CIO) {
             install(UserAgent) {
