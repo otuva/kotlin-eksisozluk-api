@@ -4,8 +4,9 @@
 
 package com.github.otuva.eksisozluk
 
-import com.github.otuva.eksisozluk.models.auth.Session
+//import kotlinx.serialization.encodeToString
 import com.github.otuva.eksisozluk.models.auth.EksiToken
+import com.github.otuva.eksisozluk.models.auth.Session
 import com.github.otuva.eksisozluk.models.entry.Entry
 import com.github.otuva.eksisozluk.models.topic.Topic
 import com.github.otuva.eksisozluk.models.user.User
@@ -29,10 +30,9 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import kotlinx.serialization.decodeFromString
-//import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
-import java.util.UUID
+import java.util.*
 
 val routes = mapOf(
     "apiUrl" to "https://api.eksisozluk.com",
@@ -115,7 +115,7 @@ class EksiClient(val username: String? = null, val password: String? = null) {
             }
             expectSuccess = true
             HttpResponseValidator {
-                handleResponseExceptionWithRequest {exception, request ->
+                handleResponseExceptionWithRequest { exception, request ->
                     exceptionHandler(exception, request)
                 }
             }
@@ -210,8 +210,8 @@ class EksiClient(val username: String? = null, val password: String? = null) {
      * @see [Session]
      * */
     suspend fun createSession() {
-        val clientSecret =  UUID.randomUUID()
-        val clientUniqueId =  UUID.randomUUID()
+        val clientSecret = UUID.randomUUID()
+        val clientUniqueId = UUID.randomUUID()
         val token: EksiToken
 
         val tempClient = HttpClient(CIO) {
