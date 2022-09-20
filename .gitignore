@@ -1,3 +1,6 @@
+# local session to not spam
+sozluk.session
+
 # wtf are these
 .attach_pid*
 
