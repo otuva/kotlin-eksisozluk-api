@@ -4,17 +4,13 @@
 
 package com.github.otuva.eksisozluk
 
-//import kotlinx.serialization.encodeToString
 import com.github.otuva.eksisozluk.models.auth.EksiToken
 import com.github.otuva.eksisozluk.models.auth.Session
 import com.github.otuva.eksisozluk.models.entry.Entry
 import com.github.otuva.eksisozluk.models.topic.Topic
 import com.github.otuva.eksisozluk.models.user.User
 import com.github.otuva.eksisozluk.models.user.entries.UserEntries
-import com.github.otuva.eksisozluk.responses.AnonLoginResponse
-import com.github.otuva.eksisozluk.responses.TopicResponse
-import com.github.otuva.eksisozluk.responses.UserEntriesResponse
-import com.github.otuva.eksisozluk.responses.UserResponse
+import com.github.otuva.eksisozluk.responses.*
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
@@ -30,6 +26,7 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
 import java.util.*
@@ -198,18 +195,80 @@ class EksiClient(val username: String? = null, val password: String? = null) {
         return userEntriesResponse.data
     }
 
+    suspend fun userFollow(username: String): GenericResponse {
+        val url = routes["apiUrl"] + routes["userFollow"]!!.format(encodeSpaces(username))
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("nick", username)
+                    }
+                )
+            )
+        }
+
+        return response.body()
+    }
+
+    suspend fun userUnfollow(username: String): GenericResponse {
+        val url = routes["apiUrl"] + routes["userUnfollow"]!!.format(encodeSpaces(username))
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("nick", username)
+                    }
+                )
+            )
+        }
+
+        return response.body()
+    }
+
+    suspend fun userBlock(username: String): GenericResponse {
+        val url = routes["apiUrl"] + routes["userBlock"]!!.format(encodeSpaces(username))
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("nick", username)
+                    }
+                )
+            )
+        }
+
+        return response.body()
+    }
+
+    suspend fun userUnblock(username: String): GenericResponse {
+        val url = routes["apiUrl"] + routes["userUnblock"]!!.format(encodeSpaces(username))
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("nick", username)
+                    }
+                )
+            )
+        }
+
+        return response.body()
+    }
+
     /**
-     * Login to EksiSozluk with current username and password [login] and initialize [session].
-     * If username and password is not provided, it will try to log in with anonymous account [anonLogin].
+     * Login to EksiSozluk with current username and password ([login] function) and initialize [session] and return initialized [session] object.
+     * If username and password is not provided, it will try to log in with an anonymous account ([anonLogin] function).
      * Know that you can change [username] and [password] before calling this function.
      * [Session.clientSecret] and [Session.clientUniqueId] will be set here because they must be persistent throughout the session.
      * (i.e. Must validate the bearer token [Session.token])
      *
-     * @return [Unit]
-     *
-     * @see [Session]
+     * @return [Session] object
      * */
-    suspend fun createSession() {
+    suspend fun createSession(): Session {
         val clientSecret = UUID.randomUUID()
         val clientUniqueId = UUID.randomUUID()
         val token: EksiToken
@@ -242,6 +301,7 @@ class EksiClient(val username: String? = null, val password: String? = null) {
         }
         tempClient.close()
         session = Session(clientSecret, clientUniqueId, token)
+        return session
     }
 
     /**
@@ -316,11 +376,16 @@ suspend fun stfu() {
     eksiClient.getEntry(1)
     eksiClient.getTopic(1)
     eksiClient.getEntryAsTopic(1)
+    eksiClient.getUser("ssg")
     eksiClient.getUserEntries("ssg")
     eksiClient.getUserFavoriteEntries("ssg")
     eksiClient.getUserMostFavoritedEntries("ssg")
     eksiClient.getUserLastVotedEntries("ssg")
     eksiClient.getUserLastWeekMostVotedEntries("ssg")
+    eksiClient.userFollow("ssg")
+    eksiClient.userUnfollow("ssg")
+    eksiClient.userBlock("ssg")
+    eksiClient.userUnblock("ssg")
 }
 
 /**
@@ -332,13 +397,14 @@ suspend fun main() {
 
     // write or read file in current folder
     val file = File("sozluk.session")
-//     file.writeText(Json.encodeToString(eksiClient.session))
+//     file.writeText(Json.encodeToString(eksiClient.createSession()))
     val currentSession: Session = Json.decodeFromString(file.readText())
-
     eksiClient.session = currentSession
-
     eksiClient.authorize()
 
-    println(eksiClient.getUser("divit"))
+    val resp = eksiClient.userBlock("ssg")
+
+    println(resp)
+//    println(eksiClient.getTopic(42132))
 
 }
