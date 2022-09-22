@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="optimize imports">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="change ws">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/TopicResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/TopicResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,41 +109,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00040" summary="change ws">
-      <created>1662576007536</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1662576007536</updated>
-    </task>
-    <task id="LOCAL-00041" summary="add maven publish">
-      <created>1662613079950</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1662613079950</updated>
-    </task>
-    <task id="LOCAL-00042" summary="add new exception">
-      <created>1662630468447</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1662630468447</updated>
-    </task>
-    <task id="LOCAL-00043" summary="rename colliding class name">
-      <created>1662630499974</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1662630499974</updated>
-    </task>
-    <task id="LOCAL-00044" summary="change fucking ws again">
-      <created>1662630514180</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1662630514180</updated>
     </task>
     <task id="LOCAL-00045" summary="add user class">
       <created>1662630529211</created>
@@ -455,7 +418,42 @@
       <option name="project" value="LOCAL" />
       <updated>1663674293220</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="add general response for user ops">
+      <created>1663853828032</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1663853828033</updated>
+    </task>
+    <task id="LOCAL-00090" summary="add user operations (following, blocking)">
+      <created>1663853932627</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1663853932627</updated>
+    </task>
+    <task id="LOCAL-00091" summary="handle more detailed exceptions">
+      <created>1663853953480</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1663853953480</updated>
+    </task>
+    <task id="LOCAL-00092" summary="add kdoc">
+      <created>1663853962008</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1663853962008</updated>
+    </task>
+    <task id="LOCAL-00093" summary="change ws">
+      <created>1663853967656</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1663853967656</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -471,10 +469,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="change gradle" />
-    <MESSAGE value="update gradle build" />
-    <MESSAGE value="fix imports and add logging" />
-    <MESSAGE value="add logback and ktor logging" />
     <MESSAGE value="add logback version" />
     <MESSAGE value="add new exception" />
     <MESSAGE value="add get user entries" />
@@ -491,27 +485,23 @@
     <MESSAGE value="add KDoc for class(es)" />
     <MESSAGE value="make response data nullable" />
     <MESSAGE value="encode url for usernames" />
-    <MESSAGE value="change ws" />
     <MESSAGE value="format equal sign" />
     <MESSAGE value="optimize imports" />
     <MESSAGE value="add session" />
     <MESSAGE value="update gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="update gitignore" />
+    <MESSAGE value="add general response for user ops" />
+    <MESSAGE value="add user operations (following, blocking)" />
+    <MESSAGE value="handle more detailed exceptions" />
+    <MESSAGE value="add kdoc" />
+    <MESSAGE value="change ws" />
+    <option name="LAST_COMMIT_MESSAGE" value="change ws" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt</url>
-          <line>401</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="io.ktor.client.plugins.ServerResponseException" memberName="cause" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.CondensedTopic" memberName="entry" />
+        <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.user.entries.CondensedTopic" memberName="entry" />
         <PinnedItemInfo parentTag="io.github.otuva.eksisozluk.models.Video" memberName="displayInfo" />
       </pinned-members>
     </pin-to-top-manager>
