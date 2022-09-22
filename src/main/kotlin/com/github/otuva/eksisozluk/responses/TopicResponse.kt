@@ -11,6 +11,9 @@ data class TopicResponse(
     @SerialName("Message") val message: String?,
     @SerialName("Data") val data: Topic?
 ) {
+    /**
+     * This method is for entries that are not found. Because api returns 200 status code for not found entries.
+     * */
     init {
         if (!success) throw BadTopicException(message!!)
     }
