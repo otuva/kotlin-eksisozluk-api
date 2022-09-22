@@ -60,8 +60,11 @@ val routes = mapOf(
     "indexSetChannelFilter" to "/v2/index/setchannelfilter"
 )
 
-class EksiClient(val username: String? = null, val password: String? = null) {
-    val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
+class EksiClient(
+    private val username: String? = null,
+    private val password: String? = null
+) {
+    private val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
     private lateinit var client: HttpClient
     lateinit var session: Session
 
@@ -292,7 +295,7 @@ class EksiClient(val username: String? = null, val password: String? = null) {
      *
      * @return [Session] object
      * */
-    suspend fun createSession(): Session {
+    private suspend fun createSession(): Session {
         val clientSecret = UUID.randomUUID()
         val clientUniqueId = UUID.randomUUID()
         val token: EksiToken
@@ -316,12 +319,12 @@ class EksiClient(val username: String? = null, val password: String? = null) {
                 level = LogLevel.INFO
             }
         }
-        if (username == null || password == null) {
+        token = if (username == null || password == null) {
             // anonymous login
-            token = anonLogin(tempClient, clientSecret.toString(), clientUniqueId.toString())
+            anonLogin(tempClient, clientSecret.toString(), clientUniqueId.toString())
         } else {
             // login
-            token = login(tempClient, clientSecret.toString(), clientUniqueId.toString())
+            login(tempClient, clientSecret.toString(), clientUniqueId.toString())
         }
         tempClient.close()
         session = Session(clientSecret, clientUniqueId, token)
