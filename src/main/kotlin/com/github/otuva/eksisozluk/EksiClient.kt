@@ -26,10 +26,9 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
-import java.util.*
+import java.util.UUID
 
 val routes = mapOf(
     "apiUrl" to "https://api.eksisozluk.com",
@@ -53,6 +52,8 @@ val routes = mapOf(
     "userFavorites" to "/v2/user/%s/favorites",
     "userLastVoted" to "/v2/user/%s/lastvoted",
     "userLastWeekMostVoted" to "/v2/user/%s/lastweekmostvoted",
+    "userSelfFavorited" to "/v2/user/%/selffavorited",
+    "userBestEntries" to "/v2/user/%s/bestentries",
     "indexPopular" to "/v2/index/popular",
     "indexToday" to "/v2/index/today",
     "indexGetUserChannelFilters" to "/v2/index/getuserchannelfilters",
@@ -67,7 +68,7 @@ class EksiClient(val username: String? = null, val password: String? = null) {
     /**
      * Just echo function for debugging url responses. For testing not implemented endpoints.
      * */
-    suspend fun getResponse(url: String) {
+    suspend fun debugGetResponse(url: String) {
         println(client.get(url).bodyAsText())
     }
 
@@ -190,6 +191,29 @@ class EksiClient(val username: String? = null, val password: String? = null) {
     suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userLastWeekMostVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
+        val userEntriesResponse: UserEntriesResponse = response.body()
+
+        return userEntriesResponse.data
+    }
+
+    /**
+     * Returns [UserEntries] object with entries that are written and favorited by the user. Aka "el emeği göz nuru".
+     *
+     * @param username Username of the user.
+    */
+    suspend fun getUserSelfFavoritedEntries(username: String, page: Int = 1): UserEntries? {
+        val response =
+            client.get(routes["apiUrl"] + routes["userSelfFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
+
+        val userEntriesResponse: UserEntriesResponse = response.body()
+
+        return userEntriesResponse.data
+    }
+
+    suspend fun getUserBestEntries(username: String, page: Int = 1): UserEntries? {
+        val response =
+            client.get(routes["apiUrl"] + routes["userBestEntries"]!!.format(encodeSpaces(username)) + "?p=$page")
+
         val userEntriesResponse: UserEntriesResponse = response.body()
 
         return userEntriesResponse.data
@@ -372,7 +396,7 @@ class EksiClient(val username: String? = null, val password: String? = null) {
 suspend fun stfu() {
     val eksiClient = EksiClient()
 
-    eksiClient.getResponse("https://eksisozluk.com/entry/1")
+    eksiClient.debugGetResponse("https://eksisozluk.com/entry/1")
     eksiClient.getEntry(1)
     eksiClient.getTopic(1)
     eksiClient.getEntryAsTopic(1)
@@ -382,6 +406,8 @@ suspend fun stfu() {
     eksiClient.getUserMostFavoritedEntries("ssg")
     eksiClient.getUserLastVotedEntries("ssg")
     eksiClient.getUserLastWeekMostVotedEntries("ssg")
+    eksiClient.getUserSelfFavoritedEntries("ssg")
+    eksiClient.getUserBestEntries("ssg")
     eksiClient.userFollow("ssg")
     eksiClient.userUnfollow("ssg")
     eksiClient.userBlock("ssg")
@@ -402,7 +428,7 @@ suspend fun main() {
     eksiClient.session = currentSession
     eksiClient.authorize()
 
-    val resp = eksiClient.userBlock("ssg")
+    val resp = eksiClient.getUserBestEntries("ssg")
 
     println(resp)
 //    println(eksiClient.getTopic(42132))
