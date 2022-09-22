@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="change ws">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="lift if">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
     </list>
@@ -38,8 +38,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -469,7 +469,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add logback version" />
     <MESSAGE value="add new exception" />
     <MESSAGE value="add get user entries" />
     <MESSAGE value="add user entries response class" />
@@ -494,7 +493,8 @@
     <MESSAGE value="handle more detailed exceptions" />
     <MESSAGE value="add kdoc" />
     <MESSAGE value="change ws" />
-    <option name="LAST_COMMIT_MESSAGE" value="change ws" />
+    <MESSAGE value="lift if" />
+    <option name="LAST_COMMIT_MESSAGE" value="lift if" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
