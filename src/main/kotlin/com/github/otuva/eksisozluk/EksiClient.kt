@@ -11,6 +11,7 @@ import com.github.otuva.eksisozluk.models.entry.Entry
 import com.github.otuva.eksisozluk.models.entry.favorite.EntryFavoriteData
 import com.github.otuva.eksisozluk.models.index.Index
 import com.github.otuva.eksisozluk.models.index.IndexToday
+import com.github.otuva.eksisozluk.models.index.debe.Debe
 import com.github.otuva.eksisozluk.models.index.filter.ChannelName
 import com.github.otuva.eksisozluk.models.index.filter.Filter
 import com.github.otuva.eksisozluk.models.index.filter.Filters
@@ -47,6 +48,7 @@ public val routes: Map<String, String> = mapOf(
     "time" to "/v2/clientsettings/time",
     "topic" to "/v2/topic/%s",
     "entry" to "/v2/entry/%s",
+    "debe" to "/v2/index/debe",
     "entryFavorite" to "/v2/entry/favorite",
     "entryUnfavorite" to "/v2/entry/unfavorite",
     "user" to "/v2/user/%s",
@@ -332,6 +334,14 @@ public class EksiClient(
         return response.body()
     }
 
+    public suspend fun getDebe(): Debe {
+        val response = client.get(routes["apiUrl"] + routes["debe"])
+
+        val debeResponse: DebeResponse = response.body()
+
+        return debeResponse.data
+    }
+
     public suspend fun getIndexToday(page: Int = 1): IndexToday {
         val response = client.get(routes["apiUrl"] + routes["indexToday"]!! + "?p=$page")
 
@@ -610,7 +620,7 @@ public suspend fun main() {
 
 //    eksiClient.buildClient()
 
-    val testing = eksiClient.getUserEntries("ssgdsds")
+    val testing = eksiClient.getDebe()
 //    val testing1 = eksiClient.getIndexToday()
 //    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexGetFilterChannels"]!!, "POST")
 
