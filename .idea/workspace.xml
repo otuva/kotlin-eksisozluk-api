@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add user checks and entry fav/unfav">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add debe">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,13 +115,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00055" summary="fix imports and add logging">
-      <created>1662890958830</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1662890958831</updated>
     </task>
     <task id="LOCAL-00056" summary="add logback and ktor logging">
       <created>1662890972668</created>
@@ -460,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663920421389</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="add debe">
+      <created>1663922108624</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1663922108624</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -476,7 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix condition for unified pinned entry" />
     <MESSAGE value="add user entry page getter functions" />
     <MESSAGE value="add clarifying comment for main function" />
     <MESSAGE value="add KDoc for class" />
@@ -501,7 +499,8 @@
     <MESSAGE value="add function to get popular topics" />
     <MESSAGE value="add function to get todays topics" />
     <MESSAGE value="add user checks and entry fav/unfav" />
-    <option name="LAST_COMMIT_MESSAGE" value="add user checks and entry fav/unfav" />
+    <MESSAGE value="add debe" />
+    <option name="LAST_COMMIT_MESSAGE" value="add debe" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
