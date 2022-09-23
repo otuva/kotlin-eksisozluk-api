@@ -17,5 +17,5 @@ import java.util.*
 public data class Session(
     @Serializable(with = UUIDSerializer::class) val clientSecret: UUID,
     @Serializable(with = UUIDSerializer::class) val clientUniqueId: UUID,
-    val token: EksiToken
+    var token: EksiToken
 )
