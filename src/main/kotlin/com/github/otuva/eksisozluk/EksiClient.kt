@@ -6,7 +6,9 @@ package com.github.otuva.eksisozluk
 
 import com.github.otuva.eksisozluk.models.auth.EksiToken
 import com.github.otuva.eksisozluk.models.auth.Session
+import com.github.otuva.eksisozluk.models.auth.UserType
 import com.github.otuva.eksisozluk.models.entry.Entry
+import com.github.otuva.eksisozluk.models.entry.favorite.EntryFavoriteData
 import com.github.otuva.eksisozluk.models.index.Index
 import com.github.otuva.eksisozluk.models.index.IndexToday
 import com.github.otuva.eksisozluk.models.index.filter.ChannelName
@@ -72,6 +74,7 @@ public class EksiClient(
     private val password: String? = null
 ) {
     private val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
+    private lateinit var userType: UserType
     private lateinit var client: HttpClient
     public lateinit var session: Session
 
@@ -118,16 +121,56 @@ public class EksiClient(
         return topicResponse.data!!.getFirstEntry()
     }
 
-    public suspend fun getTopic(topicId: Int, page: Int = 1): Topic {
-        val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId) + "?p=$page")
+    public suspend fun getEntryAsTopic(entryId: Int): Topic {
+        val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
 
         val topicResponse: TopicResponse = response.body()
 
         return topicResponse.data!!
     }
 
-    public suspend fun getEntryAsTopic(entryId: Int): Topic {
-        val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
+    public suspend fun favoriteEntry(entryId: Int): EntryFavoriteData {
+        if (userType == UserType.Anonymous) {
+            throw NotAuthorizedException("Anonymous users cannot do this.")
+        }
+
+        val url = routes["apiUrl"] + routes["entryFavorite"]
+
+        val response: EntryFavoriteResponse = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("Id", entryId.toString())
+                    }
+                )
+            )
+        }.body()
+
+        return response.data
+    }
+
+    public suspend fun unfavoriteEntry(entryId: Int): EntryFavoriteData {
+        if (userType == UserType.Anonymous) {
+            throw NotAuthorizedException("Anonymous users cannot do this.")
+        }
+
+        val url = routes["apiUrl"] + routes["entryUnfavorite"]
+
+        val response: EntryFavoriteResponse = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("Id", entryId.toString())
+                    }
+                )
+            )
+        }.body()
+
+        return response.data
+    }
+
+    public suspend fun getTopic(topicId: Int, page: Int = 1): Topic {
+        val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId) + "?p=$page")
 
         val topicResponse: TopicResponse = response.body()
 
@@ -209,7 +252,11 @@ public class EksiClient(
         return userEntriesResponse.data
     }
 
-    public suspend fun userFollow(username: String): GenericResponse {
+    public suspend fun followUser(username: String): GenericResponse {
+        if (userType == UserType.Anonymous) {
+            throw NotAuthorizedException("Anonymous users cannot do this.")
+        }
+
         val url = routes["apiUrl"] + routes["userFollow"]!!.format(encodeSpaces(username))
 
         val response = client.post(url) {
@@ -225,7 +272,11 @@ public class EksiClient(
         return response.body()
     }
 
-    public suspend fun userUnfollow(username: String): GenericResponse {
+    public suspend fun unfollowUser(username: String): GenericResponse {
+        if (userType == UserType.Anonymous) {
+            throw NotAuthorizedException("Anonymous users cannot do this.")
+        }
+
         val url = routes["apiUrl"] + routes["userUnfollow"]!!.format(encodeSpaces(username))
 
         val response = client.post(url) {
@@ -241,7 +292,11 @@ public class EksiClient(
         return response.body()
     }
 
-    public suspend fun userBlock(username: String): GenericResponse {
+    public suspend fun blockUser(username: String): GenericResponse {
+        if (userType == UserType.Anonymous) {
+            throw NotAuthorizedException("Anonymous users cannot do this.")
+        }
+
         val url = routes["apiUrl"] + routes["userBlock"]!!.format(encodeSpaces(username))
 
         val response = client.post(url) {
@@ -257,7 +312,11 @@ public class EksiClient(
         return response.body()
     }
 
-    public suspend fun userUnblock(username: String): GenericResponse {
+    public suspend fun unblockUser(username: String): GenericResponse {
+        if (userType == UserType.Anonymous) {
+            throw NotAuthorizedException("Anonymous users cannot do this.")
+        }
+
         val url = routes["apiUrl"] + routes["userUnblock"]!!.format(encodeSpaces(username))
 
         val response = client.post(url) {
@@ -272,14 +331,6 @@ public class EksiClient(
 
         return response.body()
     }
-
-//    public suspend fun getIndexFilterChannels(): List<Filter> {
-//        val response = client.get(routes["apiUrl"] + routes["indexFilterChannels"]!!)
-//
-//        val indexFilterChannelsResponse: IndexFilterChannelsResponse = response.body()
-//
-//        return indexFilterChannelsResponse.data
-//    }
 
     public suspend fun getIndexToday(page: Int = 1): IndexToday {
         val response = client.get(routes["apiUrl"] + routes["indexToday"]!! + "?p=$page")
@@ -317,6 +368,12 @@ public class EksiClient(
     public suspend fun buildClient() {
         if (!this::session.isInitialized) {
             createSession()
+        }
+
+        userType = if (session.token.nick == null) {
+            UserType.Anonymous
+        } else {
+            UserType.Regular
         }
 
         client = HttpClient(CIO) {
@@ -553,10 +610,10 @@ public suspend fun main() {
 
 //    eksiClient.buildClient()
 
-    val testing = eksiClient.getIndexPopular()
-    val testing1 = eksiClient.getIndexToday()
+    val testing = eksiClient.getUserEntries("ssgdsds")
+//    val testing1 = eksiClient.getIndexToday()
 //    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexGetFilterChannels"]!!, "POST")
 
     println(testing)
-    println(testing1)
+//    println(testing1)
 }

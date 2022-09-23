@@ -34,6 +34,6 @@ public class BadUserException(message: String) : Exception(message)
 
 public class BadEntryException(message: String) : Exception(message)
 
-//public class BadUserEntriesException(message:String): Exception(message)
+public class NotAuthorizedException(message: String) : Exception(message)
 
 public class BadTokenException(message: String) : Exception(message)
