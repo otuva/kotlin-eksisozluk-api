@@ -7,6 +7,7 @@ package com.github.otuva.eksisozluk
 import com.github.otuva.eksisozluk.models.auth.EksiToken
 import com.github.otuva.eksisozluk.models.auth.Session
 import com.github.otuva.eksisozluk.models.entry.Entry
+import com.github.otuva.eksisozluk.models.index.Index
 import com.github.otuva.eksisozluk.models.topic.Topic
 import com.github.otuva.eksisozluk.models.user.User
 import com.github.otuva.eksisozluk.models.user.entries.UserEntries
@@ -25,7 +26,9 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
+import kotlinx.datetime.Clock
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
 import java.util.UUID
@@ -56,7 +59,7 @@ public val routes: Map<String, String> = mapOf(
     "userBestEntries" to "/v2/user/%s/bestentries",
     "indexPopular" to "/v2/index/popular",
     "indexToday" to "/v2/index/today",
-    "indexGetUserChannelFilters" to "/v2/index/getuserchannelfilters",
+    "indexGetFilterChannels" to "/v2/index/getuserchannelfilters",
     "indexSetChannelFilter" to "/v2/index/setchannelfilter"
 )
 
@@ -68,60 +71,41 @@ public class EksiClient(
     private lateinit var client: HttpClient
     public lateinit var session: Session
 
-    /**
-     * Just echo function for debugging url responses. For testing not implemented endpoints.
-     * */
-    public suspend fun debugGetResponse(url: String) {
-        println(client.get(url).bodyAsText())
-    }
-
-    /**
-     * Creates actual client with set [session].
-     * If session is not set, it calls [createSession] function.
-     *
-     * @return [Unit]
-     * */
-    public suspend fun authorize() {
-        if (!this::session.isInitialized) {
-            createSession()
-        }
-
-        client = HttpClient(CIO) {
-            install(UserAgent) {
-                agent = "okhttp/3.12.1"
-            }
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.ALL
-            }
-            install(ContentNegotiation) {
-                json(Json {
-                    prettyPrint = true
-                    isLenient = true
-                })
-            }
-            if (session.token.userId != null) {
-                install(Auth) {
-                    bearer {
-                        loadTokens {
-                            BearerTokens(session.token.accessToken, session.token.refreshToken!!)
-                        }
-                    }
-                }
-            }
-            defaultRequest {
-                headers.appendIfNameAbsent("Authorization", "Bearer ${session.token.accessToken}")
-                headers.appendIfNameAbsent("Client-Secret", session.clientSecret.toString())
-                headers.appendIfNameAbsent("Api-Secret", apiSecret)
-            }
-            expectSuccess = true
-            HttpResponseValidator {
-                handleResponseExceptionWithRequest { exception, request ->
-                    exceptionHandler(exception, request)
-                }
-            }
+    /*
+     * ---------------------------------------------------------------------------------
+     * ---------------------------debugging-(will-be-removed)---------------------------
+     * ---------------------------------------------------------------------------------
+     */
+    public suspend fun debugGetResponse(url: String, method: String) {
+        if (method == "GET") {
+            println(client.get(url).bodyAsText())
+        } else if (method == "POST") {
+            println(client.post(url).bodyAsText())
         }
     }
+
+    public suspend fun debugUseSessionFromFile() {
+        val file = File("sozluk.session")
+        if (file.exists()) {
+            session = Json.decodeFromString(file.readText())
+
+            if (session.token.expiresAt < Clock.System.now()) {
+                refreshToken()
+                file.writeText(Json.encodeToString(session))
+            }
+
+            buildClient()
+        }
+        else {
+            println("Session file not found.")
+        }
+    }
+
+    /*
+    * ------------------------------------------------------------------------
+    * ------------------------eksisozluk-api-functions------------------------
+    * ------------------------------------------------------------------------
+    * */
 
     public suspend fun getEntry(entryId: Int): Entry {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
@@ -286,16 +270,113 @@ public class EksiClient(
         return response.body()
     }
 
+    public suspend fun getIndexToday(page: Int = 1): Index {
+        val response = client.get(routes["apiUrl"] + routes["indexToday"]!! + "?p=$page")
+
+        val indexResponse: IndexResponse = response.body()
+
+        return indexResponse.data
+    }
+
+    /*
+    * ------------------------------------------------
+    * ----------------client-functions----------------
+    * ------------------------------------------------
+    */
+
     /**
-     * Login to EksiSozluk with current username and password ([login] function) and initialize [session] and return initialized [session] object.
-     * If username and password is not provided, it will try to log in with an anonymous account ([anonLogin] function).
+     * Creates actual client with set [session].
+     * If session is not set, it calls [createSession] function.
+     *
+     * @return [Unit]
+     * */
+    public suspend fun buildClient() {
+        if (!this::session.isInitialized) {
+            createSession()
+        }
+
+        client = HttpClient(CIO) {
+            install(UserAgent) {
+                agent = "okhttp/3.12.1"
+            }
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.ALL
+            }
+            install(ContentNegotiation) {
+                json(Json {
+                    prettyPrint = true
+                    isLenient = true
+                })
+            }
+            if (session.token.userId != null) {
+                install(Auth) {
+                    bearer {
+                        loadTokens {
+                            BearerTokens(session.token.accessToken, session.token.refreshToken!!)
+                        }
+                    }
+                }
+            }
+            defaultRequest {
+                headers.appendIfNameAbsent("Authorization", "Bearer ${session.token.accessToken}")
+                headers.appendIfNameAbsent("Client-Secret", session.clientSecret.toString())
+                headers.appendIfNameAbsent("Api-Secret", apiSecret)
+            }
+            expectSuccess = true
+            HttpResponseValidator {
+                handleResponseExceptionWithRequest { exception, request ->
+                    exceptionHandler(exception, request)
+                }
+            }
+        }
+    }
+
+    public suspend fun refreshToken(): EksiToken {
+        val token: EksiToken
+        val tempClient = HttpClient(CIO) {
+            install(UserAgent) {
+                agent = "okhttp/3.12.1"
+            }
+            defaultRequest {
+                header("Content-Type", "application/x-www-form-urlencoded")
+            }
+            install(ContentNegotiation) {
+                json(Json {
+                    prettyPrint = true
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                })
+            }
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.INFO
+            }
+        }
+        // refresh and assing new token
+        token = if (session.token.refreshToken == null) {
+            // anon refresh
+            requestAnonToken(tempClient, session.clientSecret.toString(), session.clientUniqueId.toString())
+        }
+        else {
+            // user refresh
+            refreshUserToken(tempClient, session.clientSecret.toString(), session.clientUniqueId.toString())
+        }
+        tempClient.close()
+        session.token = token
+        return token
+    }
+
+    /**
+     * Login to EksiSozluk with current username and password ([requestUserToken] function) and initialize [session] and return initialized [session] object.
+     * If username and password is not provided, it will try to log in with an anonymous account ([requestAnonToken] function).
      * Know that you can change [username] and [password] before calling this function.
      * [Session.clientSecret] and [Session.clientUniqueId] will be set here because they must be persistent throughout the session.
      * (i.e. Must validate the bearer token [Session.token])
      *
      * @return [Session] object
      * */
-    private suspend fun createSession(): Session {
+    public suspend fun createSession(): Session {
         val clientSecret = UUID.randomUUID()
         val clientUniqueId = UUID.randomUUID()
         val token: EksiToken
@@ -321,10 +402,10 @@ public class EksiClient(
         }
         token = if (username == null || password == null) {
             // anonymous login
-            anonLogin(tempClient, clientSecret.toString(), clientUniqueId.toString())
+            requestAnonToken(tempClient, clientSecret.toString(), clientUniqueId.toString())
         } else {
             // login
-            login(tempClient, clientSecret.toString(), clientUniqueId.toString())
+            requestUserToken(tempClient, clientSecret.toString(), clientUniqueId.toString())
         }
         tempClient.close()
         session = Session(clientSecret, clientUniqueId, token)
@@ -338,7 +419,7 @@ public class EksiClient(
      *
      * @return [EksiToken]
      * */
-    private suspend fun anonLogin(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
+    private suspend fun requestAnonToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
         val url = routes["apiUrl"] + routes["anonLogin"]
 
         val anonLoginResponse: AnonLoginResponse = client.post(url) {
@@ -366,7 +447,7 @@ public class EksiClient(
      *
      * @return [EksiToken]
      * */
-    private suspend fun login(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
+    private suspend fun requestUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
         val url = routes["apiUrl"] + routes["login"]
 
         val response = client.post(url) {
@@ -390,6 +471,29 @@ public class EksiClient(
         return response.body()
     }
 
+    private suspend fun refreshUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
+        val url = routes["apiUrl"] + routes["login"]
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("refresh_token", session.token.refreshToken!!)
+                        append("Platform", "g")
+                        append("Version", "2.0.1")
+                        append("grant_type", "refresh_token")
+                        append("Build", "52")
+                        append("Api-Secret", apiSecret)
+                        append("Client-Secret", clientSecret)
+                        append("ClientUniqueId", clientUniqueId)
+                    }
+                )
+            )
+        }
+
+        return response.body()
+    }
+
     private fun encodeSpaces(string: String): String {
         return string.replace(" ", "%20")
     }
@@ -402,16 +506,9 @@ public class EksiClient(
 public suspend fun main() {
     val eksiClient = EksiClient()
 
-    // write or read file in current folder
-    val file = File("sozluk.session")
-//     file.writeText(Json.encodeToString(eksiClient.createSession()))
-    val currentSession: Session = Json.decodeFromString(file.readText())
-    eksiClient.session = currentSession
-    eksiClient.authorize()
+    eksiClient.debugUseSessionFromFile()
 
-    val resp = eksiClient.getUserBestEntries("ssg")
+    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexPopular"]!! + "?p=1", "POST")
 
-    println(resp)
-//    println(eksiClient.getTopic(42132))
-
+    println(testing)
 }
