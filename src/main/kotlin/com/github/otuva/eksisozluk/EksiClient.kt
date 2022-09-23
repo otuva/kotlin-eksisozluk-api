@@ -31,7 +31,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
-import java.util.UUID
+import java.util.*
 
 public val routes: Map<String, String> = mapOf(
     "apiUrl" to "https://api.eksisozluk.com",
@@ -95,8 +95,7 @@ public class EksiClient(
             }
 
             buildClient()
-        }
-        else {
+        } else {
             println("Session file not found.")
         }
     }
@@ -187,7 +186,7 @@ public class EksiClient(
      * Returns [UserEntries] object with entries that are written and favorited by the user. Aka "el emeği göz nuru".
      *
      * @param username Username of the user.
-    */
+     */
     public suspend fun getUserSelfFavoritedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userSelfFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
@@ -357,8 +356,7 @@ public class EksiClient(
         token = if (session.token.refreshToken == null) {
             // anon refresh
             requestAnonToken(tempClient, session.clientSecret.toString(), session.clientUniqueId.toString())
-        }
-        else {
+        } else {
             // user refresh
             refreshUserToken(tempClient, session.clientSecret.toString(), session.clientUniqueId.toString())
         }
