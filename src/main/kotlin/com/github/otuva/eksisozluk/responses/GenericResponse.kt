@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * @param data The data returned by the API.
  * */
 @Serializable
-open class GenericResponse(
+public data class GenericResponse(
     @SerialName("Success") val success: Boolean,
     @SerialName("Message") val message: String,
     @SerialName("Data") val data: Unit?

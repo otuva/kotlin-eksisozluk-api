@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
  * @see [DisplayInfo]
  * */
 @Serializable
-data class Video(
+public data class Video(
     @SerialName("DisplayInfo") val displayInfo: DisplayInfo?,
     @SerialName("InTopicVideo") val inTopicVideo: Boolean?,
 )

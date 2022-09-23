@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * @param entry actual entry in the aforementioned topic
  * */
 @Serializable
-data class CondensedTopic(
+public data class CondensedTopic(
     @SerialName("TopicId") val topicId: TopicId,
     @SerialName("Entry") val entry: Entry
 )

@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
  * @param today Number of entries written today
  * */
 @Serializable
-data class UserEntryCounts(
+public data class UserEntryCounts(
     @SerialName("Total") val total: Int,
     @SerialName("LastMonth") val lastMonth: Int,
     @SerialName("LastWeek") val lastWeek: Int,

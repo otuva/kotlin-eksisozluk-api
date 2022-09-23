@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.models
+package com.github.otuva.eksisozluk.models.user
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * @param value Karma name
  * */
 @Serializable
-enum class KarmaName(val value: String) {
+public enum class KarmaName(private val value: String) {
     @SerialName("aklıselim")
     Akliselim("aklıselim"),
     @SerialName("anadolu çocuğu")

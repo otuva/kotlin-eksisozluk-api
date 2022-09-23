@@ -14,7 +14,7 @@ import java.util.*
  * @param token [EksiToken] instance that can be validated by uuids
  * */
 @Serializable
-data class Session(
+public data class Session(
     @Serializable(with = UUIDSerializer::class) val clientSecret: UUID,
     @Serializable(with = UUIDSerializer::class) val clientUniqueId: UUID,
     val token: EksiToken

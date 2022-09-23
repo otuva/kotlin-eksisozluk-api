@@ -30,7 +30,7 @@ import kotlinx.serialization.Serializable
  * @see LocalDateTime
  * */
 @Serializable
-data class Entry(
+public data class Entry(
     @SerialName("Id") val id: Int,
     @SerialName("Content") val content: String,
     @SerialName("Author") val author: UserIdentifier,

@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * @param to Curse end date
  * */
 @Serializable
-data class CursePeriod(
+public data class CursePeriod(
     @SerialName("From") val from: LocalDateTime,
     @SerialName("To") val to: LocalDateTime
 )

@@ -18,7 +18,7 @@ import kotlinx.serialization.Serializable
  * @see UserInfo
  * */
 @Serializable
-data class User(
+public data class User(
     @SerialName("UserInfo") val userInfo: UserInfo,
     @SerialName("Badges") val badges: List<Badge>,
     @SerialName("HasEntryUsedOnSeyler") val hasEntryUsedOnSeyler: Boolean,

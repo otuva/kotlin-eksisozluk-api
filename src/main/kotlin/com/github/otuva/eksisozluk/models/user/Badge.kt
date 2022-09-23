@@ -16,7 +16,7 @@ import kotlinx.serialization.Serializable
  * @param showInactive <Useless> | Unknown. It is always false for all badges
  * */
 @Serializable
-data class Badge(
+public data class Badge(
     @SerialName("Id") val id: Int,
     @SerialName("Name") val name: BadgeName,
     @SerialName("Description") val description: String,

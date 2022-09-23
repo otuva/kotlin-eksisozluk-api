@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
  * @param total The total number of entries in the topic.
  * */
 @Serializable
-data class TopicEntryCounts(
+public data class TopicEntryCounts(
     @SerialName("BeforeFirstEntry") val beforeFirstEntry: Int,
     @SerialName("AfterLastEntry") val afterLastEntry: Int,
     @SerialName("Buddy") val buddy: Int,

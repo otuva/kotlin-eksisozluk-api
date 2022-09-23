@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * @param kind the kind of the topic
  * */
 @Serializable
-data class TopicTitle(
+public data class TopicTitle(
     @SerialName("Title") val title: String,
     @SerialName("Kind") val kind: String?
 )

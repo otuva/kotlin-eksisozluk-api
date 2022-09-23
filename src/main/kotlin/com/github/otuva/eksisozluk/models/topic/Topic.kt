@@ -33,7 +33,7 @@ import kotlinx.serialization.Serializable
  * @see Disambiguation
  * */
 @Serializable
-data class Topic(
+public data class Topic(
     @SerialName("Id") val id: Int,
     @SerialName("Title") val title: String,
     @SerialName("Entries") val entries: List<Entry>,
@@ -56,7 +56,7 @@ data class Topic(
      *
      * @return first [Entry] in the topic
      * */
-    fun getFirstEntry(): Entry {
+    public fun getFirstEntry(): Entry {
         return entries[0]
     }
 }

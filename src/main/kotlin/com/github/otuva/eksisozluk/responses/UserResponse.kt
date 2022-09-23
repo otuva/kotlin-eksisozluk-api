@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserResponse(
+public data class UserResponse(
     @SerialName("Success") val success: Boolean?,
     @SerialName("Message") val message: String?,
     @SerialName("Data") val data: User

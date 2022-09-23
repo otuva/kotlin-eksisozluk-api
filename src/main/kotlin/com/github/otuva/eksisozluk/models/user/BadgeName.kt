@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * @param value Badge name
  * */
 @Serializable
-enum class BadgeName(val value: String) {
+public enum class BadgeName(private val value: String) {
     @SerialName("azimli")
     Azimli("azimli"),
     @SerialName("bot")

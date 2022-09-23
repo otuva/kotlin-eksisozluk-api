@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
  *  TODO: add disambiguation handler function then add see annotation
  * */
 @Serializable
-data class Disambiguation(
+public data class Disambiguation(
     @SerialName("Title") val title: String,
     @SerialName("Kind") val kind: String
 )

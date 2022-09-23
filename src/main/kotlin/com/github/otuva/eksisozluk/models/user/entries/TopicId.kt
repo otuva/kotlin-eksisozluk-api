@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * @param title the title of the topic
  * */
 @Serializable
-data class TopicId(
+public data class TopicId(
     @SerialName("Id") val id: Int,
     @SerialName("TopicTitle") val topicTitle: TopicTitle,
     @SerialName("Title") val title: String

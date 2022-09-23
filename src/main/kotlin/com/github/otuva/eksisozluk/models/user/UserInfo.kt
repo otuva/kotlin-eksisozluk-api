@@ -20,7 +20,7 @@ import kotlinx.serialization.Serializable
  *
  * */
 @Serializable
-data class UserInfo(
+public data class UserInfo(
     @SerialName("UserIdentifier") val userIdentifier: UserIdentifier,
     @SerialName("RemainingInvitation") val remainingInvitation: Int,
     @SerialName("TwitterScreenName") val twitterScreenName: String?,

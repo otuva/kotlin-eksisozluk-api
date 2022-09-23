@@ -20,7 +20,7 @@ import kotlin.time.Duration.Companion.seconds
  * @param expiresAt Time instant of when the token expires. Calculated by adding [expiresIn] to [issuedAt].
  * */
 @Serializable
-data class EksiToken(
+public data class EksiToken(
     val rank: Int? = null,
     @SerialName("access_token") val accessToken: String,
     @SerialName("token_type") val tokenType: String,

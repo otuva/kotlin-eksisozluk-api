@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * @param created The creation date of the draft.
  * */
 @Serializable
-data class DraftEntry(
+public data class DraftEntry(
     @SerialName("Content") val content: String,
     @SerialName("Created") val created: LocalDateTime
 )

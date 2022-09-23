@@ -22,7 +22,7 @@ import kotlinx.serialization.Serializable
  * @param hasEmbeddedVideoLink Whether the video is embedded or not.
  * */
 @Serializable
-data class DisplayInfo(
+public data class DisplayInfo(
     @SerialName("Id") val id: Int,
     @SerialName("ExternalId") val externalId: Int,
     @SerialName("Title") val title: String?,

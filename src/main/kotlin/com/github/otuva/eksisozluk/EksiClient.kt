@@ -30,7 +30,7 @@ import kotlinx.serialization.json.Json
 import java.io.File
 import java.util.UUID
 
-val routes = mapOf(
+public val routes: Map<String, String> = mapOf(
     "apiUrl" to "https://api.eksisozluk.com",
     "login" to "/Token",
     "anonLogin" to "/v2/account/anonymoustoken",
@@ -60,18 +60,18 @@ val routes = mapOf(
     "indexSetChannelFilter" to "/v2/index/setchannelfilter"
 )
 
-class EksiClient(
+public class EksiClient(
     private val username: String? = null,
     private val password: String? = null
 ) {
     private val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
     private lateinit var client: HttpClient
-    lateinit var session: Session
+    public lateinit var session: Session
 
     /**
      * Just echo function for debugging url responses. For testing not implemented endpoints.
      * */
-    suspend fun debugGetResponse(url: String) {
+    public suspend fun debugGetResponse(url: String) {
         println(client.get(url).bodyAsText())
     }
 
@@ -81,7 +81,7 @@ class EksiClient(
      *
      * @return [Unit]
      * */
-    suspend fun authorize() {
+    public suspend fun authorize() {
         if (!this::session.isInitialized) {
             createSession()
         }
@@ -123,7 +123,7 @@ class EksiClient(
         }
     }
 
-    suspend fun getEntry(entryId: Int): Entry {
+    public suspend fun getEntry(entryId: Int): Entry {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
 
         val topicResponse: TopicResponse = response.body()
@@ -131,7 +131,7 @@ class EksiClient(
         return topicResponse.data!!.getFirstEntry()
     }
 
-    suspend fun getTopic(topicId: Int, page: Int = 1): Topic {
+    public suspend fun getTopic(topicId: Int, page: Int = 1): Topic {
         val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId) + "?p=$page")
 
         val topicResponse: TopicResponse = response.body()
@@ -139,7 +139,7 @@ class EksiClient(
         return topicResponse.data!!
     }
 
-    suspend fun getEntryAsTopic(entryId: Int): Topic {
+    public suspend fun getEntryAsTopic(entryId: Int): Topic {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
 
         val topicResponse: TopicResponse = response.body()
@@ -147,7 +147,7 @@ class EksiClient(
         return topicResponse.data!!
     }
 
-    suspend fun getUser(username: String): User {
+    public suspend fun getUser(username: String): User {
         val response = client.get(routes["apiUrl"] + routes["user"]!!.format(encodeSpaces(username)))
 
         val userResponse: UserResponse = response.body()
@@ -155,7 +155,7 @@ class EksiClient(
         return userResponse.data
     }
 
-    suspend fun getUserEntries(username: String, page: Int = 1): UserEntries? {
+    public suspend fun getUserEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userEntries"]!!.format(encodeSpaces(username)) + "?p=$page")
 
@@ -164,7 +164,7 @@ class EksiClient(
         return userEntriesResponse.data
     }
 
-    suspend fun getUserFavoriteEntries(username: String, page: Int = 1): UserEntries? {
+    public suspend fun getUserFavoriteEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userFavorites"]!!.format(encodeSpaces(username)) + "?p=$page")
 
@@ -173,7 +173,7 @@ class EksiClient(
         return userEntriesResponse.data
     }
 
-    suspend fun getUserMostFavoritedEntries(username: String, page: Int = 1): UserEntries? {
+    public suspend fun getUserMostFavoritedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
 
@@ -182,7 +182,7 @@ class EksiClient(
         return userEntriesResponse.data
     }
 
-    suspend fun getUserLastVotedEntries(username: String, page: Int = 1): UserEntries? {
+    public suspend fun getUserLastVotedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userLastVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
 
@@ -191,7 +191,7 @@ class EksiClient(
         return userEntriesResponse.data
     }
 
-    suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries? {
+    public suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userLastWeekMostVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
         val userEntriesResponse: UserEntriesResponse = response.body()
@@ -204,7 +204,7 @@ class EksiClient(
      *
      * @param username Username of the user.
     */
-    suspend fun getUserSelfFavoritedEntries(username: String, page: Int = 1): UserEntries? {
+    public suspend fun getUserSelfFavoritedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userSelfFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
 
@@ -213,7 +213,7 @@ class EksiClient(
         return userEntriesResponse.data
     }
 
-    suspend fun getUserBestEntries(username: String, page: Int = 1): UserEntries? {
+    public suspend fun getUserBestEntries(username: String, page: Int = 1): UserEntries? {
         val response =
             client.get(routes["apiUrl"] + routes["userBestEntries"]!!.format(encodeSpaces(username)) + "?p=$page")
 
@@ -222,7 +222,7 @@ class EksiClient(
         return userEntriesResponse.data
     }
 
-    suspend fun userFollow(username: String): GenericResponse {
+    public suspend fun userFollow(username: String): GenericResponse {
         val url = routes["apiUrl"] + routes["userFollow"]!!.format(encodeSpaces(username))
 
         val response = client.post(url) {
@@ -238,7 +238,7 @@ class EksiClient(
         return response.body()
     }
 
-    suspend fun userUnfollow(username: String): GenericResponse {
+    public suspend fun userUnfollow(username: String): GenericResponse {
         val url = routes["apiUrl"] + routes["userUnfollow"]!!.format(encodeSpaces(username))
 
         val response = client.post(url) {
@@ -254,7 +254,7 @@ class EksiClient(
         return response.body()
     }
 
-    suspend fun userBlock(username: String): GenericResponse {
+    public suspend fun userBlock(username: String): GenericResponse {
         val url = routes["apiUrl"] + routes["userBlock"]!!.format(encodeSpaces(username))
 
         val response = client.post(url) {
@@ -270,7 +270,7 @@ class EksiClient(
         return response.body()
     }
 
-    suspend fun userUnblock(username: String): GenericResponse {
+    public suspend fun userUnblock(username: String): GenericResponse {
         val url = routes["apiUrl"] + routes["userUnblock"]!!.format(encodeSpaces(username))
 
         val response = client.post(url) {
@@ -395,33 +395,11 @@ class EksiClient(
     }
 }
 
-@Suppress("unused")
-suspend fun stfu() {
-    val eksiClient = EksiClient()
-
-    eksiClient.debugGetResponse("https://eksisozluk.com/entry/1")
-    eksiClient.getEntry(1)
-    eksiClient.getTopic(1)
-    eksiClient.getEntryAsTopic(1)
-    eksiClient.getUser("ssg")
-    eksiClient.getUserEntries("ssg")
-    eksiClient.getUserFavoriteEntries("ssg")
-    eksiClient.getUserMostFavoritedEntries("ssg")
-    eksiClient.getUserLastVotedEntries("ssg")
-    eksiClient.getUserLastWeekMostVotedEntries("ssg")
-    eksiClient.getUserSelfFavoritedEntries("ssg")
-    eksiClient.getUserBestEntries("ssg")
-    eksiClient.userFollow("ssg")
-    eksiClient.userUnfollow("ssg")
-    eksiClient.userBlock("ssg")
-    eksiClient.userUnblock("ssg")
-}
-
 /**
  * temporary main function for testing
  * this will be removed in the future
  * */
-suspend fun main() {
+public suspend fun main() {
     val eksiClient = EksiClient()
 
     // write or read file in current folder

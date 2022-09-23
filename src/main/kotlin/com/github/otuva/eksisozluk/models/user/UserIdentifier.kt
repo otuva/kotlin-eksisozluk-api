@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  * @param id User's internal id
  * */
 @Serializable
-data class UserIdentifier(
+public data class UserIdentifier(
     @SerialName("Nick") val nick: String,
     @SerialName("Id") val id: Int
 )

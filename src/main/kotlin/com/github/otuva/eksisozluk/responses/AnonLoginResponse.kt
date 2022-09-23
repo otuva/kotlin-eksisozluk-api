@@ -14,7 +14,7 @@ import kotlinx.serialization.Serializable
  * @see EksiToken
  */
 @Serializable
-data class AnonLoginResponse(
+public data class AnonLoginResponse(
     @SerialName("Success") val success: Boolean,
     @SerialName("Message") val message: String?,
     @SerialName("Data") val data: EksiToken

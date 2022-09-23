@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
  * @param pageIndex Current page number.
  * */
 @Serializable
-data class UserEntries(
+public data class UserEntries(
     @SerialName("PinnedEntry") val pinnedEntry: Topic? = null,
     @SerialName("Entries") val entries: List<CondensedTopic>,
     @SerialName("PageCount") val pageCount: Int,
