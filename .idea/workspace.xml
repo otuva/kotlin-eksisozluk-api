@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add token refresher and today's index">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/Index.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/IndexedTopic.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/PinnedIndexItem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/IndexResponse.kt" afterDir="false" />
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="reformat code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/auth/Session.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/auth/Session.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/Index.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/Index.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/IndexedTopic.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/IndexedTopic.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/IndexResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/IndexTodayResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +85,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="com.github.otuva.eksisozluk.models.index.filter" />
       <recent name="com.github.otuva.eksisozluk.models.index" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
@@ -118,34 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00048" summary="commentout unused code">
-      <created>1662632940047</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1662632940047</updated>
-    </task>
-    <task id="LOCAL-00049" summary="change ws">
-      <created>1662632951502</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1662632951502</updated>
-    </task>
-    <task id="LOCAL-00050" summary="remove redundant comments">
-      <created>1662633036394</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1662633036394</updated>
-    </task>
-    <task id="LOCAL-00051" summary="change gradle">
-      <created>1662667232207</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1662667232208</updated>
     </task>
     <task id="LOCAL-00052" summary="change ws">
       <created>1662667243394</created>
@@ -462,7 +433,35 @@
       <option name="project" value="LOCAL" />
       <updated>1663905801263</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="add token refresher and today's index">
+      <created>1663910674295</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1663910674295</updated>
+    </task>
+    <task id="LOCAL-00098" summary="update session token type">
+      <created>1663910690273</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1663910690273</updated>
+    </task>
+    <task id="LOCAL-00099" summary="change ws">
+      <created>1663910728505</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1663910728505</updated>
+    </task>
+    <task id="LOCAL-00100" summary="reformat code">
+      <created>1663910903082</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1663910903082</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,8 +477,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add user entries class" />
-    <MESSAGE value="add xml config" />
     <MESSAGE value="comment out serializable" />
     <MESSAGE value="remove todo" />
     <MESSAGE value="remove explicit null user&amp;pass" />
@@ -499,19 +496,36 @@
     <MESSAGE value="handle more detailed exceptions" />
     <MESSAGE value="add kdoc" />
     <MESSAGE value="lift if" />
-    <MESSAGE value="change ws" />
     <MESSAGE value="explicit mode" />
     <MESSAGE value="enable explicit mode" />
     <MESSAGE value="add token refresher and today's index" />
-    <option name="LAST_COMMIT_MESSAGE" value="add token refresher and today's index" />
+    <MESSAGE value="update session token type" />
+    <MESSAGE value="change ws" />
+    <MESSAGE value="reformat code" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat code" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt</url>
+          <line>558</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt</url>
+          <line>14</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="io.ktor.client.plugins.ServerResponseException" memberName="cause" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.CondensedTopic" memberName="entry" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.user.entries.CondensedTopic" memberName="entry" />
         <PinnedItemInfo parentTag="io.github.otuva.eksisozluk.models.Video" memberName="displayInfo" />
+        <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.index.Index" memberName="topics" />
       </pinned-members>
     </pin-to-top-manager>
   </component>

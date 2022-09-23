@@ -8,6 +8,10 @@ import com.github.otuva.eksisozluk.models.auth.EksiToken
 import com.github.otuva.eksisozluk.models.auth.Session
 import com.github.otuva.eksisozluk.models.entry.Entry
 import com.github.otuva.eksisozluk.models.index.Index
+import com.github.otuva.eksisozluk.models.index.IndexToday
+import com.github.otuva.eksisozluk.models.index.filter.ChannelName
+import com.github.otuva.eksisozluk.models.index.filter.Filter
+import com.github.otuva.eksisozluk.models.index.filter.Filters
 import com.github.otuva.eksisozluk.models.topic.Topic
 import com.github.otuva.eksisozluk.models.user.User
 import com.github.otuva.eksisozluk.models.user.entries.UserEntries
@@ -59,7 +63,7 @@ public val routes: Map<String, String> = mapOf(
     "userBestEntries" to "/v2/user/%s/bestentries",
     "indexPopular" to "/v2/index/popular",
     "indexToday" to "/v2/index/today",
-    "indexGetFilterChannels" to "/v2/index/getuserchannelfilters",
+    "indexGetFilterChannels" to "/v2/index/getfilterchannels",
     "indexSetChannelFilter" to "/v2/index/setchannelfilter"
 )
 
@@ -269,8 +273,29 @@ public class EksiClient(
         return response.body()
     }
 
-    public suspend fun getIndexToday(page: Int = 1): Index {
+//    public suspend fun getIndexFilterChannels(): List<Filter> {
+//        val response = client.get(routes["apiUrl"] + routes["indexFilterChannels"]!!)
+//
+//        val indexFilterChannelsResponse: IndexFilterChannelsResponse = response.body()
+//
+//        return indexFilterChannelsResponse.data
+//    }
+
+    public suspend fun getIndexToday(page: Int = 1): IndexToday {
         val response = client.get(routes["apiUrl"] + routes["indexToday"]!! + "?p=$page")
+
+        val indexResponse: IndexTodayResponse = response.body()
+
+        return indexResponse.data
+    }
+
+    public suspend fun getIndexPopular(filters: List<Filter> = createFilters(), page: Int = 1): Index {
+        val response = client.post(routes["apiUrl"] + routes["indexPopular"]!! + "?p=$page") {
+            contentType(ContentType.Application.Json)
+            setBody(
+                Filters(filters)
+            )
+        }
 
         val indexResponse: IndexResponse = response.body()
 
@@ -495,6 +520,26 @@ public class EksiClient(
     private fun encodeSpaces(string: String): String {
         return string.replace(" ", "%20")
     }
+
+    public fun createFilters(
+        enableSpor: Boolean = true,
+        enableSiyaset: Boolean = true,
+        enableAnket: Boolean = true,
+        enableIliskiler: Boolean = true,
+        enableEksiSozluk: Boolean = true,
+        enableYetiskin: Boolean = true,
+        enableTroll: Boolean = true,
+        ): List<Filter> {
+        return listOf(
+            Filter(1, ChannelName.Spor, enableSpor),
+            Filter(2, ChannelName.Siyaset, enableSiyaset),
+            Filter(4, ChannelName.Anket, enableAnket),
+            Filter(5, ChannelName.Iliskiler, enableIliskiler),
+            Filter(10, ChannelName.EksiSozluk, enableEksiSozluk),
+            Filter(11, ChannelName.Yetiskin, enableYetiskin),
+            Filter(39, ChannelName.Troll, enableTroll),
+        )
+    }
 }
 
 /**
@@ -506,7 +551,12 @@ public suspend fun main() {
 
     eksiClient.debugUseSessionFromFile()
 
-    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexPopular"]!! + "?p=1", "POST")
+//    eksiClient.buildClient()
+
+    val testing = eksiClient.getIndexPopular()
+    val testing1 = eksiClient.getIndexToday()
+//    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexGetFilterChannels"]!!, "POST")
 
     println(testing)
+    println(testing1)
 }
