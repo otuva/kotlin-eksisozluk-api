@@ -16,7 +16,7 @@ import kotlinx.serialization.Serializable
  * @param karma User's karma shown on the profile page
  * @param entryCounts User's entry counts by time intervals
  * @param lastEntryDate User's last written entry date
- * @param standingQueueNumber User's standing queue number note that this will be 0 for authors
+ * @param standingQueueNumber User's standing queue number (caylak sirasi) note that this will be 0 for authors
  *
  * */
 @Serializable

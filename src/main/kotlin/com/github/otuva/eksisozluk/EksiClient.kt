@@ -1,6 +1,17 @@
 // TODO
 // change java uuid with cross platform one
 // change logger from default to android
+//
+// Implement:
+// genel arama
+// entry favorileyenler listesi / caylak listesi
+// follow unfollow topic
+// user image
+// user sorunsali
+// user sorunsal yaniti
+// sorunsallar
+// sorunsal index
+// mesajlasma
 
 package com.github.otuva.eksisozluk
 
@@ -15,6 +26,8 @@ import com.github.otuva.eksisozluk.models.index.debe.Debe
 import com.github.otuva.eksisozluk.models.index.filter.ChannelName
 import com.github.otuva.eksisozluk.models.index.filter.Filter
 import com.github.otuva.eksisozluk.models.index.filter.Filters
+import com.github.otuva.eksisozluk.models.search.TermType
+import com.github.otuva.eksisozluk.models.topic.SortingType
 import com.github.otuva.eksisozluk.models.topic.Topic
 import com.github.otuva.eksisozluk.models.user.User
 import com.github.otuva.eksisozluk.models.user.entries.UserEntries
@@ -46,9 +59,11 @@ public val routes: Map<String, String> = mapOf(
     "anonLogin" to "/v2/account/anonymoustoken",
     "clientInfo" to "/v2/clientsettings/info",
     "time" to "/v2/clientsettings/time",
-    "topic" to "/v2/topic/%s",
+    "topic" to "/v2/topic/%s/",
+    "topicSearch" to "/v2/topic/%s/search/%s",
     "entry" to "/v2/entry/%s",
     "debe" to "/v2/index/debe",
+    "entryVote" to "/v2/entry/vote",
     "entryFavorite" to "/v2/entry/favorite",
     "entryUnfavorite" to "/v2/entry/unfavorite",
     "user" to "/v2/user/%s",
@@ -115,6 +130,14 @@ public class EksiClient(
     * ------------------------------------------------------------------------
     * */
 
+    /**
+     * Get a single entry by id. Note that this function only returns the entry content and not title.
+     * To get the content with title use [getEntryAsTopic]
+     *
+     * @param entryId The id of the entry
+     *
+     * @return [Entry] object
+     * */
     public suspend fun getEntry(entryId: Int): Entry {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
 
@@ -123,12 +146,53 @@ public class EksiClient(
         return topicResponse.data!!.getFirstEntry()
     }
 
+    /**
+     * Get entry content with title.
+     *
+     * @param entryId The id of the entry
+     *
+     * @return [Topic] object
+     * */
     public suspend fun getEntryAsTopic(entryId: Int): Topic {
         val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
 
         val topicResponse: TopicResponse = response.body()
 
         return topicResponse.data!!
+    }
+
+    public suspend fun likeEntry(entryId: Int): GenericResponse {
+        val url = routes["apiUrl"] + routes["entryVote"]
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("Rate", "1")
+                        append("Id", entryId.toString())
+                    }
+                )
+            )
+        }
+
+        return response.body()
+    }
+
+    public suspend fun dislikeEntry(entryId: Int): GenericResponse {
+        val url = routes["apiUrl"] + routes["entryVote"]
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("Rate", "-1")
+                        append("Id", entryId.toString())
+                    }
+                )
+            )
+        }
+
+        return response.body()
     }
 
     public suspend fun favoriteEntry(entryId: Int): EntryFavoriteData {
@@ -171,8 +235,30 @@ public class EksiClient(
         return response.data
     }
 
-    public suspend fun getTopic(topicId: Int, page: Int = 1): Topic {
-        val response = client.get(routes["apiUrl"] + routes["topic"]!!.format(topicId) + "?p=$page")
+    public suspend fun getTopic(topicId: Int, sortingType: SortingType = SortingType.All, page: Int = 1): Topic {
+        if (userType == UserType.Anonymous && !(sortingType == SortingType.Best || sortingType == SortingType.BestToday)) {
+            throw NotAuthorizedException("Anonymous users cannot do this.")
+        }
+
+        val url = routes["apiUrl"] + routes["topic"]!!.format(topicId) + sortingType.value + "?p=$page"
+
+        val response = client.get(url)
+
+        val topicResponse: TopicResponse = response.body()
+
+        return topicResponse.data!!
+    }
+
+    public suspend fun searchInTopic(topicId: Int, termType: TermType = TermType.Text, searchTerm: String,  page: Int = 1): Topic {
+        if (userType == UserType.Anonymous) {
+            throw NotAuthorizedException("Anonymous users cannot do this.")
+        }
+
+        val finalSearchTerm = termType.value + searchTerm
+
+        val url = routes["apiUrl"] + routes["topicSearch"]!!.format(topicId, finalSearchTerm) + "?p=$page"
+
+        val response = client.get(url)
 
         val topicResponse: TopicResponse = response.body()
 
@@ -370,8 +456,9 @@ public class EksiClient(
     */
 
     /**
-     * Creates actual client with set [session].
-     * If session is not set, it calls [createSession] function.
+     * Creates actual client.
+     * By default, this function will call [createSession] function.
+     * If [session] is not null, it will use it and not call [createSession].
      *
      * @return [Unit]
      * */
@@ -423,6 +510,12 @@ public class EksiClient(
         }
     }
 
+    /**
+     * Refreshes the bearer token.
+     * This function will modify the [session] object with the new [EksiToken] instance and return that too.
+     *
+     * @return [EksiToken]
+     * */
     public suspend fun refreshToken(): EksiToken {
         val token: EksiToken
         val tempClient = HttpClient(CIO) {
@@ -464,6 +557,9 @@ public class EksiClient(
      * [Session.clientSecret] and [Session.clientUniqueId] will be set here because they must be persistent throughout the session.
      * (i.e. Must validate the bearer token [Session.token])
      *
+     * It is recommended to call only [buildClient] function if usage won't pass beyond just api interactions
+     * because building client will call this function too.
+     *
      * @return [Session] object
      * */
     public suspend fun createSession(): Session {
@@ -504,6 +600,8 @@ public class EksiClient(
 
     /**
      * Send request to anonymous token endpoint.
+     * Note that requesting or refreshing tokens will not change anything in [session] object
+     * and these functions will only return respective tokens.
      *
      * @param client temporary client to get token
      *
@@ -517,7 +615,7 @@ public class EksiClient(
                 FormDataContent(
                     Parameters.build {
                         append("Platform", "g")
-                        append("Version", "2.0.1")
+                        append("Version", "2.0.4")
                         append("Build", "52")
                         append("Api-Secret", apiSecret)
                         append("Client-Secret", clientSecret)
@@ -531,7 +629,7 @@ public class EksiClient(
     }
 
     /**
-     * Send request to user login endpoint
+     * Send request to user login endpoint.
      *
      * @param client temporary client to get token
      *
@@ -546,7 +644,7 @@ public class EksiClient(
                     Parameters.build {
                         append("password", password!!)
                         append("Platform", "g")
-                        append("Version", "2.0.1")
+                        append("Version", "2.0.4")
                         append("grant_type", "password")
                         append("Build", "52")
                         append("Api-Secret", apiSecret)
@@ -561,6 +659,9 @@ public class EksiClient(
         return response.body()
     }
 
+    /**
+     * Refreshes expired tokens. It just returns the new token without touching [session] object.
+     * */
     private suspend fun refreshUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
         val url = routes["apiUrl"] + routes["login"]
 
@@ -570,7 +671,7 @@ public class EksiClient(
                     Parameters.build {
                         append("refresh_token", session.token.refreshToken!!)
                         append("Platform", "g")
-                        append("Version", "2.0.1")
+                        append("Version", "2.0.4")
                         append("grant_type", "refresh_token")
                         append("Build", "52")
                         append("Api-Secret", apiSecret)
@@ -584,10 +685,19 @@ public class EksiClient(
         return response.body()
     }
 
+    /**
+     * To handle usernames with spaces
+     * */
     private fun encodeSpaces(string: String): String {
         return string.replace(" ", "%20")
     }
 
+    /**
+     * Create filters list for [getIndexPopular] function.
+     * By default, everything is enabled and you can disable them by setting their respective parameters to false.
+     *
+     * For example if you wanted to disable 'iliskiler' listings, you can set [enableIliskiler] to false.
+     * */
     public fun createFilters(
         enableSpor: Boolean = true,
         enableSiyaset: Boolean = true,
@@ -616,11 +726,10 @@ public class EksiClient(
 public suspend fun main() {
     val eksiClient = EksiClient()
 
-    eksiClient.debugUseSessionFromFile()
+//    eksiClient.debugUseSessionFromFile()
+    eksiClient.buildClient()
 
-//    eksiClient.buildClient()
-
-    val testing = eksiClient.getDebe()
+    val testing = eksiClient.getUser("fulco")
 //    val testing1 = eksiClient.getIndexToday()
 //    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexGetFilterChannels"]!!, "POST")
 

@@ -9,7 +9,7 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * Represents an authentication token for EksiSozluk API.
  *
- * @param rank User rank. 0 is for anonymous users.
+ * @param rank User rank. (0=anonymous, 1=regular)
  * @param accessToken Access token for API requests.
  * @param tokenType Token type. Always "Bearer".
  * @param expiresIn Token expiration time in seconds.
