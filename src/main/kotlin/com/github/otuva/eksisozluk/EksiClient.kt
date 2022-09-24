@@ -6,10 +6,12 @@
 // genel arama
 // entry favorileyenler listesi / caylak listesi
 // follow unfollow topic
+// sorunsallar
+// takip edilen kisilerin entry/fav
+// tarihte bugun
 // user image
 // user sorunsali
 // user sorunsal yaniti
-// sorunsallar
 // sorunsal index
 // mesajlasma
 
@@ -726,10 +728,10 @@ public class EksiClient(
 public suspend fun main() {
     val eksiClient = EksiClient()
 
-//    eksiClient.debugUseSessionFromFile()
-    eksiClient.buildClient()
+    eksiClient.debugUseSessionFromFile()
+//    eksiClient.buildClient()
 
-    val testing = eksiClient.getUser("fulco")
+    val testing = eksiClient.getIndexPopular(eksiClient.createFilters(enableSpor = false))
 //    val testing1 = eksiClient.getIndexToday()
 //    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexGetFilterChannels"]!!, "POST")
 
