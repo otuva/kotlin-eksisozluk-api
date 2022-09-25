@@ -1,6 +1,6 @@
 package com.github.otuva.eksisozluk.responses
 
-import com.github.otuva.eksisozluk.models.auth.EksiToken
+import com.github.otuva.eksisozluk.models.authentication.EksiToken
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

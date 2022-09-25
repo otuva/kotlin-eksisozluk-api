@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add example jsons">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="update todo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/auth/EksiToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/auth/EksiToken.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/UserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/UserInfo.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,20 +116,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00057" summary="add logback version">
-      <created>1662890981258</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1662890981258</updated>
-    </task>
-    <task id="LOCAL-00058" summary="add new exception">
-      <created>1662896569720</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1662896569720</updated>
     </task>
     <task id="LOCAL-00059" summary="comment out serializable">
       <created>1662896578108</created>
@@ -462,7 +446,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663924804073</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="add entry voting, topic sorting, in topic search and kdoc">
+      <created>1664034795599</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1664034795599</updated>
+    </task>
+    <task id="LOCAL-00107" summary="update todo">
+      <created>1664036491192</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1664036491192</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -478,8 +476,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add clarifying comment for main function" />
-    <MESSAGE value="add KDoc for class" />
     <MESSAGE value="add KDoc for class(es)" />
     <MESSAGE value="make response data nullable" />
     <MESSAGE value="encode url for usernames" />
@@ -503,23 +499,17 @@
     <MESSAGE value="add user checks and entry fav/unfav" />
     <MESSAGE value="add debe" />
     <MESSAGE value="add example jsons" />
-    <option name="LAST_COMMIT_MESSAGE" value="add example jsons" />
+    <MESSAGE value="add entry voting, topic sorting, in topic search and kdoc" />
+    <MESSAGE value="update todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="update todo" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt</url>
-          <line>735</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="io.ktor.client.plugins.ServerResponseException" memberName="cause" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.CondensedTopic" memberName="entry" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.user.entries.CondensedTopic" memberName="entry" />
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
         <PinnedItemInfo parentTag="io.github.otuva.eksisozluk.models.Video" memberName="displayInfo" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.index.Index" memberName="topics" />
       </pinned-members>

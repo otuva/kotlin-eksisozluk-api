@@ -17,9 +17,9 @@
 
 package com.github.otuva.eksisozluk
 
-import com.github.otuva.eksisozluk.models.auth.EksiToken
-import com.github.otuva.eksisozluk.models.auth.Session
-import com.github.otuva.eksisozluk.models.auth.UserType
+import com.github.otuva.eksisozluk.models.authentication.EksiToken
+import com.github.otuva.eksisozluk.models.authentication.Session
+import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.entry.Entry
 import com.github.otuva.eksisozluk.models.entry.favorite.EntryFavoriteData
 import com.github.otuva.eksisozluk.models.index.Index
@@ -95,7 +95,7 @@ public class EksiClient(
     private val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
     private lateinit var userType: UserType
     private lateinit var client: HttpClient
-    public lateinit var session: Session
+    private lateinit var session: Session
 
     /*
      * ---------------------------------------------------------------------------------
@@ -731,7 +731,7 @@ public suspend fun main() {
     eksiClient.debugUseSessionFromFile()
 //    eksiClient.buildClient()
 
-    val testing = eksiClient.getIndexPopular(eksiClient.createFilters(enableSpor = false))
+    val testing = eksiClient.getTopic(31795, SortingType.Images)
 //    val testing1 = eksiClient.getIndexToday()
 //    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexGetFilterChannels"]!!, "POST")
 
