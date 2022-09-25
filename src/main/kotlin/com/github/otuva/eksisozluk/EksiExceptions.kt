@@ -37,3 +37,7 @@ public class BadEntryException(message: String) : Exception(message)
 public class NotAuthorizedException(message: String) : Exception(message)
 
 public class BadTokenException(message: String) : Exception(message)
+
+public class TokenExpiredException(message: String) : Exception(message)
+
+public class SessionNotInitializedException(message: String) : Exception(message)

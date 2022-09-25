@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="rename module" />
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="change ws">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,13 +117,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00061" summary="comment out serializable">
-      <created>1662896601328</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1662896601328</updated>
     </task>
     <task id="LOCAL-00062" summary="comment out serializable">
       <created>1662896604371</created>
@@ -457,7 +454,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664100075564</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="change ws">
+      <created>1664100093307</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1664100093307</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,7 +477,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="make response data nullable" />
     <MESSAGE value="encode url for usernames" />
     <MESSAGE value="format equal sign" />
     <MESSAGE value="optimize imports" />
@@ -488,7 +491,6 @@
     <MESSAGE value="enable explicit mode" />
     <MESSAGE value="add token refresher and today's index" />
     <MESSAGE value="update session token type" />
-    <MESSAGE value="change ws" />
     <MESSAGE value="reformat code" />
     <MESSAGE value="add function to get popular topics" />
     <MESSAGE value="add function to get todays topics" />
@@ -498,7 +500,9 @@
     <MESSAGE value="add entry voting, topic sorting, in topic search and kdoc" />
     <MESSAGE value="update todo" />
     <MESSAGE value="rename module" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename module" />
+    <MESSAGE value="make public" />
+    <MESSAGE value="change ws" />
+    <option name="LAST_COMMIT_MESSAGE" value="change ws" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

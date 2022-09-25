@@ -468,6 +468,9 @@ public class EksiClient(
         if (!this::session.isInitialized) {
             createSession()
         }
+        if (session.token.expiresAt < Clock.System.now()) {
+            throw TokenExpiredException("Token expired. Consider calling refreshToken() function.")
+        }
 
         userType = if (session.token.nick == null) {
             UserType.Anonymous
@@ -519,6 +522,10 @@ public class EksiClient(
      * @return [EksiToken]
      * */
     public suspend fun refreshToken(): EksiToken {
+        if (!this::session.isInitialized) {
+            throw SessionNotInitializedException("Initialize session first to refresh token.")
+        }
+
         val token: EksiToken
         val tempClient = HttpClient(CIO) {
             install(UserAgent) {
