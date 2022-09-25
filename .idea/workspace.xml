@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="update todo">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
-    </list>
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="rename module" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -476,7 +473,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add KDoc for class(es)" />
     <MESSAGE value="make response data nullable" />
     <MESSAGE value="encode url for usernames" />
     <MESSAGE value="format equal sign" />
@@ -501,7 +497,8 @@
     <MESSAGE value="add example jsons" />
     <MESSAGE value="add entry voting, topic sorting, in topic search and kdoc" />
     <MESSAGE value="update todo" />
-    <option name="LAST_COMMIT_MESSAGE" value="update todo" />
+    <MESSAGE value="rename module" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename module" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

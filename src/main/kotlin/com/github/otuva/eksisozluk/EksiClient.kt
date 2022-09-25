@@ -95,7 +95,7 @@ public class EksiClient(
     private val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
     private lateinit var userType: UserType
     private lateinit var client: HttpClient
-    private lateinit var session: Session
+    public lateinit var session: Session
 
     /*
      * ---------------------------------------------------------------------------------
