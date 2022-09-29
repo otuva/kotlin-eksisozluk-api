@@ -1,5 +1,5 @@
 ```text
-(büyük t)oken
+/Token
 /v2/account/anonymoustoken
 /v2/account/canregisternick/
 /v2/account/login/facebook
