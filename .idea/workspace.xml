@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add new badges" />
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add method annotations">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/TopicResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/TopicResponse.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,10 +39,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin File" />
         <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Annotation" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -80,11 +85,13 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="com.github.otuva.eksisozluk.models.user.images" />
       <recent name="com.github.otuva.eksisozluk.models.index.debe" />
       <recent name="com.github.otuva.eksisozluk.models.index.filter" />
       <recent name="com.github.otuva.eksisozluk.models.index" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.github.otuva.eksisozluk.models.authentication.assertions" />
       <recent name="com.github.otuva.eksisozluk" />
       <recent name="com.github.otuva.eksisozluk.models.entry" />
       <recent name="com.github.otuva.eksisozluk.models.auth" />
@@ -113,27 +120,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00062" summary="comment out serializable">
-      <created>1662896604371</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1662896604371</updated>
-    </task>
-    <task id="LOCAL-00063" summary="comment out serializable">
-      <created>1662896608892</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1662896608892</updated>
-    </task>
-    <task id="LOCAL-00064" summary="comment out serializable">
-      <created>1662896612041</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1662896612041</updated>
     </task>
     <task id="LOCAL-00065" summary="add get user entries">
       <created>1662896631165</created>
@@ -457,7 +443,28 @@
       <option name="project" value="LOCAL" />
       <updated>1664100093307</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="change ws">
+      <created>1664557240909</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1664557240909</updated>
+    </task>
+    <task id="LOCAL-00112" summary="add user images">
+      <created>1664562447258</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1664562447258</updated>
+    </task>
+    <task id="LOCAL-00113" summary="add method annotations">
+      <created>1664562462001</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1664562462001</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -473,8 +480,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="encode url for usernames" />
-    <MESSAGE value="format equal sign" />
     <MESSAGE value="optimize imports" />
     <MESSAGE value="add session" />
     <MESSAGE value="update gitignore" />
@@ -498,7 +503,9 @@
     <MESSAGE value="rename module" />
     <MESSAGE value="make public" />
     <MESSAGE value="change ws" />
-    <option name="LAST_COMMIT_MESSAGE" value="change ws" />
+    <MESSAGE value="add user images" />
+    <MESSAGE value="add method annotations" />
+    <option name="LAST_COMMIT_MESSAGE" value="add method annotations" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -508,7 +515,6 @@
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.user.entries.CondensedTopic" memberName="entry" />
         <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
         <PinnedItemInfo parentTag="io.github.otuva.eksisozluk.models.Video" memberName="displayInfo" />
-        <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.index.Index" memberName="topics" />
       </pinned-members>
     </pin-to-top-manager>
   </component>

@@ -3,13 +3,15 @@
 // change logger from default to android
 //
 // Implement:
+// ~~gundem anonim ve kayitli icin farkli calisiyor? ona bak~~
 // genel arama
 // entry favorileyenler listesi / caylak listesi
 // follow unfollow topic
+// kullanici basliklarini engelleme / kaldirma
 // sorunsallar
 // takip edilen kisilerin entry/fav
 // tarihte bugun
-// user image
+// ~~user image~~
 // user sorunsali
 // user sorunsal yaniti
 // sorunsal index
@@ -18,8 +20,11 @@
 package com.github.otuva.eksisozluk
 
 import com.github.otuva.eksisozluk.models.authentication.EksiToken
+import com.github.otuva.eksisozluk.models.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.models.authentication.Session
 import com.github.otuva.eksisozluk.models.authentication.UserType
+import com.github.otuva.eksisozluk.models.annotations.LimitedWithoutLogin
+import com.github.otuva.eksisozluk.models.annotations.ModifiesInternal
 import com.github.otuva.eksisozluk.models.entry.Entry
 import com.github.otuva.eksisozluk.models.entry.favorite.EntryFavoriteData
 import com.github.otuva.eksisozluk.models.index.Index
@@ -33,6 +38,7 @@ import com.github.otuva.eksisozluk.models.topic.SortingType
 import com.github.otuva.eksisozluk.models.topic.Topic
 import com.github.otuva.eksisozluk.models.user.User
 import com.github.otuva.eksisozluk.models.user.entries.UserEntries
+import com.github.otuva.eksisozluk.models.user.images.UserImages
 import com.github.otuva.eksisozluk.responses.*
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -54,39 +60,6 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
 import java.util.*
-
-public val routes: Map<String, String> = mapOf(
-    "apiUrl" to "https://api.eksisozluk.com",
-    "login" to "/Token",
-    "anonLogin" to "/v2/account/anonymoustoken",
-    "clientInfo" to "/v2/clientsettings/info",
-    "time" to "/v2/clientsettings/time",
-    "topic" to "/v2/topic/%s/",
-    "topicSearch" to "/v2/topic/%s/search/%s",
-    "entry" to "/v2/entry/%s",
-    "debe" to "/v2/index/debe",
-    "entryVote" to "/v2/entry/vote",
-    "entryFavorite" to "/v2/entry/favorite",
-    "entryUnfavorite" to "/v2/entry/unfavorite",
-    "user" to "/v2/user/%s",
-    "userFollow" to "/v2/user/follow",
-    "userUnfollow" to "/v2/user/unfollow",
-    "userBlock" to "/v2/user/block",
-    "userUnblock" to "/v2/user/unblock",
-    "userIndexTitlesBlock" to "/v2/user/indextitlesblock",
-    "userRemoveIndexTitlesBlock" to "/v2/user/indextitlesblock",
-    "userEntries" to "/v2/user/%s/entries",
-    "userFavorited" to "/v2/user/%s/favorited",
-    "userFavorites" to "/v2/user/%s/favorites",
-    "userLastVoted" to "/v2/user/%s/lastvoted",
-    "userLastWeekMostVoted" to "/v2/user/%s/lastweekmostvoted",
-    "userSelfFavorited" to "/v2/user/%/selffavorited",
-    "userBestEntries" to "/v2/user/%s/bestentries",
-    "indexPopular" to "/v2/index/popular",
-    "indexToday" to "/v2/index/today",
-    "indexGetFilterChannels" to "/v2/index/getfilterchannels",
-    "indexSetChannelFilter" to "/v2/index/setchannelfilter"
-)
 
 public class EksiClient(
     private val username: String? = null,
@@ -141,7 +114,7 @@ public class EksiClient(
      * @return [Entry] object
      * */
     public suspend fun getEntry(entryId: Int): Entry {
-        val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
+        val response = client.get(Routes.baseUrl + Routes.Entry.base.format(entryId))
 
         val topicResponse: TopicResponse = response.body()
 
@@ -156,7 +129,7 @@ public class EksiClient(
      * @return [Topic] object
      * */
     public suspend fun getEntryAsTopic(entryId: Int): Topic {
-        val response = client.get(routes["apiUrl"] + routes["entry"]!!.format(entryId))
+        val response = client.get(Routes.baseUrl + Routes.Entry.base.format(entryId))
 
         val topicResponse: TopicResponse = response.body()
 
@@ -164,7 +137,7 @@ public class EksiClient(
     }
 
     public suspend fun likeEntry(entryId: Int): GenericResponse {
-        val url = routes["apiUrl"] + routes["entryVote"]
+        val url = Routes.baseUrl + Routes.Entry.vote
 
         val response = client.post(url) {
             setBody(
@@ -181,7 +154,7 @@ public class EksiClient(
     }
 
     public suspend fun dislikeEntry(entryId: Int): GenericResponse {
-        val url = routes["apiUrl"] + routes["entryVote"]
+        val url = Routes.baseUrl + Routes.Entry.vote
 
         val response = client.post(url) {
             setBody(
@@ -197,12 +170,11 @@ public class EksiClient(
         return response.body()
     }
 
+    @RequiresLogin
     public suspend fun favoriteEntry(entryId: Int): EntryFavoriteData {
-        if (userType == UserType.Anonymous) {
-            throw NotAuthorizedException("Anonymous users cannot do this.")
-        }
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = routes["apiUrl"] + routes["entryFavorite"]
+        val url = Routes.baseUrl + Routes.Entry.favorite
 
         val response: EntryFavoriteResponse = client.post(url) {
             setBody(
@@ -217,12 +189,11 @@ public class EksiClient(
         return response.data
     }
 
+    @RequiresLogin
     public suspend fun unfavoriteEntry(entryId: Int): EntryFavoriteData {
-        if (userType == UserType.Anonymous) {
-            throw NotAuthorizedException("Anonymous users cannot do this.")
-        }
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = routes["apiUrl"] + routes["entryUnfavorite"]
+        val url = Routes.baseUrl + Routes.Entry.unfavorite
 
         val response: EntryFavoriteResponse = client.post(url) {
             setBody(
@@ -237,12 +208,11 @@ public class EksiClient(
         return response.data
     }
 
+    @LimitedWithoutLogin
     public suspend fun getTopic(topicId: Int, sortingType: SortingType = SortingType.All, page: Int = 1): Topic {
-        if (userType == UserType.Anonymous && !(sortingType == SortingType.Best || sortingType == SortingType.BestToday)) {
-            throw NotAuthorizedException("Anonymous users cannot do this.")
-        }
+        check(userType == UserType.Regular && !(sortingType == SortingType.Best || sortingType == SortingType.BestToday)) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = routes["apiUrl"] + routes["topic"]!!.format(topicId) + sortingType.value + "?p=$page"
+        val url = Routes.baseUrl + Routes.Topic.base.format(topicId) + sortingType.value + "?p=$page"
 
         val response = client.get(url)
 
@@ -251,14 +221,13 @@ public class EksiClient(
         return topicResponse.data!!
     }
 
+    @RequiresLogin
     public suspend fun searchInTopic(topicId: Int, termType: TermType = TermType.Text, searchTerm: String,  page: Int = 1): Topic {
-        if (userType == UserType.Anonymous) {
-            throw NotAuthorizedException("Anonymous users cannot do this.")
-        }
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
         val finalSearchTerm = termType.value + searchTerm
 
-        val url = routes["apiUrl"] + routes["topicSearch"]!!.format(topicId, finalSearchTerm) + "?p=$page"
+        val url = Routes.baseUrl + Routes.Topic.search.format(topicId, finalSearchTerm) + "?p=$page"
 
         val response = client.get(url)
 
@@ -268,7 +237,7 @@ public class EksiClient(
     }
 
     public suspend fun getUser(username: String): User {
-        val response = client.get(routes["apiUrl"] + routes["user"]!!.format(encodeSpaces(username)))
+        val response = client.get(Routes.baseUrl + Routes.User.base.format(encodeSpaces(username)))
 
         val userResponse: UserResponse = response.body()
 
@@ -277,7 +246,7 @@ public class EksiClient(
 
     public suspend fun getUserEntries(username: String, page: Int = 1): UserEntries? {
         val response =
-            client.get(routes["apiUrl"] + routes["userEntries"]!!.format(encodeSpaces(username)) + "?p=$page")
+            client.get(Routes.baseUrl + Routes.User.entries.format(encodeSpaces(username)) + "?p=$page")
 
         val userEntriesResponse: UserEntriesResponse = response.body()
 
@@ -286,7 +255,7 @@ public class EksiClient(
 
     public suspend fun getUserFavoriteEntries(username: String, page: Int = 1): UserEntries? {
         val response =
-            client.get(routes["apiUrl"] + routes["userFavorites"]!!.format(encodeSpaces(username)) + "?p=$page")
+            client.get(Routes.baseUrl + Routes.User.favorites.format(encodeSpaces(username)) + "?p=$page")
 
         val userEntriesResponse: UserEntriesResponse = response.body()
 
@@ -295,7 +264,7 @@ public class EksiClient(
 
     public suspend fun getUserMostFavoritedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
-            client.get(routes["apiUrl"] + routes["userFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
+            client.get(Routes.baseUrl + Routes.User.favorited.format(encodeSpaces(username)) + "?p=$page")
 
         val userEntriesResponse: UserEntriesResponse = response.body()
 
@@ -304,7 +273,7 @@ public class EksiClient(
 
     public suspend fun getUserLastVotedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
-            client.get(routes["apiUrl"] + routes["userLastVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
+            client.get(Routes.baseUrl + Routes.User.lastVoted.format(encodeSpaces(username)) + "?p=$page")
 
         val userEntriesResponse: UserEntriesResponse = response.body()
 
@@ -313,7 +282,7 @@ public class EksiClient(
 
     public suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
-            client.get(routes["apiUrl"] + routes["userLastWeekMostVoted"]!!.format(encodeSpaces(username)) + "?p=$page")
+            client.get(Routes.baseUrl + Routes.User.lastWeekMostVoted.format(encodeSpaces(username)) + "?p=$page")
         val userEntriesResponse: UserEntriesResponse = response.body()
 
         return userEntriesResponse.data
@@ -326,7 +295,7 @@ public class EksiClient(
      */
     public suspend fun getUserSelfFavoritedEntries(username: String, page: Int = 1): UserEntries? {
         val response =
-            client.get(routes["apiUrl"] + routes["userSelfFavorited"]!!.format(encodeSpaces(username)) + "?p=$page")
+            client.get(Routes.baseUrl + Routes.User.selfFavorited.format(encodeSpaces(username)) + "?p=$page")
 
         val userEntriesResponse: UserEntriesResponse = response.body()
 
@@ -335,19 +304,27 @@ public class EksiClient(
 
     public suspend fun getUserBestEntries(username: String, page: Int = 1): UserEntries? {
         val response =
-            client.get(routes["apiUrl"] + routes["userBestEntries"]!!.format(encodeSpaces(username)) + "?p=$page")
+            client.get(Routes.baseUrl + Routes.User.bestEntries.format(encodeSpaces(username)) + "?p=$page")
 
         val userEntriesResponse: UserEntriesResponse = response.body()
 
         return userEntriesResponse.data
     }
 
+    public suspend fun getUserImages(username: String, page: Int = 1): UserImages {
+        val response =
+            client.get(Routes.baseUrl + Routes.User.images.format(encodeSpaces(username)) + "?p=$page")
+
+        val userImagesResponse: UserImagesResponse = response.body()
+
+        return userImagesResponse.data
+    }
+
+    @RequiresLogin
     public suspend fun followUser(username: String): GenericResponse {
-        if (userType == UserType.Anonymous) {
-            throw NotAuthorizedException("Anonymous users cannot do this.")
-        }
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = routes["apiUrl"] + routes["userFollow"]!!.format(encodeSpaces(username))
+        val url = Routes.baseUrl + Routes.User.follow.format(encodeSpaces(username))
 
         val response = client.post(url) {
             setBody(
@@ -362,12 +339,11 @@ public class EksiClient(
         return response.body()
     }
 
+    @RequiresLogin
     public suspend fun unfollowUser(username: String): GenericResponse {
-        if (userType == UserType.Anonymous) {
-            throw NotAuthorizedException("Anonymous users cannot do this.")
-        }
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = routes["apiUrl"] + routes["userUnfollow"]!!.format(encodeSpaces(username))
+        val url = Routes.baseUrl + Routes.User.unfollow.format(encodeSpaces(username))
 
         val response = client.post(url) {
             setBody(
@@ -382,12 +358,11 @@ public class EksiClient(
         return response.body()
     }
 
+    @RequiresLogin
     public suspend fun blockUser(username: String): GenericResponse {
-        if (userType == UserType.Anonymous) {
-            throw NotAuthorizedException("Anonymous users cannot do this.")
-        }
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = routes["apiUrl"] + routes["userBlock"]!!.format(encodeSpaces(username))
+        val url = Routes.baseUrl + Routes.User.block.format(encodeSpaces(username))
 
         val response = client.post(url) {
             setBody(
@@ -402,12 +377,11 @@ public class EksiClient(
         return response.body()
     }
 
+    @RequiresLogin
     public suspend fun unblockUser(username: String): GenericResponse {
-        if (userType == UserType.Anonymous) {
-            throw NotAuthorizedException("Anonymous users cannot do this.")
-        }
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = routes["apiUrl"] + routes["userUnblock"]!!.format(encodeSpaces(username))
+        val url = Routes.baseUrl + Routes.User.unblock.format(encodeSpaces(username))
 
         val response = client.post(url) {
             setBody(
@@ -423,7 +397,7 @@ public class EksiClient(
     }
 
     public suspend fun getDebe(): Debe {
-        val response = client.get(routes["apiUrl"] + routes["debe"])
+        val response = client.get(Routes.baseUrl + Routes.Index.debe)
 
         val debeResponse: DebeResponse = response.body()
 
@@ -431,7 +405,7 @@ public class EksiClient(
     }
 
     public suspend fun getIndexToday(page: Int = 1): IndexToday {
-        val response = client.get(routes["apiUrl"] + routes["indexToday"]!! + "?p=$page")
+        val response = client.get(Routes.baseUrl + Routes.Index.today + "?p=$page")
 
         val indexResponse: IndexTodayResponse = response.body()
 
@@ -439,16 +413,43 @@ public class EksiClient(
     }
 
     public suspend fun getIndexPopular(filters: List<Filter> = createFilters(), page: Int = 1): Index {
-        val response = client.post(routes["apiUrl"] + routes["indexPopular"]!! + "?p=$page") {
+        val response = client.post(Routes.baseUrl + Routes.Index.popular + "?p=$page") {
+            if (userType == UserType.Anonymous) {
+                contentType(ContentType.Application.Json)
+                setBody(
+                    Filters(filters)
+                )
+            }
+        }
+
+        val indexResponse: IndexResponse = response.body()
+
+        return indexResponse.data
+    }
+
+    @RequiresLogin
+    public suspend fun setChannelFilters(filters: List<Filter>): GenericResponse {
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+
+        val response = client.post(Routes.baseUrl + Routes.Index.setChannelFilters) {
             contentType(ContentType.Application.Json)
             setBody(
                 Filters(filters)
             )
         }
 
-        val indexResponse: IndexResponse = response.body()
+        return response.body()
+    }
 
-        return indexResponse.data
+    @RequiresLogin
+    public suspend fun getUserChannelFilters(): List<Filter> {
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+
+        val response = client.get(Routes.baseUrl + Routes.Index.getChannelFilters)
+
+        val filtersResponse: FiltersResponse = response.body()
+
+        return filtersResponse.data.Filters
     }
 
     /*
@@ -464,13 +465,13 @@ public class EksiClient(
      *
      * @return [Unit]
      * */
+    @ModifiesInternal
     public suspend fun buildClient() {
         if (!this::session.isInitialized) {
             createSession()
         }
-        if (session.token.expiresAt < Clock.System.now()) {
-            throw TokenExpiredException("Token expired. Consider calling refreshToken() function.")
-        }
+
+        check(session.token.expiresAt > Clock.System.now()) { TokenExpiredException("Token expired. Consider calling refreshToken() function.") }
 
         userType = if (session.token.nick == null) {
             UserType.Anonymous
@@ -521,10 +522,9 @@ public class EksiClient(
      *
      * @return [EksiToken]
      * */
+    @ModifiesInternal
     public suspend fun refreshToken(): EksiToken {
-        if (!this::session.isInitialized) {
-            throw SessionNotInitializedException("Initialize session first to refresh token.")
-        }
+        check(this::session.isInitialized) { SessionNotInitializedException("Initialize session first to refresh token.") }
 
         val token: EksiToken
         val tempClient = HttpClient(CIO) {
@@ -571,6 +571,7 @@ public class EksiClient(
      *
      * @return [Session] object
      * */
+    @ModifiesInternal
     public suspend fun createSession(): Session {
         val clientSecret = UUID.randomUUID()
         val clientUniqueId = UUID.randomUUID()
@@ -617,7 +618,7 @@ public class EksiClient(
      * @return [EksiToken]
      * */
     private suspend fun requestAnonToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = routes["apiUrl"] + routes["anonLogin"]
+        val url = Routes.baseUrl + Routes.Authentication.anonToken
 
         val anonLoginResponse: AnonLoginResponse = client.post(url) {
             setBody(
@@ -645,7 +646,7 @@ public class EksiClient(
      * @return [EksiToken]
      * */
     private suspend fun requestUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = routes["apiUrl"] + routes["login"]
+        val url = Routes.baseUrl + Routes.Authentication.userToken
 
         val response = client.post(url) {
             setBody(
@@ -672,7 +673,7 @@ public class EksiClient(
      * Refreshes expired tokens. It just returns the new token without touching [session] object.
      * */
     private suspend fun refreshUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = routes["apiUrl"] + routes["login"]
+        val url = Routes.baseUrl + Routes.Authentication.userToken
 
         val response = client.post(url) {
             setBody(
@@ -707,15 +708,7 @@ public class EksiClient(
      *
      * For example if you wanted to disable 'iliskiler' listings, you can set [enableIliskiler] to false.
      * */
-    public fun createFilters(
-        enableSpor: Boolean = true,
-        enableSiyaset: Boolean = true,
-        enableAnket: Boolean = true,
-        enableIliskiler: Boolean = true,
-        enableEksiSozluk: Boolean = true,
-        enableYetiskin: Boolean = true,
-        enableTroll: Boolean = true,
-        ): List<Filter> {
+    public fun createFilters(enableSpor: Boolean = true, enableSiyaset: Boolean = true, enableAnket: Boolean = true, enableIliskiler: Boolean = true, enableEksiSozluk: Boolean = true, enableYetiskin: Boolean = true, enableTroll: Boolean = true): List<Filter> {
         return listOf(
             Filter(1, ChannelName.Spor, enableSpor),
             Filter(2, ChannelName.Siyaset, enableSiyaset),
@@ -726,22 +719,4 @@ public class EksiClient(
             Filter(39, ChannelName.Troll, enableTroll),
         )
     }
-}
-
-/**
- * temporary main function for testing
- * this will be removed in the future
- * */
-public suspend fun main() {
-    val eksiClient = EksiClient()
-
-    eksiClient.debugUseSessionFromFile()
-//    eksiClient.buildClient()
-
-    val testing = eksiClient.getTopic(31795, SortingType.Images)
-//    val testing1 = eksiClient.getIndexToday()
-//    val testing = eksiClient.debugGetResponse(routes["apiUrl"] + routes["indexGetFilterChannels"]!!, "POST")
-
-    println(testing)
-//    println(testing1)
 }

@@ -15,6 +15,6 @@ public data class TopicResponse(
      * This constructor conditional is for entries that are not found. Because api returns 200 status code for not found entries.
      * */
     init {
-        if (!success) throw BadTopicException(message!!)
+        require(success) { throw BadTopicException(message!!) }
     }
 }

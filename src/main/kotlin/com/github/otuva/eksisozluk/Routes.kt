@@ -1,0 +1,54 @@
+package com.github.otuva.eksisozluk
+
+import com.github.otuva.eksisozluk.models.annotations.RequiresFormatting
+
+//    "clientInfo" to "/v2/clientsettings/info",
+//    "time" to "/v2/clientsettings/time",\
+//     "userIndexTitlesBlock" to "/v2/user/indextitlesblock",
+//    "userRemoveIndexTitlesBlock" to "/v2/user/indextitlesblock",
+
+public object Routes {
+    public const val baseUrl: String = "https://api.eksisozluk.com"
+
+    public object Authentication {
+        public const val userToken: String = "/Token"
+        public const val anonToken: String = "/v2/account/anonymoustoken"
+    }
+
+    public object Entry {
+        @RequiresFormatting public const val base: String = "/v2/entry/%s"
+        public const val vote: String = "/v2/entry/vote"
+        public const val favorite: String = "/v2/entry/favorite"
+        public const val unfavorite: String = "/v2/entry/unfavorite"
+    }
+
+    public object Topic {
+        @RequiresFormatting public const val base: String = "/v2/topic/%s/"
+        @RequiresFormatting public const val search: String = "/v2/topic/%s/search/%s"
+
+    }
+
+    public object Index {
+        public const val debe: String = "/v2/index/debe"
+        public const val popular: String = "/v2/index/popular"
+        public const val today: String = "/v2/index/today"
+        public const val getChannelFilters: String = "/v2/index/getuserchannelfilters"
+        public const val setChannelFilters: String = "/v2/index/setchannelfilter"
+    }
+
+    public object User {
+        @RequiresFormatting public const val base: String = "/v2/user/%s"
+        public const val follow: String = "/v2/user/follow"
+        public const val unfollow: String = "/v2/user/unfollow"
+        public const val block: String = "/v2/user/block"
+        public const val unblock: String = "/v2/user/unblock"
+        @RequiresFormatting public const val entries: String = "/v2/user/%s/entries"
+        @RequiresFormatting public const val favorited: String = "/v2/user/%s/favorited"
+        @RequiresFormatting public const val favorites: String = "/v2/user/%s/favorites"
+        @RequiresFormatting public const val lastVoted: String = "/v2/user/%s/lastvoted"
+        @RequiresFormatting public const val lastWeekMostVoted: String = "/v2/user/%s/lastweekmostvoted"
+        @RequiresFormatting public const val selfFavorited: String = "/v2/user/%/selffavorited"
+        @RequiresFormatting public const val bestEntries: String = "/v2/user/%s/bestentries"
+        @RequiresFormatting public const val images: String = "/v2/user/%s/images"
+    }
+}
