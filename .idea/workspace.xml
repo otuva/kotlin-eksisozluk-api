@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add method annotations">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add filter response &amp; new check statements &amp; separate routes constants &amp; add annotations">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/Routes.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/annotations/RequiresFormatting.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/FiltersResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/TopicResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/TopicResponse.kt" afterDir="false" />
@@ -480,7 +484,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="optimize imports" />
     <MESSAGE value="add session" />
     <MESSAGE value="update gitignore" />
     <MESSAGE value="add general response for user ops" />
@@ -505,7 +508,8 @@
     <MESSAGE value="change ws" />
     <MESSAGE value="add user images" />
     <MESSAGE value="add method annotations" />
-    <option name="LAST_COMMIT_MESSAGE" value="add method annotations" />
+    <MESSAGE value="add filter response &amp; new check statements &amp; separate routes constants &amp; add annotations" />
+    <option name="LAST_COMMIT_MESSAGE" value="add filter response &amp; new check statements &amp; separate routes constants &amp; add annotations" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

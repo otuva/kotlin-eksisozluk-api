@@ -1,6 +1,6 @@
 package com.github.otuva.eksisozluk
 
-import com.github.otuva.eksisozluk.models.annotations.RequiresFormatting
+import com.github.otuva.eksisozluk.annotations.RequiresFormatting
 
 //    "clientInfo" to "/v2/clientsettings/info",
 //    "time" to "/v2/clientsettings/time",\
@@ -16,15 +16,18 @@ public object Routes {
     }
 
     public object Entry {
-        @RequiresFormatting public const val base: String = "/v2/entry/%s"
+        @RequiresFormatting
+        public const val base: String = "/v2/entry/%s"
         public const val vote: String = "/v2/entry/vote"
         public const val favorite: String = "/v2/entry/favorite"
         public const val unfavorite: String = "/v2/entry/unfavorite"
     }
 
     public object Topic {
-        @RequiresFormatting public const val base: String = "/v2/topic/%s/"
-        @RequiresFormatting public const val search: String = "/v2/topic/%s/search/%s"
+        @RequiresFormatting
+        public const val base: String = "/v2/topic/%s/"
+        @RequiresFormatting
+        public const val search: String = "/v2/topic/%s/search/%s"
 
     }
 
@@ -37,18 +40,27 @@ public object Routes {
     }
 
     public object User {
-        @RequiresFormatting public const val base: String = "/v2/user/%s"
+        @RequiresFormatting
+        public const val base: String = "/v2/user/%s"
         public const val follow: String = "/v2/user/follow"
         public const val unfollow: String = "/v2/user/unfollow"
         public const val block: String = "/v2/user/block"
         public const val unblock: String = "/v2/user/unblock"
-        @RequiresFormatting public const val entries: String = "/v2/user/%s/entries"
-        @RequiresFormatting public const val favorited: String = "/v2/user/%s/favorited"
-        @RequiresFormatting public const val favorites: String = "/v2/user/%s/favorites"
-        @RequiresFormatting public const val lastVoted: String = "/v2/user/%s/lastvoted"
-        @RequiresFormatting public const val lastWeekMostVoted: String = "/v2/user/%s/lastweekmostvoted"
-        @RequiresFormatting public const val selfFavorited: String = "/v2/user/%/selffavorited"
-        @RequiresFormatting public const val bestEntries: String = "/v2/user/%s/bestentries"
-        @RequiresFormatting public const val images: String = "/v2/user/%s/images"
+        @RequiresFormatting
+        public const val entries: String = "/v2/user/%s/entries"
+        @RequiresFormatting
+        public const val favorited: String = "/v2/user/%s/favorited"
+        @RequiresFormatting
+        public const val favorites: String = "/v2/user/%s/favorites"
+        @RequiresFormatting
+        public const val lastVoted: String = "/v2/user/%s/lastvoted"
+        @RequiresFormatting
+        public const val lastWeekMostVoted: String = "/v2/user/%s/lastweekmostvoted"
+        @RequiresFormatting
+        public const val selfFavorited: String = "/v2/user/%/selffavorited"
+        @RequiresFormatting
+        public const val bestEntries: String = "/v2/user/%s/bestentries"
+        @RequiresFormatting
+        public const val images: String = "/v2/user/%s/images"
     }
 }

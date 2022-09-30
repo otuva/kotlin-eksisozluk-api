@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.models.annotations
+package com.github.otuva.eksisozluk.annotations
 
 /**
  * Annotation for methods that provides limited functionality without login.

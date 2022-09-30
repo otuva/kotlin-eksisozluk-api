@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.models.annotations
+package com.github.otuva.eksisozluk.annotations
 
 /**
  * Variable annotation for routes that requires formatting.

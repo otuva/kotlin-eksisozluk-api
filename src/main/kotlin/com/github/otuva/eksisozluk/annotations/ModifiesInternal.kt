@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.models.annotations
+package com.github.otuva.eksisozluk.annotations
 
 /**
  * Annotation for methods that modifies internal state of the class.

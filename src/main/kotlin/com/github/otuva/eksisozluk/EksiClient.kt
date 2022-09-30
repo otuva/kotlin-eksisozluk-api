@@ -20,11 +20,11 @@
 package com.github.otuva.eksisozluk
 
 import com.github.otuva.eksisozluk.models.authentication.EksiToken
-import com.github.otuva.eksisozluk.models.annotations.RequiresLogin
+import com.github.otuva.eksisozluk.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.models.authentication.Session
 import com.github.otuva.eksisozluk.models.authentication.UserType
-import com.github.otuva.eksisozluk.models.annotations.LimitedWithoutLogin
-import com.github.otuva.eksisozluk.models.annotations.ModifiesInternal
+import com.github.otuva.eksisozluk.annotations.LimitedWithoutLogin
+import com.github.otuva.eksisozluk.annotations.ModifiesInternal
 import com.github.otuva.eksisozluk.models.entry.Entry
 import com.github.otuva.eksisozluk.models.entry.favorite.EntryFavoriteData
 import com.github.otuva.eksisozluk.models.index.Index
