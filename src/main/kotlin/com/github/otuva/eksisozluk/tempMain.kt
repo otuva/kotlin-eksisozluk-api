@@ -3,12 +3,19 @@ package com.github.otuva.eksisozluk
 import com.github.otuva.eksisozluk.models.authentication.Session
 //import kotlinx.datetime.Clock
 import kotlinx.serialization.decodeFromString
-//import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
 
-public fun debugUseSessionFromFile(): Session {
-    val file = File("sozluk.session")
+public fun debugUseSessionFromFile(which: String): Session {
+    var filename: String
+
+    filename = if (which == "anon") {
+        "anon.session"
+    } else {
+        "sozluk.session"
+    }
+
+    val file = File(filename)
     if (file.exists()) {
         val session: Session = Json.decodeFromString(file.readText())
 //            if (session.token.expiresAt < Clock.System.now()) {
@@ -47,12 +54,17 @@ public fun debugUseSessionFromFile(): Session {
 //}
 
 private suspend fun main() {
-    val eksiClient = EksiClient(existingSession = debugUseSessionFromFile())
+//    val eksiSozluk = EksiSozluk(existingSession = debugUseSessionFromFile("anon"))
+//
+////    val file = File("anon.session")
+////    file.writeText(Json.encodeToString(eksiClient.session))
+//
+//    val testing = eksiSozluk.user.entries("divit")
+//
+//    println(testing)
+    val eksiSozluk = EksiSozluk()
 
-//    val file = File("sozluk.session")
-//    file.writeText(Json.encodeToString(eksiClient.session))
+    val entries = eksiSozluk.user.favoriteEntries("ssg")
 
-    val testing = eksiClient.user.images("divit")
-
-    println(testing)
+    println(entries)
 }
