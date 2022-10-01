@@ -1,26 +1,3 @@
-// TODO
-// change java uuid with cross platform one
-// change logger from default to android
-//
-// Implement:
-// entry throwlamak yerine null dondursun
-// genel arama
-// base64 encoding ekle? belki
-// entry favorileyenler listesi / caylak listesi
-// follow unfollow topic
-// kullanici basliklarini engelleme / kaldirma
-// sorunsallar
-// takip edilen kisilerin entry/fav
-// tarihte bugun
-// user sorunsali
-// user sorunsal yaniti
-// sorunsal index
-// mesajlasma
-
-// doc:
-// ~~gundem anonim ve kayitli icin farkli calisiyor? ona bak~~
-// ~~user image~~
-
 package com.github.otuva.eksisozluk
 
 import com.github.otuva.eksisozluk.models.authentication.Session
@@ -34,14 +11,12 @@ import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
 
-public class EksiClient(
+public class EksiSozluk(
     username: String? = null,
     password: String? = null,
     existingSession: Session? = null,
@@ -54,17 +29,6 @@ public class EksiClient(
     public var user: UserApi
     public var topic: TopicApi
     public var index: IndexApi
-
-    /**
-     * will be removed.
-     * */
-    public suspend fun debugGetResponse(url: String, method: String) {
-        if (method == "GET") {
-            println(client.get(url).bodyAsText())
-        } else if (method == "POST") {
-            println(client.post(url).bodyAsText())
-        }
-    }
 
     init {
         session = existingSession ?: Session(username, password)
