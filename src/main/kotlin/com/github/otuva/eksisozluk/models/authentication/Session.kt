@@ -38,7 +38,7 @@ public class Session(
     @Serializable(with = UUIDSerializer::class) public val clientSecret: UUID = UUID.randomUUID(),
     @Serializable(with = UUIDSerializer::class) public val clientUniqueId: UUID = UUID.randomUUID(),
 ) {
-    public var token: EksiToken
+    public lateinit var token: EksiToken
 
     /**
      * Builds a new session with given username and password.
@@ -48,7 +48,7 @@ public class Session(
      * (i.e. Must validate the bearer token)
      * */
     init {
-        runBlocking {
+        if (!this::token.isInitialized) {
             val tempClient = HttpClient(CIO) {
                 install(UserAgent) {
                     agent = "okhttp/3.12.1"
@@ -69,12 +69,14 @@ public class Session(
                 }
             }
 
-            token = if (username.isNullOrBlank() || password.isNullOrBlank()) {
-                // anonymous login
-                requestAnonToken(tempClient, clientSecret.toString(), clientUniqueId.toString())
-            } else {
-                // login
-                requestUserToken(tempClient, clientSecret.toString(), clientUniqueId.toString())
+            runBlocking {
+                token = if (username.isNullOrBlank() || password.isNullOrBlank()) {
+                    // anonymous login
+                    requestAnonToken(tempClient, clientSecret.toString(), clientUniqueId.toString())
+                } else {
+                    // login
+                    requestUserToken(tempClient, clientSecret.toString(), clientUniqueId.toString())
+                }
             }
 
             tempClient.close()

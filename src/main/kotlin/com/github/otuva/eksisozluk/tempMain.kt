@@ -1,24 +1,26 @@
 package com.github.otuva.eksisozluk
 
-//import kotlinx.serialization.decodeFromString
-//import kotlinx.serialization.json.Json
-//import java.io.File
+import com.github.otuva.eksisozluk.models.authentication.Session
+//import kotlinx.datetime.Clock
+import kotlinx.serialization.decodeFromString
+//import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import java.io.File
 
-//public suspend fun debugUseSessionFromFile() {
-//    val file = File("sozluk.session")
-//    if (file.exists()) {
-//        session = Json.decodeFromString(file.readText())
-//
-////            if (session.token.expiresAt < Clock.System.now()) {
-////                refreshToken()
-////                file.writeText(Json.encodeToString(session))
-////            }
-//
-//        buildClient()
-//    } else {
-//        println("Session file not found.")
-//    }
-//}
+public fun debugUseSessionFromFile(): Session {
+    val file = File("sozluk.session")
+    if (file.exists()) {
+        val session: Session = Json.decodeFromString(file.readText())
+//            if (session.token.expiresAt < Clock.System.now()) {
+//                refreshToken()
+//                file.writeText(Json.encodeToString(session))
+//            }
+        return session
+
+    } else {
+        throw Exception("Session file not found.")
+    }
+}
 
 /**
  * temporary main function for testing
@@ -45,7 +47,12 @@ package com.github.otuva.eksisozluk
 //}
 
 private suspend fun main() {
-    val eksiClient = EksiClient()
+    val eksiClient = EksiClient(existingSession = debugUseSessionFromFile())
 
-    eksiClient.entry.get(1)
+//    val file = File("sozluk.session")
+//    file.writeText(Json.encodeToString(eksiClient.session))
+
+    val testing = eksiClient.user.images("divit")
+
+    println(testing)
 }
