@@ -3,45 +3,31 @@
 // change logger from default to android
 //
 // Implement:
-// ~~gundem anonim ve kayitli icin farkli calisiyor? ona bak~~
+// entry throwlamak yerine null dondursun
 // genel arama
+// base64 encoding ekle? belki
 // entry favorileyenler listesi / caylak listesi
 // follow unfollow topic
 // kullanici basliklarini engelleme / kaldirma
 // sorunsallar
 // takip edilen kisilerin entry/fav
 // tarihte bugun
-// ~~user image~~
 // user sorunsali
 // user sorunsal yaniti
 // sorunsal index
 // mesajlasma
 
+// doc:
+// ~~gundem anonim ve kayitli icin farkli calisiyor? ona bak~~
+// ~~user image~~
+
 package com.github.otuva.eksisozluk
 
-import com.github.otuva.eksisozluk.models.authentication.EksiToken
-import com.github.otuva.eksisozluk.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.models.authentication.Session
 import com.github.otuva.eksisozluk.models.authentication.UserType
-import com.github.otuva.eksisozluk.annotations.LimitedWithoutLogin
-import com.github.otuva.eksisozluk.annotations.ModifiesInternal
-import com.github.otuva.eksisozluk.models.entry.Entry
-import com.github.otuva.eksisozluk.models.entry.favorite.EntryFavoriteData
-import com.github.otuva.eksisozluk.models.index.Index
-import com.github.otuva.eksisozluk.models.index.IndexToday
-import com.github.otuva.eksisozluk.models.index.debe.Debe
-import com.github.otuva.eksisozluk.models.index.filter.ChannelName
-import com.github.otuva.eksisozluk.models.index.filter.Filter
-import com.github.otuva.eksisozluk.models.index.filter.Filters
-import com.github.otuva.eksisozluk.models.search.TermType
-import com.github.otuva.eksisozluk.models.topic.SortingType
-import com.github.otuva.eksisozluk.models.topic.Topic
-import com.github.otuva.eksisozluk.models.user.User
-import com.github.otuva.eksisozluk.models.user.entries.UserEntries
-import com.github.otuva.eksisozluk.models.user.images.UserImages
-import com.github.otuva.eksisozluk.responses.*
+import com.github.otuva.eksisozluk.endpoints.client.*
+import com.github.otuva.eksisozluk.utils.apiSecret
 import io.ktor.client.*
-import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
@@ -49,32 +35,29 @@ import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
-import io.ktor.client.request.forms.*
 import io.ktor.client.statement.*
-import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import kotlinx.datetime.Clock
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import java.io.File
-import java.util.*
 
 public class EksiClient(
-    private val username: String? = null,
-    private val password: String? = null
+    username: String? = null,
+    password: String? = null,
+    existingSession: Session? = null,
 ) {
-    private val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
-    private lateinit var userType: UserType
-    private lateinit var client: HttpClient
-    public lateinit var session: Session
+    private var userType: UserType
+    private var client: HttpClient
+    public var session: Session
 
-    /*
-     * ---------------------------------------------------------------------------------
-     * ---------------------------debugging-(will-be-removed)---------------------------
-     * ---------------------------------------------------------------------------------
-     */
+    public var entry: EntryApi
+    public var user: UserApi
+    public var topic: TopicApi
+    public var index: IndexApi
+
+    /**
+     * will be removed.
+     * */
     public suspend fun debugGetResponse(url: String, method: String) {
         if (method == "GET") {
             println(client.get(url).bodyAsText())
@@ -83,393 +66,8 @@ public class EksiClient(
         }
     }
 
-    public suspend fun debugUseSessionFromFile() {
-        val file = File("sozluk.session")
-        if (file.exists()) {
-            session = Json.decodeFromString(file.readText())
-
-            if (session.token.expiresAt < Clock.System.now()) {
-                refreshToken()
-                file.writeText(Json.encodeToString(session))
-            }
-
-            buildClient()
-        } else {
-            println("Session file not found.")
-        }
-    }
-
-    /*
-    * ------------------------------------------------------------------------
-    * ------------------------eksisozluk-api-functions------------------------
-    * ------------------------------------------------------------------------
-    * */
-
-    /**
-     * Get a single entry by id. Note that this function only returns the entry content and not title.
-     * To get the content with title use [getEntryAsTopic]
-     *
-     * @param entryId The id of the entry
-     *
-     * @return [Entry] object
-     * */
-    public suspend fun getEntry(entryId: Int): Entry {
-        val response = client.get(Routes.baseUrl + Routes.Entry.base.format(entryId))
-
-        val topicResponse: TopicResponse = response.body()
-
-        return topicResponse.data!!.getFirstEntry()
-    }
-
-    /**
-     * Get entry content with title.
-     *
-     * @param entryId The id of the entry
-     *
-     * @return [Topic] object
-     * */
-    public suspend fun getEntryAsTopic(entryId: Int): Topic {
-        val response = client.get(Routes.baseUrl + Routes.Entry.base.format(entryId))
-
-        val topicResponse: TopicResponse = response.body()
-
-        return topicResponse.data!!
-    }
-
-    public suspend fun likeEntry(entryId: Int): GenericResponse {
-        val url = Routes.baseUrl + Routes.Entry.vote
-
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("Rate", "1")
-                        append("Id", entryId.toString())
-                    }
-                )
-            )
-        }
-
-        return response.body()
-    }
-
-    public suspend fun dislikeEntry(entryId: Int): GenericResponse {
-        val url = Routes.baseUrl + Routes.Entry.vote
-
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("Rate", "-1")
-                        append("Id", entryId.toString())
-                    }
-                )
-            )
-        }
-
-        return response.body()
-    }
-
-    @RequiresLogin
-    public suspend fun favoriteEntry(entryId: Int): EntryFavoriteData {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val url = Routes.baseUrl + Routes.Entry.favorite
-
-        val response: EntryFavoriteResponse = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("Id", entryId.toString())
-                    }
-                )
-            )
-        }.body()
-
-        return response.data
-    }
-
-    @RequiresLogin
-    public suspend fun unfavoriteEntry(entryId: Int): EntryFavoriteData {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val url = Routes.baseUrl + Routes.Entry.unfavorite
-
-        val response: EntryFavoriteResponse = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("Id", entryId.toString())
-                    }
-                )
-            )
-        }.body()
-
-        return response.data
-    }
-
-    @LimitedWithoutLogin
-    public suspend fun getTopic(topicId: Int, sortingType: SortingType = SortingType.All, page: Int = 1): Topic {
-        check(userType == UserType.Regular && !(sortingType == SortingType.Best || sortingType == SortingType.BestToday)) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val url = Routes.baseUrl + Routes.Topic.base.format(topicId) + sortingType.value + "?p=$page"
-
-        val response = client.get(url)
-
-        val topicResponse: TopicResponse = response.body()
-
-        return topicResponse.data!!
-    }
-
-    @RequiresLogin
-    public suspend fun searchInTopic(topicId: Int, termType: TermType = TermType.Text, searchTerm: String,  page: Int = 1): Topic {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val finalSearchTerm = termType.value + searchTerm
-
-        val url = Routes.baseUrl + Routes.Topic.search.format(topicId, finalSearchTerm) + "?p=$page"
-
-        val response = client.get(url)
-
-        val topicResponse: TopicResponse = response.body()
-
-        return topicResponse.data!!
-    }
-
-    public suspend fun getUser(username: String): User {
-        val response = client.get(Routes.baseUrl + Routes.User.base.format(encodeSpaces(username)))
-
-        val userResponse: UserResponse = response.body()
-
-        return userResponse.data
-    }
-
-    public suspend fun getUserEntries(username: String, page: Int = 1): UserEntries? {
-        val response =
-            client.get(Routes.baseUrl + Routes.User.entries.format(encodeSpaces(username)) + "?p=$page")
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
-    }
-
-    public suspend fun getUserFavoriteEntries(username: String, page: Int = 1): UserEntries? {
-        val response =
-            client.get(Routes.baseUrl + Routes.User.favorites.format(encodeSpaces(username)) + "?p=$page")
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
-    }
-
-    public suspend fun getUserMostFavoritedEntries(username: String, page: Int = 1): UserEntries? {
-        val response =
-            client.get(Routes.baseUrl + Routes.User.favorited.format(encodeSpaces(username)) + "?p=$page")
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
-    }
-
-    public suspend fun getUserLastVotedEntries(username: String, page: Int = 1): UserEntries? {
-        val response =
-            client.get(Routes.baseUrl + Routes.User.lastVoted.format(encodeSpaces(username)) + "?p=$page")
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
-    }
-
-    public suspend fun getUserLastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries? {
-        val response =
-            client.get(Routes.baseUrl + Routes.User.lastWeekMostVoted.format(encodeSpaces(username)) + "?p=$page")
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
-    }
-
-    /**
-     * Returns [UserEntries] object with entries that are written and favorited by the user. Aka "el emeği göz nuru".
-     *
-     * @param username Username of the user.
-     */
-    public suspend fun getUserSelfFavoritedEntries(username: String, page: Int = 1): UserEntries? {
-        val response =
-            client.get(Routes.baseUrl + Routes.User.selfFavorited.format(encodeSpaces(username)) + "?p=$page")
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
-    }
-
-    public suspend fun getUserBestEntries(username: String, page: Int = 1): UserEntries? {
-        val response =
-            client.get(Routes.baseUrl + Routes.User.bestEntries.format(encodeSpaces(username)) + "?p=$page")
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
-    }
-
-    public suspend fun getUserImages(username: String, page: Int = 1): UserImages {
-        val response =
-            client.get(Routes.baseUrl + Routes.User.images.format(encodeSpaces(username)) + "?p=$page")
-
-        val userImagesResponse: UserImagesResponse = response.body()
-
-        return userImagesResponse.data
-    }
-
-    @RequiresLogin
-    public suspend fun followUser(username: String): GenericResponse {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val url = Routes.baseUrl + Routes.User.follow.format(encodeSpaces(username))
-
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("nick", username)
-                    }
-                )
-            )
-        }
-
-        return response.body()
-    }
-
-    @RequiresLogin
-    public suspend fun unfollowUser(username: String): GenericResponse {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val url = Routes.baseUrl + Routes.User.unfollow.format(encodeSpaces(username))
-
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("nick", username)
-                    }
-                )
-            )
-        }
-
-        return response.body()
-    }
-
-    @RequiresLogin
-    public suspend fun blockUser(username: String): GenericResponse {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val url = Routes.baseUrl + Routes.User.block.format(encodeSpaces(username))
-
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("nick", username)
-                    }
-                )
-            )
-        }
-
-        return response.body()
-    }
-
-    @RequiresLogin
-    public suspend fun unblockUser(username: String): GenericResponse {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val url = Routes.baseUrl + Routes.User.unblock.format(encodeSpaces(username))
-
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("nick", username)
-                    }
-                )
-            )
-        }
-
-        return response.body()
-    }
-
-    public suspend fun getDebe(): Debe {
-        val response = client.get(Routes.baseUrl + Routes.Index.debe)
-
-        val debeResponse: DebeResponse = response.body()
-
-        return debeResponse.data
-    }
-
-    public suspend fun getIndexToday(page: Int = 1): IndexToday {
-        val response = client.get(Routes.baseUrl + Routes.Index.today + "?p=$page")
-
-        val indexResponse: IndexTodayResponse = response.body()
-
-        return indexResponse.data
-    }
-
-    public suspend fun getIndexPopular(filters: List<Filter> = createFilters(), page: Int = 1): Index {
-        val response = client.post(Routes.baseUrl + Routes.Index.popular + "?p=$page") {
-            if (userType == UserType.Anonymous) {
-                contentType(ContentType.Application.Json)
-                setBody(
-                    Filters(filters)
-                )
-            }
-        }
-
-        val indexResponse: IndexResponse = response.body()
-
-        return indexResponse.data
-    }
-
-    @RequiresLogin
-    public suspend fun setChannelFilters(filters: List<Filter>): GenericResponse {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val response = client.post(Routes.baseUrl + Routes.Index.setChannelFilters) {
-            contentType(ContentType.Application.Json)
-            setBody(
-                Filters(filters)
-            )
-        }
-
-        return response.body()
-    }
-
-    @RequiresLogin
-    public suspend fun getUserChannelFilters(): List<Filter> {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
-
-        val response = client.get(Routes.baseUrl + Routes.Index.getChannelFilters)
-
-        val filtersResponse: FiltersResponse = response.body()
-
-        return filtersResponse.data.Filters
-    }
-
-    /*
-    * ------------------------------------------------
-    * ----------------client-functions----------------
-    * ------------------------------------------------
-    */
-
-    /**
-     * Creates actual client.
-     * By default, this function will call [createSession] function.
-     * If [session] is not null, it will use it and not call [createSession].
-     *
-     * @return [Unit]
-     * */
-    @ModifiesInternal
-    public suspend fun buildClient() {
-        if (!this::session.isInitialized) {
-            createSession()
-        }
+    init {
+        session = existingSession ?: Session(username, password)
 
         check(session.token.expiresAt > Clock.System.now()) { TokenExpiredException("Token expired. Consider calling refreshToken() function.") }
 
@@ -514,209 +112,10 @@ public class EksiClient(
                 }
             }
         }
-    }
 
-    /**
-     * Refreshes the bearer token.
-     * This function will modify the [session] object with the new [EksiToken] instance and return that too.
-     *
-     * @return [EksiToken]
-     * */
-    @ModifiesInternal
-    public suspend fun refreshToken(): EksiToken {
-        check(this::session.isInitialized) { SessionNotInitializedException("Initialize session first to refresh token.") }
-
-        val token: EksiToken
-        val tempClient = HttpClient(CIO) {
-            install(UserAgent) {
-                agent = "okhttp/3.12.1"
-            }
-            defaultRequest {
-                header("Content-Type", "application/x-www-form-urlencoded")
-            }
-            install(ContentNegotiation) {
-                json(Json {
-                    prettyPrint = true
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                })
-            }
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.INFO
-            }
-        }
-        // refresh and assing new token
-        token = if (session.token.refreshToken == null) {
-            // anon refresh
-            requestAnonToken(tempClient, session.clientSecret.toString(), session.clientUniqueId.toString())
-        } else {
-            // user refresh
-            refreshUserToken(tempClient, session.clientSecret.toString(), session.clientUniqueId.toString())
-        }
-        tempClient.close()
-        session.token = token
-        return token
-    }
-
-    /**
-     * Login to EksiSozluk with current username and password ([requestUserToken] function) and initialize [session] and return initialized [session] object.
-     * If username and password is not provided, it will try to log in with an anonymous account ([requestAnonToken] function).
-     * Know that you can change [username] and [password] before calling this function.
-     * [Session.clientSecret] and [Session.clientUniqueId] will be set here because they must be persistent throughout the session.
-     * (i.e. Must validate the bearer token [Session.token])
-     *
-     * It is recommended to call only [buildClient] function if usage won't pass beyond just api interactions
-     * because building client will call this function too.
-     *
-     * @return [Session] object
-     * */
-    @ModifiesInternal
-    public suspend fun createSession(): Session {
-        val clientSecret = UUID.randomUUID()
-        val clientUniqueId = UUID.randomUUID()
-        val token: EksiToken
-
-        val tempClient = HttpClient(CIO) {
-            install(UserAgent) {
-                agent = "okhttp/3.12.1"
-            }
-            defaultRequest {
-                header("Content-Type", "application/x-www-form-urlencoded")
-            }
-            install(ContentNegotiation) {
-                json(Json {
-                    prettyPrint = true
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                })
-            }
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.INFO
-            }
-        }
-        token = if (username == null || password == null) {
-            // anonymous login
-            requestAnonToken(tempClient, clientSecret.toString(), clientUniqueId.toString())
-        } else {
-            // login
-            requestUserToken(tempClient, clientSecret.toString(), clientUniqueId.toString())
-        }
-        tempClient.close()
-        session = Session(clientSecret, clientUniqueId, token)
-        return session
-    }
-
-    /**
-     * Send request to anonymous token endpoint.
-     * Note that requesting or refreshing tokens will not change anything in [session] object
-     * and these functions will only return respective tokens.
-     *
-     * @param client temporary client to get token
-     *
-     * @return [EksiToken]
-     * */
-    private suspend fun requestAnonToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = Routes.baseUrl + Routes.Authentication.anonToken
-
-        val anonLoginResponse: AnonLoginResponse = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("Platform", "g")
-                        append("Version", "2.0.4")
-                        append("Build", "52")
-                        append("Api-Secret", apiSecret)
-                        append("Client-Secret", clientSecret)
-                        append("ClientUniqueId", clientUniqueId)
-                    }
-                )
-            )
-        }.body()
-
-        return anonLoginResponse.data
-    }
-
-    /**
-     * Send request to user login endpoint.
-     *
-     * @param client temporary client to get token
-     *
-     * @return [EksiToken]
-     * */
-    private suspend fun requestUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = Routes.baseUrl + Routes.Authentication.userToken
-
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("password", password!!)
-                        append("Platform", "g")
-                        append("Version", "2.0.4")
-                        append("grant_type", "password")
-                        append("Build", "52")
-                        append("Api-Secret", apiSecret)
-                        append("Client-Secret", clientSecret)
-                        append("ClientUniqueId", clientUniqueId)
-                        append("username", username!!)
-                    }
-                )
-            )
-        }
-
-        return response.body()
-    }
-
-    /**
-     * Refreshes expired tokens. It just returns the new token without touching [session] object.
-     * */
-    private suspend fun refreshUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = Routes.baseUrl + Routes.Authentication.userToken
-
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("refresh_token", session.token.refreshToken!!)
-                        append("Platform", "g")
-                        append("Version", "2.0.4")
-                        append("grant_type", "refresh_token")
-                        append("Build", "52")
-                        append("Api-Secret", apiSecret)
-                        append("Client-Secret", clientSecret)
-                        append("ClientUniqueId", clientUniqueId)
-                    }
-                )
-            )
-        }
-
-        return response.body()
-    }
-
-    /**
-     * To handle usernames with spaces
-     * */
-    private fun encodeSpaces(string: String): String {
-        return string.replace(" ", "%20")
-    }
-
-    /**
-     * Create filters list for [getIndexPopular] function.
-     * By default, everything is enabled and you can disable them by setting their respective parameters to false.
-     *
-     * For example if you wanted to disable 'iliskiler' listings, you can set [enableIliskiler] to false.
-     * */
-    public fun createFilters(enableSpor: Boolean = true, enableSiyaset: Boolean = true, enableAnket: Boolean = true, enableIliskiler: Boolean = true, enableEksiSozluk: Boolean = true, enableYetiskin: Boolean = true, enableTroll: Boolean = true): List<Filter> {
-        return listOf(
-            Filter(1, ChannelName.Spor, enableSpor),
-            Filter(2, ChannelName.Siyaset, enableSiyaset),
-            Filter(4, ChannelName.Anket, enableAnket),
-            Filter(5, ChannelName.Iliskiler, enableIliskiler),
-            Filter(10, ChannelName.EksiSozluk, enableEksiSozluk),
-            Filter(11, ChannelName.Yetiskin, enableYetiskin),
-            Filter(39, ChannelName.Troll, enableTroll),
-        )
+        entry = EntryApi(client, userType)
+        user = UserApi(client, userType)
+        topic = TopicApi(client, userType)
+        index = IndexApi(client, userType)
     }
 }

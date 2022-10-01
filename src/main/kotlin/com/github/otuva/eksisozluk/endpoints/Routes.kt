@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk
+package com.github.otuva.eksisozluk.endpoints
 
 import com.github.otuva.eksisozluk.annotations.RequiresFormatting
 

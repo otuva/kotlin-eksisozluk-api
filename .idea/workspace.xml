@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="move annotations">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add api handler classes">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/utils/Client.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/utils/Encoding.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/LimitedWithoutLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/LimitedWithoutLogin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/ModifiesInternal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/ModifiesInternal.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/RequiresFormatting.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/RequiresFormatting.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/RequiresLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/RequiresLogin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +47,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Enum" />
         <option value="Kotlin Annotation" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -94,14 +99,14 @@
       <recent name="com.github.otuva.eksisozluk.models.index" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.github.otuva.eksisozluk.endpoints" />
       <recent name="com.github.otuva.eksisozluk.models.authentication.assertions" />
       <recent name="com.github.otuva.eksisozluk" />
       <recent name="com.github.otuva.eksisozluk.models.entry" />
       <recent name="com.github.otuva.eksisozluk.models.auth" />
-      <recent name="io.github.otuva.eksisozluk" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.TempMainKt">
     <configuration name="EksiClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.github.otuva.eksisozluk.EksiClientKt" />
       <module name="eksi-api-wrapper.main" />
@@ -109,8 +114,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TempMainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.github.otuva.eksisozluk.TempMainKt" />
+      <module name="eksi-api-wrapper.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.TempMainKt" />
         <item itemvalue="Kotlin.EksiClientKt" />
       </list>
     </recent_temporary>
@@ -123,13 +136,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00065" summary="add get user entries">
-      <created>1662896631165</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1662896631165</updated>
     </task>
     <task id="LOCAL-00066" summary="add user entries response class">
       <created>1662896648957</created>
@@ -467,7 +473,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664562462001</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="add explicit targets">
+      <created>1664599786988</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1664599786988</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -483,8 +496,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add session" />
-    <MESSAGE value="update gitignore" />
     <MESSAGE value="add general response for user ops" />
     <MESSAGE value="add user operations (following, blocking)" />
     <MESSAGE value="handle more detailed exceptions" />
@@ -508,7 +519,9 @@
     <MESSAGE value="add user images" />
     <MESSAGE value="add method annotations" />
     <MESSAGE value="add filter response &amp; new check statements &amp; separate routes constants &amp; add annotations" />
-    <option name="LAST_COMMIT_MESSAGE" value="add filter response &amp; new check statements &amp; separate routes constants &amp; add annotations" />
+    <MESSAGE value="add explicit targets" />
+    <MESSAGE value="add api handler classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="add api handler classes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
