@@ -16,6 +16,12 @@ import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
 import io.ktor.http.*
 
+/**
+ * Entry related endpoints
+ *
+ * @param client The [HttpClient] instance
+ * @param userType The [UserType] instance
+ * */
 public class EntryApi(private val client: HttpClient, private val userType: UserType) {
     /**
      * Get a single entry by id. Note that this function only returns the entry content and not title. | tek entry
