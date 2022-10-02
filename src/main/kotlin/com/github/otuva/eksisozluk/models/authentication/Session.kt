@@ -136,7 +136,7 @@ public class Session(
      * @return [EksiToken]
      * */
     private suspend fun requestAnonToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = Routes.baseUrl + Routes.Authentication.anonToken
+        val url = Routes.api + Routes.Authentication.anonToken
 
         val anonLoginResponse: AnonLoginResponse = client.post(url) {
             setBody(
@@ -166,7 +166,7 @@ public class Session(
      * @return [EksiToken]
      * */
     private suspend fun refreshUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = Routes.baseUrl + Routes.Authentication.userToken
+        val url = Routes.api + Routes.Authentication.userToken
 
         val response = client.post(url) {
             setBody(
@@ -196,7 +196,7 @@ public class Session(
      * @return [EksiToken]
      * */
     private suspend fun requestUserToken(client: HttpClient, clientSecret: String, clientUniqueId: String): EksiToken {
-        val url = Routes.baseUrl + Routes.Authentication.userToken
+        val url = Routes.api + Routes.Authentication.userToken
 
         val response = client.post(url) {
             setBody(
