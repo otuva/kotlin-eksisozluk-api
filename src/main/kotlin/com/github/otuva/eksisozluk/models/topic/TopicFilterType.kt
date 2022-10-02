@@ -1,7 +1,7 @@
 package com.github.otuva.eksisozluk.models.topic
 
 /**
- * Represents a sorting option for a topic.
+ * Represents a sorting & filtering option for a topic.
  *
  * [Best] best entries all time | 'sukela tumu'
  *
@@ -21,7 +21,7 @@ package com.github.otuva.eksisozluk.models.topic
  *
  * [EksiSeyler] entries included in eksi seyler | "eksi seyler'de"
  * */
-public enum class SortingType(public val value: String) {
+public enum class TopicFilterType(public val value: String) {
     Best("allnice"),
     BestToday("dailynice"),
     Hot("popular"),
