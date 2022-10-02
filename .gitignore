@@ -1,3 +1,6 @@
+# unnecessary
+src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt
+
 # local sessions to not spam
 sozluk.session
 anon.session
