@@ -7,6 +7,7 @@
 - belki entry throwlamak yerine null dondursun?
 - base64 encoding ekle? belki
 
+- ayarlari cekme 
 - topic stringden id - query
 - entry silme / yazma
 - follow unfollow topic
