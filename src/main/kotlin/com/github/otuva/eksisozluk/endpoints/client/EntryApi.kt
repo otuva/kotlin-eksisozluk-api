@@ -164,7 +164,10 @@ public class EntryApi(private val client: HttpClient, private val userType: User
         return response.data
     }
 
+    @RequiresLogin
     public suspend fun favorites(entryId: Int): Favorites {
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+
         val url = Routes.api + Routes.Entry.favorites.format(entryId)
 
         val response = client.get(url)
@@ -174,7 +177,10 @@ public class EntryApi(private val client: HttpClient, private val userType: User
         return topicResponse.data
     }
 
+    @RequiresLogin
     public suspend fun caylakFavorites(entryId: Int): CaylakFavorites {
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+
         val url = Routes.api + Routes.Entry.caylakFavorites.format(entryId)
 
         val response = client.get(url)
