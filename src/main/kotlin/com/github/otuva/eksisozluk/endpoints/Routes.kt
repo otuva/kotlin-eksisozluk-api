@@ -63,4 +63,9 @@ public object Routes {
         @RequiresFormatting
         public const val images: String = "/v2/user/%s/images"
     }
+
+    public object Search {
+        @RequiresFormatting
+        public const val autocomplete: String = "/v2/autocomplete/query/%s"
+    }
 }
