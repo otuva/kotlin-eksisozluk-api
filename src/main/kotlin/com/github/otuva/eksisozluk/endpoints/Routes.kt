@@ -8,7 +8,7 @@ import com.github.otuva.eksisozluk.annotations.RequiresFormatting
 //    "userRemoveIndexTitlesBlock" to "/v2/user/indextitlesblock",
 
 public object Routes {
-    public const val baseUrl: String = "https://api.eksisozluk.com"
+    public const val api: String = "https://api.eksisozluk.com"
 
     public object Authentication {
         public const val userToken: String = "/Token"
@@ -17,7 +17,7 @@ public object Routes {
 
     public object Entry {
         @RequiresFormatting
-        public const val base: String = "/v2/entry/%s"
+        public const val entry: String = "/v2/entry/%s"
         public const val vote: String = "/v2/entry/vote"
         public const val favorite: String = "/v2/entry/favorite"
         public const val unfavorite: String = "/v2/entry/unfavorite"
@@ -25,9 +25,10 @@ public object Routes {
 
     public object Topic {
         @RequiresFormatting
-        public const val base: String = "/v2/topic/%s/"
+        public const val topic: String = "/v2/topic/%s/"
         @RequiresFormatting
         public const val search: String = "/v2/topic/%s/search/%s"
+        public const val advancedSearch: String = "/v2/topic/%s/search/advanced"
 
     }
 
@@ -41,7 +42,7 @@ public object Routes {
 
     public object User {
         @RequiresFormatting
-        public const val base: String = "/v2/user/%s"
+        public const val user: String = "/v2/user/%s"
         public const val follow: String = "/v2/user/follow"
         public const val unfollow: String = "/v2/user/unfollow"
         public const val block: String = "/v2/user/block"
@@ -65,6 +66,7 @@ public object Routes {
     }
 
     public object Search {
+        public const val search: String = "/v2/index/search"
         @RequiresFormatting
         public const val autocomplete: String = "/v2/autocomplete/query/%s"
     }
