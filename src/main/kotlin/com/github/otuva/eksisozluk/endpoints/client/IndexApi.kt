@@ -58,19 +58,19 @@ public class IndexApi(private val client: HttpClient, private val userType: User
 
     /**
      * Get popular topics | gündem
-     * 
+     *
      * You can pass list of [filters] to filter the results. It's recommended to use [createFilters] function.
-     * 
+     *
      * If user is logged in filters are not used because registered user's filters are kept in the server.
-     * 
+     *
      * @param filters The list of filters to use
      * @param page The page to get
-     * 
+     *
      * @return [Index] object
      * */
     public suspend fun popular(filters: List<Filter> = createFilters(), page: Int = 1): Index {
         val url = Routes.api + Routes.Index.popular + "?p=$page"
-        
+
         val response = client.post(url) {
             if (userType == UserType.Anonymous) {
                 contentType(ContentType.Application.Json)
@@ -138,4 +138,6 @@ public class IndexApi(private val client: HttpClient, private val userType: User
 
         return filtersResponse.data.filters
     }
+
+
 }

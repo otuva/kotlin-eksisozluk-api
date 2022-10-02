@@ -6,8 +6,8 @@ import com.github.otuva.eksisozluk.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.search.SortOrder
-import com.github.otuva.eksisozluk.models.topic.TopicFilterType
 import com.github.otuva.eksisozluk.models.topic.Topic
+import com.github.otuva.eksisozluk.models.topic.TopicFilterType
 import com.github.otuva.eksisozluk.responses.TopicResponse
 import com.github.otuva.eksisozluk.utils.urlEncode
 import io.ktor.client.*
@@ -40,7 +40,11 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @LimitedWithoutLogin
     public suspend fun get(topicId: Int, filterType: TopicFilterType = TopicFilterType.All, page: Int = 1): Topic {
-        check(userType == UserType.Regular && !(filterType == TopicFilterType.Best || filterType == TopicFilterType.BestToday)) { NotAuthorizedException("Anonymous users cannot do this.") }
+        check(userType == UserType.Regular && !(filterType == TopicFilterType.Best || filterType == TopicFilterType.BestToday)) {
+            NotAuthorizedException(
+                "Anonymous users cannot do this."
+            )
+        }
 
         val url = Routes.api + Routes.Topic.topic.format(topicId) + filterType.value + "?p=$page"
 
@@ -79,7 +83,15 @@ public class TopicApi(private val client: HttpClient, private val userType: User
 
     }
 
-    public suspend fun advancedSearch(topicId: Int, keywords: String, from: LocalDateTime? = null, to: LocalDateTime? = null, author: String? = null, sortOrder: SortOrder = SortOrder.ReverseChronological, page: Int = 1): Topic {
+    public suspend fun advancedSearch(
+        topicId: Int,
+        keywords: String,
+        from: LocalDateTime? = null,
+        to: LocalDateTime? = null,
+        author: String? = null,
+        sortOrder: SortOrder = SortOrder.ReverseChronological,
+        page: Int = 1
+    ): Topic {
         val searchEncoded = StringBuilder()
         searchEncoded.append("Keywords=${urlEncode(keywords)}")
         searchEncoded.append("&WhenFrom=$from")

@@ -25,7 +25,7 @@ import io.ktor.http.*
  * @param client The [HttpClient] instance
  * @param userType The [UserType] instance
  * */
-public class UserApi(private val client: HttpClient, private val userType: UserType)  {
+public class UserApi(private val client: HttpClient, private val userType: UserType) {
     /**
      * Get a user by username | biri
      *

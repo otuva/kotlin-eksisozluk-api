@@ -26,6 +26,7 @@ public object Routes {
     public object Topic {
         @RequiresFormatting
         public const val topic: String = "/v2/topic/%s/"
+
         @RequiresFormatting
         public const val search: String = "/v2/topic/%s/search/%s"
         public const val advancedSearch: String = "/v2/topic/%s/search/advanced"
@@ -47,26 +48,35 @@ public object Routes {
         public const val unfollow: String = "/v2/user/unfollow"
         public const val block: String = "/v2/user/block"
         public const val unblock: String = "/v2/user/unblock"
+
         @RequiresFormatting
         public const val entries: String = "/v2/user/%s/entries"
+
         @RequiresFormatting
         public const val favorited: String = "/v2/user/%s/favorited"
+
         @RequiresFormatting
         public const val favorites: String = "/v2/user/%s/favorites"
+
         @RequiresFormatting
         public const val lastVoted: String = "/v2/user/%s/lastvoted"
+
         @RequiresFormatting
         public const val lastWeekMostVoted: String = "/v2/user/%s/lastweekmostvoted"
+
         @RequiresFormatting
         public const val selfFavorited: String = "/v2/user/%/selffavorited"
+
         @RequiresFormatting
         public const val bestEntries: String = "/v2/user/%s/bestentries"
+
         @RequiresFormatting
         public const val images: String = "/v2/user/%s/images"
     }
 
     public object Search {
         public const val search: String = "/v2/index/search"
+
         @RequiresFormatting
         public const val autocomplete: String = "/v2/autocomplete/query/%s"
     }
