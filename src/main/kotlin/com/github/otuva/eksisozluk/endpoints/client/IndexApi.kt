@@ -30,7 +30,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * @return [Debe] object
      * */
     public suspend fun debe(): Debe {
-        val url = Routes.baseUrl + Routes.Index.debe
+        val url = Routes.api + Routes.Index.debe
 
         val response = client.get(url)
 
@@ -47,7 +47,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * @return [IndexToday] object
      * */
     public suspend fun today(page: Int = 1): IndexToday {
-        val url = Routes.baseUrl + Routes.Index.today + "?p=$page"
+        val url = Routes.api + Routes.Index.today + "?p=$page"
 
         val response = client.get(url)
 
@@ -69,7 +69,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * @return [Index] object
      * */
     public suspend fun popular(filters: List<Filter> = createFilters(), page: Int = 1): Index {
-        val url = Routes.baseUrl + Routes.Index.popular + "?p=$page"
+        val url = Routes.api + Routes.Index.popular + "?p=$page"
         
         val response = client.post(url) {
             if (userType == UserType.Anonymous) {
@@ -102,7 +102,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
     public suspend fun setChannelFilters(filters: List<Filter>): GenericResponse {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = Routes.baseUrl + Routes.Index.setChannelFilters
+        val url = Routes.api + Routes.Index.setChannelFilters
 
         val response = client.post(url) {
             contentType(ContentType.Application.Json)
@@ -130,12 +130,12 @@ public class IndexApi(private val client: HttpClient, private val userType: User
     public suspend fun getChannelFilters(): List<Filter> {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = Routes.baseUrl + Routes.Index.getChannelFilters
+        val url = Routes.api + Routes.Index.getChannelFilters
 
         val response = client.get(url)
 
         val filtersResponse: FiltersResponse = response.body()
 
-        return filtersResponse.data.Filters
+        return filtersResponse.data.filters
     }
 }
