@@ -32,7 +32,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * @return [Entry] object
      * */
     public suspend fun get(entryId: Int): Entry {
-        val url = Routes.baseUrl + Routes.Entry.base.format(entryId)
+        val url = Routes.api + Routes.Entry.entry.format(entryId)
 
         val response = client.get(url)
 
@@ -49,7 +49,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * @return [Topic] object
      * */
     public suspend fun getAsTopic(entryId: Int): Topic {
-        val url = Routes.baseUrl + Routes.Entry.base.format(entryId)
+        val url = Routes.api + Routes.Entry.entry.format(entryId)
 
         val response = client.get(url)
 
@@ -66,7 +66,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * @return [GenericResponse] object. It's kinda useless.
      * */
     public suspend fun like(entryId: Int): GenericResponse {
-        val url = Routes.baseUrl + Routes.Entry.vote
+        val url = Routes.api + Routes.Entry.vote
 
         val response = client.post(url) {
             setBody(
@@ -90,7 +90,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * @return [GenericResponse] object. It's kinda useless.
      * */
     public suspend fun dislike(entryId: Int): GenericResponse {
-        val url = Routes.baseUrl + Routes.Entry.vote
+        val url = Routes.api + Routes.Entry.vote
 
         val response = client.post(url) {
             setBody(
@@ -118,7 +118,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
     public suspend fun favorite(entryId: Int): EntryFavoriteData {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = Routes.baseUrl + Routes.Entry.favorite
+        val url = Routes.api + Routes.Entry.favorite
 
         val response: EntryFavoriteResponse = client.post(url) {
             setBody(
@@ -145,7 +145,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
     public suspend fun unfavorite(entryId: Int): EntryFavoriteData {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = Routes.baseUrl + Routes.Entry.unfavorite
+        val url = Routes.api + Routes.Entry.unfavorite
 
         val response: EntryFavoriteResponse = client.post(url) {
             setBody(
