@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.responses
+package com.github.otuva.eksisozluk.responses.authentication
 
 import com.github.otuva.eksisozluk.models.authentication.EksiToken
 import kotlinx.serialization.SerialName

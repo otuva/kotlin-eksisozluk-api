@@ -10,6 +10,10 @@ import com.github.otuva.eksisozluk.models.index.debe.Debe
 import com.github.otuva.eksisozluk.models.index.filter.Filter
 import com.github.otuva.eksisozluk.models.index.filter.Filters
 import com.github.otuva.eksisozluk.responses.*
+import com.github.otuva.eksisozluk.responses.index.DebeResponse
+import com.github.otuva.eksisozluk.responses.index.FiltersResponse
+import com.github.otuva.eksisozluk.responses.index.IndexResponse
+import com.github.otuva.eksisozluk.responses.index.IndexTodayResponse
 import com.github.otuva.eksisozluk.utils.createFilters
 import io.ktor.client.*
 import io.ktor.client.call.*

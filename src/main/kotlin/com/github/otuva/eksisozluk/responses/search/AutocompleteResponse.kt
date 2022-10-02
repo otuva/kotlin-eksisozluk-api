@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.responses
+package com.github.otuva.eksisozluk.responses.search
 
 import com.github.otuva.eksisozluk.models.search.Autocomplete
 import kotlinx.serialization.SerialName

@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.responses
+package com.github.otuva.eksisozluk.responses.topic
 
 import com.github.otuva.eksisozluk.BadTopicException
 import com.github.otuva.eksisozluk.models.topic.Topic

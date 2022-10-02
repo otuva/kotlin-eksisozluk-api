@@ -2,7 +2,7 @@ package com.github.otuva.eksisozluk.models.authentication
 
 import com.github.otuva.eksisozluk.annotations.ModifiesInternal
 import com.github.otuva.eksisozluk.endpoints.Routes
-import com.github.otuva.eksisozluk.responses.AnonLoginResponse
+import com.github.otuva.eksisozluk.responses.authentication.AnonLoginResponse
 import com.github.otuva.eksisozluk.utils.apiSecret
 import io.ktor.client.*
 import io.ktor.client.call.*

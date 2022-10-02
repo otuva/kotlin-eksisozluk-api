@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.responses
+package com.github.otuva.eksisozluk.responses.user
 
 import com.github.otuva.eksisozluk.models.user.User
 import kotlinx.serialization.SerialName

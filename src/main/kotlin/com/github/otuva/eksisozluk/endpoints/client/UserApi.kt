@@ -8,9 +8,9 @@ import com.github.otuva.eksisozluk.models.user.User
 import com.github.otuva.eksisozluk.models.user.entries.UserEntries
 import com.github.otuva.eksisozluk.models.user.images.UserImages
 import com.github.otuva.eksisozluk.responses.GenericResponse
-import com.github.otuva.eksisozluk.responses.UserEntriesResponse
-import com.github.otuva.eksisozluk.responses.UserImagesResponse
-import com.github.otuva.eksisozluk.responses.UserResponse
+import com.github.otuva.eksisozluk.responses.user.UserEntriesResponse
+import com.github.otuva.eksisozluk.responses.user.UserImagesResponse
+import com.github.otuva.eksisozluk.responses.user.UserResponse
 import com.github.otuva.eksisozluk.utils.urlEncode
 import io.ktor.client.*
 import io.ktor.client.call.*

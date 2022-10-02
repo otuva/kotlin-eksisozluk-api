@@ -8,7 +8,7 @@ import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.search.SortOrder
 import com.github.otuva.eksisozluk.models.topic.Topic
 import com.github.otuva.eksisozluk.models.topic.TopicFilterType
-import com.github.otuva.eksisozluk.responses.TopicResponse
+import com.github.otuva.eksisozluk.responses.topic.TopicResponse
 import com.github.otuva.eksisozluk.utils.urlEncode
 import io.ktor.client.*
 import io.ktor.client.call.*

@@ -5,9 +5,10 @@
 
 - Implement:
 - belki entry throwlamak yerine null dondursun?
-- genel arama
 - base64 encoding ekle? belki
-- entry favorileyenler listesi / caylak listesi
+
+- topic stringden id - query
+- entry silme / yazma
 - follow unfollow topic
 - kullanici basliklarini engelleme / kaldirma
 - sorunsallar
@@ -21,4 +22,6 @@
 
 - doc:
 - ~~gundem anonim ve kayitli icin farkli calisiyor? ona bak~~
+- ~~entry favorileyenler listesi / caylak listesi~~
 - ~~user image~~
+- ~~genel arama~~

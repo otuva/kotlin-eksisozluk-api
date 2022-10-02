@@ -5,11 +5,15 @@ import com.github.otuva.eksisozluk.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.entry.Entry
-import com.github.otuva.eksisozluk.models.entry.favorite.EntryFavoriteData
+import com.github.otuva.eksisozluk.models.entry.favorite.CaylakFavorites
+import com.github.otuva.eksisozluk.models.entry.favorite.FavoriteData
+import com.github.otuva.eksisozluk.models.entry.favorite.Favorites
 import com.github.otuva.eksisozluk.models.topic.Topic
-import com.github.otuva.eksisozluk.responses.EntryFavoriteResponse
+import com.github.otuva.eksisozluk.responses.entry.favorite.DataResponse
 import com.github.otuva.eksisozluk.responses.GenericResponse
-import com.github.otuva.eksisozluk.responses.TopicResponse
+import com.github.otuva.eksisozluk.responses.entry.favorite.CaylakFavoritesResponse
+import com.github.otuva.eksisozluk.responses.entry.favorite.FavoritesResponse
+import com.github.otuva.eksisozluk.responses.topic.TopicResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -112,15 +116,15 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      *
      * @param entryId The id of the entry
      *
-     * @return [EntryFavoriteData] object
+     * @return [FavoriteData] object
      * */
     @RequiresLogin
-    public suspend fun favorite(entryId: Int): EntryFavoriteData {
+    public suspend fun favorite(entryId: Int): FavoriteData {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
         val url = Routes.api + Routes.Entry.favorite
 
-        val response: EntryFavoriteResponse = client.post(url) {
+        val response: DataResponse = client.post(url) {
             setBody(
                 FormDataContent(
                     Parameters.build {
@@ -139,15 +143,15 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      *
      * @param entryId The id of the entry
      *
-     * @return [EntryFavoriteData] object
+     * @return [FavoriteData] object
      * */
     @RequiresLogin
-    public suspend fun unfavorite(entryId: Int): EntryFavoriteData {
+    public suspend fun unfavorite(entryId: Int): FavoriteData {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
         val url = Routes.api + Routes.Entry.unfavorite
 
-        val response: EntryFavoriteResponse = client.post(url) {
+        val response: DataResponse = client.post(url) {
             setBody(
                 FormDataContent(
                     Parameters.build {
@@ -158,5 +162,25 @@ public class EntryApi(private val client: HttpClient, private val userType: User
         }.body()
 
         return response.data
+    }
+
+    public suspend fun favorites(entryId: Int): Favorites {
+        val url = Routes.api + Routes.Entry.favorites.format(entryId)
+
+        val response = client.get(url)
+
+        val topicResponse: FavoritesResponse = response.body()
+
+        return topicResponse.data
+    }
+
+    public suspend fun caylakFavorites(entryId: Int): CaylakFavorites {
+        val url = Routes.api + Routes.Entry.caylakFavorites.format(entryId)
+
+        val response = client.get(url)
+
+        val topicResponse: CaylakFavoritesResponse = response.body()
+
+        return topicResponse.data
     }
 }

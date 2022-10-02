@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  * @param count Number of updated favorites.
  * */
 @Serializable
-public data class EntryFavoriteData(
+public data class FavoriteData(
     @SerialName("Success") val success: Boolean,
     @SerialName("Message") val message: String?,
     @SerialName("Count") val count: Int

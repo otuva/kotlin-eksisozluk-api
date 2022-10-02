@@ -21,6 +21,12 @@ public object Routes {
         public const val vote: String = "/v2/entry/vote"
         public const val favorite: String = "/v2/entry/favorite"
         public const val unfavorite: String = "/v2/entry/unfavorite"
+
+        @RequiresFormatting
+        public const val favorites: String = "/v2/entry/%s/favorites"
+
+        @RequiresFormatting
+        public const val caylakFavorites: String = "/v2/entry/%s/caylakfavorites"
     }
 
     public object Topic {

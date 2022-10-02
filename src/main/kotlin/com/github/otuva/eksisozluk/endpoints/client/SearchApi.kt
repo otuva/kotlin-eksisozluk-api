@@ -5,8 +5,8 @@ import com.github.otuva.eksisozluk.models.index.Index
 import com.github.otuva.eksisozluk.models.search.Autocomplete
 import com.github.otuva.eksisozluk.models.search.Search
 import com.github.otuva.eksisozluk.models.search.SortOrder
-import com.github.otuva.eksisozluk.responses.AutocompleteResponse
-import com.github.otuva.eksisozluk.responses.IndexResponse
+import com.github.otuva.eksisozluk.responses.search.AutocompleteResponse
+import com.github.otuva.eksisozluk.responses.index.IndexResponse
 import com.github.otuva.eksisozluk.utils.urlEncode
 import io.ktor.client.*
 import io.ktor.client.call.*

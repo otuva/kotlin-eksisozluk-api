@@ -23,14 +23,19 @@ Tum dosyalarda class ve methodlarin kdoc dokumantasyonu mevcuttur. Eger yoksa da
 
 Suan librarynin yapabildikleri:
 
+- detayli hatalar ve unified fonksiyonlar ile daha robust bir yapi
 - anonim hesap ile giris yapma
 - kullanici adi ile giris yapma
+- arama
+- detayli arama
 - entry cekebilme
 - entry oylama
 - entry favorileme / favorilerden cikarma
+- entry favorileri ve caylak favorileri
 - baslik cekebilme
 - baslikta entry filtreleme
 - baslikta arayabilme
+- baslikta detayli arayabilme
 - debe, populer ve bugun basliklarini cekebilme
 - kullanici:
   - bilgisi
