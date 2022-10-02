@@ -29,6 +29,7 @@ public class EksiSozluk(
     public var user: UserApi
     public var topic: TopicApi
     public var index: IndexApi
+    public var search: SearchApi
 
     init {
         session = existingSession ?: Session(username, password)
@@ -81,5 +82,6 @@ public class EksiSozluk(
         user = UserApi(client, userType)
         topic = TopicApi(client, userType)
         index = IndexApi(client, userType)
+        search = SearchApi(client, userType)
     }
 }
