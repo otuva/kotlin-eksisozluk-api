@@ -4,16 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="remove unnecessary type parameter">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="change ws">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiSozluk.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiSozluk.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/SearchApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/SearchApi.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/search/TermType.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/filter/Filters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/filter/Filters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/topic/SortingType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/topic/TopicFilterType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/utils/Encoding.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/utils/Encoding.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,10 +49,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Enum" />
         <option value="Kotlin Annotation" />
         <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Enum" />
         <option value="Kotlin Data Class" />
       </list>
     </option>
@@ -137,48 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00074" summary="fix condition for unified pinned entry">
-      <created>1662898337727</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1662898337727</updated>
-    </task>
-    <task id="LOCAL-00075" summary="add user entry page getter functions">
-      <created>1662898370154</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1662898370154</updated>
-    </task>
-    <task id="LOCAL-00076" summary="add clarifying comment for main function">
-      <created>1662898414642</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1662898414642</updated>
-    </task>
-    <task id="LOCAL-00077" summary="add KDoc for class">
-      <created>1662925428387</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1662925428388</updated>
-    </task>
-    <task id="LOCAL-00078" summary="add KDoc for class">
-      <created>1662925456233</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1662925456233</updated>
-    </task>
-    <task id="LOCAL-00079" summary="add KDoc for class(es)">
-      <created>1662925477758</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1662925477758</updated>
     </task>
     <task id="LOCAL-00080" summary="add KDoc for class(es)">
       <created>1662925500403</created>
@@ -481,7 +443,49 @@
       <option name="project" value="LOCAL" />
       <updated>1664622044492</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="remove unnecessary type parameter">
+      <created>1664729222124</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1664729222124</updated>
+    </task>
+    <task id="LOCAL-00124" summary="add autocomplete and search api function(s)">
+      <created>1664729258094</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1664729258094</updated>
+    </task>
+    <task id="LOCAL-00125" summary="handle url escape not just space">
+      <created>1664729287638</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1664729287638</updated>
+    </task>
+    <task id="LOCAL-00126" summary="add new endpoint">
+      <created>1664729296571</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1664729296571</updated>
+    </task>
+    <task id="LOCAL-00127" summary="rename util">
+      <created>1664729320157</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1664729320157</updated>
+    </task>
+    <task id="LOCAL-00128" summary="change ws">
+      <created>1664729324471</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1664729324471</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -497,10 +501,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="update session token type" />
-    <MESSAGE value="reformat code" />
-    <MESSAGE value="add function to get popular topics" />
-    <MESSAGE value="add function to get todays topics" />
     <MESSAGE value="add user checks and entry fav/unfav" />
     <MESSAGE value="add debe" />
     <MESSAGE value="add example jsons" />
@@ -508,7 +508,6 @@
     <MESSAGE value="update todo" />
     <MESSAGE value="rename module" />
     <MESSAGE value="make public" />
-    <MESSAGE value="change ws" />
     <MESSAGE value="add user images" />
     <MESSAGE value="add method annotations" />
     <MESSAGE value="add filter response &amp; new check statements &amp; separate routes constants &amp; add annotations" />
@@ -522,15 +521,20 @@
     <MESSAGE value="add todo" />
     <MESSAGE value="add readme" />
     <MESSAGE value="remove unnecessary type parameter" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove unnecessary type parameter" />
+    <MESSAGE value="add autocomplete and search api function(s)" />
+    <MESSAGE value="handle url escape not just space" />
+    <MESSAGE value="add new endpoint" />
+    <MESSAGE value="rename util" />
+    <MESSAGE value="change ws" />
+    <option name="LAST_COMMIT_MESSAGE" value="change ws" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
-          <line>70</line>
-          <option name="timeStamp" value="31" />
+          <line>76</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
