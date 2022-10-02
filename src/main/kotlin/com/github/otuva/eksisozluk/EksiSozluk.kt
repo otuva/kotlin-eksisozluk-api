@@ -82,6 +82,6 @@ public class EksiSozluk(
         user = UserApi(client, userType)
         topic = TopicApi(client, userType)
         index = IndexApi(client, userType)
-        search = SearchApi(client, userType)
+        search = SearchApi(client)
     }
 }
