@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add login check">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add topic block / unblock for users">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,11 +87,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CreateKotlinClassDialog.RecentsKey">
+      <recent name="com.github.otuva.eksisozluk.models.matter" />
       <recent name="com.github.otuva.eksisozluk.models.topic.query" />
       <recent name="com.github.otuva.eksisozluk.models.user.images" />
       <recent name="com.github.otuva.eksisozluk.models.index.debe" />
       <recent name="com.github.otuva.eksisozluk.models.index.filter" />
-      <recent name="com.github.otuva.eksisozluk.models.index" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.github.otuva.eksisozluk.responses.entry.favorite" />
@@ -133,13 +131,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00104" summary="add debe">
-      <created>1663922108624</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1663922108624</updated>
     </task>
     <task id="LOCAL-00105" summary="add example jsons">
       <created>1663924804073</created>
@@ -477,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664813902794</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="add topic block / unblock for users">
+      <created>1664815041612</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1664815041612</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -493,7 +491,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove unnecessary type parameter" />
     <MESSAGE value="add autocomplete and search api function(s)" />
     <MESSAGE value="handle url escape not just space" />
     <MESSAGE value="add new endpoint" />
@@ -518,7 +515,8 @@
     <MESSAGE value="rename entrycounts" />
     <MESSAGE value="add topic follow / unfollow" />
     <MESSAGE value="add login check" />
-    <option name="LAST_COMMIT_MESSAGE" value="add login check" />
+    <MESSAGE value="add topic block / unblock for users" />
+    <option name="LAST_COMMIT_MESSAGE" value="add topic block / unblock for users" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

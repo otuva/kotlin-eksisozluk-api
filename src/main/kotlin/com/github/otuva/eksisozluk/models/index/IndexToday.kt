@@ -1,5 +1,7 @@
 package com.github.otuva.eksisozluk.models.index
 
+import com.github.otuva.eksisozluk.models.index.topic.PinnedIndexItem
+import com.github.otuva.eksisozluk.models.index.topic.TodaysTopic
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

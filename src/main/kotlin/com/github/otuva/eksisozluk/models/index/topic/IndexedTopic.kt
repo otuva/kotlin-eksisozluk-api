@@ -1,4 +1,4 @@
-package com.github.otuva.eksisozluk.models.index
+package com.github.otuva.eksisozluk.models.index.topic
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
