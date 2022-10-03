@@ -9,12 +9,16 @@ import com.github.otuva.eksisozluk.models.search.SortOrder
 import com.github.otuva.eksisozluk.models.topic.FilterType
 import com.github.otuva.eksisozluk.models.topic.Topic
 import com.github.otuva.eksisozluk.models.topic.query.Query
+import com.github.otuva.eksisozluk.responses.GenericResponse
+import com.github.otuva.eksisozluk.responses.topic.FollowResponse
 import com.github.otuva.eksisozluk.responses.topic.QueryResponse
 import com.github.otuva.eksisozluk.responses.topic.TopicResponse
 import com.github.otuva.eksisozluk.utils.urlEncode
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.client.request.forms.*
+import io.ktor.http.*
 import kotlinx.datetime.LocalDateTime
 
 /**
@@ -121,5 +125,41 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         val queryResponse: QueryResponse = response.body()
 
         return queryResponse.data
+    }
+
+    public suspend fun follow(topicId: Int): GenericResponse {
+        val url = Routes.api + Routes.Topic.follow
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("Id", topicId.toString())
+                    }
+                )
+            )
+        }
+
+        val followResponse: FollowResponse = response.body()
+
+        return followResponse.data
+    }
+
+    public suspend fun unfollow(topicId: Int): GenericResponse {
+        val url = Routes.api + Routes.Topic.unfollow
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("Id", topicId.toString())
+                    }
+                )
+            )
+        }
+
+        val followResponse: FollowResponse = response.body()
+
+        return followResponse.data
     }
 }

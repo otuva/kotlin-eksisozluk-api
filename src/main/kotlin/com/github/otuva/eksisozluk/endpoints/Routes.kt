@@ -39,6 +39,9 @@ public object Routes {
 
         @RequiresFormatting
         public const val query: String = "/v2/topic/query/?term=%s"
+
+        public const val follow: String = "/v2/topic/follow"
+        public const val unfollow: String = "/v2/topic/unfollow"
     }
 
     public object Index {
