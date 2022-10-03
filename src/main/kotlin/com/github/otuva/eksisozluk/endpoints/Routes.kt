@@ -37,6 +37,8 @@ public object Routes {
         public const val search: String = "/v2/topic/%s/search/%s"
         public const val advancedSearch: String = "/v2/topic/%s/search/advanced"
 
+        @RequiresFormatting
+        public const val query: String = "/v2/topic/query/?term=%s"
     }
 
     public object Index {

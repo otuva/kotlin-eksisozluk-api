@@ -6,8 +6,10 @@ import com.github.otuva.eksisozluk.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.search.SortOrder
+import com.github.otuva.eksisozluk.models.topic.FilterType
 import com.github.otuva.eksisozluk.models.topic.Topic
-import com.github.otuva.eksisozluk.models.topic.TopicFilterType
+import com.github.otuva.eksisozluk.models.topic.query.Query
+import com.github.otuva.eksisozluk.responses.topic.QueryResponse
 import com.github.otuva.eksisozluk.responses.topic.TopicResponse
 import com.github.otuva.eksisozluk.utils.urlEncode
 import io.ktor.client.*
@@ -28,9 +30,9 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      *
      * To sort or filter entries you can use [filterType] parameter.
      *
-     * Note that you can only filter entries if you are logged in. Such as [TopicFilterType.EksiSeyler] or [TopicFilterType.Links].
+     * Note that you can only filter entries if you are logged in. Such as [FilterType.EksiSeyler] or [FilterType.Links].
      *
-     * But api doesn't put limitation on sorting with [TopicFilterType.Best] and [TopicFilterType.BestToday]
+     * But api doesn't put limitation on sorting with [FilterType.Best] and [FilterType.BestToday]
      *
      * @param topicId The id of the topic
      * @param filterType The sorting type of the topic
@@ -39,8 +41,15 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * @return [Topic] object
      * */
     @LimitedWithoutLogin
-    public suspend fun get(topicId: Int, filterType: TopicFilterType = TopicFilterType.All, page: Int = 1): Topic {
-        check(userType == UserType.Regular && !(filterType == TopicFilterType.Best || filterType == TopicFilterType.BestToday)) {
+    public suspend fun get(topicId: Int, filterType: FilterType = FilterType.All, page: Int = 1): Topic {
+        check(
+            userType == UserType.Regular || (filterType in listOf(
+                FilterType.All,
+                FilterType.Best,
+                FilterType.BestToday,
+                FilterType.Hot
+            ))
+        ) {
             NotAuthorizedException(
                 "Anonymous users cannot do this."
             )
@@ -79,10 +88,6 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         return topicResponse.data!!
     }
 
-    public fun queryTopic() {
-
-    }
-
     public suspend fun advancedSearch(
         topicId: Int,
         keywords: String,
@@ -106,5 +111,15 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         val topicResponse: TopicResponse = response.body()
 
         return topicResponse.data!!
+    }
+
+    public suspend fun query(term: String): Query {
+        val url = Routes.api + Routes.Topic.query.format(urlEncode(term))
+
+        val response = client.get(url)
+
+        val queryResponse: QueryResponse = response.body()
+
+        return queryResponse.data
     }
 }
