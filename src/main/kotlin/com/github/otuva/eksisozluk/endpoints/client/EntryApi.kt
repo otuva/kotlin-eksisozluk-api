@@ -124,7 +124,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
 
         val url = Routes.api + Routes.Entry.favorite
 
-        val response: DataResponse = client.post(url) {
+        val response = client.post(url) {
             setBody(
                 FormDataContent(
                     Parameters.build {
@@ -132,9 +132,11 @@ public class EntryApi(private val client: HttpClient, private val userType: User
                     }
                 )
             )
-        }.body()
+        }
 
-        return response.data
+        val dataResponse: DataResponse = response.body()
+
+        return dataResponse.data
     }
 
     /**
@@ -151,7 +153,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
 
         val url = Routes.api + Routes.Entry.unfavorite
 
-        val response: DataResponse = client.post(url) {
+        val response = client.post(url) {
             setBody(
                 FormDataContent(
                     Parameters.build {
@@ -159,9 +161,11 @@ public class EntryApi(private val client: HttpClient, private val userType: User
                     }
                 )
             )
-        }.body()
+        }
 
-        return response.data
+        val dataResponse: DataResponse = response.body()
+
+        return dataResponse.data
     }
 
     @RequiresLogin
