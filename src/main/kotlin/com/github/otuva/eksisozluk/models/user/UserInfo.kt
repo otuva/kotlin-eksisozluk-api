@@ -29,7 +29,7 @@ public data class UserInfo(
     @SerialName("InstagramScreenName") val instagramScreenName: String?,
     @SerialName("InstagramProfileUrl") val instagramProfileUrl: String?,
     @SerialName("Karma") val karma: Karma?,
-    @SerialName("EntryCounts") val entryCounts: UserEntryCounts,
+    @SerialName("EntryCounts") val entryCounts: EntryCounts,
     @SerialName("LastEntryDate") val lastEntryDate: LocalDateTime?,
     @SerialName("StandingQueueNumber") val standingQueueNumber: Int,
     @SerialName("HasAnyPendingInvitation") val hasAnyPendingInvitation: Boolean,

@@ -3,15 +3,15 @@ package com.github.otuva.eksisozluk.models.topic
 /**
  * Represents a sorting & filtering option for a topic.
  *
+ * [All] all entries. this is the default for searched topics | 'tumu'
+ *
  * [Best] best entries all time | 'sukela tumu'
  *
  * [BestToday] best entries today | 'sukela bugun'
  *
- * ↓-----------------requires-login---------------↓
- *
  * [Hot] entries seen on the popular page. this is the default if navigated from popular index | 'gundem'
  *
- * [All] all entries. this is the default for searched topics | 'tumu'
+ * ↓-----------------requires-login---------------↓
  *
  * [Following] entries from users you follow | 'takip ettiklerim'
  *
@@ -21,7 +21,7 @@ package com.github.otuva.eksisozluk.models.topic
  *
  * [EksiSeyler] entries included in eksi seyler | "eksi seyler'de"
  * */
-public enum class TopicFilterType(public val value: String) {
+public enum class FilterType(public val value: String) {
     Best("allnice"),
     BestToday("dailynice"),
     Hot("popular"),
