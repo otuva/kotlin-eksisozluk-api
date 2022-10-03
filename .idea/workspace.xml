@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="rename entrycounts">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add login check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,20 +133,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00102" summary="add function to get todays topics">
-      <created>1663916906512</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1663916906512</updated>
-    </task>
-    <task id="LOCAL-00103" summary="add user checks and entry fav/unfav">
-      <created>1663920421389</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1663920421389</updated>
     </task>
     <task id="LOCAL-00104" summary="add debe">
       <created>1663922108624</created>
@@ -477,7 +463,21 @@
       <option name="project" value="LOCAL" />
       <updated>1664812426997</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="add topic follow / unfollow">
+      <created>1664813700984</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1664813700984</updated>
+    </task>
+    <task id="LOCAL-00152" summary="add login check">
+      <created>1664813902794</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1664813902794</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -493,8 +493,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add todo" />
-    <MESSAGE value="add readme" />
     <MESSAGE value="remove unnecessary type parameter" />
     <MESSAGE value="add autocomplete and search api function(s)" />
     <MESSAGE value="handle url escape not just space" />
@@ -518,7 +516,9 @@
     <MESSAGE value="rename some classes" />
     <MESSAGE value="add query for topic" />
     <MESSAGE value="rename entrycounts" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename entrycounts" />
+    <MESSAGE value="add topic follow / unfollow" />
+    <MESSAGE value="add login check" />
+    <option name="LAST_COMMIT_MESSAGE" value="add login check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -198,7 +198,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
     public suspend fun follow(username: String): GenericResponse {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = Routes.api + Routes.User.follow.format(urlEncode(username))
+        val url = Routes.api + Routes.User.follow
 
         val response = client.post(url) {
             setBody(
@@ -226,7 +226,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
     public suspend fun unfollow(username: String): GenericResponse {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = Routes.api + Routes.User.unfollow.format(urlEncode(username))
+        val url = Routes.api + Routes.User.unfollow
 
         val response = client.post(url) {
             setBody(
@@ -254,7 +254,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
     public suspend fun block(username: String): GenericResponse {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = Routes.api + Routes.User.block.format(urlEncode(username))
+        val url = Routes.api + Routes.User.block
 
         val response = client.post(url) {
             setBody(
@@ -282,7 +282,45 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
     public suspend fun unblock(username: String): GenericResponse {
         check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
 
-        val url = Routes.api + Routes.User.unblock.format(urlEncode(username))
+        val url = Routes.api + Routes.User.unblock
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("nick", username)
+                    }
+                )
+            )
+        }
+
+        return response.body()
+    }
+
+    @RequiresLogin
+    public suspend fun blockTopics(username: String): GenericResponse {
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+
+        val url = Routes.api + Routes.User.blockTopics
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("nick", username)
+                    }
+                )
+            )
+        }
+
+        return response.body()
+    }
+
+    @RequiresLogin
+    public suspend fun unblockTopics(username: String): GenericResponse {
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+
+        val url = Routes.api + Routes.User.unblockTopics
 
         val response = client.post(url) {
             setBody(

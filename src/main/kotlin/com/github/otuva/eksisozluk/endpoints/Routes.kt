@@ -59,6 +59,8 @@ public object Routes {
         public const val unfollow: String = "/v2/user/unfollow"
         public const val block: String = "/v2/user/block"
         public const val unblock: String = "/v2/user/unblock"
+        public const val blockTopics: String = "/v2/user/indextitlesblock"
+        public const val unblockTopics: String = "/v2/user/removeindextitlesblock"
 
         @RequiresFormatting
         public const val entries: String = "/v2/user/%s/entries"
