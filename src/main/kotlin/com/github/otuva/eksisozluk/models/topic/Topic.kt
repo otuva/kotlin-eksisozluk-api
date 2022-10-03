@@ -27,7 +27,7 @@ import kotlinx.serialization.Serializable
  * @param matterCount number of 'sorunsallar' in the topic
  *
  * @see Entry
- * @see TopicEntryCounts
+ * @see EntryCounts
  * @see DraftEntry
  * @see Video
  * @see Disambiguation
@@ -41,7 +41,7 @@ public data class Topic(
     @SerialName("PageSize") val pageSize: Int,
     @SerialName("PageIndex") val pageIndex: Int,
     @SerialName("PinnedEntry") val pinnedEntry: Entry?,
-    @SerialName("EntryCounts") val entryCounts: TopicEntryCounts,
+    @SerialName("EntryCounts") val entryCounts: EntryCounts,
     @SerialName("DraftEntry") val draftEntry: DraftEntry?,
     @SerialName("IsTracked") val isTracked: Boolean,
     @SerialName("IsTrackable") val isTrackable: Boolean,
