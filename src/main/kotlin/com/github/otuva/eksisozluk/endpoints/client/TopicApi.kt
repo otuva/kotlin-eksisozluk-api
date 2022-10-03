@@ -127,7 +127,10 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         return queryResponse.data
     }
 
+    @RequiresLogin
     public suspend fun follow(topicId: Int): GenericResponse {
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+
         val url = Routes.api + Routes.Topic.follow
 
         val response = client.post(url) {
@@ -145,7 +148,10 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         return followResponse.data
     }
 
+    @RequiresLogin
     public suspend fun unfollow(topicId: Int): GenericResponse {
+        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+
         val url = Routes.api + Routes.Topic.unfollow
 
         val response = client.post(url) {
