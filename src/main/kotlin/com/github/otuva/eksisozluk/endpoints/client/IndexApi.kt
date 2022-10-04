@@ -6,6 +6,7 @@ import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.index.Index
 import com.github.otuva.eksisozluk.models.index.IndexToday
+import com.github.otuva.eksisozluk.models.index.Matters
 import com.github.otuva.eksisozluk.models.index.debe.Debe
 import com.github.otuva.eksisozluk.models.index.filter.Filter
 import com.github.otuva.eksisozluk.models.index.filter.Filters
@@ -14,11 +15,13 @@ import com.github.otuva.eksisozluk.responses.index.DebeResponse
 import com.github.otuva.eksisozluk.responses.index.FiltersResponse
 import com.github.otuva.eksisozluk.responses.index.IndexResponse
 import com.github.otuva.eksisozluk.responses.index.IndexTodayResponse
+import com.github.otuva.eksisozluk.responses.matter.MattersResponse
 import com.github.otuva.eksisozluk.utils.createFilters
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import java.time.Year
 
 /**
  * Index related endpoints
@@ -143,5 +146,35 @@ public class IndexApi(private val client: HttpClient, private val userType: User
         return filtersResponse.data.filters
     }
 
+    public suspend fun matters(page: Int = 1): Matters {
+        val url = Routes.api + Routes.Index.matters + "?p=$page"
 
+        val response = client.get(url)
+
+        val mattersResponse: MattersResponse = response.body()
+
+        return mattersResponse.data
+    }
+
+    public suspend fun mattersToday(page: Int = 1): Matters {
+        val url = Routes.api + Routes.Index.mattersToday + "?p=$page"
+
+        val response = client.get(url)
+
+        val mattersResponse: MattersResponse = response.body()
+
+        return mattersResponse.data
+    }
+
+    public suspend fun todayInPast(year: Int, page: Int = 1): Index {
+        check(year in 1999..Year.now().value) { IllegalArgumentException("Year must be between 1999 and ${Year.now().value}") }
+
+        val url = Routes.api + Routes.Index.todayInPast.format(year) + "?p=$page"
+
+        val response = client.get(url)
+
+        val indexResponse: IndexResponse = response.body()
+
+        return indexResponse.data
+    }
 }

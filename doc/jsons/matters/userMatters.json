@@ -1,0 +1,42 @@
+{
+  "Success": true,
+  "Message": null,
+  "Data": {
+    "PageCount": 1,
+    "PageSize": 10,
+    "PageIndex": 1,
+    "RowCount": 1,
+    "Matters": [
+      {
+        "MatterTitle": "borçlanmak mı yoksa birikim yapmak mı?",
+        "Id": 11066,
+        "TopicId": 0,
+        "Details": "merhaba arkadaşlar, önümüzdeki yılları düşünerekten, sizce bu dönemde borçlanmak mı yoksa birikim yapmak mı mantıklı?\nbirikim ise fiziki mi yoksa bankada mı tutmak mantıklı?",
+        "Created": "2022-06-19T02:36:31.363",
+        "LastUpdated": null,
+        "Page": null,
+        "Author": {
+          "Nick": "mceylan7",
+          "Id": 2015078
+        },
+        "HasDetails": true,
+        "Hidden": false,
+        "Active": true,
+        "HasAnswers": true,
+        "AllowsAnswers": true,
+        "AnswerCount": 97,
+        "UpVote": 9,
+        "DownVote": 4,
+        "Rate": 5,
+        "IsTracked": false,
+        "Slug": "borclanmak-mi-yoksa-birikim-yapmak-mi",
+        "AvatarUrl": null
+      }
+    ],
+    "StatOwner": {
+      "Nick": "mceylan7",
+      "Id": 0
+    },
+    "Caption": "sorunsallar"
+  }
+}

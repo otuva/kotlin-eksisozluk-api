@@ -50,6 +50,11 @@ public object Routes {
         public const val today: String = "/v2/index/today"
         public const val getChannelFilters: String = "/v2/index/getuserchannelfilters"
         public const val setChannelFilters: String = "/v2/index/setchannelfilter"
+        public const val matters: String = "/v2/index/popularmatters"
+        public const val mattersToday: String = "/v2/index/todaymatters"
+
+        @RequiresFormatting
+        public const val todayInPast: String = "/v2/index/todayinpast/%s"
     }
 
     public object User {

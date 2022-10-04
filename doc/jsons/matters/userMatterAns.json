@@ -1,0 +1,127 @@
+{
+  "Success": true,
+  "Message": null,
+  "Data": {
+    "PageCount": 1,
+    "PageSize": 10,
+    "PageIndex": 1,
+    "RowCount": 2,
+    "Matters": [
+      {
+        "MatterTitle": "alfa giuletta vs. bmw 1.16 vs vw scirocco",
+        "Id": 3717,
+        "TopicId": 0,
+        "Details": null,
+        "Created": "2019-05-26T15:57:29.687",
+        "LastUpdated": "2020-05-02T18:21:14.94",
+        "Page": {
+          "RowCount": 1,
+          "Index": 1,
+          "Size": 1,
+          "Count": 1,
+          "IsFirst": true,
+          "IsLast": true,
+          "RowCountBefore": 0,
+          "RowCountAfter": 0,
+          "Items": [
+            {
+              "MatterId": 3717,
+              "MatterTitle": "alfa giuletta vs. bmw 1.16 vs vw scirocco",
+              "Content": "buna cevap verenlerin cogu 3 araci da kullanmamistir.\r\n\r\nbi kere butce 80se ona bmw'nin anca perti ediyor(got atarken refuje vuranlardan alirsin)\r\n\r\n ama alfanin saglam versiyonu alinabiliyor.\r\n\r\nşirokkonun zaten kaldirima cikmamisini bulman zor.\r\n\r\nyani butce 80se en mantiklisi alfa.\r\nbutce 100 kusur olursa bmw al.",
+              "Created": "2019-08-11T23:13:43.4",
+              "LastUpdated": null,
+              "Id": 5208,
+              "Author": {
+                "Nick": "divit",
+                "Id": 48956
+              },
+              "UpVote": 3,
+              "DownVote": 0,
+              "Matter": null,
+              "Hidden": false,
+              "Active": true,
+              "Slug": "alfa-giuletta-vs-bmw-1-16-vs-vw-scirocco",
+              "AvatarUrl": "https://img.ekstat.com/profiles/divit-637472111413586218.jpg"
+            }
+          ]
+        },
+        "Author": {
+          "Nick": "cigkufte",
+          "Id": 1414268
+        },
+        "HasDetails": false,
+        "Hidden": false,
+        "Active": true,
+        "HasAnswers": true,
+        "AllowsAnswers": true,
+        "AnswerCount": 26,
+        "UpVote": 2,
+        "DownVote": 1,
+        "Rate": 1,
+        "IsTracked": false,
+        "Slug": "alfa-giuletta-vs-bmw-1-16-vs-vw-scirocco",
+        "AvatarUrl": "https://img.ekstat.com/profiles/cigkufte-637769244081147263.jpg"
+      },
+      {
+        "MatterTitle": "diziyi nereden izleyebiliriz ?",
+        "Id": 3695,
+        "TopicId": 0,
+        "Details": null,
+        "Created": "2019-05-23T14:39:06.823",
+        "LastUpdated": null,
+        "Page": {
+          "RowCount": 1,
+          "Index": 1,
+          "Size": 1,
+          "Count": 1,
+          "IsFirst": true,
+          "IsLast": true,
+          "RowCountBefore": 0,
+          "RowCountAfter": 0,
+          "Items": [
+            {
+              "MatterId": 3695,
+              "MatterTitle": "diziyi nereden izleyebiliriz ?",
+              "Content": "trt spor",
+              "Created": "2019-05-23T20:11:37.69",
+              "LastUpdated": null,
+              "Id": 3682,
+              "Author": {
+                "Nick": "divit",
+                "Id": 48956
+              },
+              "UpVote": 17,
+              "DownVote": 31,
+              "Matter": null,
+              "Hidden": false,
+              "Active": true,
+              "Slug": "diziyi-nereden-izleyebiliriz",
+              "AvatarUrl": "https://img.ekstat.com/profiles/divit-637472111413586218.jpg"
+            }
+          ]
+        },
+        "Author": {
+          "Nick": "feni",
+          "Id": 1957342
+        },
+        "HasDetails": false,
+        "Hidden": false,
+        "Active": true,
+        "HasAnswers": true,
+        "AllowsAnswers": true,
+        "AnswerCount": 13,
+        "UpVote": 15,
+        "DownVote": 80,
+        "Rate": -65,
+        "IsTracked": false,
+        "Slug": "diziyi-nereden-izleyebiliriz",
+        "AvatarUrl": "https://img.ekstat.com/profiles/feni-637034071514585937.jpg"
+      }
+    ],
+    "StatOwner": {
+      "Nick": "divit",
+      "Id": 0
+    },
+    "Caption": "sorunsal yanıtları"
+  }
+}

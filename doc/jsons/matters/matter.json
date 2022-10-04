@@ -1,0 +1,240 @@
+{
+  "Success": true,
+  "Message": null,
+  "Data": {
+    "MatterInfo": {
+      "MatterTitle": "siz hangisini izliyorsunuz?",
+      "Id": 11298,
+      "TopicId": 7352048,
+      "Details": null,
+      "Created": "2022-07-27T21:11:33.91",
+      "LastUpdated": null,
+      "Page": {
+        "RowCount": 11,
+        "Index": 1,
+        "Size": 10,
+        "Count": 2,
+        "IsFirst": true,
+        "IsLast": false,
+        "RowCountBefore": 0,
+        "RowCountAfter": 1,
+        "Items": [
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "beinconnect diyorum.",
+            "Created": "2022-09-19T22:01:03.377",
+            "LastUpdated": null,
+            "Id": 18663,
+            "Author": {
+              "Nick": "kismet bu isler",
+              "Id": 1573641
+            },
+            "UpVote": 0,
+            "DownVote": 3,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": null
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "bende inat box var oradan hepsini izleyebiliyorum ama öncesinde sadece netflix takip ederdim",
+            "Created": "2022-09-23T04:35:08.733",
+            "LastUpdated": null,
+            "Id": 18716,
+            "Author": {
+              "Nick": "theyoungturk",
+              "Id": 1999475
+            },
+            "UpVote": 1,
+            "DownVote": 1,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": "https://img.ekstat.com/profiles/theyoungturk-637782950130960484.jpg"
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "hbo max'ı çok bekledim ama maalesef gelmedi türkiye'ye.. diğer mecraların tümü var",
+            "Created": "2022-09-27T00:27:05.343",
+            "LastUpdated": null,
+            "Id": 18753,
+            "Author": {
+              "Nick": "pereagle",
+              "Id": 1356454
+            },
+            "UpVote": 0,
+            "DownVote": 0,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": "https://img.ekstat.com/profiles/pereagle-637998229944739395.jpg"
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "netflix\nprime\ndisney+",
+            "Created": "2022-09-27T02:06:52.843",
+            "LastUpdated": null,
+            "Id": 18755,
+            "Author": {
+              "Nick": "fligthrecorder",
+              "Id": 2692003
+            },
+            "UpVote": 0,
+            "DownVote": 0,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": "https://img.ekstat.com/profiles/fligthrecorder-637770230321655953.jpg"
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "disney+\r\ngain",
+            "Created": "2022-09-28T00:11:28.49",
+            "LastUpdated": null,
+            "Id": 18769,
+            "Author": {
+              "Nick": "datnet",
+              "Id": 1611919
+            },
+            "UpVote": 0,
+            "DownVote": 0,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": "https://img.ekstat.com/profiles/datnet-637976516765947878.jpg"
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "güncel olanlar ve ayrıca tv'nin hakkını vermek için\r\nprime\r\ndisney\r\napple tv\r\n\r\nkaçırdığım film dizi belgesel ne varsa\r\nstremio\r\n\r\nedit: imla",
+            "Created": "2022-09-28T15:18:56.237",
+            "LastUpdated": "2022-09-28T15:19:25.317",
+            "Id": 18782,
+            "Author": {
+              "Nick": "denizleraltindayirmibinfersah",
+              "Id": 1320975
+            },
+            "UpVote": 0,
+            "DownVote": 1,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": "https://img.ekstat.com/profiles/denizleraltindayirmibinfersah-637769283757186943.jpg"
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "prime\r\ndisney\r\nmubi\r\nblu\r\n\r\nnetflix var ama artik icerik bulamiyorum",
+            "Created": "2022-09-28T22:01:59.407",
+            "LastUpdated": null,
+            "Id": 18785,
+            "Author": {
+              "Nick": "doubledecker",
+              "Id": 1209589
+            },
+            "UpVote": 0,
+            "DownVote": 0,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": null
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "netflix \nprime \ndisney+",
+            "Created": "2022-09-30T03:45:41.983",
+            "LastUpdated": null,
+            "Id": 18805,
+            "Author": {
+              "Nick": "yumusuk koala",
+              "Id": 1195754
+            },
+            "UpVote": 0,
+            "DownVote": 0,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": "https://img.ekstat.com/profiles/yumusuk-koala-637848107034061915.jpg"
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "blu tv - netflix - exxen - digiturk",
+            "Created": "2022-09-30T04:02:54.387",
+            "LastUpdated": null,
+            "Id": 18807,
+            "Author": {
+              "Nick": "meletios",
+              "Id": 1577159
+            },
+            "UpVote": 0,
+            "DownVote": 0,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": "https://img.ekstat.com/profiles/meletios-636350407699368308.jpg"
+          },
+          {
+            "MatterId": 11298,
+            "MatterTitle": "siz hangisini izliyorsunuz?",
+            "Content": "bunlardan bi tek gain için para ödemedim. aklım hala ödemediklerimde mk",
+            "Created": "2022-10-01T01:33:47.337",
+            "LastUpdated": null,
+            "Id": 18825,
+            "Author": {
+              "Nick": "bi el ativer hele",
+              "Id": 650161
+            },
+            "UpVote": 0,
+            "DownVote": 0,
+            "Matter": null,
+            "Hidden": false,
+            "Active": true,
+            "Slug": "siz-hangisini-izliyorsunuz",
+            "AvatarUrl": null
+          }
+        ]
+      },
+      "Author": {
+        "Nick": "kerevizyon",
+        "Id": 1096766
+      },
+      "HasDetails": false,
+      "Hidden": false,
+      "Active": true,
+      "HasAnswers": true,
+      "AllowsAnswers": true,
+      "AnswerCount": 80,
+      "UpVote": 0,
+      "DownVote": 0,
+      "Rate": 0,
+      "IsTracked": true,
+      "Slug": "siz-hangisini-izliyorsunuz",
+      "AvatarUrl": null
+    },
+    "TopicId": {
+      "Id": 7352048,
+      "TopicTitle": {
+        "Title": "netflix disney+ prime video blutv exxen gain bein",
+        "Kind": null
+      },
+      "Title": "netflix disney+ prime video blutv exxen gain bein"
+    }
+  }
+}
