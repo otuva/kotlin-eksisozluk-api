@@ -52,6 +52,8 @@ public object Routes {
         public const val setChannelFilters: String = "/v2/index/setchannelfilter"
         public const val matters: String = "/v2/index/popularmatters"
         public const val mattersToday: String = "/v2/index/todaymatters"
+        public const val caylak: String = "/v2/index/caylak"
+        public const val last: String = "/v2/index/last"
 
         @RequiresFormatting
         public const val todayInPast: String = "/v2/index/todayinpast/%s"

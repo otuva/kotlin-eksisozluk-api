@@ -177,4 +177,24 @@ public class IndexApi(private val client: HttpClient, private val userType: User
 
         return indexResponse.data
     }
+
+    public suspend fun caylak(page: Int = 1): Index {
+        val url = Routes.api + Routes.Index.caylak + "?p=$page"
+
+        val response = client.get(url)
+
+        val indexResponse: IndexResponse = response.body()
+
+        return indexResponse.data
+    }
+
+    public suspend fun last(page: Int = 1): Index {
+        val url = Routes.api + Routes.Index.last + "?p=$page"
+
+        val response = client.get(url)
+
+        val indexResponse: IndexResponse = response.body()
+
+        return indexResponse.data
+    }
 }
