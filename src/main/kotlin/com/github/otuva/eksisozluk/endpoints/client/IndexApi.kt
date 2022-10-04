@@ -75,14 +75,14 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      *
      * @return [Index] object
      * */
-    public suspend fun popular(filters: List<Filter> = createFilters(), page: Int = 1): Index {
+    public suspend fun popular(filters: List<Filter>? = null, page: Int = 1): Index {
         val url = Routes.api + Routes.Index.popular + "?p=$page"
 
         val response = client.post(url) {
             if (userType == UserType.Anonymous) {
                 contentType(ContentType.Application.Json)
                 setBody(
-                    Filters(filters)
+                    Filters(filters?: createFilters())
                 )
             }
         }

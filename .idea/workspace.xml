@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="move to submodule">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add matters &amp; todayinpast">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,13 +132,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
-    </task>
-    <task id="LOCAL-00106" summary="add entry voting, topic sorting, in topic search and kdoc">
-      <created>1664034795599</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1664034795599</updated>
     </task>
     <task id="LOCAL-00107" summary="update todo">
       <created>1664036491192</created>
@@ -477,7 +469,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664819189512</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="add matters &amp; todayinpast">
+      <created>1664866959320</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1664866959320</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -493,7 +492,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="handle url escape not just space" />
     <MESSAGE value="add new endpoint" />
     <MESSAGE value="rename util" />
     <MESSAGE value="add search endpoints" />
@@ -518,7 +516,8 @@
     <MESSAGE value="add login check" />
     <MESSAGE value="add topic block / unblock for users" />
     <MESSAGE value="move to submodule" />
-    <option name="LAST_COMMIT_MESSAGE" value="move to submodule" />
+    <MESSAGE value="add matters &amp; todayinpast" />
+    <option name="LAST_COMMIT_MESSAGE" value="add matters &amp; todayinpast" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
