@@ -13,7 +13,7 @@ public data class MatterInfo(
     @SerialName("Details") val details: String?,
     @SerialName("Created") val created: LocalDateTime,
     @SerialName("LastUpdated") val lastUpdated: LocalDateTime?,
-    @SerialName("Page") val page: Page,
+    @SerialName("Page") val page: Page?,
     @SerialName("Author") val author: UserIdentifier,
     @SerialName("HasDetails") val hasDetails: Boolean,
     @SerialName("Hidden") val hidden: Boolean,
