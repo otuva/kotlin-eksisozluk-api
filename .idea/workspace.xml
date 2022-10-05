@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="move api key to companion">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add throws">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/entry/favorite/DataResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/entry/favorite/FavoriteDataResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,42 +135,7 @@
       <option name="presentableId" value="Default" />
       <updated>1662352595135</updated>
       <workItem from="1664967700274" duration="833000" />
-      <workItem from="1664982528631" duration="3358000" />
-    </task>
-    <task id="LOCAL-00114" summary="add explicit targets">
-      <created>1664599786988</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1664599786988</updated>
-    </task>
-    <task id="LOCAL-00115" summary="add api handler classes">
-      <created>1664614717459</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1664614717459</updated>
-    </task>
-    <task id="LOCAL-00116" summary="fix session init conditional">
-      <created>1664618549526</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1664618549526</updated>
-    </task>
-    <task id="LOCAL-00117" summary="update gitignore">
-      <created>1664620054829</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1664620054829</updated>
-    </task>
-    <task id="LOCAL-00118" summary="rename main class">
-      <created>1664621883337</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1664621883337</updated>
+      <workItem from="1664982528631" duration="4674000" />
     </task>
     <task id="LOCAL-00119" summary="add kdoc">
       <created>1664621895291</created>
@@ -483,7 +445,42 @@
       <option name="project" value="LOCAL" />
       <updated>1664985695794</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="refactor favorite functions">
+      <created>1664985929965</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1664985929965</updated>
+    </task>
+    <task id="LOCAL-00164" summary="rename response data class">
+      <created>1664985943214</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1664985943214</updated>
+    </task>
+    <task id="LOCAL-00165" summary="move api secret to companion">
+      <created>1664985958645</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1664985958645</updated>
+    </task>
+    <task id="LOCAL-00166" summary="refactor code">
+      <created>1664986032269</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1664986032269</updated>
+    </task>
+    <task id="LOCAL-00167" summary="add throws">
+      <created>1664986134217</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1664986134217</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,11 +499,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor name for the topic filter class" />
-    <MESSAGE value="add search" />
-    <MESSAGE value="change ws" />
-    <MESSAGE value="reformat code" />
-    <MESSAGE value="yolo" />
     <MESSAGE value="add testing main" />
     <MESSAGE value="refactor" />
     <MESSAGE value="add login annotation" />
@@ -527,7 +519,12 @@
     <MESSAGE value="remove unused value" />
     <MESSAGE value="move to companion" />
     <MESSAGE value="move api key to companion" />
-    <option name="LAST_COMMIT_MESSAGE" value="move api key to companion" />
+    <MESSAGE value="refactor favorite functions" />
+    <MESSAGE value="rename response data class" />
+    <MESSAGE value="move api secret to companion" />
+    <MESSAGE value="refactor code" />
+    <MESSAGE value="add throws" />
+    <option name="LAST_COMMIT_MESSAGE" value="add throws" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

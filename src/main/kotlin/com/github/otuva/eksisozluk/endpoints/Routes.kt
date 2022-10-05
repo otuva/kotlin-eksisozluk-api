@@ -92,6 +92,12 @@ public object Routes {
 
         @RequiresFormatting
         public const val images: String = "/v2/user/%s/images"
+
+        @RequiresFormatting
+        public const val matters: String = "/v2/user/%s/matters"
+
+        @RequiresFormatting
+        public const val matterAnswers: String = "/v2/user/%s/matteranswers"
     }
 
     public object Search {

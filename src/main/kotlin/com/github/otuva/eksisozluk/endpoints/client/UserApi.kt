@@ -7,10 +7,12 @@ import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.user.User
 import com.github.otuva.eksisozluk.models.user.entries.UserEntries
 import com.github.otuva.eksisozluk.models.user.images.UserImages
+import com.github.otuva.eksisozluk.models.user.matters.Matters
 import com.github.otuva.eksisozluk.responses.GenericResponse
 import com.github.otuva.eksisozluk.responses.user.UserEntriesResponse
 import com.github.otuva.eksisozluk.responses.user.UserImagesResponse
 import com.github.otuva.eksisozluk.responses.user.UserResponse
+import com.github.otuva.eksisozluk.responses.user.matters.MattersResponse
 import com.github.otuva.eksisozluk.utils.urlEncode
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -257,6 +259,13 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
         return sendUsernameAndReturnResponse(url, username)
     }
 
+    /**
+     * Blocks the topic of the user in index.
+     *
+     * @param username Username of the user.
+     *
+     * @return [GenericResponse] object. If [GenericResponse.success] is true, it means the topic is blocked.
+     * */
     @RequiresLogin
     public suspend fun blockTopics(username: String): GenericResponse {
         EksiSozluk.checkLoginStatus(userType)
@@ -266,6 +275,13 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
         return sendUsernameAndReturnResponse(url, username)
     }
 
+    /**
+     * Removes block for topics of the user in index.
+     *
+     * @param username Username of the user.
+     *
+     * @return [GenericResponse] object. If [GenericResponse.success] is true, it means the topic is unblocked.
+     * */
     @RequiresLogin
     public suspend fun unblockTopics(username: String): GenericResponse {
         EksiSozluk.checkLoginStatus(userType)
@@ -275,6 +291,15 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
         return sendUsernameAndReturnResponse(url, username)
     }
 
+    /**
+     * Private method to send username and return response.
+     * It's used to handle similar user operations.
+     *
+     * @param url Url to send request.
+     * @param username Username of the user.
+     *
+     * @return [GenericResponse] object.
+     * */
     private suspend fun sendUsernameAndReturnResponse(url: String, username:String): GenericResponse {
         val response = client.post(url) {
             setBody(
@@ -287,5 +312,41 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
         }
 
         return response.body()
+    }
+
+    /**
+     * Matters that are written by the user. | sorunsallari
+     *
+     * @param username Username of the user.
+     * @param page The page to get.
+     *
+     * @return [Matters] object
+     * */
+    public suspend fun matters(username: String, page: Int = 1): Matters {
+        val url = Routes.api + Routes.User.matters.format(urlEncode(username)) + "?p=$page"
+
+        val response = client.get(url)
+
+        val mattersResponse: MattersResponse = response.body()
+
+        return mattersResponse.data
+    }
+
+    /**
+     * Answers written by the user to other matters. | sorunsal yanitlari
+     *
+     * @param username Username of the user.
+     * @param page The page to get.
+     *
+     * @return [Matters] object
+     * */
+    public suspend fun matterAnswers(username: String, page: Int = 1): Matters {
+        val url = Routes.api + Routes.User.matterAnswers.format(urlEncode(username)) + "?p=$page"
+
+        val response = client.get(url)
+
+        val matterAnswersResponse: MattersResponse = response.body()
+
+        return matterAnswersResponse.data
     }
 }
