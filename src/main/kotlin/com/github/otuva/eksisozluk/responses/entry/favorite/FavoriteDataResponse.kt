@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class DataResponse(
+public data class FavoriteDataResponse(
     @SerialName("Success") val success: Boolean,
     @SerialName("Message") val message: String?,
     @SerialName("Data") val data: FavoriteData
