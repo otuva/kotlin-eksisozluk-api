@@ -4,25 +4,25 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public enum class ChannelName(private val value: String) {
+public enum class ChannelName {
     @SerialName("spor")
-    Spor("spor"),
+    Spor,
 
     @SerialName("siyaset")
-    Siyaset("siyaset"),
+    Siyaset,
 
     @SerialName("anket")
-    Anket("anket"),
+    Anket,
 
     @SerialName("ilişkiler")
-    Iliskiler("ilişkiler"),
+    Iliskiler,
 
     @SerialName("ekşi-sözlük")
-    EksiSozluk("ekşi-sözlük"),
+    EksiSozluk,
 
     @SerialName("yetişkin")
-    Yetiskin("yetişkin"),
+    Yetiskin,
 
     @SerialName("troll")
-    Troll("troll"),
+    Troll,
 }
