@@ -3,7 +3,6 @@ package com.github.otuva.eksisozluk
 import com.github.otuva.eksisozluk.models.authentication.Session
 import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.endpoints.client.*
-import com.github.otuva.eksisozluk.utils.apiSecret
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
@@ -83,5 +82,13 @@ public class EksiSozluk(
         topic = TopicApi(client, userType)
         index = IndexApi(client, userType)
         search = SearchApi(client)
+    }
+
+    public companion object {
+        public const val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
+
+        public fun checkLoginStatus(userType: UserType) {
+            check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        }
     }
 }
