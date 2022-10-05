@@ -87,6 +87,7 @@ public class EksiSozluk(
     public companion object {
         public const val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
 
+        @Throws(NotAuthorizedException::class)
         public fun checkLoginStatus(userType: UserType) {
             check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
         }
