@@ -1,27 +1,28 @@
 - TODO
-- change java uuid with cross platform one
+- change java uuid with cross-platform one
 - change logger from default to android
 
-
 - Implement:
+- ayarlari cekme
+- entry silme / yazma
+- sorunsallar apisi
+- takip edilen kisilerin entry/fav
+- mesajlasma
+
 - belki entry throwlamak yerine null dondursun?
 - base64 encoding ekle? belki
 
-- ayarlari cekme 
-- topic stringden id - query
-- entry silme / yazma
-- follow unfollow topic
-- kullanici basliklarini engelleme / kaldirma
-- sorunsallar
-- takip edilen kisilerin entry/fav
-- tarihte bugun
-- user sorunsali
-- user sorunsal yaniti
-- sorunsal index
-- mesajlasma
-
-
-- doc:
+- completed but to doc:
+- ~~user sorunsal yaniti~~
+- ~~user sorunsali~~
+- ~~son~~
+- ~~tarihte bugun~~
+- ~~caylaklar~~
+- ~~kullanici basliklarini engelleme / kaldirma~~
+- ~~sorunsal index~~
+- ~~kullanici baslik engelleme~~
+- ~~follow unfollow topic~~
+- ~~topic stringden id - query~~
 - ~~gundem anonim ve kayitli icin farkli calisiyor? ona bak~~
 - ~~entry favorileyenler listesi / caylak listesi~~
 - ~~user image~~
