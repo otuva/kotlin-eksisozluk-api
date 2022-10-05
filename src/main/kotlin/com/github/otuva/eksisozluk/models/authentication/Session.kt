@@ -1,9 +1,9 @@
 package com.github.otuva.eksisozluk.models.authentication
 
+import com.github.otuva.eksisozluk.EksiSozluk.Companion.apiSecret
 import com.github.otuva.eksisozluk.annotations.ModifiesInternal
 import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.responses.authentication.AnonLoginResponse
-import com.github.otuva.eksisozluk.utils.apiSecret
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
@@ -49,25 +49,7 @@ public class Session(
      * */
     init {
         if (!this::token.isInitialized) {
-            val tempClient = HttpClient(CIO) {
-                install(UserAgent) {
-                    agent = "okhttp/3.12.1"
-                }
-                defaultRequest {
-                    header("Content-Type", "application/x-www-form-urlencoded")
-                }
-                install(ContentNegotiation) {
-                    json(Json {
-                        prettyPrint = true
-                        isLenient = true
-                        ignoreUnknownKeys = true
-                    })
-                }
-                install(Logging) {
-                    logger = Logger.DEFAULT
-                    level = LogLevel.INFO
-                }
-            }
+            val tempClient = createTemporaryClient()
 
             runBlocking {
                 token = if (username.isNullOrBlank() || password.isNullOrBlank()) {
@@ -92,25 +74,7 @@ public class Session(
     @ModifiesInternal
     public suspend fun refreshToken(): EksiToken {
         val newToken: EksiToken
-        val tempClient = HttpClient(CIO) {
-            install(UserAgent) {
-                agent = "okhttp/3.12.1"
-            }
-            defaultRequest {
-                header("Content-Type", "application/x-www-form-urlencoded")
-            }
-            install(ContentNegotiation) {
-                json(Json {
-                    prettyPrint = true
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                })
-            }
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.INFO
-            }
-        }
+        val tempClient = createTemporaryClient()
         // refresh and assing new token
         newToken = if (token.refreshToken == null) {
             // anon refresh
@@ -217,5 +181,29 @@ public class Session(
         }
 
         return response.body()
+    }
+
+    public companion object {
+        private fun createTemporaryClient(): HttpClient {
+            return HttpClient(CIO) {
+                install(UserAgent) {
+                    agent = "okhttp/3.12.1"
+                }
+                defaultRequest {
+                    header("Content-Type", "application/x-www-form-urlencoded")
+                }
+                install(ContentNegotiation) {
+                    json(Json {
+                        prettyPrint = true
+                        isLenient = true
+                        ignoreUnknownKeys = true
+                    })
+                }
+                install(Logging) {
+                    logger = Logger.DEFAULT
+                    level = LogLevel.INFO
+                }
+            }
+        }
     }
 }
