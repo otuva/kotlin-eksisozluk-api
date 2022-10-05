@@ -1,5 +1,6 @@
 package com.github.otuva.eksisozluk.endpoints.client
 
+import com.github.otuva.eksisozluk.EksiSozluk
 import com.github.otuva.eksisozluk.NotAuthorizedException
 import com.github.otuva.eksisozluk.annotations.LimitedWithoutLogin
 import com.github.otuva.eksisozluk.annotations.RequiresLogin
@@ -81,7 +82,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun searchInTopic(topicId: Int, searchTerm: String, page: Int = 1): Topic {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Topic.search.format(topicId, urlEncode(searchTerm)) + "?p=$page"
 
@@ -129,7 +130,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
 
     @RequiresLogin
     public suspend fun follow(topicId: Int): GenericResponse {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Topic.follow
 
@@ -150,7 +151,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
 
     @RequiresLogin
     public suspend fun unfollow(topicId: Int): GenericResponse {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Topic.unfollow
 
