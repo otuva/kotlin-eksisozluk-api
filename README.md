@@ -7,7 +7,7 @@ Kullanimi basit olup simdi bile kullanabilirsiniz.
 Orn.:
 
 ```kotlin
-private suspend fun main() {
+suspend fun main() {
     val eksiSozlukAnonim = EksiSozluk() // anonim giris
     val eksiSozluk = EksiSozluk("username", "password") // kullanici hesabi
     
