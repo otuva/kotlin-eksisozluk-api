@@ -1,5 +1,6 @@
 package com.github.otuva.eksisozluk.models.user.images
 
+import com.github.otuva.eksisozluk.models.user.UserIdentifier
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -10,6 +11,6 @@ public data class UserImages(
     @SerialName("PageIndex") val pageIndex: Int,
     @SerialName("RowCount") val rowCount: Int,
     @SerialName("Images") val images: List<Image>,
-    @SerialName("StatOwner") val statOwner: StatOwner,
+    @SerialName("StatOwner") val statOwner: UserIdentifier,
     @SerialName("Caption") val caption: String,
 )
