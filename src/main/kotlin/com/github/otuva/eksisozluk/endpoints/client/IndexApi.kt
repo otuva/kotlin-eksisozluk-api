@@ -1,6 +1,6 @@
 package com.github.otuva.eksisozluk.endpoints.client
 
-import com.github.otuva.eksisozluk.NotAuthorizedException
+import com.github.otuva.eksisozluk.EksiSozluk
 import com.github.otuva.eksisozluk.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.models.authentication.UserType
@@ -8,6 +8,7 @@ import com.github.otuva.eksisozluk.models.index.Index
 import com.github.otuva.eksisozluk.models.index.IndexToday
 import com.github.otuva.eksisozluk.models.index.Matters
 import com.github.otuva.eksisozluk.models.index.debe.Debe
+import com.github.otuva.eksisozluk.models.index.filter.ChannelName
 import com.github.otuva.eksisozluk.models.index.filter.Filter
 import com.github.otuva.eksisozluk.models.index.filter.Filters
 import com.github.otuva.eksisozluk.responses.*
@@ -16,7 +17,6 @@ import com.github.otuva.eksisozluk.responses.index.FiltersResponse
 import com.github.otuva.eksisozluk.responses.index.IndexResponse
 import com.github.otuva.eksisozluk.responses.index.IndexTodayResponse
 import com.github.otuva.eksisozluk.responses.matter.MattersResponse
-import com.github.otuva.eksisozluk.utils.createFilters
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -107,7 +107,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun setChannelFilters(filters: List<Filter>): GenericResponse {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Index.setChannelFilters
 
@@ -135,7 +135,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun getChannelFilters(): List<Filter> {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Index.getChannelFilters
 
@@ -196,5 +196,33 @@ public class IndexApi(private val client: HttpClient, private val userType: User
         val indexResponse: IndexResponse = response.body()
 
         return indexResponse.data
+    }
+
+    public companion object {
+        /**
+         * Create filters list for index popular function.
+         * By default, everything is enabled, and you can disable them by setting their respective parameters to false.
+         *
+         * For example if you wanted to disable 'iliskiler' listings, you can set [enableIliskiler] to false.
+         * */
+        public fun createFilters(
+            enableSpor: Boolean = true,
+            enableSiyaset: Boolean = true,
+            enableAnket: Boolean = true,
+            enableIliskiler: Boolean = true,
+            enableEksiSozluk: Boolean = true,
+            enableYetiskin: Boolean = true,
+            enableTroll: Boolean = true
+        ): List<Filter> {
+            return listOf(
+                Filter(1, ChannelName.Spor, enableSpor),
+                Filter(2, ChannelName.Siyaset, enableSiyaset),
+                Filter(4, ChannelName.Anket, enableAnket),
+                Filter(5, ChannelName.Iliskiler, enableIliskiler),
+                Filter(10, ChannelName.EksiSozluk, enableEksiSozluk),
+                Filter(11, ChannelName.Yetiskin, enableYetiskin),
+                Filter(39, ChannelName.Troll, enableTroll),
+            )
+        }
     }
 }
