@@ -1,6 +1,6 @@
 package com.github.otuva.eksisozluk.endpoints.client
 
-import com.github.otuva.eksisozluk.NotAuthorizedException
+import com.github.otuva.eksisozluk.EksiSozluk
 import com.github.otuva.eksisozluk.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.models.authentication.UserType
@@ -9,7 +9,7 @@ import com.github.otuva.eksisozluk.models.entry.favorite.CaylakFavorites
 import com.github.otuva.eksisozluk.models.entry.favorite.FavoriteData
 import com.github.otuva.eksisozluk.models.entry.favorite.Favorites
 import com.github.otuva.eksisozluk.models.topic.Topic
-import com.github.otuva.eksisozluk.responses.entry.favorite.DataResponse
+import com.github.otuva.eksisozluk.responses.entry.favorite.FavoriteDataResponse
 import com.github.otuva.eksisozluk.responses.GenericResponse
 import com.github.otuva.eksisozluk.responses.entry.favorite.CaylakFavoritesResponse
 import com.github.otuva.eksisozluk.responses.entry.favorite.FavoritesResponse
@@ -120,23 +120,11 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun favorite(entryId: Int): FavoriteData {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Entry.favorite
 
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("Id", entryId.toString())
-                    }
-                )
-            )
-        }
-
-        val dataResponse: DataResponse = response.body()
-
-        return dataResponse.data
+        return favoriteRequest(url, entryId)
     }
 
     /**
@@ -149,28 +137,16 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun unfavorite(entryId: Int): FavoriteData {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Entry.unfavorite
 
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("Id", entryId.toString())
-                    }
-                )
-            )
-        }
-
-        val dataResponse: DataResponse = response.body()
-
-        return dataResponse.data
+        return favoriteRequest(url, entryId)
     }
 
     @RequiresLogin
     public suspend fun favorites(entryId: Int): Favorites {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Entry.favorites.format(entryId)
 
@@ -183,7 +159,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
 
     @RequiresLogin
     public suspend fun caylakFavorites(entryId: Int): CaylakFavorites {
-        check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        EksiSozluk.checkLoginStatus(userType)
 
         val url = Routes.api + Routes.Entry.caylakFavorites.format(entryId)
 
@@ -192,5 +168,22 @@ public class EntryApi(private val client: HttpClient, private val userType: User
         val topicResponse: CaylakFavoritesResponse = response.body()
 
         return topicResponse.data
+    }
+
+    private suspend fun favoriteRequest(url: String, entryId: Int): FavoriteData {
+
+        val response = client.post(url) {
+            setBody(
+                FormDataContent(
+                    Parameters.build {
+                        append("Id", entryId.toString())
+                    }
+                )
+            )
+        }
+
+        val favoriteDataResponse: FavoriteDataResponse = response.body()
+
+        return favoriteDataResponse.data
     }
 }
