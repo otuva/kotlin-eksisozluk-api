@@ -28,20 +28,32 @@ Suan librarynin yapabildikleri:
 - kullanici adi ile giris yapma
 - arama
 - detayli arama
-- entry cekebilme
-- entry oylama
-- entry favorileme / favorilerden cikarma
-- entry favorileri ve caylak favorileri
-- baslik cekebilme
-- baslikta entry filtreleme
-- baslikta arayabilme
-- baslikta detayli arayabilme
-- debe, populer ve bugun basliklarini cekebilme
+- entry:
+  - entry cekebilme
+  - oylama
+  - favorileme / favorilerden cikarma
+  - entry favorileri ve caylak favorileri
+- baslik:
+  - takip etme / takipten cikarma
+  - baslik cekebilme
+  - entry filtreleme
+  - baslikta arayabilme
+  - baslikta detayli arayabilme
+- anasayfa:
+  - debe
+  - populer
+  - bugun 
+  - son 
+  - caylaklar
+  - tarihte bugun
+  - popular sorunsallar
+  - bugunun sorunsallari
 - kullanici:
   - bilgisi
   - takip etme 
   - takipten cikarma
   - engelleme / kaldirma
+  - baslik engelleme / kaldirma
   - entryleri
   - favorileri
   - en cok favorilenenler
@@ -50,6 +62,8 @@ Suan librarynin yapabildikleri:
   - el emegi goz nuru
   - en iyi entryleri
   - gorselleri
+  - sorunsallari
+  - sorunsal yanitlari
 
 ## Kurulum
 
