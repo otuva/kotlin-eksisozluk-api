@@ -54,6 +54,7 @@ public object Routes {
         public const val mattersToday: String = "/v2/index/todaymatters"
         public const val caylak: String = "/v2/index/caylak"
         public const val last: String = "/v2/index/last"
+        public const val olay: String = "/v2/index/olay"
 
         @RequiresFormatting
         public const val todayInPast: String = "/v2/index/todayinpast/%s"

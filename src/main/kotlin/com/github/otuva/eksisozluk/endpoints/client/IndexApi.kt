@@ -6,16 +6,14 @@ import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.index.Index
 import com.github.otuva.eksisozluk.models.index.IndexToday
-import com.github.otuva.eksisozluk.models.index.Matters
+import com.github.otuva.eksisozluk.models.index.matter.Matters
 import com.github.otuva.eksisozluk.models.index.debe.Debe
 import com.github.otuva.eksisozluk.models.index.filter.ChannelName
 import com.github.otuva.eksisozluk.models.index.filter.Filter
 import com.github.otuva.eksisozluk.models.index.filter.Filters
+import com.github.otuva.eksisozluk.models.index.olay.Olay
 import com.github.otuva.eksisozluk.responses.*
-import com.github.otuva.eksisozluk.responses.index.DebeResponse
-import com.github.otuva.eksisozluk.responses.index.FiltersResponse
-import com.github.otuva.eksisozluk.responses.index.IndexResponse
-import com.github.otuva.eksisozluk.responses.index.IndexTodayResponse
+import com.github.otuva.eksisozluk.responses.index.*
 import com.github.otuva.eksisozluk.responses.matter.MattersResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -232,6 +230,26 @@ public class IndexApi(private val client: HttpClient, private val userType: User
         val indexResponse: IndexResponse = response.body()
 
         return indexResponse.data
+    }
+
+    /**
+     * This function can be used to get the followed topics and matters of the user.
+     *
+     * @param page The page to get
+     *
+     * @return [Olay] object
+     * */
+    @RequiresLogin
+    public suspend fun olay(page: Int = 1): Olay {
+        EksiSozluk.checkLoginStatus(userType)
+
+        val url = Routes.api + Routes.Index.olay + "?p=$page"
+
+        val response = client.get(url)
+
+        val olayResponse: OlayResponse = response.body()
+
+        return olayResponse.data
     }
 
     public companion object {

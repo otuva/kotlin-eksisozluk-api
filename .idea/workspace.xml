@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add boolean to int function">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="rename private handler function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/SearchApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/SearchApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/Matters.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/index/matter/Matters.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/matter/MattersResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/matter/MattersResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +44,8 @@
         <option value="Kotlin Annotation" />
         <option value="Kotlin File" />
         <option value="Kotlin Enum" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -98,11 +99,11 @@
       <recent name="com.github.otuva.eksisozluk.models.index.debe" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.github.otuva.eksisozluk.models.index.olay" />
+      <recent name="com.github.otuva.eksisozluk.models.index.matter" />
       <recent name="com.github.otuva.eksisozluk.models.index" />
       <recent name="com.github.otuva.eksisozluk.models.index.topic" />
       <recent name="com.github.otuva.eksisozluk.responses.entry.favorite" />
-      <recent name="com.github.otuva.eksisozluk.responses.topic" />
-      <recent name="com.github.otuva.eksisozluk.responses.index" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.TempMainKt">
@@ -141,21 +142,7 @@
       <workItem from="1664992268906" duration="2839000" />
       <workItem from="1665035758647" duration="64000" />
       <workItem from="1665241613418" duration="113000" />
-      <workItem from="1665241741178" duration="6746000" />
-    </task>
-    <task id="LOCAL-00136" summary="change ws">
-      <created>1664736421008</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736421008</updated>
-    </task>
-    <task id="LOCAL-00137" summary="change base name for api route">
-      <created>1664736431588</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736431588</updated>
+      <workItem from="1665241741178" duration="10614000" />
     </task>
     <task id="LOCAL-00138" summary="refactor name for the topic filter class">
       <created>1664736453355</created>
@@ -486,7 +473,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665245533209</updated>
     </task>
-    <option name="localTasksCounter" value="185" />
+    <task id="LOCAL-00185" summary="add kdoc">
+      <created>1665249890292</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1665249890293</updated>
+    </task>
+    <task id="LOCAL-00186" summary="rename private handler function">
+      <created>1665249904727</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1665249904727</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,7 +506,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix filter bug" />
     <MESSAGE value="add caylak and last entries" />
     <MESSAGE value="ws change" />
     <MESSAGE value="remove unnecessary data class" />
@@ -526,11 +526,12 @@
     <MESSAGE value="update readme" />
     <MESSAGE value="change ws" />
     <MESSAGE value="extend kdoc" />
-    <MESSAGE value="add kdoc" />
     <MESSAGE value="add ktor xml" />
     <MESSAGE value="update todo" />
     <MESSAGE value="add boolean to int function" />
-    <option name="LAST_COMMIT_MESSAGE" value="add boolean to int function" />
+    <MESSAGE value="add kdoc" />
+    <MESSAGE value="rename private handler function" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename private handler function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -542,7 +543,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
-          <line>43</line>
+          <line>46</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
