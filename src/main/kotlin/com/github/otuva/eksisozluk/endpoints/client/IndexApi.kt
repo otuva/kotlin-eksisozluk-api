@@ -82,7 +82,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
             if (userType == UserType.Anonymous) {
                 contentType(ContentType.Application.Json)
                 setBody(
-                    Filters(filters?: createFilters())
+                    Filters(filters ?: createFilters())
                 )
             }
         }
@@ -146,6 +146,13 @@ public class IndexApi(private val client: HttpClient, private val userType: User
         return filtersResponse.data.filters
     }
 
+    /**
+     * Get popular matter index on the main page
+     *
+     * @param page The page to get
+     *
+     * @return [Matters] object
+     * */
     public suspend fun matters(page: Int = 1): Matters {
         val url = Routes.api + Routes.Index.matters + "?p=$page"
 
@@ -156,6 +163,13 @@ public class IndexApi(private val client: HttpClient, private val userType: User
         return mattersResponse.data
     }
 
+    /**
+     * Get today's matters index on the main page
+     *
+     * @param page The page to get
+     *
+     * @return [Matters] object
+     * */
     public suspend fun mattersToday(page: Int = 1): Matters {
         val url = Routes.api + Routes.Index.mattersToday + "?p=$page"
 
@@ -166,6 +180,14 @@ public class IndexApi(private val client: HttpClient, private val userType: User
         return mattersResponse.data
     }
 
+    /**
+     * Get entries written today in the past on a given year
+     *
+     * @param year The year of the entries
+     * @page The page to get
+     *
+     * @return [Index] object
+     * */
     public suspend fun todayInPast(year: Int, page: Int = 1): Index {
         check(year in 1999..Year.now().value) { IllegalArgumentException("Year must be between 1999 and ${Year.now().value}") }
 
@@ -178,6 +200,13 @@ public class IndexApi(private val client: HttpClient, private val userType: User
         return indexResponse.data
     }
 
+    /**
+     * Get entries written by caylak users
+     *
+     * @param page The page to get
+     *
+     * @return [Index] object
+     * */
     public suspend fun caylak(page: Int = 1): Index {
         val url = Routes.api + Routes.Index.caylak + "?p=$page"
 
@@ -188,6 +217,13 @@ public class IndexApi(private val client: HttpClient, private val userType: User
         return indexResponse.data
     }
 
+    /**
+     * Get last entries
+     *
+     * @param page The page to get
+     *
+     * @return [Index] object
+     * */
     public suspend fun last(page: Int = 1): Index {
         val url = Routes.api + Routes.Index.last + "?p=$page"
 
