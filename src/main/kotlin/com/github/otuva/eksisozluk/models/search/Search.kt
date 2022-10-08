@@ -10,5 +10,7 @@ public data class Search(
     @SerialName("WhenFrom") val from: LocalDateTime?,
     @SerialName("WhenTo") val to: LocalDateTime?,
     @SerialName("Author") val author: String?,
-    @SerialName("SortOrder") val sortOrder: SortOrder
+    @SerialName("SortOrder") val sortOrder: SortOrder,
+    @SerialName("NiceOnly") val niceOnly: Boolean,
+    @SerialName("FavoritedOnly") val favoritedOnly: Boolean,
 )
