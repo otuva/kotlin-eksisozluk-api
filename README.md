@@ -37,6 +37,7 @@ Suan librarynin yapabildikleri:
   - takip etme / takipten cikarma
   - baslik cekebilme
   - entry filtreleme
+  - baslik arama
   - baslikta arayabilme
   - baslikta detayli arayabilme
 - anasayfa:
