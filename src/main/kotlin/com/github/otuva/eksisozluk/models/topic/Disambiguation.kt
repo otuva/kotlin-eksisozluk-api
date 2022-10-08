@@ -16,5 +16,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class Disambiguation(
     @SerialName("Title") val title: String,
-    @SerialName("Kind") val kind: String
-)
+    @SerialName("Kind") val kind: String?
+) {
+
+    /**
+     * Returns instance of [Disambiguation] as a string to query and get the topic id.
+     * */
+    public fun toQueryString(): String {
+        return "$title($kind)"
+    }
+}
