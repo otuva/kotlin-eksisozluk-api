@@ -81,7 +81,7 @@ public class EksiSozluk(
         user = UserApi(client, userType)
         topic = TopicApi(client, userType)
         index = IndexApi(client, userType)
-        search = SearchApi(client)
+        search = SearchApi(client, userType)
     }
 
     public companion object {

@@ -14,6 +14,7 @@ import com.github.otuva.eksisozluk.responses.GenericResponse
 import com.github.otuva.eksisozluk.responses.topic.FollowResponse
 import com.github.otuva.eksisozluk.responses.topic.QueryResponse
 import com.github.otuva.eksisozluk.responses.topic.TopicResponse
+import com.github.otuva.eksisozluk.utils.toInt
 import com.github.otuva.eksisozluk.utils.urlEncode
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -35,9 +36,11 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      *
      * To sort or filter entries you can use [filterType] parameter.
      *
-     * Note that you can only filter entries if you are logged in. Such as [FilterType.EksiSeyler] or [FilterType.Links].
-     *
-     * But api doesn't put limitation on sorting with [FilterType.Best] and [FilterType.BestToday]
+     * Filters you can use are:
+     * - [FilterType.All]
+     * - [FilterType.Best]
+     * - [FilterType.BestToday]
+     * - [FilterType.Hot]
      *
      * @param topicId The id of the topic
      * @param filterType The sorting type of the topic
@@ -100,14 +103,20 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         to: LocalDateTime? = null,
         author: String? = null,
         sortOrder: SortOrder = SortOrder.ReverseChronological,
+        niceOnly: Boolean = false,
+        @RequiresLogin favoritedOnly: Boolean = false,
         page: Int = 1
     ): Topic {
+        check(userType == UserType.Regular || favoritedOnly.not()) { NotAuthorizedException("Only regular users can search in their favorites") }
+
         val searchEncoded = StringBuilder()
         searchEncoded.append("Keywords=${urlEncode(keywords)}")
         searchEncoded.append("&WhenFrom=$from")
         searchEncoded.append("&WhenTo=$to")
         searchEncoded.append("&Author=${urlEncode(author ?: "")}")
         searchEncoded.append("&SortOrder=${sortOrder.value}")
+        searchEncoded.append("&NiceOnly=${niceOnly.toInt()}")
+        searchEncoded.append("&FavoritedOnly=${favoritedOnly.toInt()}")
 
         val url = Routes.api + Routes.Topic.advancedSearch.format(topicId) + '?' + searchEncoded + "&p=$page"
 
