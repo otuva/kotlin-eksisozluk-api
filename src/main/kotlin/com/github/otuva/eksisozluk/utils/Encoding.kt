@@ -9,6 +9,8 @@ internal fun urlEncode(string: String): String {
     return URLEncoder.encode(string, "UTF-8").replace("+", "%20")
 }
 
+public fun Boolean.toInt(): Int = if (this) 1 else 0
+
 //internal fun urlEncode(string: String, times: Int = 1): String {
 //    // encode string given number of times
 //    var encodedString = string
