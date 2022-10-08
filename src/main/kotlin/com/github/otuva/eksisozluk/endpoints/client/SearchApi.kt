@@ -38,18 +38,18 @@ public class SearchApi(private val client: HttpClient, private val userType: Use
     }
 
     /**
-     * Detailed search for given keywords.
+     * Detailed search for given parameters.
      * Api will return things including all space separated keywords.
      *
-     * @param keywords space separated keywords
-     * @param from The starting date of the search
-     * @param to The ending date of the search
-     * @param author entries written by this author
+     * @param keywords space separated keywords. Cannot be null but can be empty
+     * @param from The starting date of the search. Can be null
+     * @param to The ending date of the search. Can be null
+     * @param author entries written by this author. Can be null
      * @param sortOrder The order of the results ([SortOrder.ReverseChronological] by default)
-     * @param niceOnly Only 'nice' entries
-     * @param favoritedOnly Only search in user's favorites. This requires login.
+     * @param niceOnly Only 'nice' entries. Default is false
+     * @param favoritedOnly Only search in user's favorites. This requires login. Default is false
      *
-     * @return [Search] object
+     * @return [Index] object.
      * */
     @LimitedWithoutLogin
     public suspend fun advancedSearch(
