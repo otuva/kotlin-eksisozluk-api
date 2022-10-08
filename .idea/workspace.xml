@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="extend kdoc for annotations">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add boolean to int function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/LimitedWithoutLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/LimitedWithoutLogin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/SearchApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/SearchApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/search/Search.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/search/Search.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/utils/Encoding.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/utils/Encoding.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/UserApi.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,70 +141,7 @@
       <workItem from="1664992268906" duration="2839000" />
       <workItem from="1665035758647" duration="64000" />
       <workItem from="1665241613418" duration="113000" />
-      <workItem from="1665241741178" duration="3671000" />
-    </task>
-    <task id="LOCAL-00127" summary="rename util">
-      <created>1664729320157</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1664729320157</updated>
-    </task>
-    <task id="LOCAL-00128" summary="change ws">
-      <created>1664729324471</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1664729324471</updated>
-    </task>
-    <task id="LOCAL-00129" summary="add search endpoints">
-      <created>1664736281140</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736281140</updated>
-    </task>
-    <task id="LOCAL-00130" summary="change base name for api route">
-      <created>1664736301878</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736301878</updated>
-    </task>
-    <task id="LOCAL-00131" summary="add serialname for filters">
-      <created>1664736313815</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736313815</updated>
-    </task>
-    <task id="LOCAL-00132" summary="change base name for api route">
-      <created>1664736351715</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736351715</updated>
-    </task>
-    <task id="LOCAL-00133" summary="change base names">
-      <created>1664736365190</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736365190</updated>
-    </task>
-    <task id="LOCAL-00134" summary="add detailed search">
-      <created>1664736400391</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736400391</updated>
-    </task>
-    <task id="LOCAL-00135" summary="change base name for api route">
-      <created>1664736408605</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1664736408605</updated>
+      <workItem from="1665241741178" duration="6746000" />
     </task>
     <task id="LOCAL-00136" summary="change ws">
       <created>1664736421008</created>
@@ -493,7 +423,70 @@
       <option name="project" value="LOCAL" />
       <updated>1665245399195</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="add favsOnly and niceOnly parameters in search functions">
+      <created>1665245436496</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245436496</updated>
+    </task>
+    <task id="LOCAL-00177" summary="update readme">
+      <created>1665245446435</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245446435</updated>
+    </task>
+    <task id="LOCAL-00178" summary="change ws">
+      <created>1665245452042</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245452042</updated>
+    </task>
+    <task id="LOCAL-00179" summary="extend kdoc">
+      <created>1665245472989</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245472989</updated>
+    </task>
+    <task id="LOCAL-00180" summary="add kdoc">
+      <created>1665245486615</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245486615</updated>
+    </task>
+    <task id="LOCAL-00181" summary="add kdoc">
+      <created>1665245496135</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245496135</updated>
+    </task>
+    <task id="LOCAL-00182" summary="add ktor xml">
+      <created>1665245505846</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245505846</updated>
+    </task>
+    <task id="LOCAL-00183" summary="update todo">
+      <created>1665245519229</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245519229</updated>
+    </task>
+    <task id="LOCAL-00184" summary="add boolean to int function">
+      <created>1665245533209</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245533209</updated>
+    </task>
+    <option name="localTasksCounter" value="185" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,11 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add topic follow / unfollow" />
-    <MESSAGE value="add login check" />
-    <MESSAGE value="add topic block / unblock for users" />
-    <MESSAGE value="move to submodule" />
-    <MESSAGE value="add matters &amp; todayinpast" />
     <MESSAGE value="fix filter bug" />
     <MESSAGE value="add caylak and last entries" />
     <MESSAGE value="ws change" />
@@ -531,13 +519,18 @@
     <MESSAGE value="add throws" />
     <MESSAGE value="add user matters &amp; answers" />
     <MESSAGE value="make page nullable for users" />
-    <MESSAGE value="update readme" />
-    <MESSAGE value="update todo" />
     <MESSAGE value="add Disambiguation function to retrieve query string and make kind nullable for disambs in topics" />
-    <MESSAGE value="add favsOnly and niceOnly parameters in search functions" />
     <MESSAGE value="refactor" />
     <MESSAGE value="extend kdoc for annotations" />
-    <option name="LAST_COMMIT_MESSAGE" value="extend kdoc for annotations" />
+    <MESSAGE value="add favsOnly and niceOnly parameters in search functions" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="change ws" />
+    <MESSAGE value="extend kdoc" />
+    <MESSAGE value="add kdoc" />
+    <MESSAGE value="add ktor xml" />
+    <MESSAGE value="update todo" />
+    <MESSAGE value="add boolean to int function" />
+    <option name="LAST_COMMIT_MESSAGE" value="add boolean to int function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

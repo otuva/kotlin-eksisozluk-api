@@ -202,7 +202,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
 
         val url = Routes.api + Routes.User.follow
 
-        return sendUsernameAndReturnResponse(url, username)
+        return usernameRequest(url, username)
     }
 
     /**
@@ -220,7 +220,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
 
         val url = Routes.api + Routes.User.unfollow
 
-        return sendUsernameAndReturnResponse(url, username)
+        return usernameRequest(url, username)
     }
 
     /**
@@ -238,7 +238,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
 
         val url = Routes.api + Routes.User.block
 
-        return sendUsernameAndReturnResponse(url, username)
+        return usernameRequest(url, username)
     }
 
     /**
@@ -256,7 +256,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
 
         val url = Routes.api + Routes.User.unblock
 
-        return sendUsernameAndReturnResponse(url, username)
+        return usernameRequest(url, username)
     }
 
     /**
@@ -272,7 +272,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
 
         val url = Routes.api + Routes.User.blockTopics
 
-        return sendUsernameAndReturnResponse(url, username)
+        return usernameRequest(url, username)
     }
 
     /**
@@ -288,7 +288,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
 
         val url = Routes.api + Routes.User.unblockTopics
 
-        return sendUsernameAndReturnResponse(url, username)
+        return usernameRequest(url, username)
     }
 
     /**
@@ -300,7 +300,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @return [GenericResponse] object.
      * */
-    private suspend fun sendUsernameAndReturnResponse(url: String, username: String): GenericResponse {
+    private suspend fun usernameRequest(url: String, username: String): GenericResponse {
         val response = client.post(url) {
             setBody(
                 FormDataContent(
