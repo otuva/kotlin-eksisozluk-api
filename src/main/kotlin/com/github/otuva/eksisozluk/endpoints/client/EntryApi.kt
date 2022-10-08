@@ -27,6 +27,7 @@ import io.ktor.http.*
  * @param userType The [UserType] instance
  * */
 public class EntryApi(private val client: HttpClient, private val userType: UserType) {
+
     /**
      * Get a single entry by id. Note that this function only returns the entry content and not title. | tek entry
      * To get the content with title use [getAsTopic]
@@ -144,6 +145,13 @@ public class EntryApi(private val client: HttpClient, private val userType: User
         return favoriteRequest(url, entryId)
     }
 
+    /**
+     * Get list of users who favorited given entry.
+     *
+     * @param entryId The id of the entry
+     *
+     * @return [Favorites] object
+     * */
     @RequiresLogin
     public suspend fun favorites(entryId: Int): Favorites {
         EksiSozluk.checkLoginStatus(userType)
@@ -157,6 +165,13 @@ public class EntryApi(private val client: HttpClient, private val userType: User
         return topicResponse.data
     }
 
+    /**
+     * Get lists of caylaks who favorited given entry.
+     *
+     * @param entryId The id of the entry
+     *
+     * @return [CaylakFavorites] object
+     * */
     @RequiresLogin
     public suspend fun caylakFavorites(entryId: Int): CaylakFavorites {
         EksiSozluk.checkLoginStatus(userType)
@@ -170,6 +185,14 @@ public class EntryApi(private val client: HttpClient, private val userType: User
         return topicResponse.data
     }
 
+    /**
+     * Private function to handle favorite and unfavorite requests.
+     *
+     * @param url The url to send request to
+     * @param entryId The id of the entry
+     *
+     * @return [FavoriteData] object
+     * */
     private suspend fun favoriteRequest(url: String, entryId: Int): FavoriteData {
 
         val response = client.post(url) {
