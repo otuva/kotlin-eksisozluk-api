@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add user matters &amp; answers">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="extend kdoc for annotations">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/matter/MatterInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/matter/MatterInfo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/LimitedWithoutLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/annotations/LimitedWithoutLogin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/EntryApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/SearchApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/SearchApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/Session.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/search/Search.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/search/Search.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/utils/Encoding.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/utils/Encoding.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +67,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2EKmLMDk1F5bHRhW5tXZBeEy18a" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -70,22 +77,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/tfp/Dev/kotlin/eksi-api-wrapper",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.113678396",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tfp/Dev/kotlin/eksi-api-wrapper&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.113678396&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -137,56 +144,11 @@
       <updated>1662352595135</updated>
       <workItem from="1664967700274" duration="833000" />
       <workItem from="1664982528631" duration="5511000" />
-      <workItem from="1664988375830" duration="1105000" />
-    </task>
-    <task id="LOCAL-00120" summary="update temp main">
-      <created>1664621917970</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1664621917970</updated>
-    </task>
-    <task id="LOCAL-00121" summary="add todo">
-      <created>1664621925367</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1664621925367</updated>
-    </task>
-    <task id="LOCAL-00122" summary="add readme">
-      <created>1664622044492</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1664622044492</updated>
-    </task>
-    <task id="LOCAL-00123" summary="remove unnecessary type parameter">
-      <created>1664729222124</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1664729222124</updated>
-    </task>
-    <task id="LOCAL-00124" summary="add autocomplete and search api function(s)">
-      <created>1664729258094</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1664729258094</updated>
-    </task>
-    <task id="LOCAL-00125" summary="handle url escape not just space">
-      <created>1664729287638</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1664729287638</updated>
-    </task>
-    <task id="LOCAL-00126" summary="add new endpoint">
-      <created>1664729296571</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1664729296571</updated>
+      <workItem from="1664988375830" duration="1650000" />
+      <workItem from="1664992268906" duration="2839000" />
+      <workItem from="1665035758647" duration="64000" />
+      <workItem from="1665241613418" duration="113000" />
+      <workItem from="1665241741178" duration="3671000" />
     </task>
     <task id="LOCAL-00127" summary="rename util">
       <created>1664729320157</created>
@@ -482,7 +444,56 @@
       <option name="project" value="LOCAL" />
       <updated>1664987238239</updated>
     </task>
-    <option name="localTasksCounter" value="169" />
+    <task id="LOCAL-00169" summary="make page nullable for users">
+      <created>1664991885963</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1664991885963</updated>
+    </task>
+    <task id="LOCAL-00170" summary="update readme">
+      <created>1664991894226</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1664991894226</updated>
+    </task>
+    <task id="LOCAL-00171" summary="update todo">
+      <created>1664991899714</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1664991899714</updated>
+    </task>
+    <task id="LOCAL-00172" summary="add Disambiguation function to retrieve query string and make kind nullable for disambs in topics">
+      <created>1665245192521</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245192521</updated>
+    </task>
+    <task id="LOCAL-00173" summary="add favsOnly and niceOnly parameters in search functions">
+      <created>1665245354294</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245354294</updated>
+    </task>
+    <task id="LOCAL-00174" summary="refactor">
+      <created>1665245370970</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245370970</updated>
+    </task>
+    <task id="LOCAL-00175" summary="extend kdoc for annotations">
+      <created>1665245399195</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1665245399195</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,12 +512,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor" />
-    <MESSAGE value="add login annotation" />
-    <MESSAGE value="reformat" />
-    <MESSAGE value="rename some classes" />
-    <MESSAGE value="add query for topic" />
-    <MESSAGE value="rename entrycounts" />
     <MESSAGE value="add topic follow / unfollow" />
     <MESSAGE value="add login check" />
     <MESSAGE value="add topic block / unblock for users" />
@@ -514,7 +519,6 @@
     <MESSAGE value="add matters &amp; todayinpast" />
     <MESSAGE value="fix filter bug" />
     <MESSAGE value="add caylak and last entries" />
-    <MESSAGE value="update todo" />
     <MESSAGE value="ws change" />
     <MESSAGE value="remove unnecessary data class" />
     <MESSAGE value="remove unused value" />
@@ -526,7 +530,14 @@
     <MESSAGE value="refactor code" />
     <MESSAGE value="add throws" />
     <MESSAGE value="add user matters &amp; answers" />
-    <option name="LAST_COMMIT_MESSAGE" value="add user matters &amp; answers" />
+    <MESSAGE value="make page nullable for users" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="update todo" />
+    <MESSAGE value="add Disambiguation function to retrieve query string and make kind nullable for disambs in topics" />
+    <MESSAGE value="add favsOnly and niceOnly parameters in search functions" />
+    <MESSAGE value="refactor" />
+    <MESSAGE value="extend kdoc for annotations" />
+    <option name="LAST_COMMIT_MESSAGE" value="extend kdoc for annotations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -539,7 +550,7 @@
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
           <line>43</line>
-          <option name="timeStamp" value="22" />
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -552,6 +563,11 @@
         <PinnedItemInfo parentTag="io.github.otuva.eksisozluk.models.Video" memberName="displayInfo" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="JetRunConfigurationType">
+        <watch expression="((Topic)topic1).pageSize" custom="com.github.otuva.eksisozluk.models.topic.Topic" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
