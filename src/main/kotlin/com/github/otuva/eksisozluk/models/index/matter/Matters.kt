@@ -1,6 +1,5 @@
-package com.github.otuva.eksisozluk.models.index
+package com.github.otuva.eksisozluk.models.index.matter
 
-import com.github.otuva.eksisozluk.models.index.matter.IndexedMatter
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
