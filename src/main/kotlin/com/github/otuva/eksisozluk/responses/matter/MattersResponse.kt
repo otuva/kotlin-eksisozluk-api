@@ -1,6 +1,6 @@
 package com.github.otuva.eksisozluk.responses.matter
 
-import com.github.otuva.eksisozluk.models.index.Matters
+import com.github.otuva.eksisozluk.models.index.matter.Matters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
