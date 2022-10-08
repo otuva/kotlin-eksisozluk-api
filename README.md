@@ -45,6 +45,7 @@ Suan librarynin yapabildikleri:
   - populer
   - bugun 
   - son 
+  - olay
   - caylaklar
   - tarihte bugun
   - popular sorunsallar
