@@ -300,7 +300,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @return [GenericResponse] object.
      * */
-    private suspend fun sendUsernameAndReturnResponse(url: String, username:String): GenericResponse {
+    private suspend fun sendUsernameAndReturnResponse(url: String, username: String): GenericResponse {
         val response = client.post(url) {
             setBody(
                 FormDataContent(
