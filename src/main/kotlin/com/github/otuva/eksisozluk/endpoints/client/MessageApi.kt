@@ -17,9 +17,21 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
+/**
+ * Includes endpoints related to messages.
+ * */
 @RequiresLogin
 public class MessageApi(private val client: HttpClient, private val userType: UserType) {
 
+    /**
+     * Requires login
+     *
+     * Get all inbox messages for the user
+     *
+     * @param page Page number
+     *
+     * @return [Messages] instance
+     * */
     @RequiresLogin
     public suspend fun messages(page: Int = 1): Messages {
         EksiSozluk.isUserLoggedIn(userType)
@@ -33,6 +45,16 @@ public class MessageApi(private val client: HttpClient, private val userType: Us
         return messagesResponse.data
     }
 
+    /**
+     * Requires login
+     *
+     * Get the thread for given user
+     *
+     * @param username Username to get messages
+     * @param page Page number
+     *
+     * @return [Thread] object
+     * */
     @RequiresLogin
     public suspend fun thread(username: String, page: Int = 1): Thread {
         EksiSozluk.isUserLoggedIn(userType)
@@ -46,6 +68,14 @@ public class MessageApi(private val client: HttpClient, private val userType: Us
         return threadResponse.data
     }
 
+    /**
+     * Sends a message to given user
+     *
+     * @param username Username to send message
+     * @param message Message to send
+     *
+     * @return Null if message could not be sent, otherwise [SentData] object containing sent message data such as id
+     * */
     @RequiresLogin
     public suspend fun send(username: String, message: String): SentData? {
         EksiSozluk.isUserLoggedIn(userType)

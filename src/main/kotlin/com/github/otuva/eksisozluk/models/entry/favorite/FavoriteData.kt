@@ -6,6 +6,8 @@ import kotlinx.serialization.Serializable
 /**
  * Represents entry favorite data.
  *
+ * Used after favoriting an entry.
+ *
  * @param success Whether the request was successful.
  * @param message Response message.
  * @param count Number of updated favorites.
