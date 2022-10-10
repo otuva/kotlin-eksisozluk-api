@@ -62,7 +62,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @LimitedWithoutLogin
     public suspend fun get(topicId: Int, filterType: FilterType = FilterType.All, page: Int = 1): Topic? {
-        check(
+        require(
             userType == UserType.Regular || (filterType in listOf(
                 FilterType.All,
                 FilterType.Best,
@@ -70,7 +70,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
                 FilterType.Hot
             ))
         ) {
-            NotAuthorizedException(
+            throw NotAuthorizedException(
                 "Anonymous users cannot do this."
             )
         }
@@ -129,7 +129,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         @RequiresLogin favoritedOnly: Boolean = false,
         page: Int = 1
     ): Topic? {
-        check(userType == UserType.Regular || favoritedOnly.not()) { NotAuthorizedException("Only regular users can search in their favorites") }
+        require(userType == UserType.Regular || favoritedOnly.not()) { throw NotAuthorizedException("Only regular users can search in their favorites") }
 
         val searchEncoded = StringBuilder()
         searchEncoded.append("Keywords=${urlEncode(keywords)}")

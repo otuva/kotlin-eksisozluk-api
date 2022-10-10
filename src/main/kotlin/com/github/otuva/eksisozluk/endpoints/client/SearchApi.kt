@@ -61,7 +61,7 @@ public class SearchApi(private val client: HttpClient, private val userType: Use
         niceOnly: Boolean = false,
         @RequiresLogin favoritedOnly: Boolean = false,
     ): Index {
-        check(userType == UserType.Regular || favoritedOnly.not()) { NotAuthorizedException("Only regular users can search in their favorites") }
+        require(userType == UserType.Regular || favoritedOnly.not()) { throw NotAuthorizedException("Only regular users can search in their favorites") }
 
         val url = Routes.api + Routes.Search.search
 

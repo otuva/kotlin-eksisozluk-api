@@ -187,7 +187,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * @return [Index] object
      * */
     public suspend fun todayInPast(year: Int, page: Int = 1): Index {
-        check(year in 1999..Year.now().value) { IllegalArgumentException("Year must be between 1999 and ${Year.now().value}") }
+        require(year in 1999..Year.now().value) { IllegalArgumentException("Year must be between 1999 and ${Year.now().value}") }
 
         val url = Routes.api + Routes.Index.todayInPast.format(year) + "?p=$page"
 

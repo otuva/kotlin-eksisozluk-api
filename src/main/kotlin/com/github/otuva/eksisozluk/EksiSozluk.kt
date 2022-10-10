@@ -101,7 +101,7 @@ public class EksiSozluk(
 
         @Throws(NotAuthorizedException::class)
         public fun isUserLoggedIn(userType: UserType) {
-            require(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+            require(userType == UserType.Regular) { throw NotAuthorizedException("Anonymous users cannot do this.") }
         }
     }
 }
