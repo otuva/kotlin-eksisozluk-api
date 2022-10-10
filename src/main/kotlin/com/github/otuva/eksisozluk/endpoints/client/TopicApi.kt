@@ -92,7 +92,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun searchInTopic(topicId: Int, searchTerm: String, page: Int = 1): Topic {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Topic.search.format(topicId, urlEncode(searchTerm)) + "?p=$page"
 
@@ -176,7 +176,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun follow(topicId: Int): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Topic.follow
 
@@ -192,7 +192,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun unfollow(topicId: Int): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Topic.unfollow
 
