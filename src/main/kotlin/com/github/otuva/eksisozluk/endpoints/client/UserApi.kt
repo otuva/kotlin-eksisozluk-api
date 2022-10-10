@@ -1,5 +1,6 @@
 package com.github.otuva.eksisozluk.endpoints.client
 
+import com.github.otuva.eksisozluk.BadUserException
 import com.github.otuva.eksisozluk.EksiSozluk
 import com.github.otuva.eksisozluk.annotations.RequiresLogin
 import com.github.otuva.eksisozluk.endpoints.Routes
@@ -28,22 +29,31 @@ import io.ktor.http.*
  * @param userType The [UserType] instance
  * */
 public class UserApi(private val client: HttpClient, private val userType: UserType) {
+
     /**
      * Get a user by username | biri
      *
      * @param username The username of the user
      *
-     * @return [User] object
+     * @return [User] object if user is found else null
      * */
-    public suspend fun get(username: String): User {
-        val url = Routes.api + Routes.User.user.format(urlEncode(username))
+    public suspend fun get(username: String): User? {
+        return try {
+            val url = Routes.api + Routes.User.user.format(urlEncode(username))
 
-        val response = client.get(url)
+            val response = client.get(url)
 
-        val userResponse: UserResponse = response.body()
+            val userResponse: UserResponse = response.body()
 
-        return userResponse.data
+            userResponse.data
+        } catch (exception: BadUserException) {
+            null
+        }
     }
+
+    //---------------------------------------
+    //-------------entry-related-------------
+    //---------------------------------------
 
     /**
      * Get a user's entries | entry'ler
@@ -51,16 +61,12 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param username The username of the user
      * @param page The page to get
      *
-     * @return [UserEntries] object. If it's null, it means the user has no entries.
+     * @return [UserEntries] object. If it's null, it means the user has no entries on that page or user is not found
      * */
     public suspend fun entries(username: String, page: Int = 1): UserEntries? {
         val url = Routes.api + Routes.User.entries.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
+        return entriesRequest(url)
     }
 
     /**
@@ -69,16 +75,12 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param username The username of the user
      * @param page The page to get
      *
-     * @return [UserEntries] object. If it's null, it means the user has no favorite entries.
+     * @return [UserEntries] object. If it's null, it means the user has no favorite entries on that page or user is not found
      * */
     public suspend fun favoriteEntries(username: String, page: Int = 1): UserEntries? {
         val url = Routes.api + Routes.User.favorites.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
+        return entriesRequest(url)
     }
 
     /**
@@ -87,16 +89,12 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param username The username of the user
      * @param page The page to get
      *
-     * @return [UserEntries] object. If it's null, it means the user has no top favorite entries.
+     * @return [UserEntries] object. If it's null, it means the user has no top favorite entries on that page or user is not found
      * */
     public suspend fun mostFavoritedEntries(username: String, page: Int = 1): UserEntries? {
         val url = Routes.api + Routes.User.favorited.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
+        return entriesRequest(url)
     }
 
     /**
@@ -105,16 +103,12 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param username The username of the user
      * @param page The page to get
      *
-     * @return [UserEntries] object. If it's null, it means the user has no last voted entries.
+     * @return [UserEntries] object. If it's null, it means the user has no last voted entries on that page or user is not found
      * */
     public suspend fun lastVotedEntries(username: String, page: Int = 1): UserEntries? {
         val url = Routes.api + Routes.User.lastVoted.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
+        return entriesRequest(url)
     }
 
     /**
@@ -122,15 +116,13 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @param username The username of the user
      * @param page The page to get
+     *
+     * @return [UserEntries] object. If it's null, it means the user has no most voted entries of last week on that page or user is not found
      * */
     public suspend fun lastWeekMostVotedEntries(username: String, page: Int = 1): UserEntries? {
         val url = Routes.api + Routes.User.lastWeekMostVoted.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
+        return entriesRequest(url)
     }
 
     /**
@@ -139,16 +131,12 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param username Username of the user.
      * @param page The page to get.
      *
-     * @return [UserEntries] object. If it's null, it means the user has no entries.
+     * @return [UserEntries] object. If it's null, it means the user has no entries on that page or user is not found
      */
     public suspend fun selfFavoritedEntries(username: String, page: Int = 1): UserEntries? {
         val url = Routes.api + Routes.User.selfFavorited.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
+        return entriesRequest(url)
     }
 
     /**
@@ -157,35 +145,60 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param username Username of the user.
      * @param page The page to get.
      *
-     * @return [UserEntries] object. If it's null, it means the user has no entries.
+     * @return [UserEntries] object. If it's null, it means the user has no entries on that page or user is not found
      * */
     public suspend fun bestEntries(username: String, page: Int = 1): UserEntries? {
         val url = Routes.api + Routes.User.bestEntries.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val userEntriesResponse: UserEntriesResponse = response.body()
-
-        return userEntriesResponse.data
+        return entriesRequest(url)
     }
+
+    /**
+     * Function to handle user entry requests and return [UserEntries] object
+     * */
+    private suspend fun entriesRequest(url: String): UserEntries? {
+        return try {
+            val response = client.get(url)
+
+            val userEntriesResponse: UserEntriesResponse = response.body()
+
+            userEntriesResponse.data
+        } catch (exception: BadUserException) {
+            null
+        }
+    }
+
+    //------------------
+    //------images------
+    //------------------
 
     /**
      * Get a user's images | görseller
      *
+     * If user has no images, [UserImages.images] will be null.
+     *
      * @param username Username of the user.
      * @param page The page to get.
      *
-     * @return [UserImages] object. If user has no images, [UserImages.images] will be null.
+     * @return Null if user does not exist or [UserImages] object.
      * */
-    public suspend fun images(username: String, page: Int = 1): UserImages {
-        val url = Routes.api + Routes.User.images.format(urlEncode(username)) + "?p=$page"
+    public suspend fun images(username: String, page: Int = 1): UserImages? {
+        return try {
+            val url = Routes.api + Routes.User.images.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
+            val response = client.get(url)
 
-        val userImagesResponse: UserImagesResponse = response.body()
+            val userImagesResponse: UserImagesResponse = response.body()
 
-        return userImagesResponse.data
+            userImagesResponse.data
+        } catch (exception: BadUserException) {
+            null
+        }
     }
+
+    //---------------------------------------------
+    //---------------user-operations---------------
+    //---------------------------------------------
 
     /**
      * Follows the given user. | takip et
@@ -194,11 +207,11 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @param username Username of the user.
      *
-     * @return [GenericResponse] object. If [GenericResponse.success] is true, it means the user is followed.
+     * @return Null if user does not exist or [GenericResponse] object. If [GenericResponse.success] is true, it means the user is followed.
      * */
     @RequiresLogin
-    public suspend fun follow(username: String): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+    public suspend fun follow(username: String): GenericResponse? {
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.User.follow
 
@@ -212,11 +225,11 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @param username Username of the user.
      *
-     * @return [GenericResponse] object. If [GenericResponse.success] is true, it means the user is unfollowed.
+     * @return Null if user does not exist or [GenericResponse] object. If [GenericResponse.success] is true, it means the user is unfollowed.
      * */
     @RequiresLogin
-    public suspend fun unfollow(username: String): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+    public suspend fun unfollow(username: String): GenericResponse? {
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.User.unfollow
 
@@ -230,11 +243,11 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @param username Username of the user.
      *
-     * @return [GenericResponse] object. If [GenericResponse.success] is true, it means the user is blocked.
+     * @return Null if user does not exist or [GenericResponse] object. If [GenericResponse.success] is true, it means the user is blocked.
      * */
     @RequiresLogin
-    public suspend fun block(username: String): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+    public suspend fun block(username: String): GenericResponse? {
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.User.block
 
@@ -248,11 +261,11 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @param username Username of the user.
      *
-     * @return [GenericResponse] object. If [GenericResponse.success] is true, it means the user is unblocked.
+     * @return Null if user does not exist or [GenericResponse] object. If [GenericResponse.success] is true, it means the user is unblocked.
      * */
     @RequiresLogin
-    public suspend fun unblock(username: String): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+    public suspend fun unblock(username: String): GenericResponse? {
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.User.unblock
 
@@ -264,11 +277,11 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @param username Username of the user.
      *
-     * @return [GenericResponse] object. If [GenericResponse.success] is true, it means the topic is blocked.
+     * @return Null if user does not exist or [GenericResponse] object. If [GenericResponse.success] is true, it means the topic is blocked.
      * */
     @RequiresLogin
-    public suspend fun blockTopics(username: String): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+    public suspend fun blockTopics(username: String): GenericResponse? {
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.User.blockTopics
 
@@ -280,11 +293,11 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      *
      * @param username Username of the user.
      *
-     * @return [GenericResponse] object. If [GenericResponse.success] is true, it means the topic is unblocked.
+     * @return Null if user does not exist or [GenericResponse] object. If [GenericResponse.success] is true, it means the topic is unblocked.
      * */
     @RequiresLogin
-    public suspend fun unblockTopics(username: String): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+    public suspend fun unblockTopics(username: String): GenericResponse? {
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.User.unblockTopics
 
@@ -298,21 +311,29 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param url Url to send request.
      * @param username Username of the user.
      *
-     * @return [GenericResponse] object.
+     * @return Null if user does not exist or [GenericResponse] object.
      * */
-    private suspend fun usernameRequest(url: String, username: String): GenericResponse {
-        val response = client.post(url) {
-            setBody(
-                FormDataContent(
-                    Parameters.build {
-                        append("nick", username)
-                    }
+    private suspend fun usernameRequest(url: String, username: String): GenericResponse? {
+        return try {
+            val response = client.post(url) {
+                setBody(
+                    FormDataContent(
+                        Parameters.build {
+                            append("nick", username)
+                        }
+                    )
                 )
-            )
-        }
+            }
 
-        return response.body()
+            response.body()
+        } catch (exception: BadUserException) {
+            null
+        }
     }
+
+    //---------------------
+    //-------matters-------
+    //---------------------
 
     /**
      * Matters that are written by the user. | sorunsallari
@@ -320,16 +341,12 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param username Username of the user.
      * @param page The page to get.
      *
-     * @return [Matters] object
+     * @return [Matters] object or null if the user has no matters or does not exist.
      * */
-    public suspend fun matters(username: String, page: Int = 1): Matters {
+    public suspend fun matters(username: String, page: Int = 1): Matters? {
         val url = Routes.api + Routes.User.matters.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val mattersResponse: MattersResponse = response.body()
-
-        return mattersResponse.data
+        return matterRequest(url)
     }
 
     /**
@@ -338,15 +355,30 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * @param username Username of the user.
      * @param page The page to get.
      *
-     * @return [Matters] object
+     * @return [Matters] object or null if user has no answers or does not exist.
      * */
-    public suspend fun matterAnswers(username: String, page: Int = 1): Matters {
+    public suspend fun matterAnswers(username: String, page: Int = 1): Matters? {
         val url = Routes.api + Routes.User.matterAnswers.format(urlEncode(username)) + "?p=$page"
 
-        val response = client.get(url)
+        return matterRequest(url)
+    }
 
-        val matterAnswersResponse: MattersResponse = response.body()
+    /**
+     * Matter request to get matters or matter answers.
+     *
+     * @param url Url to send request.
+     *
+     * @return [Matters] object or null if user has no matters or does not exist.
+     * */
+    private suspend fun matterRequest(url: String): Matters? {
+        return try {
+            val response = client.get(url)
 
-        return matterAnswersResponse.data
+            val matterAnswersResponse: MattersResponse = response.body()
+
+            matterAnswersResponse.data
+        } catch (exception: BadUserException) {
+            null
+        }
     }
 }
