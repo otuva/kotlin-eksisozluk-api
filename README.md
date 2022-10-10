@@ -66,6 +66,9 @@ Suan librarynin yapabildikleri:
   - gorselleri
   - sorunsallari
   - sorunsal yanitlari
+- mesaj:
+  - gonderme
+  - listeleme 
 
 ## Kurulum
 
@@ -81,6 +84,6 @@ ve `app/build.gradle` dosyasina (module gradle'ina) libraryi ekleyin:
 
 ```groovy
 dependencies {
-    implementation 'com.github.otuva:kotlin-eksisozluk-api:0.0.17'
+    implementation 'com.github.otuva:kotlin-eksisozluk-api:0.0.18-alpha'
 }
 ```
