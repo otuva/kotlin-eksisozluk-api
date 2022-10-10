@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add 'olay' to IndexApi">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="update README.md">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,21 +139,9 @@
       <workItem from="1664992268906" duration="2839000" />
       <workItem from="1665035758647" duration="64000" />
       <workItem from="1665241613418" duration="113000" />
-      <workItem from="1665241741178" duration="12024000" />
-    </task>
-    <task id="LOCAL-00141" summary="reformat code">
-      <created>1664737840446</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1664737840446</updated>
-    </task>
-    <task id="LOCAL-00142" summary="yolo">
-      <created>1664740667984</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1664740667984</updated>
+      <workItem from="1665241741178" duration="12064000" />
+      <workItem from="1665375401638" duration="89000" />
+      <workItem from="1665375502073" duration="328000" />
     </task>
     <task id="LOCAL-00143" summary="add testing main">
       <created>1664740680497</created>
@@ -485,7 +472,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665253738966</updated>
     </task>
-    <option name="localTasksCounter" value="190" />
+    <task id="LOCAL-00190" summary="update todo">
+      <created>1665255072824</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1665255072824</updated>
+    </task>
+    <task id="LOCAL-00191" summary="update README.md">
+      <created>1665255080754</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1665255080754</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,7 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove unnecessary data class" />
     <MESSAGE value="remove unused value" />
     <MESSAGE value="move to companion" />
     <MESSAGE value="move api key to companion" />
@@ -523,13 +523,14 @@
     <MESSAGE value="change ws" />
     <MESSAGE value="extend kdoc" />
     <MESSAGE value="add ktor xml" />
-    <MESSAGE value="update todo" />
     <MESSAGE value="add boolean to int function" />
     <MESSAGE value="add kdoc" />
     <MESSAGE value="rename private handler function" />
     <MESSAGE value="move index matters" />
     <MESSAGE value="add 'olay' to IndexApi" />
-    <option name="LAST_COMMIT_MESSAGE" value="add 'olay' to IndexApi" />
+    <MESSAGE value="update todo" />
+    <MESSAGE value="update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="update README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
