@@ -34,16 +34,16 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      *
      * @param entryId The id of the entry
      *
-     * @return [Entry] object
+     * @return null if entry is not found else [Entry] object
      * */
-    public suspend fun get(entryId: Int): Entry {
+    public suspend fun get(entryId: Int): Entry? {
         val url = Routes.api + Routes.Entry.entry.format(entryId)
 
         val response = client.get(url)
 
         val topicResponse: TopicResponse = response.body()
 
-        return topicResponse.data!!.getFirstEntry()
+        return topicResponse.data?.getFirstEntry()
     }
 
     /**
@@ -51,16 +51,16 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      *
      * @param entryId The id of the entry
      *
-     * @return [Topic] object
+     * @return null if entry is not found else [Topic] object
      * */
-    public suspend fun getAsTopic(entryId: Int): Topic {
+    public suspend fun getAsTopic(entryId: Int): Topic? {
         val url = Routes.api + Routes.Entry.entry.format(entryId)
 
         val response = client.get(url)
 
         val topicResponse: TopicResponse = response.body()
 
-        return topicResponse.data!!
+        return topicResponse.data
     }
 
     /**
@@ -121,7 +121,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun favorite(entryId: Int): FavoriteData {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Entry.favorite
 
@@ -138,7 +138,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun unfavorite(entryId: Int): FavoriteData {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Entry.unfavorite
 
@@ -154,7 +154,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun favorites(entryId: Int): Favorites {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Entry.favorites.format(entryId)
 
@@ -174,7 +174,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun caylakFavorites(entryId: Int): CaylakFavorites {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Entry.caylakFavorites.format(entryId)
 
