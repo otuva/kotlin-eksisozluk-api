@@ -105,7 +105,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun setChannelFilters(filters: List<Filter>): GenericResponse {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Index.setChannelFilters
 
@@ -133,7 +133,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun getChannelFilters(): List<Filter> {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Index.getChannelFilters
 
@@ -241,7 +241,7 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun olay(page: Int = 1): Olay {
-        EksiSozluk.checkLoginStatus(userType)
+        EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Index.olay + "?p=$page"
 
