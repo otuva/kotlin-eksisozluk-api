@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class FollowResponse(
     @SerialName("Success") val success: Boolean,
-    @SerialName("Message") val message: String,
+    @SerialName("Message") val message: String?,
     @SerialName("Data") val data: GenericResponse
 )
