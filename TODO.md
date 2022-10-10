@@ -3,6 +3,7 @@
 - change logger from default to android
 
 - Implement:
+- mesajlasma (apisi) -> okundu isaretle, mesaj silme, arsivleme, arama
 - olay snapshotlari (topic - matter)
 - sorunsallar apisi
 - entry silme / yazma
@@ -10,7 +11,7 @@
 - baslik gorsel yukleme
 - cop kutusu
 - takip edilen kisilerin entry/fav
-- mesajlasma (apisi)
+
 - ayarlar apisi
 
 - belki entry throwlamak yerine null dondursun?
