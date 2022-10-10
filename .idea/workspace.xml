@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="refactor &amp; add kdoc">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="change project settings">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/MessageApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/MessageApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/UserType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/authentication/UserType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/entry/favorite/CaylakFavorites.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/entry/favorite/CaylakFavorites.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/entry/favorite/FavoriteData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/entry/favorite/FavoriteData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/entry/favorite/Favorites.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/entry/favorite/Favorites.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,22 +76,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/tfp/Dev/kotlin/eksi-api-wrapper",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.113678396",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "project.propGUI"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/tfp/Dev/kotlin/eksi-api-wrapper&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.113678396&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propGUI&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/doc/jsons" />
@@ -115,17 +113,10 @@
       <recent name="com.github.otuva.eksisozluk.models.index.topic" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.TempMainKt">
-    <configuration name="EksiClientKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.github.otuva.eksisozluk.EksiClientKt" />
-      <module name="eksi-api-wrapper.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="TempMainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.github.otuva.eksisozluk.TempMainKt" />
-      <module name="eksi-api-wrapper.main" />
+      <module name="_kotlin-eksisozluk-api.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -133,7 +124,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.TempMainKt" />
-        <item itemvalue="Kotlin.EksiClientKt" />
         <item itemvalue="Kotlin.TempMainKt" />
         <item itemvalue="Kotlin.EksiClientKt" />
       </list>
@@ -156,35 +146,8 @@
       <workItem from="1665241741178" duration="12064000" />
       <workItem from="1665375401638" duration="89000" />
       <workItem from="1665375502073" duration="2043000" />
-      <workItem from="1665377565093" duration="16401000" />
-    </task>
-    <task id="LOCAL-00155" summary="add matters &amp; todayinpast">
-      <created>1664866959320</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1664866959320</updated>
-    </task>
-    <task id="LOCAL-00156" summary="fix filter bug">
-      <created>1664867483042</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1664867483042</updated>
-    </task>
-    <task id="LOCAL-00157" summary="add caylak and last entries">
-      <created>1664868022069</created>
-      <option name="number" value="00157" />
-      <option name="presentableId" value="LOCAL-00157" />
-      <option name="project" value="LOCAL" />
-      <updated>1664868022069</updated>
-    </task>
-    <task id="LOCAL-00158" summary="ws change">
-      <created>1664968214780</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1664968214781</updated>
+      <workItem from="1665377565093" duration="16479000" />
+      <workItem from="1665396403354" duration="1414000" />
     </task>
     <task id="LOCAL-00159" summary="remove unnecessary data class">
       <created>1664983118351</created>
@@ -501,7 +464,35 @@
       <option name="project" value="LOCAL" />
       <updated>1665394637214</updated>
     </task>
-    <option name="localTasksCounter" value="204" />
+    <task id="LOCAL-00204" summary="add kdoc">
+      <created>1665396156880</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1665396156880</updated>
+    </task>
+    <task id="LOCAL-00205" summary="update readme">
+      <created>1665397578835</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1665397578835</updated>
+    </task>
+    <task id="LOCAL-00206" summary="fix require">
+      <created>1665397704012</created>
+      <option name="number" value="00206" />
+      <option name="presentableId" value="LOCAL-00206" />
+      <option name="project" value="LOCAL" />
+      <updated>1665397704012</updated>
+    </task>
+    <task id="LOCAL-00207" summary="update todo">
+      <created>1665397711522</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1665397711522</updated>
+    </task>
+    <option name="localTasksCounter" value="208" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,21 +511,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="make page nullable for users" />
-    <MESSAGE value="add Disambiguation function to retrieve query string and make kind nullable for disambs in topics" />
     <MESSAGE value="refactor" />
     <MESSAGE value="extend kdoc for annotations" />
     <MESSAGE value="add favsOnly and niceOnly parameters in search functions" />
-    <MESSAGE value="update readme" />
     <MESSAGE value="change ws" />
     <MESSAGE value="extend kdoc" />
     <MESSAGE value="add ktor xml" />
     <MESSAGE value="add boolean to int function" />
-    <MESSAGE value="add kdoc" />
     <MESSAGE value="rename private handler function" />
     <MESSAGE value="move index matters" />
     <MESSAGE value="add 'olay' to IndexApi" />
-    <MESSAGE value="update todo" />
     <MESSAGE value="update README.md" />
     <MESSAGE value="gitignore is now working :)" />
     <MESSAGE value="add new target" />
@@ -545,7 +531,12 @@
     <MESSAGE value="handle exceptions locally with handler" />
     <MESSAGE value="make FollowResponse nullable" />
     <MESSAGE value="refactor &amp; add kdoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor &amp; add kdoc" />
+    <MESSAGE value="add kdoc" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="fix require" />
+    <MESSAGE value="update todo" />
+    <MESSAGE value="change project settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="change project settings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

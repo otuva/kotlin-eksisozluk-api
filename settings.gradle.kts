@@ -1,3 +1,3 @@
 
-rootProject.name = "eksi-api-wrapper"
+rootProject.name = " kotlin-eksisozluk-api"
 

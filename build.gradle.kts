@@ -54,7 +54,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.otuva"
             artifactId = "eksisozluk"
-            version = "0.0.12"
+            version = "0.0.19-alpha"
 
             from(components["kotlin"])
         }
