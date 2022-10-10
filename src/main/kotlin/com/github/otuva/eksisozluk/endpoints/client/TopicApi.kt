@@ -1,5 +1,6 @@
 package com.github.otuva.eksisozluk.endpoints.client
 
+import com.github.otuva.eksisozluk.BadTopicException
 import com.github.otuva.eksisozluk.EksiSozluk
 import com.github.otuva.eksisozluk.NotAuthorizedException
 import com.github.otuva.eksisozluk.annotations.LimitedWithoutLogin
@@ -32,6 +33,10 @@ import kotlinx.datetime.LocalDateTime
  * */
 public class TopicApi(private val client: HttpClient, private val userType: UserType) {
 
+    //------------------------------------------
+    //--------------topic-&-search--------------
+    //------------------------------------------
+
     /**
      * Get a topic by id | başlık
      *
@@ -53,10 +58,10 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * @param filterType The sorting type of the topic
      * @param page The page to get
      *
-     * @return [Topic] object
+     * @return Null if the topic is not found [Topic] object otherwise
      * */
     @LimitedWithoutLogin
-    public suspend fun get(topicId: Int, filterType: FilterType = FilterType.All, page: Int = 1): Topic {
+    public suspend fun get(topicId: Int, filterType: FilterType = FilterType.All, page: Int = 1): Topic? {
         check(
             userType == UserType.Regular || (filterType in listOf(
                 FilterType.All,
@@ -72,11 +77,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
 
         val url = Routes.api + Routes.Topic.topic.format(topicId) + filterType.value + "?p=$page"
 
-        val response = client.get(url)
-
-        val topicResponse: TopicResponse = response.body()
-
-        return topicResponse.data!!
+        return topicRequest(url)
     }
 
     /**
@@ -84,23 +85,21 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      *
      * To search a user inside topic you can prefix it with '@' character.
      *
+     * Returned [Topic.entries] can be empty.
+     *
      * @param topicId The id of the topic
      * @param searchTerm The term to search
      * @param page The page to get
      *
-     * @return [Topic] object. Returned [Topic.entries] can be empty.
+     * @return Null if the topic is not found [Topic] object otherwise.
      * */
     @RequiresLogin
-    public suspend fun searchInTopic(topicId: Int, searchTerm: String, page: Int = 1): Topic {
+    public suspend fun searchInTopic(topicId: Int, searchTerm: String, page: Int = 1): Topic? {
         EksiSozluk.isUserLoggedIn(userType)
 
         val url = Routes.api + Routes.Topic.search.format(topicId, urlEncode(searchTerm)) + "?p=$page"
 
-        val response = client.get(url)
-
-        val topicResponse: TopicResponse = response.body()
-
-        return topicResponse.data!!
+        return topicRequest(url)
     }
 
     /**
@@ -117,7 +116,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * @param favoritedOnly Only search in user's favorites. This requires login. Default is false
      * @param page The page to get (1 by default)
      *
-     * @return [Topic] object.
+     * @return Null if the topic is not found [Topic] object otherwise.
      * */
     public suspend fun advancedSearch(
         topicId: Int,
@@ -129,7 +128,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         niceOnly: Boolean = false,
         @RequiresLogin favoritedOnly: Boolean = false,
         page: Int = 1
-    ): Topic {
+    ): Topic? {
         check(userType == UserType.Regular || favoritedOnly.not()) { NotAuthorizedException("Only regular users can search in their favorites") }
 
         val searchEncoded = StringBuilder()
@@ -143,19 +142,38 @@ public class TopicApi(private val client: HttpClient, private val userType: User
 
         val url = Routes.api + Routes.Topic.advancedSearch.format(topicId) + '?' + searchEncoded + "&p=$page"
 
-        val response = client.get(url)
-
-        val topicResponse: TopicResponse = response.body()
-
-        return topicResponse.data!!
+        return topicRequest(url)
     }
+
+    /**
+     * Returns the topic response for given url
+     *
+     * @param url The url to get the topic
+     *
+     * @return Null if the topic is not found [Topic] object otherwise.
+     * */
+    private suspend fun topicRequest(url: String): Topic? {
+        return try {
+            val response = client.get(url)
+
+            val topicResponse: TopicResponse = response.body()
+
+            topicResponse.data
+        } catch (exception: BadTopicException) {
+            null
+        }
+    }
+
+    //------------------------------------------
+    //--------------query-topic-id--------------
+    //------------------------------------------
 
     /**
      * To search a topic by a string. If you want to search disambiguation topics, call the function [com.github.otuva.eksisozluk.models.topic.Disambiguation.toQueryString]'.
      *
      * @param term The string to search
      *
-     * @return [Query] object. Topic id would be [Query.queryData.topicId]
+     * @return [Query] object. Topic id would be Query.queryData.topicId
      * */
     public suspend fun query(term: String): Query {
         val url = Routes.api + Routes.Topic.query.format(urlEncode(term))
@@ -167,12 +185,18 @@ public class TopicApi(private val client: HttpClient, private val userType: User
         return queryResponse.data
     }
 
+    //------------------------------------------------
+    //----------------topic-operations----------------
+    //------------------------------------------------
+
     /**
      * Follows a topic. This requires login.
      *
+     * Note that api won't validate topic id. So if you pass an invalid topic id, it will return [GenericResponse.success] as true.
+     *
      * @param topicId The id of the topic
      *
-     * @return [GenericResponse] to check if the operation is successful
+     * @return [GenericResponse] object
      * */
     @RequiresLogin
     public suspend fun follow(topicId: Int): GenericResponse {
@@ -186,9 +210,11 @@ public class TopicApi(private val client: HttpClient, private val userType: User
     /**
      * Unfollows a topic. This requires login.
      *
+     * Note that api won't validate topic id. So if you pass an invalid topic id, it will return [GenericResponse.success] as true.
+     *
      * @param topicId The id of the topic
      *
-     * @return [GenericResponse] to check if the operation is successful
+     * @return [GenericResponse] object
      * */
     @RequiresLogin
     public suspend fun unfollow(topicId: Int): GenericResponse {
@@ -202,12 +228,16 @@ public class TopicApi(private val client: HttpClient, private val userType: User
     /**
      * Private function to handle follow and unfollow requests
      *
+     * Note that api won't validate topic id. So if you pass an invalid topic id, it will return [GenericResponse.success] as true.
+     *
      * @param url The url to send the request
      * @param topicId The id of the topic
      *
-     * @return [GenericResponse] to check if the operation is successful
+     * @return [GenericResponse] object
      * */
     private suspend fun followRequest(url: String, topicId: Int): GenericResponse {
+        // because api doesn't validate if the topic is valid or not
+        // we don't need to try catch it
         val response = client.post(url) {
             setBody(
                 FormDataContent(

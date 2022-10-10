@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="remove requiring success">
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="rename function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiSozluk.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiSozluk.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/topic/TopicResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/topic/TopicResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/TopicApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/topic/FollowResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/topic/FollowResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,35 +154,7 @@
       <workItem from="1665241741178" duration="12064000" />
       <workItem from="1665375401638" duration="89000" />
       <workItem from="1665375502073" duration="2043000" />
-      <workItem from="1665377565093" duration="13019000" />
-    </task>
-    <task id="LOCAL-00148" summary="rename some classes">
-      <created>1664812385908</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1664812385908</updated>
-    </task>
-    <task id="LOCAL-00149" summary="add query for topic">
-      <created>1664812413908</created>
-      <option name="number" value="00149" />
-      <option name="presentableId" value="LOCAL-00149" />
-      <option name="project" value="LOCAL" />
-      <updated>1664812413908</updated>
-    </task>
-    <task id="LOCAL-00150" summary="rename entrycounts">
-      <created>1664812426997</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1664812426997</updated>
-    </task>
-    <task id="LOCAL-00151" summary="add topic follow / unfollow">
-      <created>1664813700984</created>
-      <option name="number" value="00151" />
-      <option name="presentableId" value="LOCAL-00151" />
-      <option name="project" value="LOCAL" />
-      <updated>1664813700984</updated>
+      <workItem from="1665377565093" duration="14594000" />
     </task>
     <task id="LOCAL-00152" summary="add login check">
       <created>1664813902794</created>
@@ -501,7 +471,35 @@
       <option name="project" value="LOCAL" />
       <updated>1665392678352</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="remove requiring success">
+      <created>1665392704397</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1665392704397</updated>
+    </task>
+    <task id="LOCAL-00198" summary="add messaging api">
+      <created>1665392760634</created>
+      <option name="number" value="00198" />
+      <option name="presentableId" value="LOCAL-00198" />
+      <option name="project" value="LOCAL" />
+      <updated>1665392760635</updated>
+    </task>
+    <task id="LOCAL-00199" summary="add messaging api">
+      <created>1665392772785</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1665392772785</updated>
+    </task>
+    <task id="LOCAL-00200" summary="rename function">
+      <created>1665392789549</created>
+      <option name="number" value="00200" />
+      <option name="presentableId" value="LOCAL-00200" />
+      <option name="project" value="LOCAL" />
+      <updated>1665392789549</updated>
+    </task>
+    <option name="localTasksCounter" value="201" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -520,7 +518,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="move api secret to companion" />
     <MESSAGE value="refactor code" />
     <MESSAGE value="add throws" />
     <MESSAGE value="add user matters &amp; answers" />
@@ -542,19 +539,15 @@
     <MESSAGE value="update README.md" />
     <MESSAGE value="gitignore is now working :)" />
     <MESSAGE value="add new target" />
-    <MESSAGE value="rename function" />
     <MESSAGE value="instead of throwing exception when user is not found simply return null" />
     <MESSAGE value="remove requiring success" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove requiring success" />
+    <MESSAGE value="add messaging api" />
+    <MESSAGE value="rename function" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt</url>
-          <line>14</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
           <line>46</line>
@@ -562,8 +555,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
-          <line>57</line>
+          <line>61</line>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt</url>
+          <line>16</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
