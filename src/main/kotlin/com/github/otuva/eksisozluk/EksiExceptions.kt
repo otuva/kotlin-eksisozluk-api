@@ -2,14 +2,15 @@ package com.github.otuva.eksisozluk
 
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
-import io.ktor.serialization.*
 
 public fun exceptionHandler(exception: Throwable, request: HttpRequest) {
     // handle not found entries here because api returns 200 for not found entries
-    if (exception is JsonConvertException && exception.cause is BadTopicException) {
-        val badTopicException = exception.cause as BadTopicException
-        throw BadEntryException(badTopicException.message!!)
-    }
+//    if (exception is JsonConvertException) {
+//        when (exception.cause) {
+//            is BadTopicException -> throw BadTopicException((exception.cause as BadTopicException).message!!)
+//            is MessageCannotBeSentException -> throw MessageCannotBeSentException((exception.cause as MessageCannotBeSentException).message!!)
+//        }
+//    }
 
     val urlString = request.url.toString()
     val responseException = exception as ResponseException
@@ -32,12 +33,8 @@ public class BadTopicException(message: String) : Exception(message)
 
 public class BadUserException(message: String) : Exception(message)
 
-public class BadEntryException(message: String) : Exception(message)
-
 public class NotAuthorizedException(message: String) : Exception(message)
 
 public class BadTokenException(message: String) : Exception(message)
 
 public class TokenExpiredException(message: String) : Exception(message)
-
-public class SessionNotInitializedException(message: String) : Exception(message)
