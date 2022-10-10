@@ -107,4 +107,14 @@ public object Routes {
         @RequiresFormatting
         public const val autocomplete: String = "/v2/autocomplete/query/%s"
     }
+
+    public object Message {
+        public const val messages: String = "/v2/message"
+
+        @RequiresFormatting
+        public const val thread: String = "/v2/message/thread/Nick/%s"
+
+        public const val send: String = "/v2/message/sendmessage"
+
+    }
 }

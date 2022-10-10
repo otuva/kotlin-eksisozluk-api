@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="update README.md">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="remove requiring success">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiSozluk.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiSozluk.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/Routes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/endpoints/client/IndexApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/topic/TopicResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/responses/topic/TopicResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +45,20 @@
         <option value="Kotlin Annotation" />
         <option value="Kotlin File" />
         <option value="Kotlin Enum" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="aadb71f708e88227b6f52004355ff11f7f7ce90e" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.ktor/ktor-http-jvm/2.1.0/47fdf4152287c4db29268329b3e65b2ccb3f1097/ktor-http-jvm-2.1.0-sources.jar!/commonMain/io/ktor/http/content/CachingOptions.kt" root0="FORCE_HIGHLIGHTING" />
@@ -86,6 +96,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/doc/jsons" />
+      <recent name="$PROJECT_DIR$/doc" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CreateKotlinClassDialog.RecentsKey">
@@ -96,11 +108,11 @@
       <recent name="com.github.otuva.eksisozluk.models.index.debe" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.github.otuva.eksisozluk.models.message.thread" />
       <recent name="com.github.otuva.eksisozluk.models.index.olay" />
       <recent name="com.github.otuva.eksisozluk.models.index.matter" />
       <recent name="com.github.otuva.eksisozluk.models.index" />
       <recent name="com.github.otuva.eksisozluk.models.index.topic" />
-      <recent name="com.github.otuva.eksisozluk.responses.entry.favorite" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.TempMainKt">
@@ -122,6 +134,8 @@
       <list>
         <item itemvalue="Kotlin.TempMainKt" />
         <item itemvalue="Kotlin.EksiClientKt" />
+        <item itemvalue="Kotlin.TempMainKt" />
+        <item itemvalue="Kotlin.EksiClientKt" />
       </list>
     </recent_temporary>
   </component>
@@ -141,42 +155,8 @@
       <workItem from="1665241613418" duration="113000" />
       <workItem from="1665241741178" duration="12064000" />
       <workItem from="1665375401638" duration="89000" />
-      <workItem from="1665375502073" duration="328000" />
-    </task>
-    <task id="LOCAL-00143" summary="add testing main">
-      <created>1664740680497</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1664740680497</updated>
-    </task>
-    <task id="LOCAL-00144" summary="refactor">
-      <created>1664740748041</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
-      <option name="project" value="LOCAL" />
-      <updated>1664740748041</updated>
-    </task>
-    <task id="LOCAL-00145" summary="add login annotation">
-      <created>1664741721374</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1664741721374</updated>
-    </task>
-    <task id="LOCAL-00146" summary="update todo">
-      <created>1664741877702</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1664741877702</updated>
-    </task>
-    <task id="LOCAL-00147" summary="reformat">
-      <created>1664812338577</created>
-      <option name="number" value="00147" />
-      <option name="presentableId" value="LOCAL-00147" />
-      <option name="project" value="LOCAL" />
-      <updated>1664812338577</updated>
+      <workItem from="1665375502073" duration="2043000" />
+      <workItem from="1665377565093" duration="13019000" />
     </task>
     <task id="LOCAL-00148" summary="rename some classes">
       <created>1664812385908</created>
@@ -486,7 +466,42 @@
       <option name="project" value="LOCAL" />
       <updated>1665255080754</updated>
     </task>
-    <option name="localTasksCounter" value="192" />
+    <task id="LOCAL-00192" summary="gitignore is now working :)">
+      <created>1665376063531</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1665376063531</updated>
+    </task>
+    <task id="LOCAL-00193" summary="add new target">
+      <created>1665391351530</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1665391351531</updated>
+    </task>
+    <task id="LOCAL-00194" summary="rename function">
+      <created>1665391390584</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1665391390584</updated>
+    </task>
+    <task id="LOCAL-00195" summary="rename function">
+      <created>1665391408528</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1665391408528</updated>
+    </task>
+    <task id="LOCAL-00196" summary="instead of throwing exception when user is not found simply return null">
+      <created>1665392678352</created>
+      <option name="number" value="00196" />
+      <option name="presentableId" value="LOCAL-00196" />
+      <option name="project" value="LOCAL" />
+      <updated>1665392678352</updated>
+    </task>
+    <option name="localTasksCounter" value="197" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,11 +520,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="remove unused value" />
-    <MESSAGE value="move to companion" />
-    <MESSAGE value="move api key to companion" />
-    <MESSAGE value="refactor favorite functions" />
-    <MESSAGE value="rename response data class" />
     <MESSAGE value="move api secret to companion" />
     <MESSAGE value="refactor code" />
     <MESSAGE value="add throws" />
@@ -530,7 +540,12 @@
     <MESSAGE value="add 'olay' to IndexApi" />
     <MESSAGE value="update todo" />
     <MESSAGE value="update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="update README.md" />
+    <MESSAGE value="gitignore is now working :)" />
+    <MESSAGE value="add new target" />
+    <MESSAGE value="rename function" />
+    <MESSAGE value="instead of throwing exception when user is not found simply return null" />
+    <MESSAGE value="remove requiring success" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove requiring success" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -544,6 +559,11 @@
           <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
           <line>46</line>
           <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
+          <line>57</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

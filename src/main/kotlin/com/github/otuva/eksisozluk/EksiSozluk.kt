@@ -29,6 +29,7 @@ public class EksiSozluk(
     public var topic: TopicApi
     public var index: IndexApi
     public var search: SearchApi
+    public var message: MessageApi
 
     init {
         session = existingSession ?: Session(username, password)
@@ -42,19 +43,24 @@ public class EksiSozluk(
         }
 
         client = HttpClient(CIO) {
+
             install(UserAgent) {
                 agent = "okhttp/3.12.1"
             }
+
             install(Logging) {
                 logger = Logger.DEFAULT
                 level = LogLevel.ALL
             }
+
             install(ContentNegotiation) {
                 json(Json {
                     prettyPrint = true
                     isLenient = true
                 })
             }
+
+            // this check is necessary because there's no refresh token when the user is anonymous
             if (session.token.userId != null) {
                 install(Auth) {
                     bearer {
@@ -64,17 +70,21 @@ public class EksiSozluk(
                     }
                 }
             }
+
             defaultRequest {
                 headers.appendIfNameAbsent("Authorization", "Bearer ${session.token.accessToken}")
                 headers.appendIfNameAbsent("Client-Secret", session.clientSecret.toString())
                 headers.appendIfNameAbsent("Api-Secret", apiSecret)
             }
+
+            // for exception handling
             expectSuccess = true
             HttpResponseValidator {
                 handleResponseExceptionWithRequest { exception, request ->
                     exceptionHandler(exception, request)
                 }
             }
+
         }
 
         entry = EntryApi(client, userType)
@@ -82,14 +92,16 @@ public class EksiSozluk(
         topic = TopicApi(client, userType)
         index = IndexApi(client, userType)
         search = SearchApi(client, userType)
+        message = MessageApi(client, userType)
+//        message = if (userType == UserType.Regular) MessageApi(client, userType) else null
     }
 
     public companion object {
         public const val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
 
         @Throws(NotAuthorizedException::class)
-        public fun checkLoginStatus(userType: UserType) {
-            check(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
+        public fun isUserLoggedIn(userType: UserType) {
+            require(userType == UserType.Regular) { NotAuthorizedException("Anonymous users cannot do this.") }
         }
     }
 }
