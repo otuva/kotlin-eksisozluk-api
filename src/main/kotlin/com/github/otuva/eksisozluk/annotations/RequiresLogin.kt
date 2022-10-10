@@ -7,5 +7,5 @@ package com.github.otuva.eksisozluk.annotations
  * @throws [com.github.otuva.eksisozluk.NotAuthorizedException] if the user is not logged in.
  * */
 @Retention(AnnotationRetention.BINARY)
-@Target(AnnotationTarget.FUNCTION, AnnotationTarget.VALUE_PARAMETER)
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.CLASS)
 public annotation class RequiresLogin
