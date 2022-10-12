@@ -1,10 +1,10 @@
-package com.github.otuva.eksisozluk.models.user
+package com.github.otuva.eksisozluk.models.user.badge
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
- * Represents a single badge
+ * Represents a single text badge
  *
  * @param id Badge id. This is not fixed and can change
  * @param name Badge name

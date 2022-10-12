@@ -1,6 +1,8 @@
 package com.github.otuva.eksisozluk.models.user
 
 import com.github.otuva.eksisozluk.models.topic.Topic
+import com.github.otuva.eksisozluk.models.user.badge.Badge
+import com.github.otuva.eksisozluk.models.user.badge.ImageBadge
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,9 +23,11 @@ import kotlinx.serialization.Serializable
 public data class User(
     @SerialName("UserInfo") val userInfo: UserInfo,
     @SerialName("Badges") val badges: List<Badge>,
+    @SerialName("ImageBadges") val imageBadges: List<ImageBadge>,
     @SerialName("HasEntryUsedOnSeyler") val hasEntryUsedOnSeyler: Boolean,
     @SerialName("FollowerCount") val followerCount: Int,
     @SerialName("FollowingsCount") val followingsCount: Int,
     @SerialName("Picture") val picture: String?,
-    @SerialName("PinnedEntry") val pinnedEntry: Topic?
+    @SerialName("PinnedEntry") val pinnedEntry: Topic?,
+    @SerialName("Biograpyh") val biography: String?
 )

@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="change project settings">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/badge/BadgeName.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/Badge.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/badge/Badge.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/BadgeName.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/UserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/UserInfo.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +30,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="eksi-api-wrapper" type="f1a62948:ProjectNode" />
+                <item name=" kotlin-eksisozluk-api" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -42,8 +44,8 @@
       <list>
         <option value="Kotlin Annotation" />
         <option value="Kotlin File" />
-        <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Enum" />
         <option value="Kotlin Data Class" />
       </list>
     </option>
@@ -89,11 +91,12 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.113678396&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propGUI&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/doc/jsons/user" />
       <recent name="$PROJECT_DIR$/doc/jsons" />
       <recent name="$PROJECT_DIR$/doc" />
       <recent name="$PROJECT_DIR$" />
@@ -106,11 +109,11 @@
       <recent name="com.github.otuva.eksisozluk.models.index.debe" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.github.otuva.eksisozluk.models.user.badge" />
       <recent name="com.github.otuva.eksisozluk.models.message.thread" />
       <recent name="com.github.otuva.eksisozluk.models.index.olay" />
       <recent name="com.github.otuva.eksisozluk.models.index.matter" />
       <recent name="com.github.otuva.eksisozluk.models.index" />
-      <recent name="com.github.otuva.eksisozluk.models.index.topic" />
     </key>
   </component>
   <component name="RunManager">
@@ -125,7 +128,6 @@
       <list>
         <item itemvalue="Kotlin.TempMainKt" />
         <item itemvalue="Kotlin.TempMainKt" />
-        <item itemvalue="Kotlin.EksiClientKt" />
       </list>
     </recent_temporary>
   </component>
@@ -148,13 +150,9 @@
       <workItem from="1665375502073" duration="2043000" />
       <workItem from="1665377565093" duration="16479000" />
       <workItem from="1665396403354" duration="1414000" />
-    </task>
-    <task id="LOCAL-00159" summary="remove unnecessary data class">
-      <created>1664983118351</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1664983118351</updated>
+      <workItem from="1665397831632" duration="312000" />
+      <workItem from="1665423238260" duration="112000" />
+      <workItem from="1665572639291" duration="9874000" />
     </task>
     <task id="LOCAL-00160" summary="remove unused value">
       <created>1664985644544</created>
@@ -492,7 +490,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665397711522</updated>
     </task>
-    <option name="localTasksCounter" value="208" />
+    <task id="LOCAL-00208" summary="change project settings">
+      <created>1665397870071</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1665397870071</updated>
+    </task>
+    <option name="localTasksCounter" value="209" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -542,19 +547,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
-          <line>46</line>
-          <option name="timeStamp" value="32" />
+          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt</url>
+          <line>15</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
           <line>61</line>
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/EksiExceptions.kt</url>
-          <line>15</line>
-          <option name="timeStamp" value="51" />
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -562,6 +562,7 @@
       <pinned-members>
         <PinnedItemInfo parentTag="io.ktor.client.plugins.ServerResponseException" memberName="cause" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.CondensedTopic" memberName="entry" />
+        <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.user.User" memberName="hasEntryUsedOnSeyler" />
         <PinnedItemInfo parentTag="com.github.otuva.eksisozluk.models.user.entries.CondensedTopic" memberName="entry" />
         <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
         <PinnedItemInfo parentTag="io.github.otuva.eksisozluk.models.Video" memberName="displayInfo" />

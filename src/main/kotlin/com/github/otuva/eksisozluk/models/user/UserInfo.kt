@@ -48,4 +48,5 @@ public data class UserInfo(
     @SerialName("DisplayTwitterProfile") val displayTwitterProfile: Boolean,
     @SerialName("DisplayFacebookProfile") val displayFacebookProfile: Boolean,
     @SerialName("DisplayInstagramProfile") val displayInstagramProfile: Boolean,
+    @SerialName("IsBuddyCurrentUser") val isBuddyCurrentUser: Boolean,
 )
