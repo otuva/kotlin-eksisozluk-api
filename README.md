@@ -84,6 +84,6 @@ ve `app/build.gradle` dosyasina (module gradle'ina) libraryi ekleyin:
 
 ```groovy
 dependencies {
-    implementation 'com.github.otuva:kotlin-eksisozluk-api:0.0.18-alpha'
+    implementation 'com.github.otuva:kotlin-eksisozluk-api:Tag'
 }
 ```
