@@ -77,6 +77,9 @@ public enum class ImageBadgeName {
     @SerialName("herodot")
     Herodot,
 
+    @SerialName("içerik sponsoru")
+    IcerikSponsoru,
+
     @SerialName("iron man - geek")
     IronManGeek,
 
@@ -91,6 +94,9 @@ public enum class ImageBadgeName {
 
     @SerialName("kıymetlimiss")
     Kiymetlimiss,
+
+    @SerialName("kurumsal")
+    Kurumsal,
 
     @SerialName("lidyalı")
     Lidyali,

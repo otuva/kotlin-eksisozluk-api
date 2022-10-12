@@ -11,13 +11,29 @@ import kotlinx.serialization.Serializable
  * @param twitterScreenName User's twitter handle
  * @param facebookProfileUrl User's facebook profile url
  * @param facebookScreenName User's facebook screen name
- * @param instagramScreenName User's instagram screen name
+ * @param instagramScreenName User's instagram username
  * @param instagramProfileUrl User's instagram profile url
  * @param karma User's karma shown on the profile page
  * @param entryCounts User's entry counts by time intervals
  * @param lastEntryDate User's last written entry date
- * @param standingQueueNumber User's standing queue number (caylak sirasi) note that this will be 0 for authors
- *
+ * @param standingQueueNumber User's standing queue number (caylak sirasi) note that this will be 0 for authors and caylak users can only see their own standing queue number
+ * @param hasAnyPendingInvitation Unknown
+ * @param isBuddy Whether you are following the user
+ * @param isBlocked Whether you have blocked the user
+ * @param isFollowed Unknown
+ * @param isCorporate Whether the user is a corporate user
+ * @param isDeactivated Whether the user has deactivated their account
+ * @param isKarmaShown Whether the user's karma is shown on the profile page
+ * @param isCaylak Whether the user is a caylak or not
+ * @param isIndexTitlesBlocked Whether you have blocked the user's index titles | baslik engelleme
+ * @param note Unknown
+ * @param cursePeriod Period of the user's curse if the user is cursed else null
+ * @param isCursed Whether the user is cursed or not
+ * @param isBanned Whether the user is banned or not
+ * @param displayTwitterProfile Whether the user's Twitter profile is shown on the profile page
+ * @param displayFacebookProfile Whether the user's facebook profile is shown on the profile page
+ * @param displayInstagramProfile Whether the user's instagram profile is shown on the profile page
+ * @param isBuddyCurrentUser Unknown
  * */
 @Serializable
 public data class UserInfo(

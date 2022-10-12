@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="change project settings">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/badge/BadgeName.kt" afterDir="false" />
+    <list default="true" id="4d3804af-8326-44af-a951-37eecc922df3" name="Changes" comment="add image badges &amp; latest api update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/Badge.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/badge/Badge.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/BadgeName.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/User.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/UserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/UserInfo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/badge/ImageBadgeName.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/models/user/badge/ImageBadgeName.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,14 +150,7 @@
       <workItem from="1665396403354" duration="1414000" />
       <workItem from="1665397831632" duration="312000" />
       <workItem from="1665423238260" duration="112000" />
-      <workItem from="1665572639291" duration="9874000" />
-    </task>
-    <task id="LOCAL-00160" summary="remove unused value">
-      <created>1664985644544</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1664985644544</updated>
+      <workItem from="1665572639291" duration="11043000" />
     </task>
     <task id="LOCAL-00161" summary="move to companion">
       <created>1664985677904</created>
@@ -497,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665397870071</updated>
     </task>
-    <option name="localTasksCounter" value="209" />
+    <task id="LOCAL-00209" summary="add image badges &amp; latest api update">
+      <created>1665582662040</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1665582662040</updated>
+    </task>
+    <option name="localTasksCounter" value="210" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +514,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor" />
     <MESSAGE value="extend kdoc for annotations" />
     <MESSAGE value="add favsOnly and niceOnly parameters in search functions" />
     <MESSAGE value="change ws" />
@@ -541,7 +538,8 @@
     <MESSAGE value="fix require" />
     <MESSAGE value="update todo" />
     <MESSAGE value="change project settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="change project settings" />
+    <MESSAGE value="add image badges &amp; latest api update" />
+    <option name="LAST_COMMIT_MESSAGE" value="add image badges &amp; latest api update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -553,7 +551,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/com/github/otuva/eksisozluk/tempMain.kt</url>
-          <line>61</line>
+          <line>64</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>

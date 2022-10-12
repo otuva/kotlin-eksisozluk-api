@@ -10,12 +10,14 @@ import kotlinx.serialization.Serializable
  * Represents a user
  *
  * @param userInfo User information represented by [UserInfo]
- * @param badges User badges. Note that api returns an empty list unless user is 'caylak' or 'leyla' etc.
+ * @param badges User text badges. Such as caylak, leyla etc.
+ * @param imageBadges User image badges.
  * @param hasEntryUsedOnSeyler Whether the user has an entry used on 'EksiSeyler'
  * @param followerCount Number of followers
  * @param followingsCount Number of users the user is following
  * @param picture Link to the user's profile picture
  * @param pinnedEntry This parameter is useless. It is always null. To see pinned entry use user's last entries
+ * @param biography User biography
  *
  * @see UserInfo
  * */
