@@ -6,6 +6,9 @@ doc/jsons
 sozluk.session
 anon.session
 
+# intellij
+.idea
+
 # wtf are these
 .attach_pid*
 
