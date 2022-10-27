@@ -22,12 +22,15 @@ public fun exceptionHandler(exception: Throwable, request: HttpRequest) {
             500 -> when {
                 contains("/v2/user/") -> throw BadUserException("User not found")
                 contains("/v2/topic/") -> throw BadTopicException("Topic not found")
+                contains("/v2/matter/") -> throw BadMatterException("Matter not found")
             }
 
             else -> println("Unknown or known (and not implemented) error: $exception at ${request.url}")
         }
     }
 }
+
+public class BadMatterException(message: String) : Exception(message)
 
 public class BadTopicException(message: String) : Exception(message)
 
