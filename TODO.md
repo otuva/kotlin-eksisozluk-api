@@ -3,16 +3,13 @@
 - change logger from default to android
 
 - Implement:
-- mesajlasma (apisi) -> okundu isaretle, mesaj silme, arsivleme, arama
-- olay snapshotlari (topic - matter)
-- sorunsallar apisi
-- entry silme / yazma
+- mesajlasma -> okundu isaretle, mesaj silme, arsivleme, arama
+- entry silme / yazma / guncelleme / taslaklar
 - profil fotografi yukleme
 - baslik gorsel yukleme
 - cop kutusu
 - takip edilen kisilerin entry/fav
 
-- ayarlar apisi
+- ayarlar apisi -> takip edilen / engellenen vs. 
 
-- belki entry throwlamak yerine null dondursun?
 - base64 encoding ekle? belki
