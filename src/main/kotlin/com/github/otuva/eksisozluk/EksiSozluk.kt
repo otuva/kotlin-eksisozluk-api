@@ -30,6 +30,7 @@ public class EksiSozluk(
     public var index: IndexApi
     public var search: SearchApi
     public var message: MessageApi
+    public var matter: MatterApi
 
     init {
         session = existingSession ?: Session(username, password)
@@ -93,6 +94,7 @@ public class EksiSozluk(
         index = IndexApi(client, userType)
         search = SearchApi(client, userType)
         message = MessageApi(client, userType)
+        matter = MatterApi(client, userType)
 //        message = if (userType == UserType.Regular) MessageApi(client, userType) else null
     }
 
