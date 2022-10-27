@@ -34,6 +34,9 @@ public object Routes {
         public const val topic: String = "/v2/topic/%s/"
 
         @RequiresFormatting
+        public const val snapshot: String = "/v2/topic/%s/tracked/%s"
+
+        @RequiresFormatting
         public const val search: String = "/v2/topic/%s/search/%s"
         public const val advancedSearch: String = "/v2/topic/%s/search/advanced"
 
@@ -116,5 +119,13 @@ public object Routes {
 
         public const val send: String = "/v2/message/sendmessage"
 
+    }
+
+    public object Matter {
+        @RequiresFormatting
+        public const val matter: String = "/v2/matter/%s/"
+
+        @RequiresFormatting
+        public const val snapshot: String = "/v2/matter/%s/tracked/%s"
     }
 }
