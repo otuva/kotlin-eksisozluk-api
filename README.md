@@ -36,6 +36,7 @@ Suan librarynin yapabildikleri:
 - baslik:
   - takip etme / takipten cikarma
   - baslik cekebilme
+  - takip edilen basligin son entryleri
   - entry filtreleme
   - baslik arama
   - baslikta arayabilme
@@ -68,7 +69,10 @@ Suan librarynin yapabildikleri:
   - sorunsal yanitlari
 - mesaj:
   - gonderme
-  - listeleme 
+  - listeleme
+- sorunsallar
+  - tek bir sorunsali goruntuleme
+  - sorunsallar icin 4 farkli siralama
 
 ## Kurulum
 
