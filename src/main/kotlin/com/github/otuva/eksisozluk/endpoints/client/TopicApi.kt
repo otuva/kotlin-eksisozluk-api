@@ -146,6 +146,29 @@ public class TopicApi(private val client: HttpClient, private val userType: User
     }
 
     /**
+     * Focus specific entries in a topic for followed topics.
+     *
+     * Main usage would be from index.olay() snapshot entries
+     *
+     * To continue with unread entries you can simply use last entry from the page and call this function with the latest entry id
+     * or call this function with the same entry id and increase the page number
+     *
+     * @param topicId The id of the topic
+     * @param entryId The id of the entry to focus
+     * @param page The page to get
+     *
+     * @return Null if the topic is not found [Topic] object otherwise.
+     * */
+    @RequiresLogin
+    public suspend fun getSnapshot(topicId: Int, entryId: Int, page: Int = 1): Topic? {
+        EksiSozluk.isUserLoggedIn(userType)
+
+        val url = Routes.api + Routes.Topic.snapshot.format(topicId, entryId) + "?p=$page"
+
+        return topicRequest(url)
+    }
+
+    /**
      * Returns the topic response for given url
      *
      * @param url The url to get the topic
