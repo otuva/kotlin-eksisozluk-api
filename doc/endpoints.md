@@ -120,7 +120,7 @@
 /v2/user/unblock
 /v2/user/unfollow
 /v2/user/{username}/
-/v2/user/{username}//images
+/v2/user/{username}/images
 /v2/user/{username}/{actionname}/
 /v2/{actionname}
 ```
