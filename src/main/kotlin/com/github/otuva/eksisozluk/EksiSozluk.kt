@@ -21,17 +21,17 @@ public class EksiSozluk(
     password: String? = null,
     existingSession: Session? = null,
 ) {
-    private var userType: UserType
-    private var client: HttpClient
-    public var session: Session
+    private val userType: UserType
+    private val client: HttpClient
+    public val session: Session
 
-    public var entry: EntryApi
-    public var user: UserApi
-    public var topic: TopicApi
-    public var index: IndexApi
-    public var search: SearchApi
-    public var message: MessageApi
-    public var matter: MatterApi
+    public val entry: EntryApi
+    public val user: UserApi
+    public val topic: TopicApi
+    public val index: IndexApi
+    public val search: SearchApi
+    public val message: MessageApi
+    public val matter: MatterApi
 
     init {
         session = existingSession ?: Session(username, password)
