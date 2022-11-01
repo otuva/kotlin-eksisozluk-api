@@ -36,7 +36,7 @@ public class EksiSozluk(
     init {
         session = existingSession ?: Session(username, password)
 
-        check(session.token.isExpired()) { TokenExpiredException("Token expired. Consider calling refreshToken() function.") }
+        check(session.token.isExpired().not()) { throw TokenExpiredException("Token expired. Consider calling refreshToken() function.") }
 
         userType = if (session.token.nick == null) {
             UserType.Anonymous
