@@ -13,6 +13,8 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
 import kotlinx.datetime.Clock
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 public class EksiSozluk(
@@ -95,15 +97,39 @@ public class EksiSozluk(
         search = SearchApi(client, userType)
         message = MessageApi(client, userType)
         matter = MatterApi(client, userType)
-//        message = if (userType == UserType.Regular) MessageApi(client, userType) else null
     }
 
     public companion object {
         public const val apiSecret: String = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"
 
+        /**
+         * Used in functions that require a user to be logged in.
+         * */
         @Throws(NotAuthorizedException::class)
         public fun isUserLoggedIn(userType: UserType) {
             require(userType == UserType.Regular) { throw NotAuthorizedException("Anonymous users cannot do this.") }
+        }
+
+        /**
+         * Serializes the session to a string in a JSON format.
+         *
+         * @param currentSession The session to be serialized.
+         *
+         * @return The serialized session as a [String].
+         * */
+        public fun sessionToString(currentSession: Session): String {
+            return Json.encodeToString(currentSession)
+        }
+
+        /**
+         * Deserialize a string in a JSON format to a session.
+         *
+         * @param sessionString The string to be deserialized.
+         *
+         * @return The deserialized [Session] object.
+         * */
+        public fun stringToSession(sessionString: String): Session {
+            return Json.decodeFromString(sessionString)
         }
     }
 }

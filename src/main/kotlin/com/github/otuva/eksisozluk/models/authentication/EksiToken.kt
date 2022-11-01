@@ -30,4 +30,9 @@ public data class EksiToken(
     val nick: String? = null,
     val issuedAt: Instant = Clock.System.now(),
     val expiresAt: Instant = issuedAt + expiresIn.seconds,
-)
+) {
+    /**
+     * Checks if the token is expired.
+     * */
+    public fun isExpired(): Boolean = expiresAt < Clock.System.now()
+}
