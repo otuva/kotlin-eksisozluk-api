@@ -12,7 +12,6 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.util.*
-import kotlinx.datetime.Clock
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -37,7 +36,7 @@ public class EksiSozluk(
     init {
         session = existingSession ?: Session(username, password)
 
-        check(session.token.expiresAt > Clock.System.now()) { TokenExpiredException("Token expired. Consider calling refreshToken() function.") }
+        check(session.token.isExpired()) { TokenExpiredException("Token expired. Consider calling refreshToken() function.") }
 
         userType = if (session.token.nick == null) {
             UserType.Anonymous
