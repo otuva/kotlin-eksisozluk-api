@@ -95,7 +95,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun searchInTopic(topicId: Int, searchTerm: String, page: Int = 1): Topic? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Topic.search.format(topicId, urlEncode(searchTerm)) + "?p=$page"
 
@@ -161,7 +161,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun getSnapshot(topicId: Int, entryId: Int, page: Int = 1): Topic? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Topic.snapshot.format(topicId, entryId) + "?p=$page"
 
@@ -223,7 +223,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun follow(topicId: Int): GenericResponse {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Topic.follow
 
@@ -241,7 +241,7 @@ public class TopicApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun unfollow(topicId: Int): GenericResponse {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Topic.unfollow
 

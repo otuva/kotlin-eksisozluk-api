@@ -121,7 +121,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun favorite(entryId: Int): FavoriteData {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Entry.favorite
 
@@ -138,7 +138,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun unfavorite(entryId: Int): FavoriteData {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Entry.unfavorite
 
@@ -154,7 +154,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun favorites(entryId: Int): Favorites {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Entry.favorites.format(entryId)
 
@@ -174,7 +174,7 @@ public class EntryApi(private val client: HttpClient, private val userType: User
      * */
     @RequiresLogin
     public suspend fun caylakFavorites(entryId: Int): CaylakFavorites {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Entry.caylakFavorites.format(entryId)
 

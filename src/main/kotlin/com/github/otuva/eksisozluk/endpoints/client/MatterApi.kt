@@ -47,7 +47,7 @@ public class MatterApi(private val client: HttpClient, private val userType: Use
      * */
     @RequiresLogin
     public suspend fun getSnapshot(matterId: Int, id: Int, page: Int = 1): Matter? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Matter.snapshot.format(matterId, id) + "?p=$page"
 

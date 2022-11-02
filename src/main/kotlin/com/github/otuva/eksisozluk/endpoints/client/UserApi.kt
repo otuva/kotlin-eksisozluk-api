@@ -211,7 +211,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * */
     @RequiresLogin
     public suspend fun follow(username: String): GenericResponse? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.User.follow
 
@@ -229,7 +229,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * */
     @RequiresLogin
     public suspend fun unfollow(username: String): GenericResponse? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.User.unfollow
 
@@ -247,7 +247,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * */
     @RequiresLogin
     public suspend fun block(username: String): GenericResponse? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.User.block
 
@@ -265,7 +265,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * */
     @RequiresLogin
     public suspend fun unblock(username: String): GenericResponse? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.User.unblock
 
@@ -281,7 +281,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * */
     @RequiresLogin
     public suspend fun blockTopics(username: String): GenericResponse? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.User.blockTopics
 
@@ -297,7 +297,7 @@ public class UserApi(private val client: HttpClient, private val userType: UserT
      * */
     @RequiresLogin
     public suspend fun unblockTopics(username: String): GenericResponse? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.User.unblockTopics
 

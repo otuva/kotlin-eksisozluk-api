@@ -34,7 +34,7 @@ public class MessageApi(private val client: HttpClient, private val userType: Us
      * */
     @RequiresLogin
     public suspend fun messages(page: Int = 1): Messages {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Message.messages + "?p=$page"
 
@@ -57,7 +57,7 @@ public class MessageApi(private val client: HttpClient, private val userType: Us
      * */
     @RequiresLogin
     public suspend fun thread(username: String, page: Int = 1): Thread {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Message.thread.format(urlEncode(username)) + "?p=$page"
 
@@ -78,7 +78,7 @@ public class MessageApi(private val client: HttpClient, private val userType: Us
      * */
     @RequiresLogin
     public suspend fun send(username: String, message: String): SentData? {
-        EksiSozluk.isUserLoggedIn(userType)
+        EksiSozluk.requireUserLogin(userType)
 
         val url = Routes.api + Routes.Message.send
 
