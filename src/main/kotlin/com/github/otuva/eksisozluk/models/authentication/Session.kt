@@ -16,6 +16,8 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.util.*
 
@@ -184,6 +186,9 @@ public class Session(
     }
 
     public companion object {
+        /**
+         * Creates a temporary client to get token.
+         * */
         private fun createTemporaryClient(): HttpClient {
             return HttpClient(CIO) {
                 install(UserAgent) {
@@ -204,6 +209,28 @@ public class Session(
                     level = LogLevel.INFO
                 }
             }
+        }
+
+        /**
+         * Serializes the session to a string in a JSON format.
+         *
+         * @param currentSession The session to be serialized.
+         *
+         * @return The serialized session as a [String].
+         * */
+        public fun sessionToString(currentSession: Session): String {
+            return Json.encodeToString(currentSession)
+        }
+
+        /**
+         * Deserialize a string in a JSON format to a session.
+         *
+         * @param sessionString The string to be deserialized.
+         *
+         * @return The deserialized [Session] object.
+         * */
+        public fun stringToSession(sessionString: String): Session {
+            return Json.decodeFromString(sessionString)
         }
     }
 }
