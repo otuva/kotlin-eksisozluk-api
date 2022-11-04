@@ -1,8 +1,8 @@
 package com.github.otuva.eksisozluk
 
+import com.github.otuva.eksisozluk.endpoints.client.*
 import com.github.otuva.eksisozluk.models.authentication.Session
 import com.github.otuva.eksisozluk.models.authentication.UserType
-import com.github.otuva.eksisozluk.endpoints.client.*
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
@@ -34,7 +34,10 @@ public class EksiSozluk(
     init {
         session = existingSession ?: Session(username, password)
 
-        check(session.token.isExpired().not()) { throw TokenExpiredException("Token expired. Consider calling refreshToken() function.") }
+        // should not be expired
+        check(
+            session.token.isExpired().not()
+        ) { throw TokenExpiredException("Token expired. Consider calling refreshToken() function.") }
 
         userType = if (session.token.nick == null) {
             UserType.Anonymous
