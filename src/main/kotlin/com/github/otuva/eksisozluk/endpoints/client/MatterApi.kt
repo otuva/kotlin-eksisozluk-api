@@ -26,7 +26,7 @@ public class MatterApi(private val client: HttpClient, private val userType: Use
      * @return [Matter] object or null if matter is not found
      * */
     public suspend fun get(matterId: Int, sortingType: SortingType = SortingType.All, page: Int = 1): Matter? {
-        val url = Routes.api + Routes.Matter.matter.format(matterId)+ sortingType.value + "?p=$page"
+        val url = Routes.api + Routes.Matter.matter.format(matterId) + sortingType.value + "?p=$page"
 
         return matterRequest(url)
     }

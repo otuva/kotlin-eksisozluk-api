@@ -6,13 +6,13 @@ import com.github.otuva.eksisozluk.endpoints.Routes
 import com.github.otuva.eksisozluk.models.authentication.UserType
 import com.github.otuva.eksisozluk.models.index.Index
 import com.github.otuva.eksisozluk.models.index.IndexToday
-import com.github.otuva.eksisozluk.models.index.matter.Matters
 import com.github.otuva.eksisozluk.models.index.debe.Debe
 import com.github.otuva.eksisozluk.models.index.filter.ChannelName
 import com.github.otuva.eksisozluk.models.index.filter.Filter
 import com.github.otuva.eksisozluk.models.index.filter.Filters
+import com.github.otuva.eksisozluk.models.index.matter.Matters
 import com.github.otuva.eksisozluk.models.index.olay.Olay
-import com.github.otuva.eksisozluk.responses.*
+import com.github.otuva.eksisozluk.responses.GenericResponse
 import com.github.otuva.eksisozluk.responses.index.*
 import com.github.otuva.eksisozluk.responses.matter.MattersResponse
 import io.ktor.client.*

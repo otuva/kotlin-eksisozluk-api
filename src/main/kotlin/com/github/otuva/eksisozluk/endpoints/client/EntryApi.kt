@@ -9,9 +9,9 @@ import com.github.otuva.eksisozluk.models.entry.favorite.CaylakFavorites
 import com.github.otuva.eksisozluk.models.entry.favorite.FavoriteData
 import com.github.otuva.eksisozluk.models.entry.favorite.Favorites
 import com.github.otuva.eksisozluk.models.topic.Topic
-import com.github.otuva.eksisozluk.responses.entry.favorite.FavoriteDataResponse
 import com.github.otuva.eksisozluk.responses.GenericResponse
 import com.github.otuva.eksisozluk.responses.entry.favorite.CaylakFavoritesResponse
+import com.github.otuva.eksisozluk.responses.entry.favorite.FavoriteDataResponse
 import com.github.otuva.eksisozluk.responses.entry.favorite.FavoritesResponse
 import com.github.otuva.eksisozluk.responses.topic.TopicResponse
 import io.ktor.client.*
