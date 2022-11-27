@@ -3,6 +3,11 @@ package com.github.otuva.eksisozluk.models.search
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents the order of the search results.
+ *
+ * @param value The value of the sort order
+ * */
 @Serializable
 public enum class SortOrder(public val value: Int) {
     @SerialName("0")

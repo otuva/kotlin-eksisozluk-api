@@ -41,7 +41,7 @@ public class SearchApi(private val client: HttpClient, private val userType: Use
      * Detailed search for given parameters.
      * Api will return things including all space separated keywords.
      *
-     * @param keywords space separated keywords. Cannot be null but can be empty
+     * @param keywords Space separated keywords. Cannot be null but can be empty. You can use wildcard (*) for keywords.
      * @param from The starting date of the search. Can be null
      * @param to The ending date of the search. Can be null
      * @param author entries written by this author. Can be null
