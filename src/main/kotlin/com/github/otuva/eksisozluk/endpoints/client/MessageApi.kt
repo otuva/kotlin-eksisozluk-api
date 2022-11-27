@@ -34,9 +34,21 @@ public class MessageApi(private val client: HttpClient, private val userType: Us
      * */
     @RequiresLogin
     public suspend fun messages(page: Int = 1): Messages {
-        EksiSozluk.requireUserLogin(userType)
-
         val url = Routes.api + Routes.Message.messages + "?p=$page"
+
+        return messageRequest(url)
+    }
+
+    @RequiresLogin
+    public suspend fun archivedMessages(page: Int = 1): Messages {
+        val url = Routes.api + Routes.Message.archivedMessages + "?p=$page"
+
+        return messageRequest(url)
+    }
+
+    @RequiresLogin
+    private suspend fun messageRequest(url: String): Messages {
+        EksiSozluk.requireUserLogin(userType)
 
         val response = client.get(url)
 

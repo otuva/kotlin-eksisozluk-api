@@ -114,11 +114,20 @@ public object Routes {
     public object Message {
         public const val messages: String = "/v2/message"
 
+        public const val archivedMessages: String = "/v2/message/archive"
+
         @RequiresFormatting
         public const val thread: String = "/v2/message/thread/Nick/%s"
 
         public const val send: String = "/v2/message/sendmessage"
 
+//        public const val markAsRead: String = "/v2/message/markasread/nick"
+
+//        public const val delete: String = "/v2/message/deleteprocessthread"
+
+//        public const val archive: String = "/v2/message/archiveprocessthread"
+
+//        public const val deleteArchive: String = "/v2/message/deleteprocessarchive"
     }
 
     public object Matter {
