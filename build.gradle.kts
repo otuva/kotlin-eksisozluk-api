@@ -37,7 +37,8 @@ dependencies {
         implementation("ch.qos.logback:logback-classic:$logback_version")
 
         // date and time
-        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+        // implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+        api("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
     }
 }
 
