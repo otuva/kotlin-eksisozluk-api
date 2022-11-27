@@ -5,6 +5,24 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Represents a single answer of a matter.
+ *
+ * @param matterId The id of the matter that the answer belongs to.
+ * @param matterTitle The title of the matter
+ * @param content Body of the answer.
+ * @param created The date and time that the answer was created.
+ * @param lastUpdated The date and time that the answer was last updated.
+ * @param id The id of the answer.
+ * @param author The author of the answer.
+ * @param upVote The number of up votes that the answer has.
+ * @param downVote The number of down votes that the answer has.
+ * @param matter Unknown
+ * @param hidden Whether the answer is hidden.
+ * @param active Whether the answer is active.
+ * @param slug The slug of the matter.
+ * @param avatarUrl The url of the author's avatar.
+ * */
 @Serializable
 public data class MatterItem(
     @SerialName("MatterId") val matterId: Int,

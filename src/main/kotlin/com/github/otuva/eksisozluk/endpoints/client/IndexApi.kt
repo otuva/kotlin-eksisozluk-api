@@ -185,6 +185,8 @@ public class IndexApi(private val client: HttpClient, private val userType: User
      * @page The page to get
      *
      * @return [Index] object
+     *
+     * @throws [IllegalArgumentException] if the year is not between 1999 and current year
      * */
     public suspend fun todayInPast(year: Int, page: Int = 1): Index {
         require(year in 1999..Year.now().value) { throw IllegalArgumentException("Year must be between 1999 and ${Year.now().value}") }
