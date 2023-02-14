@@ -1,3 +1,5 @@
+# Endpointlere gelen guncellemeler ile bazi fonksiyonlar calismamaktadir. Duzeltilecek :) (bir ara)
+
 Eksi sozluk uygulamasinin butun yapabildiklerini yapabilmeyi amaclayan kotlin librarysidir.
 
 Readme, library pre-release olarak degil de release olarak yayinlaninca guncellenecektir.
